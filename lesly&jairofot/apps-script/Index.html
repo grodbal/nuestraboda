@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#566a85">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --background: #f6f8fa;
+        --surface: rgba(251, 252, 253, 0.92);
+        --surface-strong: #ffffff;
+        --text: #263346;
+        --muted: #617187;
+        --primary: #566a85;
+        --primary-dark: #465a75;
+        --accent: #7b93ad;
+        --accent-soft: #bbc5d1;
+        --border: rgba(86, 106, 133, 0.22);
+        --success: #456853;
+        --danger: #8a4b4b;
+        --shadow: 0 20px 55px rgba(50, 67, 88, 0.13);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 12px;
+        display: grid;
+        place-items: center;
+        font-family: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 10% 10%, rgba(255,255,255,.95), transparent 34%),
+          radial-gradient(circle at 90% 80%, rgba(187,197,209,.4), transparent 34%),
+          radial-gradient(circle,rgba(86,106,133,.08) .65px,transparent .9px) 0 0/25px 25px,
+          var(--background);
+      }
+
+      .shell {
+        width: min(100%, 620px);
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(24px, 5vw, 42px);
+        border: 1px solid rgba(255,255,255,.8);
+        border-radius: 22px;
+        background: var(--surface);
+        backdrop-filter: blur(16px);
+        box-shadow: var(--shadow);
+      }
+
+      .card::before,
+      .card::after {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .card::before { top: -105px; right: -70px; }
+      .card::after { bottom: -125px; left: -80px; }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--primary);
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(42px, 10vw, 62px);
+        font-weight: 400;
+        line-height: 1.02;
+        letter-spacing: 0;
+      }
+
+      .intro {
+        margin: 18px 0 28px;
+        color: var(--muted);
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 19px;
+        line-height: 1.45;
+      }
+
+      .field-label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 750;
+      }
+
+      .text-input {
+        width: 100%;
+        height: 52px;
+        padding: 0 16px;
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        outline: none;
+        color: var(--text);
+        background: rgba(255,255,255,.9);
+        font: inherit;
+        transition: border-color .2s, box-shadow .2s;
+      }
+
+      .text-input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 4px rgba(123,147,173,.18);
+      }
+
+      .dropzone {
+        display: grid;
+        place-items: center;
+        min-height: 155px;
+        margin-top: 18px;
+        padding: 22px;
+        border: 1.5px dashed rgba(86,106,133,.38);
+        border-radius: 17px;
+        background: rgba(255,255,255,.55);
+        text-align: center;
+        cursor: pointer;
+        transition: transform .2s, border-color .2s, background .2s;
+      }
+
+      .dropzone:hover,
+      .dropzone.is-dragging {
+        transform: translateY(-2px);
+        border-color: var(--primary);
+        background: rgba(255,255,255,.92);
+      }
+
+      .dropzone input { display: none; }
+
+      .upload-icon {
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        margin: 0 auto 12px;
+        border-radius: 50%;
+        color: white;
+        background: var(--primary);
+        font-size: 25px;
+      }
+
+      .dropzone strong { display: block; font-size: 16px; }
+      .dropzone span { display: block; margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+      .file-summary {
+        display: none;
+        margin-top: 14px;
+        padding: 13px 15px;
+        border-radius: 14px;
+        color: var(--primary-dark);
+        background: rgba(187,197,209,.28);
+        font-size: 14px;
+      }
+
+      .file-list {
+        display: grid;
+        gap: 8px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .file-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 12px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: rgba(255,255,255,.72);
+        font-size: 13px;
+      }
+
+      .file-name {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .remove-button {
+        flex: 0 0 auto;
+        padding: 5px 8px;
+        border: 0;
+        border-radius: 8px;
+        color: var(--danger);
+        background: rgba(165,69,69,.08);
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .primary-button {
+        width: 100%;
+        min-height: 54px;
+        margin-top: 20px;
+        border: 0;
+        border-radius: 16px;
+        color: white;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        box-shadow: 0 14px 30px rgba(70,90,117,.22);
+        cursor: pointer;
+        font: inherit;
+        font-weight: 800;
+        transition: transform .2s, opacity .2s;
+      }
+
+      .primary-button:hover { transform: translateY(-1px); }
+      .primary-button:disabled { cursor: not-allowed; opacity: .55; transform: none; }
+
+      .progress-wrap {
+        display: none;
+        margin-top: 20px;
+      }
+
+      .progress-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 8px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .progress-track {
+        overflow: hidden;
+        height: 9px;
+        border-radius: 99px;
+        background: rgba(86,106,133,.12);
+      }
+
+      .progress-bar {
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--accent-soft), var(--primary));
+        transition: width .35s ease;
+      }
+
+      .message {
+        display: none;
+        margin-top: 18px;
+        padding: 15px;
+        border-radius: 14px;
+        line-height: 1.55;
+        font-size: 14px;
+      }
+
+      .message.success { display: block; color: var(--success); background: rgba(53,107,80,.1); }
+      .message.error { display: block; color: var(--danger); background: rgba(165,69,69,.1); }
+
+      .privacy {
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.55;
+        text-align: center;
+      }
+
+      @media (max-width: 480px) {
+        body { padding: 12px; }
+        .card { border-radius: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="card">
+        <p class="eyebrow">Álbum colaborativo</p>
+        <h1>Comparte tus mejores momentos</h1>
+        <p class="intro">
+          Ayúdanos a guardar la boda desde tu mirada. Selecciona las fotografías que tomaste y las reuniremos en el álbum privado de <?= eventName ?>.
+        </p>
+
+        <form id="uploadForm" novalidate>
+          <label class="field-label" for="guestName">Tu nombre</label>
+          <input
+            class="text-input"
+            id="guestName"
+            name="guestName"
+            type="text"
+            maxlength="60"
+            autocomplete="name"
+            placeholder="Ejemplo: Andrea Pérez"
+            required
+          >
+
+          <label class="dropzone" id="dropzone" for="photos">
+            <input
+              id="photos"
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif"
+              multiple
+            >
+            <span>
+              <span class="upload-icon">↑</span>
+              <strong>Seleccionar fotografías</strong>
+              <span>JPG, PNG, WEBP o HEIC · máximo <?= maxFileSizeMb ?> MB por foto</span>
+            </span>
+          </label>
+
+          <div class="file-summary" id="fileSummary"></div>
+          <ul class="file-list" id="fileList"></ul>
+
+          <button class="primary-button" id="submitButton" type="submit">
+            Subir mis fotos
+          </button>
+        </form>
+
+        <div class="progress-wrap" id="progressWrap">
+          <div class="progress-row">
+            <span id="progressText">Preparando fotografías…</span>
+            <span id="progressPercent">0%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+        </div>
+
+        <div class="message" id="message" role="status" aria-live="polite"></div>
+
+        <p class="privacy">
+          Las fotos se guardarán en un espacio privado de los novios. Al subirlas, autorizas que sean conservadas como recuerdo de su boda.
+        </p>
+      </section>
+    </main>
+
+    <script>
+      const ACCESS_KEY = '<?= accessKey ?>';
+      const MAX_FILE_SIZE_MB = Number('<?= maxFileSizeMb ?>');
+      const MAX_FILES_PER_BATCH = Number('<?= maxFilesPerBatch ?>');
+      const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+      const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'heic', 'heif'];
+
+      const form = document.getElementById('uploadForm');
+      const guestNameInput = document.getElementById('guestName');
+      const photosInput = document.getElementById('photos');
+      const dropzone = document.getElementById('dropzone');
+      const fileSummary = document.getElementById('fileSummary');
+      const fileList = document.getElementById('fileList');
+      const submitButton = document.getElementById('submitButton');
+      const progressWrap = document.getElementById('progressWrap');
+      const progressText = document.getElementById('progressText');
+      const progressPercent = document.getElementById('progressPercent');
+      const progressBar = document.getElementById('progressBar');
+      const message = document.getElementById('message');
+
+      let selectedItems = [];
+
+      photosInput.addEventListener('change', () => addFiles(photosInput.files));
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropzone.addEventListener(eventName, event => {
+          event.preventDefault();
+          dropzone.classList.add('is-dragging');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropzone.addEventListener(eventName, event => {
+          event.preventDefault();
+          dropzone.classList.remove('is-dragging');
+        });
+      });
+
+      dropzone.addEventListener('drop', event => addFiles(event.dataTransfer.files));
+
+      form.addEventListener('submit', async event => {
+        event.preventDefault();
+        clearMessage();
+
+        const guestName = guestNameInput.value.trim();
+
+        if (!guestName) {
+          showMessage('Escribe tu nombre antes de continuar.', 'error');
+          guestNameInput.focus();
+          return;
+        }
+
+        if (!selectedItems.length) {
+          showMessage('Selecciona al menos una fotografía.', 'error');
+          return;
+        }
+
+        setUploadingState(true);
+
+        let uploaded = 0;
+        const failed = [];
+
+        for (let index = 0; index < selectedItems.length; index += 1) {
+          const item = selectedItems[index];
+          const percentageBefore = Math.round((index / selectedItems.length) * 100);
+          updateProgress(percentageBefore, `Subiendo foto ${index + 1} de ${selectedItems.length}`);
+
+          try {
+            const base64 = await fileToBase64(item.file);
+            await uploadWithRetry({
+              accessKey: ACCESS_KEY,
+              guestName,
+              originalName: item.file.name,
+              mimeType: item.file.type || inferMimeType(item.file.name),
+              uploadId: item.uploadId,
+              base64
+            }, 2);
+            uploaded += 1;
+          } catch (error) {
+            failed.push({ name: item.file.name, message: getErrorMessage(error) });
+          }
+
+          const percentageAfter = Math.round(((index + 1) / selectedItems.length) * 100);
+          updateProgress(percentageAfter, `Procesadas ${index + 1} de ${selectedItems.length}`);
+        }
+
+        setUploadingState(false);
+
+        if (!failed.length) {
+          showMessage(
+            `¡Gracias! ${uploaded === 1 ? 'Tu fotografía fue enviada' : `Tus ${uploaded} fotografías fueron enviadas`} correctamente.`,
+            'success'
+          );
+          selectedItems = [];
+          photosInput.value = '';
+          renderSelectedFiles();
+        } else {
+          const failedNames = failed.map(item => item.name).join(', ');
+          showMessage(
+            `Se guardaron ${uploaded} fotografía(s). No se pudieron subir: ${failedNames}. Puedes intentarlo nuevamente.`,
+            'error'
+          );
+          const failedSet = new Set(failed.map(item => item.name));
+          selectedItems = selectedItems.filter(item => failedSet.has(item.file.name));
+          renderSelectedFiles();
+        }
+      });
+
+      function addFiles(fileListLike) {
+        clearMessage();
+        const incoming = Array.from(fileListLike || []);
+
+        if (!incoming.length) return;
+
+        const valid = [];
+        const errors = [];
+
+        incoming.forEach(file => {
+          const extension = getExtension(file.name);
+
+          if (!ALLOWED_EXTENSIONS.includes(extension)) {
+            errors.push(`${file.name}: formato no permitido`);
+            return;
+          }
+
+          if (file.size > MAX_FILE_SIZE_BYTES) {
+            errors.push(`${file.name}: supera ${MAX_FILE_SIZE_MB} MB`);
+            return;
+          }
+
+          const duplicate = selectedItems.some(item =>
+            item.file.name === file.name &&
+            item.file.size === file.size &&
+            item.file.lastModified === file.lastModified
+          );
+
+          if (!duplicate) {
+            valid.push({ file, uploadId: createUploadId() });
+          }
+        });
+
+        const availableSlots = Math.max(0, MAX_FILES_PER_BATCH - selectedItems.length);
+        const accepted = valid.slice(0, availableSlots);
+        selectedItems = selectedItems.concat(accepted);
+
+        if (valid.length > availableSlots) {
+          errors.push(`Puedes enviar un máximo de ${MAX_FILES_PER_BATCH} fotos por vez.`);
+        }
+
+        if (errors.length) {
+          showMessage(errors.join(' · '), 'error');
+        }
+
+        photosInput.value = '';
+        renderSelectedFiles();
+      }
+
+      function renderSelectedFiles() {
+        fileList.innerHTML = '';
+
+        if (!selectedItems.length) {
+          fileSummary.style.display = 'none';
+          fileSummary.textContent = '';
+          return;
+        }
+
+        const totalBytes = selectedItems.reduce((sum, item) => sum + item.file.size, 0);
+        fileSummary.style.display = 'block';
+        fileSummary.textContent = `${selectedItems.length} foto(s) seleccionada(s) · ${formatBytes(totalBytes)}`;
+
+        selectedItems.forEach((item, index) => {
+          const li = document.createElement('li');
+          li.className = 'file-item';
+
+          const name = document.createElement('span');
+          name.className = 'file-name';
+          name.textContent = `${item.file.name} · ${formatBytes(item.file.size)}`;
+
+          const remove = document.createElement('button');
+          remove.type = 'button';
+          remove.className = 'remove-button';
+          remove.textContent = 'Quitar';
+          remove.addEventListener('click', () => {
+            selectedItems.splice(index, 1);
+            renderSelectedFiles();
+          });
+
+          li.append(name, remove);
+          fileList.appendChild(li);
+        });
+      }
+
+      function uploadWithRetry(payload, retriesRemaining) {
+        return callServer(payload).catch(async error => {
+          if (retriesRemaining <= 0) throw error;
+          await wait((3 - retriesRemaining) * 1400);
+          return uploadWithRetry(payload, retriesRemaining - 1);
+        });
+      }
+
+      function callServer(payload) {
+        return new Promise((resolve, reject) => {
+          google.script.run
+            .withSuccessHandler(resolve)
+            .withFailureHandler(reject)
+            .uploadPhoto(payload);
+        });
+      }
+
+      function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const result = String(reader.result || '');
+            const commaIndex = result.indexOf(',');
+            if (commaIndex < 0) {
+              reject(new Error('No se pudo leer la fotografía.'));
+              return;
+            }
+            resolve(result.slice(commaIndex + 1));
+          };
+          reader.onerror = () => reject(new Error(`No se pudo leer ${file.name}.`));
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function setUploadingState(uploading) {
+        submitButton.disabled = uploading;
+        guestNameInput.disabled = uploading;
+        photosInput.disabled = uploading;
+        submitButton.textContent = uploading ? 'Subiendo fotografías…' : 'Subir mis fotos';
+        progressWrap.style.display = uploading ? 'block' : 'none';
+        if (!uploading) updateProgress(0, 'Preparando fotografías…');
+      }
+
+      function updateProgress(percentage, text) {
+        progressBar.style.width = `${percentage}%`;
+        progressPercent.textContent = `${percentage}%`;
+        progressText.textContent = text;
+      }
+
+      function showMessage(text, type) {
+        message.className = `message ${type}`;
+        message.textContent = text;
+      }
+
+      function clearMessage() {
+        message.className = 'message';
+        message.textContent = '';
+      }
+
+      function createUploadId() {
+        if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+          return window.crypto.randomUUID();
+        }
+        return `${Date.now()}-${Math.random().toString(36).slice(2, 12)}`;
+      }
+
+      function getExtension(fileName) {
+        return String(fileName || '').split('.').pop().toLowerCase();
+      }
+
+      function inferMimeType(fileName) {
+        const extension = getExtension(fileName);
+        const mimeByExtension = {
+          jpg: 'image/jpeg',
+          jpeg: 'image/jpeg',
+          png: 'image/png',
+          webp: 'image/webp',
+          heic: 'image/heic',
+          heif: 'image/heif'
+        };
+        return mimeByExtension[extension] || 'application/octet-stream';
+      }
+
+      function formatBytes(bytes) {
+        if (!bytes) return '0 KB';
+        const units = ['B', 'KB', 'MB', 'GB'];
+        const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+        return `${(bytes / Math.pow(1024, index)).toFixed(index ? 1 : 0)} ${units[index]}`;
+      }
+
+      function getErrorMessage(error) {
+        if (!error) return 'Error desconocido';
+        return error.message || String(error);
+      }
+
+      function wait(milliseconds) {
+        return new Promise(resolve => setTimeout(resolve, milliseconds));
+      }
+    </script>
+  </body>
+</html>

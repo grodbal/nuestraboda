@@ -683,6 +683,9 @@
     .service-card:hover{background:rgba(255,255,255,.035)}
     .service-card:hover::before{opacity:1;transform:scale(1)}
     .service-card--featured{background:var(--wine-deep)}
+    .service-card--premium{
+      background:linear-gradient(145deg,rgba(199,170,114,.13),rgba(255,255,255,.025) 55%);
+    }
     .service-card__top{display:flex;justify-content:space-between;align-items:center}
     .service-card__number{font-family:var(--display);font-size:29px;color:var(--champagne)}
     .service-badge{
@@ -721,6 +724,357 @@
       text-transform:uppercase;
       border-bottom:1px solid currentColor;
       padding-bottom:6px;
+    }
+
+
+    /* Pricing */
+    .service-card{
+      display:flex;
+      flex-direction:column;
+      min-height:590px;
+    }
+    .service-card a{
+      position:static;
+      align-self:flex-start;
+      margin-top:auto;
+      padding-top:32px;
+    }
+    .service-price{
+      display:flex;
+      align-items:end;
+      gap:12px;
+      flex-wrap:wrap;
+      margin:26px 0 0;
+      padding-top:24px;
+      border-top:1px solid rgba(255,255,255,.15);
+    }
+    .service-price strong{
+      font-family:var(--display);
+      font-size:52px;
+      font-weight:400;
+      line-height:.9;
+      color:var(--champagne);
+      letter-spacing:-.04em;
+    }
+    .service-price small{
+      max-width:125px;
+      color:rgba(255,255,255,.5);
+      font-family:var(--ui);
+      font-size:8px;
+      line-height:1.45;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .price-prefix{
+      align-self:flex-start;
+      margin-top:4px;
+      color:rgba(255,255,255,.52);
+      font-family:var(--ui);
+      font-size:8px;
+      font-weight:600;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+
+    /* Guest photo sharing add-on */
+    .photo-sharing{
+      position:relative;
+      overflow:hidden;
+      background:var(--ivory-2);
+    }
+    .photo-sharing::before{
+      content:"";
+      position:absolute;
+      width:520px;
+      height:520px;
+      right:-250px;
+      top:-260px;
+      border:1px solid rgba(111,46,54,.13);
+      border-radius:50%;
+      box-shadow:0 0 0 85px rgba(111,46,54,.025),0 0 0 170px rgba(111,46,54,.018);
+    }
+    .photo-sharing__grid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1fr .9fr;
+      gap:8vw;
+      align-items:center;
+    }
+    .photo-sharing__copy .display{
+      font-size:clamp(50px,6.2vw,88px);
+    }
+    .photo-sharing__copy .lead{
+      max-width:650px;
+      font-size:18px;
+    }
+    .photo-price{
+      display:flex;
+      align-items:end;
+      gap:16px;
+      margin-top:34px;
+      padding:22px 0;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .photo-price span{
+      font-family:var(--ui);
+      font-size:9px;
+      font-weight:600;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--wine);
+    }
+    .photo-price strong{
+      font-family:var(--display);
+      font-size:58px;
+      font-weight:400;
+      line-height:.8;
+      color:var(--wine);
+      letter-spacing:-.05em;
+    }
+    .photo-price small{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+    }
+    .photo-features{
+      list-style:none;
+      padding:0;
+      margin:28px 0 0;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px 26px;
+    }
+    .photo-features li{
+      position:relative;
+      padding-left:25px;
+      color:var(--ink-soft);
+      font-size:14px;
+      line-height:1.55;
+    }
+    .photo-features li::before{
+      content:"✦";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--wine);
+      font-size:11px;
+    }
+    .bundle-card{
+      margin-top:34px;
+      padding:26px;
+      background:var(--wine-deep);
+      color:var(--ivory);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 24px 65px rgba(63,24,30,.18);
+    }
+    .bundle-card__top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding-bottom:18px;
+      border-bottom:1px solid rgba(255,255,255,.14);
+    }
+    .bundle-badge,
+    .bundle-saving{
+      font-family:var(--ui);
+      font-size:8px;
+      font-weight:600;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .bundle-badge{color:var(--champagne)}
+    .bundle-saving{
+      padding:8px 10px;
+      background:var(--champagne);
+      color:var(--wine-deep);
+    }
+    .bundle-card__body{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:28px;
+      align-items:end;
+      padding:23px 0 20px;
+    }
+    .bundle-card__body small{
+      color:rgba(255,255,255,.52);
+      font-family:var(--ui);
+      font-size:8px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .bundle-card h3{
+      margin:8px 0 10px;
+      font-family:var(--display);
+      font-size:clamp(29px,3vw,40px);
+      font-weight:400;
+      line-height:1;
+    }
+    .bundle-card p{
+      margin:0;
+      max-width:490px;
+      color:rgba(255,255,255,.62);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .bundle-price{
+      min-width:120px;
+      text-align:right;
+    }
+    .bundle-price del{
+      display:block;
+      color:rgba(255,255,255,.4);
+      font-size:14px;
+    }
+    .bundle-price strong{
+      display:block;
+      margin-top:4px;
+      color:var(--champagne);
+      font-family:var(--display);
+      font-size:55px;
+      font-weight:400;
+      line-height:.9;
+      letter-spacing:-.05em;
+    }
+    .bundle-price span{
+      color:rgba(255,255,255,.48);
+      font-family:var(--ui);
+      font-size:7px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .bundle-breakdown{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,.14);
+    }
+    .bundle-breakdown span{
+      padding:7px 9px;
+      border:1px solid rgba(255,255,255,.16);
+      color:rgba(255,255,255,.62);
+      font-family:var(--ui);
+      font-size:7px;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+    }
+    .photo-actions{align-items:center}
+    .photo-secondary-link{
+      color:var(--wine);
+      font-family:var(--ui);
+      font-size:9px;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      border-bottom:1px solid currentColor;
+      padding-bottom:5px;
+    }
+
+    .photo-sharing__visual{
+      position:relative;
+      min-height:510px;
+      display:grid;
+      place-items:center;
+    }
+    .photo-device{
+      position:relative;
+      z-index:2;
+      width:min(350px,82%);
+      padding:14px;
+      border-radius:34px;
+      background:var(--ink);
+      box-shadow:var(--shadow);
+      transform:rotate(-3deg);
+    }
+    .photo-device__screen{
+      min-height:455px;
+      padding:40px 28px 30px;
+      border-radius:24px;
+      background:var(--paper);
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+    .photo-device__screen small{
+      color:var(--wine);
+      font-family:var(--ui);
+      font-size:8px;
+      font-weight:600;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+    }
+    .photo-device__screen h3{
+      margin:18px 0 12px;
+      font-family:var(--display);
+      font-size:38px;
+      font-weight:400;
+      line-height:1;
+    }
+    .photo-device__screen p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .qr-mock{
+      width:152px;
+      aspect-ratio:1;
+      margin:24px 0;
+      padding:12px;
+      background:
+        linear-gradient(90deg,var(--ink) 10px,transparent 10px) 0 0/28px 28px,
+        linear-gradient(var(--ink) 10px,transparent 10px) 0 0/28px 28px,
+        linear-gradient(90deg,transparent 18px,var(--ink) 18px 24px,transparent 24px) 0 0/28px 28px,
+        linear-gradient(transparent 18px,var(--ink) 18px 24px,transparent 24px) 0 0/28px 28px,
+        white;
+      border:10px solid white;
+      box-shadow:0 10px 30px rgba(22,21,18,.12);
+    }
+    .upload-button-mock{
+      width:100%;
+      padding:16px 18px;
+      background:var(--wine);
+      color:white;
+      font-family:var(--ui);
+      font-size:9px;
+      font-weight:600;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+    }
+    .photo-float-card{
+      position:absolute;
+      z-index:3;
+      right:0;
+      bottom:45px;
+      width:205px;
+      padding:21px;
+      background:white;
+      border:1px solid var(--line);
+      box-shadow:0 20px 55px rgba(24,20,15,.15);
+      transform:rotate(5deg);
+    }
+    .photo-float-card span{
+      display:block;
+      color:var(--wine);
+      font-family:var(--ui);
+      font-size:8px;
+      font-weight:600;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+    }
+    .photo-float-card strong{
+      display:block;
+      margin-top:9px;
+      font-family:var(--display);
+      font-size:26px;
+      font-weight:400;
+      line-height:1.05;
     }
 
     /* Models */
@@ -996,7 +1350,8 @@
     @media(max-width:1050px){
       .hero-grid{grid-template-columns:1fr 1fr;gap:4vw}
       .hero-visual{min-height:590px}
-      .service-card{padding:30px;min-height:455px}
+      .nav-links{gap:20px}
+      .service-card{padding:30px;min-height:590px}
       .service-card a{left:30px}
     }
 
@@ -1033,6 +1388,8 @@
       .services-head,.models-head{align-items:flex-start;flex-direction:column}
       .service-grid{grid-template-columns:1fr}
       .service-card{min-height:auto;padding:35px;border-right:0;border-bottom:1px solid var(--line-light)}
+      .photo-sharing__grid{grid-template-columns:1fr;gap:50px}
+      .photo-sharing__visual{min-height:470px}
       .service-card:last-child{border-bottom:0}
       .service-card h3{margin-top:48px}
       .service-card a{position:static;display:inline-block;margin-top:32px}
@@ -1066,6 +1423,20 @@
       .value-item{grid-template-columns:38px 1fr;gap:13px}
       .value-item__icon{display:none}
       .service-card{padding:30px 24px}
+      .service-price strong{font-size:46px}
+      .photo-features{grid-template-columns:1fr}
+      .bundle-card{padding:22px 18px}
+      .bundle-card__body{grid-template-columns:1fr;gap:20px}
+      .bundle-price{text-align:left}
+      .bundle-price strong{font-size:50px}
+      .bundle-card__top{align-items:flex-start}
+      .bundle-breakdown{display:grid}
+      .photo-sharing__visual{min-height:430px}
+      .photo-device{width:82%}
+      .photo-device__screen{min-height:390px;padding:32px 20px 24px}
+      .photo-float-card{width:165px;right:-4%;bottom:18px}
+      .photo-float-card strong{font-size:22px}
+      .qr-mock{width:130px}
       .model-stack{grid-template-columns:1fr}
       .model-card,.model-card--small{min-height:430px}
       .model-overlay{padding:25px}
@@ -1104,6 +1475,7 @@
       <div class="nav-links" id="navLinks">
         <a href="#experiencia">La experiencia</a>
         <a href="#opciones">Opciones</a>
+        <a href="#fotos">Fotos de invitados</a>
         <a href="#modelos">Modelos</a>
         <a class="nav-cta" href="https://wa.me/51943168115?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20una%20invitaci%C3%B3n%20digital%20para%20mi%20boda." target="_blank" rel="noopener">Cotizar</a>
       </div>
@@ -1171,8 +1543,8 @@
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee__track">
-      <span>Música</span><span>Cuenta regresiva</span><span>Mapas</span><span>Galería</span><span>Confirmación de asistencia</span><span>WhatsApp</span>
-      <span>Música</span><span>Cuenta regresiva</span><span>Mapas</span><span>Galería</span><span>Confirmación de asistencia</span><span>WhatsApp</span>
+      <span>Música</span><span>Cuenta regresiva</span><span>Mapas</span><span>Galería</span><span>Confirmación de asistencia</span><span>Fotos de invitados</span><span>WhatsApp</span>
+      <span>Música</span><span>Cuenta regresiva</span><span>Mapas</span><span>Galería</span><span>Confirmación de asistencia</span><span>Fotos de invitados</span><span>WhatsApp</span>
     </div>
   </div>
 
@@ -1206,6 +1578,11 @@
             <div><h3>Perfecta en cualquier pantalla</h3><p>Diseñada para celular, tablet y computadora sin perder impacto visual.</p></div>
             <span class="value-item__icon">↗</span>
           </article>
+          <article class="value-item">
+            <span class="value-item__num">05</span>
+            <div><h3>Fotos compartidas por sus invitados</h3><p>Un QR o botón privado para reunir en un solo álbum las fotos tomadas durante la boda.</p></div>
+            <span class="value-item__icon">↗</span>
+          </article>
         </div>
       </div>
     </section>
@@ -1217,45 +1594,120 @@
             <p class="eyebrow">Elige tu experiencia</p>
             <h2 class="display">Tres formas de comenzar.</h2>
           </div>
-          <p>Desde una invitación digital elegante hasta una experiencia completamente diseñada alrededor de su historia.</p>
+          <p>Elige según el nivel de personalización y organización que necesitan. La opción Interactiva es la más elegida por las parejas.</p>
         </div>
 
         <div class="service-grid reveal" data-stagger>
           <article class="service-card">
-            <div class="service-card__top"><span class="service-card__number">01</span></div>
-            <h3>Invitación Digital</h3>
+            <div class="service-card__top"><span class="service-card__number">01</span><span class="service-badge">Esencial</span></div>
+            <h3>Invitación Esencial</h3>
             <p>Una invitación web elegante, funcional y lista para compartir con todos sus invitados.</p>
+            <div class="service-price"><strong>S/79</strong><small>Pago único</small></div>
             <ul>
-              <li>Diseño adaptable</li>
-              <li>Mapas y cuenta regresiva</li>
-              <li>Música y enlaces</li>
+              <li>Modelo prediseñado personalizado</li>
+              <li>Música, mapas y cuenta regresiva</li>
+              <li>Itinerario, dress code y regalos</li>
+              <li>Enlace personalizado para compartir</li>
             </ul>
-            <a href="https://wa.me/51943168115?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Invitaci%C3%B3n%20Digital." target="_blank" rel="noopener">Solicitar información</a>
-          </article>
-
-          <article class="service-card">
-            <div class="service-card__top"><span class="service-card__number">02</span></div>
-            <h3>Invitación + RSVP</h3>
-            <p>La experiencia digital con confirmaciones de asistencia organizadas automáticamente.</p>
-            <ul>
-              <li>Formulario personalizado</li>
-              <li>Registro en Google Sheets</li>
-              <li>Control de acompañantes</li>
-            </ul>
-            <a href="https://wa.me/51943168115?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20Invitaci%C3%B3n%20con%20RSVP." target="_blank" rel="noopener">Solicitar información</a>
+            <a href="https://wa.me/51943168115?text=Hola%2C%20quiero%20la%20Invitaci%C3%B3n%20Esencial%20de%20S%2F79%20para%20mi%20boda." target="_blank" rel="noopener">Elegir Esencial</a>
           </article>
 
           <article class="service-card service-card--featured">
+            <div class="service-card__top"><span class="service-card__number">02</span><span class="service-badge">Más elegida</span></div>
+            <h3>Invitación Interactiva</h3>
+            <p>Todo lo necesario para invitar y organizar las confirmaciones de asistencia desde un solo lugar.</p>
+            <div class="service-price"><strong>S/119</strong><small>Organización incluida</small></div>
+            <ul>
+              <li>Todo lo incluido en Esencial</li>
+              <li>Formulario de confirmación</li>
+              <li>Registro automático en Google Sheets</li>
+              <li>Control de invitados y acompañantes</li>
+            </ul>
+            <a href="https://wa.me/51943168115?text=Hola%2C%20quiero%20la%20Invitaci%C3%B3n%20Interactiva%20de%20S%2F119%20con%20confirmaci%C3%B3n%20de%20asistencia." target="_blank" rel="noopener">Elegir Interactiva</a>
+          </article>
+
+          <article class="service-card service-card--premium">
             <div class="service-card__top"><span class="service-card__number">03</span><span class="service-badge">Más exclusiva</span></div>
             <h3>Premium Personalizada</h3>
-            <p>Una experiencia única creada desde cero para representar el estilo y la historia de la pareja.</p>
+            <p>Una experiencia visual más creativa, exclusiva y desarrollada alrededor de la historia de la pareja.</p>
+            <div class="service-price"><span class="price-prefix">Desde</span><strong>S/179</strong><small>Mayor personalización</small></div>
             <ul>
-              <li>Concepto creativo exclusivo</li>
+              <li>Todo lo incluido en Interactiva</li>
+              <li>Concepto creativo y estilo personalizado</li>
               <li>Animaciones y secciones especiales</li>
-              <li>Personalización integral</li>
+              <li>Atención prioritaria y mayor nivel de detalle</li>
             </ul>
-            <a href="https://wa.me/51943168115?text=Hola%2C%20quiero%20cotizar%20una%20Invitaci%C3%B3n%20Premium%20Personalizada." target="_blank" rel="noopener">Cotizar experiencia premium</a>
+            <a href="https://wa.me/51943168115?text=Hola%2C%20quiero%20cotizar%20la%20Invitaci%C3%B3n%20Premium%20Personalizada%20desde%20S%2F179." target="_blank" rel="noopener">Cotizar Premium</a>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section photo-sharing" id="fotos">
+      <div class="container photo-sharing__grid">
+        <div class="photo-sharing__copy reveal reveal--left">
+          <p class="eyebrow">Nuevo adicional</p>
+          <h2 class="display">Las fotos de todos, reunidas en un solo lugar.</h2>
+          <p class="lead">Integramos un botón y un código QR en la invitación para que los invitados puedan subir las fotos y videos que tomen durante la boda. Los novios reciben todo organizado en un álbum privado.</p>
+
+          <div class="photo-price">
+            <span>Precio individual</span>
+            <strong>S/59</strong>
+            <small>O añádelo a cualquier invitación por solo <b>S/39</b>.</small>
+          </div>
+
+          <ul class="photo-features">
+            <li>Código QR personalizado</li>
+            <li>Botón de subida dentro de la invitación</li>
+            <li>Álbum privado para los novios</li>
+            <li>Acceso desde cualquier celular</li>
+          </ul>
+
+          <div class="bundle-card">
+            <div class="bundle-card__top">
+              <span class="bundle-badge">Mejor experiencia</span>
+              <span class="bundle-saving">Ahorras S/39</span>
+            </div>
+            <div class="bundle-card__body">
+              <div>
+                <small>Paquete especial</small>
+                <h3>Premium + Álbum colaborativo</h3>
+                <p>La invitación más personalizada junto con el espacio para reunir las fotos de todos sus invitados.</p>
+              </div>
+              <div class="bundle-price">
+                <del>S/238</del>
+                <strong>S/199</strong>
+                <span>Pago único</span>
+              </div>
+            </div>
+            <div class="bundle-breakdown">
+              <span>Premium desde S/179</span>
+              <span>Álbum individual S/59</span>
+              <span>Precio paquete S/199</span>
+            </div>
+          </div>
+
+          <div class="actions photo-actions">
+            <a class="btn btn--dark" href="https://wa.me/51943168115?text=Hola%2C%20quiero%20el%20paquete%20Premium%20%2B%20%C3%81lbum%20Colaborativo%20de%20S%2F199." target="_blank" rel="noopener">Elegir paquete de S/199 <span>↗</span></a>
+            <a class="photo-secondary-link" href="https://wa.me/51943168115?text=Hola%2C%20quiero%20a%C3%B1adir%20el%20%C3%81lbum%20Colaborativo%20por%20S%2F39%20a%20mi%20invitaci%C3%B3n." target="_blank" rel="noopener">Añadir solo el álbum por S/39</a>
+          </div>
+        </div>
+
+        <div class="photo-sharing__visual reveal reveal--right" aria-label="Ejemplo de código QR para compartir fotos de la boda">
+          <div class="photo-device">
+            <div class="photo-device__screen">
+              <small>Álbum colaborativo</small>
+              <h3>Comparte tus mejores momentos</h3>
+              <p>Escanea el código o presiona el botón para subir tus fotos de la boda.</p>
+              <div class="qr-mock" aria-hidden="true"></div>
+              <div class="upload-button-mock">Subir mis fotos</div>
+            </div>
+          </div>
+
+          <div class="photo-float-card">
+            <span>Todo organizado</span>
+            <strong>Un solo álbum para los novios.</strong>
+          </div>
         </div>
       </div>
     </section>
@@ -1284,7 +1736,7 @@
       <div class="final-cta__inside reveal reveal--scale">
         <p class="eyebrow">Su historia empieza aquí</p>
         <h2>Hagamos una invitación que sus invitados <em>recuerden.</em></h2>
-        <p>Cuéntanos la fecha, el estilo de su boda y la experiencia que tienen en mente. Nosotros convertimos esa historia en un link único.</p>
+        <p>Elige una invitación desde S/79 o lleva la experiencia completa con Premium + Álbum colaborativo por S/199.</p>
         <div class="actions">
           <a class="btn btn--light" href="https://wa.me/51943168115?text=Hola%2C%20quiero%20crear%20una%20invitaci%C3%B3n%20digital%20para%20mi%20boda." target="_blank" rel="noopener">Hablar por WhatsApp <span>↗</span></a>
         </div>

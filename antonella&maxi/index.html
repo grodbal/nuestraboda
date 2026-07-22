@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffd400">
+  <meta name="description" content="Antonella & Maximiliano — ¡SE CASAN! Edición especial. 9 de octubre de 2027, Lima. Una invitación por Nuestra Boda.">
+  <title>Antonella & Maximiliano — ¡SE CASAN! | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+  /* ============================================================
+     MODELO 14 — "POP ART / TABLOID GLAM"
+     Concepto: la boda como la portada de la revista de
+     espectáculos más comentada del año. Warhol + Lichtenstein +
+     tabloide de kiosko: halftone dots, viñetas de cómic con
+     globos de diálogo, estrellas explosivas de "EXCLUSIVA",
+     paparazzi con flash, y un pase de prensa como confirmación
+     de asistencia. Amarillo eléctrico + rosa shocking + negro
+     sobre papel crema, todo con la energía de un titular real.
+     ============================================================ */
+
+  :root {
+    --paper:            #fff8ec;
+    --paper-dim:        #f3e8d2;
+    --ink:               #14110f;
+    --ink-soft:          #2b2521;
+
+    --yellow:            #ffd400;
+    --yellow-deep:       #e0ab00;
+    --pink:               #ff2d78;
+    --pink-deep:          #cc1257;
+    --cyan:               #00c2d1;
+    --violet:              #7b3fe4;
+
+    --font-display:       'Alfa Slab One', 'Archivo Black', serif;
+    --font-body:            'Work Sans', system-ui, sans-serif;
+    --font-mono:              'Space Mono', ui-monospace, monospace;
+
+    --ease:              cubic-bezier(.6,0,.2,1);
+    --ease-pop:          cubic-bezier(.25,1.6,.35,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  ::selection { background: var(--pink); color: var(--paper); }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--paper-dim); }
+  ::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 0; }
+
+  /* Halftone dots reutilizable */
+  .halftone {
+    background-image: radial-gradient(var(--ink) 1.1px, transparent 1.1px);
+    background-size: 7px 7px;
+  }
+  .halftone-pink {
+    background-image: radial-gradient(var(--pink) 1.4px, transparent 1.4px);
+    background-size: 8px 8px;
+  }
+
+  /* ============================================================
+     PRELOADER
+     ============================================================ */
+  #preloader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--yellow);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 22px;
+    transition: opacity .7s var(--ease), visibility .7s var(--ease);
+  }
+  #preloader.done { opacity: 0; visibility: hidden; }
+  .pre-boom {
+    font-family: var(--font-display);
+    font-size: clamp(60px, 13vw, 120px);
+    color: var(--ink);
+    -webkit-text-stroke: 3px var(--ink);
+    transform: scale(0) rotate(-8deg);
+    animation: boomIn 1s var(--ease-pop) .2s forwards;
+    text-shadow: 6px 6px 0 var(--pink);
+  }
+  @keyframes boomIn {
+    to { transform: scale(1) rotate(-6deg); }
+  }
+  .pre-label {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--paper);
+    padding: 6px 16px;
+    border: 3px solid var(--ink);
+    opacity: 0;
+    animation: fadeUp .6s var(--ease) 1s forwards;
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ============================================================
+     NAV
+     ============================================================ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background .4s var(--ease), padding .4s var(--ease), border-color .4s var(--ease);
+    border-bottom: 3px solid transparent;
+  }
+  .nav.scrolled {
+    background: var(--paper);
+    padding: 12px 32px;
+    border-bottom-color: var(--ink);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo span {
+    background: var(--pink);
+    color: var(--paper);
+    padding: 3px 8px;
+    transform: rotate(-3deg);
+    display: inline-block;
+    font-size: 14px;
+  }
+  .nav-toggle {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 3px solid var(--ink);
+    color: var(--ink);
+    background: var(--paper);
+    transition: all .2s var(--ease);
+  }
+  .nav-toggle:hover { background: var(--pink); color: var(--paper); }
+  .nav-toggle svg { width: 16px; height: 16px; }
+
+  /* Menú fullscreen */
+  .menu {
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+    transition: clip-path .6s var(--ease-pop);
+    pointer-events: none;
+  }
+  .menu.open {
+    clip-path: polygon(-50% -50%, 150% -50%, 150% 150%, -50% 150%);
+    pointer-events: auto;
+  }
+  .menu-close {
+    position: absolute; top: 18px; right: 32px;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 3px solid var(--yellow);
+    color: var(--yellow);
+  }
+  .menu-close svg { width: 14px; height: 14px; }
+  .menu-list { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 10px; }
+  .menu-list li {
+    opacity: 0; transform: translateY(24px) rotate(-2deg);
+    transition: opacity .5s var(--ease), transform .5s var(--ease);
+  }
+  .menu.open .menu-list li { opacity: 1; transform: translateY(0) rotate(0deg); }
+  .menu.open .menu-list li:nth-child(1) { transition-delay: .25s; }
+  .menu.open .menu-list li:nth-child(2) { transition-delay: .3s; }
+  .menu.open .menu-list li:nth-child(3) { transition-delay: .35s; }
+  .menu.open .menu-list li:nth-child(4) { transition-delay: .4s; }
+  .menu.open .menu-list li:nth-child(5) { transition-delay: .45s; }
+  .menu.open .menu-list li:nth-child(6) { transition-delay: .5s; }
+  .menu.open .menu-list li:nth-child(7) { transition-delay: .55s; }
+  .menu-list a {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 5.5vw, 50px);
+    color: var(--paper);
+    transition: color .25s var(--ease);
+  }
+  .menu-list a:hover { color: var(--yellow); }
+  .menu-footer {
+    position: absolute; bottom: 28px; left: 0; right: 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: rgba(255,248,236,.5);
+  }
+
+  /* ============================================================
+     HERO — portada de tabloide
+     ============================================================ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    padding: 110px 20px 70px;
+    background: var(--yellow);
+  }
+  .hero-halftone {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(20,17,15,.12) 1.6px, transparent 1.6px);
+    background-size: 10px 10px;
+    pointer-events: none;
+  }
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .hero-blob.b1 {
+    top: -12%; left: -8%; width: 42vw; height: 42vw; max-width: 460px; max-height: 460px;
+    background: var(--pink);
+    opacity: .9;
+  }
+  .hero-blob.b2 {
+    bottom: -16%; right: -10%; width: 50vw; height: 50vw; max-width: 520px; max-height: 520px;
+    background: var(--cyan);
+    opacity: .55;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    text-align: center;
+    max-width: 980px;
+    width: 100%;
+  }
+
+  .hero-masthead {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 4px 14px;
+    margin-bottom: 30px;
+    border-bottom: 4px solid var(--ink);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0;
+    animation: rise .8s var(--ease) .2s forwards;
+  }
+
+  .hero-headline-tag {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--yellow);
+    font-family: var(--font-display);
+    font-size: clamp(14px, 2vw, 18px);
+    padding: 8px 22px;
+    transform: rotate(-2deg);
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: rise .9s var(--ease) .35s forwards;
+  }
+
+  .hero-names {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 11vw, 140px);
+    line-height: .95;
+    color: var(--ink);
+    -webkit-text-stroke: 2px var(--ink);
+    margin-bottom: 6px;
+    opacity: 0;
+    animation: rise 1.1s var(--ease) .5s forwards;
+    text-shadow: 5px 5px 0 var(--pink);
+  }
+  .hero-names .amp {
+    color: var(--paper);
+    -webkit-text-stroke: 2px var(--ink);
+    text-shadow: 5px 5px 0 var(--cyan);
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  .hero-subhead {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(17px, 2.2vw, 22px);
+    color: var(--ink);
+    max-width: 560px;
+    margin: 24px auto 36px;
+    line-height: 1.5;
+    opacity: 0;
+    animation: rise 1s var(--ease) .75s forwards;
+  }
+  .hero-subhead em {
+    font-style: normal;
+    background: var(--pink);
+    color: var(--paper);
+    padding: 1px 8px;
+  }
+
+  /* Info como recuadro de portada */
+  .hero-cover-box {
+    display: inline-grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    opacity: 0;
+    animation: rise 1s var(--ease) 1s forwards;
+  }
+  .cover-seg { padding: 16px 26px; text-align: left; position: relative; }
+  .cover-seg:not(:last-child) { border-right: 3px dashed var(--ink); }
+  .cover-seg-label {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 8px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--pink-deep);
+    margin-bottom: 4px;
+  }
+  .cover-seg-value {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--ink);
+  }
+
+  /* Starburst */
+  .starburst {
+    position: absolute;
+    top: 8%; right: 4%;
+    width: 130px; height: 130px;
+    z-index: 3;
+    opacity: 0;
+    animation: burstIn .7s var(--ease-pop) 1.3s forwards;
+  }
+  @keyframes burstIn { from { opacity: 0; transform: scale(0) rotate(-20deg); } to { opacity: 1; transform: scale(1) rotate(-8deg); } }
+  .starburst svg { width: 100%; height: 100%; }
+  .starburst-text {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    font-family: var(--font-display);
+    color: var(--ink);
+    text-align: center;
+    line-height: 1;
+  }
+  .starburst-text .big { font-size: 15px; }
+  .starburst-text .small { font-family: var(--font-mono); font-size: 8px; letter-spacing: .1em; margin-top: 3px; }
+
+  .hero-scroll {
+    position: absolute; bottom: 22px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0;
+    animation: rise 1s var(--ease) 1.5s forwards;
+  }
+  .hero-scroll-arrow {
+    width: 20px; height: 20px;
+    border-right: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+    transform: rotate(45deg);
+    animation: arrowBounce 1.6s ease-in-out infinite;
+  }
+  @keyframes arrowBounce { 0%,100%{ transform: rotate(45deg) translate(0,0); } 50%{ transform: rotate(45deg) translate(4px,4px); } }
+
+  /* ============================================================
+     MARQUEE
+     ============================================================ */
+  .marquee {
+    background: var(--ink);
+    color: var(--yellow);
+    padding: 16px 0;
+    overflow: hidden;
+    border-top: 4px solid var(--ink);
+    border-bottom: 4px solid var(--ink);
+  }
+  .marquee-track { display: flex; gap: 44px; animation: marquee 28s linear infinite; white-space: nowrap; }
+  .marquee-track span {
+    font-family: var(--font-display);
+    font-size: 20px;
+    display: inline-flex; align-items: center; gap: 44px;
+  }
+  .marquee-track span::after { content: '★'; color: var(--pink); font-size: 13px; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* ============================================================
+     SECCIONES — base
+     ============================================================ */
+  section { position: relative; }
+  .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 100px 32px; }
+
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-kicker {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--pink);
+    padding: 6px 16px;
+    margin-bottom: 18px;
+    transform: rotate(-2deg);
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 6vw, 66px);
+    line-height: 1;
+    color: var(--ink);
+  }
+  .section-title mark {
+    background: var(--yellow);
+    color: var(--ink);
+    padding: 0 10px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .section-desc {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 20px auto 0;
+    line-height: 1.7;
+  }
+
+  /* ============================================================
+     HISTORIA — cómic
+     ============================================================ */
+  .story { background: var(--paper-dim); }
+  .comic-grid {
+    max-width: 1040px;
+    margin: 60px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .panel {
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    padding: 20px;
+    position: relative;
+    display: flex; flex-direction: column;
+    opacity: 0;
+    transform: translateY(24px) rotate(0);
+    transition: opacity .7s var(--ease), transform .7s var(--ease);
+  }
+  .panel:nth-child(1) { transform: translateY(24px) rotate(-1.4deg); }
+  .panel:nth-child(2) { transform: translateY(24px) rotate(1.2deg); }
+  .panel:nth-child(3) { transform: translateY(24px) rotate(-.8deg); }
+  .panel:nth-child(4) { transform: translateY(24px) rotate(1.6deg); }
+  .panel:nth-child(5) { transform: translateY(24px) rotate(-1.2deg); }
+  .panel:nth-child(6) { transform: translateY(24px) rotate(.9deg); }
+  .comic-grid.in-view .panel { opacity: 1; }
+  .comic-grid.in-view .panel:nth-child(1) { transform: translateY(0) rotate(-1.4deg); transition-delay: 0s; }
+  .comic-grid.in-view .panel:nth-child(2) { transform: translateY(0) rotate(1.2deg); transition-delay: .1s; }
+  .comic-grid.in-view .panel:nth-child(3) { transform: translateY(0) rotate(-.8deg); transition-delay: .2s; }
+  .comic-grid.in-view .panel:nth-child(4) { transform: translateY(0) rotate(1.6deg); transition-delay: .3s; }
+  .comic-grid.in-view .panel:nth-child(5) { transform: translateY(0) rotate(-1.2deg); transition-delay: .4s; }
+  .comic-grid.in-view .panel:nth-child(6) { transform: translateY(0) rotate(.9deg); transition-delay: .5s; }
+
+  .panel-scene {
+    aspect-ratio: 4/3;
+    background: var(--paper-dim);
+    border: 3px solid var(--ink);
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .panel-scene.h1 { background-image: radial-gradient(var(--pink) 1.3px, transparent 1.3px); background-size: 7px 7px; }
+  .panel-scene.h2 { background-image: radial-gradient(var(--cyan) 1.3px, transparent 1.3px); background-size: 7px 7px; }
+  .panel-scene.h3 { background-image: radial-gradient(var(--violet) 1.3px, transparent 1.3px); background-size: 7px 7px; }
+  .panel-year {
+    font-family: var(--font-display);
+    font-size: 30px;
+    color: var(--ink);
+    -webkit-text-stroke: 1px var(--ink);
+    background: var(--paper);
+    padding: 4px 12px;
+    border: 3px solid var(--ink);
+  }
+  .panel-bubble {
+    position: absolute; top: 8px; right: 8px;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    width: 46px; height: 46px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 9px;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(8deg);
+  }
+  .panel-text h4 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .panel-text p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .story-quote {
+    text-align: center;
+    max-width: 600px;
+    margin: 56px auto 0;
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .story-quote mark { background: var(--pink); color: var(--paper); padding: 0 8px; }
+
+  /* ============================================================
+     COUNTDOWN
+     ============================================================ */
+  .countdown-wrap { padding: 100px 32px; background: var(--pink); position: relative; overflow: hidden; }
+  .countdown-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.25) 1.6px, transparent 1.6px);
+    background-size: 10px 10px;
+    pointer-events: none;
+  }
+  .countdown-header { text-align: center; margin-bottom: 50px; position: relative; z-index: 2; }
+  .countdown-header .section-kicker { background: var(--ink); color: var(--yellow); }
+  .countdown-header .cd-title { font-family: var(--font-display); font-size: clamp(30px, 4.5vw, 52px); color: var(--paper); }
+  .countdown-header .cd-title mark { background: var(--yellow); color: var(--ink); padding: 0 10px; }
+
+  .headline-row {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    position: relative; z-index: 2;
+  }
+  .headline-box {
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    padding: 26px 12px;
+    text-align: center;
+  }
+  .headline-value {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6.5vw, 64px);
+    line-height: 1;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .headline-label {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--pink-deep);
+    margin-top: 8px;
+  }
+
+  /* ============================================================
+     EVENTOS
+     ============================================================ */
+  .events { background: var(--paper); }
+  .events-grid {
+    max-width: 1080px;
+    margin: 60px auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .cover-card {
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    padding: 34px 30px;
+    position: relative;
+    transition: transform .3s var(--ease);
+  }
+  .cover-card:hover { transform: translate(-3px, -3px); box-shadow: 11px 11px 0 var(--ink); }
+  .cover-ribbon {
+    position: absolute; top: -14px; left: 24px;
+    background: var(--ink);
+    color: var(--yellow);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    transform: rotate(-2deg);
+  }
+  .cover-card.alt .cover-ribbon { background: var(--pink); color: var(--paper); }
+  .cover-media {
+    aspect-ratio: 16/10;
+    margin: 6px 0 20px;
+    border: 3px solid var(--ink);
+    overflow: hidden;
+    position: relative;
+  }
+  .cover-media img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.15) brightness(1.05);
+  }
+  .cover-media::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,45,120,.4), rgba(0,194,209,.3));
+    mix-blend-mode: color;
+    pointer-events: none;
+  }
+
+  /* Foto de portada en el hero */
+  .hero-photo {
+    width: 130px; height: 170px;
+    margin: 0 auto 26px;
+    border: 4px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--pink);
+    overflow: hidden;
+    position: relative;
+    transform: rotate(-3deg);
+    opacity: 0;
+    animation: rise 1s var(--ease) .55s forwards;
+  }
+  .hero-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.15) brightness(1.05);
+  }
+  .hero-photo::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,45,120,.4), rgba(0,194,209,.3));
+    mix-blend-mode: color;
+    pointer-events: none;
+  }
+  .cover-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4.2vw, 44px);
+    color: var(--ink);
+    margin: 18px 0 26px;
+    line-height: 1;
+  }
+  .cover-rows { border-top: 3px dashed var(--ink); padding-top: 20px; margin-bottom: 26px; display: flex; flex-direction: column; gap: 14px; }
+  .cover-row { display: grid; grid-template-columns: 80px 1fr; gap: 14px; }
+  .cover-row-label {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--pink-deep);
+    padding-top: 3px;
+  }
+  .cover-row-value { font-family: var(--font-body); font-weight: 700; font-size: 16px; color: var(--ink); }
+  .cover-row-value small { display: block; font-weight: 400; font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; }
+  .cover-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 24px;
+    background: var(--ink);
+    color: var(--yellow);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    transition: background .25s var(--ease);
+  }
+  .cover-cta:hover { background: var(--pink); }
+  .cover-cta svg { width: 13px; height: 13px; }
+
+  /* ============================================================
+     ITINERARIO — viñetas
+     ============================================================ */
+  .lineup { padding: 100px 32px 120px; }
+  .strip {
+    max-width: 760px;
+    margin: 60px auto 0;
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .strip-panel {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 20px;
+    align-items: center;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+    padding: 18px 22px;
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: opacity .6s var(--ease), transform .6s var(--ease);
+  }
+  .strip.in-view .strip-panel { opacity: 1; transform: translateX(0); }
+  .strip.in-view .strip-panel:nth-child(2) { transition-delay: .08s; }
+  .strip.in-view .strip-panel:nth-child(3) { transition-delay: .16s; }
+  .strip.in-view .strip-panel:nth-child(4) { transition-delay: .24s; }
+  .strip.in-view .strip-panel:nth-child(5) { transition-delay: .32s; }
+  .strip.in-view .strip-panel:nth-child(6) { transition-delay: .4s; }
+  .strip.in-view .strip-panel:nth-child(7) { transition-delay: .48s; }
+
+  .strip-time {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--ink);
+    text-align: center;
+    background: var(--yellow);
+    border: 2px solid var(--ink);
+    padding: 8px 4px;
+  }
+  .strip-body h4 { font-family: var(--font-display); font-size: 20px; color: var(--ink); margin-bottom: 3px; }
+  .strip-body p { font-family: var(--font-body); font-weight: 400; font-size: 13.5px; color: var(--ink-soft); }
+  .strip-pow {
+    font-family: var(--font-display);
+    font-size: 12px;
+    color: var(--pink-deep);
+    letter-spacing: .05em;
+  }
+
+  /* ============================================================
+     GALERÍA — paparazzi
+     ============================================================ */
+  .gallery { background: var(--ink); }
+  .gallery .section-title { color: var(--paper); }
+  .gallery .section-desc { color: rgba(255,248,236,.65); }
+  .paparazzi-grid {
+    max-width: 1180px;
+    margin: 60px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 190px;
+    gap: 14px;
+  }
+  .pap-1 { grid-column: span 2; grid-row: span 2; }
+  .pap-2 { grid-column: span 1; grid-row: span 1; }
+  .pap-3 { grid-column: span 1; grid-row: span 2; }
+  .pap-4 { grid-column: span 1; grid-row: span 1; }
+  .pap-5 { grid-column: span 2; grid-row: span 1; }
+  .pap-6 { grid-column: span 2; grid-row: span 1; }
+
+  .pap-tile {
+    position: relative;
+    overflow: hidden;
+    background: var(--ink-soft);
+    border: 3px solid var(--paper);
+    cursor: pointer;
+  }
+  .pap-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background-image: radial-gradient(rgba(255,248,236,.14) 1.4px, transparent 1.4px);
+    background-size: 8px 8px;
+    color: rgba(255,248,236,.5);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px;
+  }
+  /* Foto real dentro de un tile de galería, con duotono pop art */
+  .pap-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.15) brightness(1.05);
+  }
+  .pap-photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,45,120,.45), rgba(0,194,209,.35));
+    mix-blend-mode: color;
+    pointer-events: none;
+  }
+  /* Flash effect */
+  .pap-tile::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--paper);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3;
+    transition: opacity .12s ease;
+  }
+  .pap-tile:hover::before { opacity: .85; animation: flashFade .35s ease forwards; }
+  @keyframes flashFade { to { opacity: 0; } }
+  .pap-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 12px 14px;
+    background: linear-gradient(to top, rgba(20,17,15,.95), transparent);
+    display: flex; justify-content: space-between;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    transform: translateY(100%);
+    transition: transform .3s var(--ease);
+    z-index: 2;
+  }
+  .pap-tile:hover .pap-caption { transform: translateY(0); }
+  .pap-caption span:last-child { color: var(--paper); }
+
+  /* ============================================================
+     DRESSCODE — CMYK
+     ============================================================ */
+  .dresscode { padding: 100px 32px; background: var(--paper); }
+  .ink-dots {
+    max-width: 1000px;
+    margin: 60px auto 40px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+  }
+  .ink-dot {
+    aspect-ratio: 3/4;
+    position: relative;
+    border: 3px solid var(--ink);
+    cursor: pointer;
+    transition: transform .3s var(--ease);
+    display: flex; align-items: flex-end;
+  }
+  .ink-dot:hover { transform: translateY(-6px) rotate(-1.4deg); }
+  .id-1 { background: var(--yellow); }
+  .id-2 { background: var(--pink); }
+  .id-3 { background: var(--cyan); }
+  .id-4 { background: var(--violet); }
+  .id-5 { background: var(--ink); }
+  .id-6 { background: var(--paper); }
+  .id-info {
+    width: 100%;
+    padding: 10px;
+    background: rgba(20,17,15,.85);
+    color: var(--paper);
+  }
+  .id-6 .id-info { background: rgba(20,17,15,.06); color: var(--ink); }
+  .id-name { font-family: var(--font-display); font-size: 12px; }
+  .id-code { font-family: var(--font-mono); font-size: 8px; opacity: .8; margin-top: 2px; }
+
+  .dress-note {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 32px 36px;
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .dress-note p { font-family: var(--font-body); font-weight: 700; font-size: 17px; color: var(--ink); line-height: 1.7; }
+  .dress-note p mark { background: var(--pink); color: var(--paper); padding: 0 6px; }
+  .dress-note p + p { margin-top: 10px; font-weight: 400; font-size: 14px; color: var(--ink-soft); }
+
+  /* ============================================================
+     RSVP — pase de prensa
+     ============================================================ */
+  .rsvp { background: var(--cyan); padding: 120px 32px; position: relative; overflow: hidden; }
+  .rsvp::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.2) 1.6px, transparent 1.6px);
+    background-size: 10px 10px;
+    pointer-events: none;
+  }
+  .rsvp-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    box-shadow: 10px 10px 0 var(--ink);
+    padding: 54px 46px 44px;
+    position: relative;
+    z-index: 2;
+  }
+  .rsvp-eyebrow { text-align: center; margin-bottom: 14px; }
+  .rsvp-eyebrow span {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--yellow);
+    padding: 6px 16px;
+    transform: rotate(-2deg);
+  }
+  .rsvp-title { text-align: center; font-family: var(--font-display); font-size: clamp(32px, 4.6vw, 50px); color: var(--ink); margin-bottom: 12px; line-height: 1.05; }
+  .rsvp-title mark { background: var(--yellow); padding: 0 10px; }
+  .rsvp-desc { text-align: center; font-family: var(--font-body); font-weight: 400; font-size: 15px; color: var(--ink-soft); margin-bottom: 38px; max-width: 460px; margin-left: auto; margin-right: auto; }
+
+  .rsvp-form { display: flex; flex-direction: column; gap: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-group { display: flex; flex-direction: column; gap: 7px; }
+  .form-group label { font-family: var(--font-mono); font-weight: 700; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--pink-deep); }
+  .form-group input, .form-group select, .form-group textarea {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--paper);
+    border: 2.5px solid var(--ink);
+    padding: 11px 14px;
+    outline: none;
+    transition: border-color .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--pink);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .form-group select { appearance: none; cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1L6 6L11 1' stroke='%2314110f' stroke-width='2'/></svg>");
+    background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+  }
+  .form-group textarea { resize: vertical; min-height: 58px; }
+
+  .radio-group { display: flex; gap: 12px; }
+  .radio-option { flex: 1; padding: 14px; border: 2.5px solid var(--ink); background: var(--paper); text-align: center; cursor: pointer; position: relative; transition: all .25s var(--ease); }
+  .radio-option input { position: absolute; opacity: 0; pointer-events: none; }
+  .radio-option-label { font-family: var(--font-display); font-size: 20px; color: var(--ink); display: block; }
+  .radio-option-desc { font-family: var(--font-mono); font-weight: 700; font-size: 8px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-soft); margin-top: 3px; }
+  .radio-option:has(input:checked), .radio-option.checked { background: var(--pink); border-color: var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+  .radio-option:has(input:checked) .radio-option-label, .radio-option.checked .radio-option-label { color: var(--paper); }
+  .radio-option:has(input:checked) .radio-option-desc, .radio-option.checked .radio-option-desc { color: var(--paper); }
+
+  .form-submit {
+    margin-top: 10px;
+    padding: 17px 30px;
+    background: var(--ink);
+    color: var(--yellow);
+    font-family: var(--font-display);
+    font-size: 16px;
+    letter-spacing: .02em;
+    border: 2.5px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--pink-deep);
+    transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+  }
+  .form-submit:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--pink-deep); }
+
+  .rsvp-success { text-align: center; padding: 20px 6px; display: none; }
+  .rsvp-success.show { display: block; }
+
+  /* Pase de prensa generado */
+  .press-pass {
+    max-width: 300px;
+    margin: 0 auto 24px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 20px;
+    text-align: left;
+    position: relative;
+    transform: scale(0) rotate(-6deg);
+    animation: passPop .5s var(--ease-pop) .2s forwards;
+    box-shadow: 6px 6px 0 var(--pink);
+  }
+  @keyframes passPop { to { transform: scale(1) rotate(-2deg); } }
+  .press-pass::before {
+    content: '';
+    position: absolute; top: -14px; left: 50%;
+    transform: translateX(-50%);
+    width: 60px; height: 14px;
+    background: var(--yellow);
+    border: 2px solid var(--ink);
+  }
+  .press-pass-header {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 2px dashed rgba(255,248,236,.3);
+  }
+  .press-pass-name { font-family: var(--font-display); font-size: 22px; color: var(--paper); margin-bottom: 4px; }
+  .press-pass-role { font-family: var(--font-mono); font-size: 10px; color: var(--cyan); letter-spacing: .1em; }
+  .press-pass-footer {
+    margin-top: 14px; padding-top: 10px;
+    border-top: 2px dashed rgba(255,248,236,.3);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .15em;
+    color: var(--yellow);
+    text-align: center;
+  }
+
+  .rsvp-success h3 { font-family: var(--font-display); font-size: 32px; color: var(--ink); margin-bottom: 10px; }
+  .rsvp-success p { font-family: var(--font-body); font-weight: 400; font-size: 15px; color: var(--ink-soft); line-height: 1.7; }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer { padding: 90px 32px 36px; text-align: center; background: var(--paper); }
+  .footer-mast {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: clamp(46px, 8vw, 80px);
+    color: var(--ink);
+    -webkit-text-stroke: 2px var(--ink);
+    text-shadow: 5px 5px 0 var(--pink);
+    margin-bottom: 14px;
+  }
+  .footer-date {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 40px;
+  }
+  .footer-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 54px; }
+  .footer-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 22px;
+    border: 3px solid var(--ink);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    transition: all .25s var(--ease);
+  }
+  .footer-btn:hover { background: var(--ink); color: var(--yellow); }
+  .footer-btn svg { width: 13px; height: 13px; }
+
+  .footer-price {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .1em;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .footer-signature {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-top: 26px;
+    border-top: 3px solid var(--ink);
+  }
+  .footer-signature a { color: var(--pink-deep); transition: color .25s var(--ease); }
+  .footer-signature a:hover { color: var(--ink); }
+
+  .audio-toggle {
+    position: fixed; bottom: 24px; left: 24px; z-index: 90;
+    width: 48px; height: 48px;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .25s var(--ease);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .audio-toggle:hover { background: var(--pink); color: var(--paper); }
+  .audio-toggle svg { width: 18px; height: 18px; }
+
+  .reveal { opacity: 0; transform: translateY(34px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 900px) {
+    .nav, .nav.scrolled { padding: 12px 20px; }
+    .container { padding: 76px 20px; }
+    .hero-cover-box { grid-template-columns: 1fr; }
+    .cover-seg:not(:last-child) { border-right: 0; border-bottom: 3px dashed var(--ink); }
+    .starburst { display: none; }
+    .comic-grid { grid-template-columns: repeat(2, 1fr); }
+    .events-grid { grid-template-columns: 1fr; }
+    .headline-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .strip-panel { grid-template-columns: 60px 1fr; }
+    .paparazzi-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+    .pap-1 { grid-column: span 2; grid-row: span 2; }
+    .pap-2, .pap-4 { grid-column: span 1; grid-row: span 1; }
+    .pap-3 { grid-column: span 1; grid-row: span 2; }
+    .pap-5, .pap-6 { grid-column: span 2; grid-row: span 1; }
+    .ink-dots { grid-template-columns: repeat(3, 1fr); }
+    .rsvp-card { padding: 40px 24px 36px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 520px) {
+    .container { padding: 60px 16px; }
+    .marquee-track span { font-size: 16px; gap: 30px; }
+    .marquee-track { gap: 30px; }
+    .comic-grid { grid-template-columns: 1fr; }
+    .ink-dots { grid-template-columns: repeat(2, 1fr); }
+    .footer-actions { flex-direction: column; align-items: center; }
+    .footer-btn { width: 100%; max-width: 260px; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  #confetti { position: fixed; inset: 0; pointer-events: none; z-index: 500; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       PRELOADER
+       ============================================================ -->
+  <div id="preloader" aria-hidden="true">
+    <div class="pre-boom">A+M</div>
+    <div class="pre-label">Edición especial · 2027</div>
+  </div>
+
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav-logo">A<span>+</span>M</a>
+    <button class="nav-toggle" id="menuOpen" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/>
+      </svg>
+    </button>
+  </nav>
+
+  <div class="menu" id="menu">
+    <button class="menu-close" id="menuClose" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+      </svg>
+    </button>
+    <ul class="menu-list">
+      <li><a href="#hero" data-close>Inicio</a></li>
+      <li><a href="#story" data-close>Nuestra historia</a></li>
+      <li><a href="#countdown" data-close>Cuenta regresiva</a></li>
+      <li><a href="#events" data-close>Ceremonia</a></li>
+      <li><a href="#lineup" data-close>Itinerario</a></li>
+      <li><a href="#dresscode" data-close>Vestimenta</a></li>
+      <li><a href="#rsvp" data-close>Confirmar</a></li>
+    </ul>
+    <div class="menu-footer">¡Se casan! · 09.10.2027</div>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-halftone"></div>
+    <div class="hero-blob b1"></div>
+    <div class="hero-blob b2"></div>
+
+    <div class="starburst">
+      <svg viewBox="0 0 200 200">
+        <polygon fill="#ff2d78" stroke="#14110f" stroke-width="4"
+          points="100,10 118,70 180,60 130,100 180,140 118,130 100,190 82,130 20,140 70,100 20,60 82,70"/>
+      </svg>
+      <div class="starburst-text">
+        <span class="big">EXCLUSIVA</span>
+        <span class="small">SOLO AQUÍ</span>
+      </div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-masthead">
+        <span>Vol. 01 · Núm. 2027</span>
+        <span>Edición de bodas</span>
+        <span>$0.00 Gratis</span>
+      </div>
+
+      <div class="hero-headline-tag">¡ÚLTIMA HORA!</div>
+
+      <div class="hero-photo">
+        <img src="foto-portada.png" alt="Antonella y Maximiliano">
+      </div>
+
+      <h1 class="hero-names">
+        Antonella <span class="amp">&amp;</span> Maxi
+      </h1>
+
+      <p class="hero-subhead">
+        Confirmado en exclusiva: <em>se casan.</em> Toda la información, aquí y solo aquí.
+      </p>
+
+      <div class="hero-cover-box">
+        <div class="cover-seg">
+          <div class="cover-seg-label">Fecha</div>
+          <div class="cover-seg-value">09.10.2027</div>
+        </div>
+        <div class="cover-seg">
+          <div class="cover-seg-label">Hora</div>
+          <div class="cover-seg-value">18:00 H</div>
+        </div>
+        <div class="cover-seg">
+          <div class="cover-seg-label">Lugar</div>
+          <div class="cover-seg-value">Lima, PE</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Sigue leyendo</span>
+      <div class="hero-scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MARQUEE
+       ============================================================ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Última Hora</span>
+      <span>Exclusiva</span>
+      <span>Bombazo</span>
+      <span>La Boda Del Año</span>
+      <span>Confirmado</span>
+      <span>09 · 10 · 2027</span>
+      <!-- duplicado -->
+      <span>Última Hora</span>
+      <span>Exclusiva</span>
+      <span>Bombazo</span>
+      <span>La Boda Del Año</span>
+      <span>Confirmado</span>
+      <span>09 · 10 · 2027</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       HISTORIA — cómic
+       ============================================================ -->
+  <section class="story" id="story">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker">La Historia</div>
+        <h2 class="section-title">Cómo <mark>empezó todo</mark></h2>
+        <p class="section-desc">Reconstruimos, viñeta a viñeta, la historia detrás del bombazo.</p>
+      </div>
+
+      <div class="comic-grid" id="comicGrid">
+        <div class="panel">
+          <div class="panel-scene h1">
+            <div class="panel-year">2015</div>
+            <div class="panel-bubble">¡HOLA!</div>
+          </div>
+          <div class="panel-text">
+            <h4>El primer avistamiento</h4>
+            <p>Se conocieron en una fiesta de amigos en común. Nadie lo vio venir.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-scene h2">
+            <div class="panel-year">2017</div>
+            <div class="panel-bubble">¡VIAJE!</div>
+          </div>
+          <div class="panel-text">
+            <h4>La primera escapada</h4>
+            <p>Un fin de semana se convirtió en tres años de viajar juntos sin parar.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-scene h3">
+            <div class="panel-year">2020</div>
+            <div class="panel-bubble">¡MUDANZA!</div>
+          </div>
+          <div class="panel-text">
+            <h4>Se mudaron juntos</h4>
+            <p>Fuentes cercanas confirman: hoy comparten hasta el clóset.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-scene h1">
+            <div class="panel-year">2023</div>
+            <div class="panel-bubble">¡PLOP!</div>
+          </div>
+          <div class="panel-text">
+            <h4>Adoptaron a Simón</h4>
+            <p>Su gato, primer "hijo" oficial de la pareja del momento.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-scene h2">
+            <div class="panel-year">2026</div>
+            <div class="panel-bubble">¡SÍ!</div>
+          </div>
+          <div class="panel-text">
+            <h4>La propuesta</h4>
+            <p>En un restaurante cualquiera. Ella dijo que sí antes de que él terminara la pregunta.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-scene h3">
+            <div class="panel-year">2027</div>
+            <div class="panel-bubble">¡BOOM!</div>
+          </div>
+          <div class="panel-text">
+            <h4>La edición final</h4>
+            <p>Y ahora, la portada más importante de todas. La tuya también.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="story-quote">Doce años de historia, resumidos en una sola <mark>portada</mark>.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COUNTDOWN
+       ============================================================ -->
+  <section class="countdown-wrap" id="countdown">
+    <div class="countdown-header reveal">
+      <div class="section-kicker">Cuenta Regresiva</div>
+      <h2 class="cd-title">Titular <mark>final en</mark></h2>
+    </div>
+
+    <div class="headline-row reveal">
+      <div class="headline-box">
+        <div class="headline-value" id="cd-days">00</div>
+        <div class="headline-label">Días</div>
+      </div>
+      <div class="headline-box">
+        <div class="headline-value" id="cd-hours">00</div>
+        <div class="headline-label">Horas</div>
+      </div>
+      <div class="headline-box">
+        <div class="headline-value" id="cd-mins">00</div>
+        <div class="headline-label">Minutos</div>
+      </div>
+      <div class="headline-box">
+        <div class="headline-value" id="cd-secs">00</div>
+        <div class="headline-label">Segundos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EVENTOS
+       ============================================================ -->
+  <section class="events" id="events">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker">Doble Exclusiva</div>
+        <h2 class="section-title">Dos <mark>coberturas</mark>, una noche</h2>
+      </div>
+
+      <div class="events-grid">
+        <article class="cover-card reveal">
+          <div class="cover-ribbon">Portada 01</div>
+          <h3 class="cover-title">Ceremonia</h3>
+          <div class="cover-media">
+            <img src="foto-iglesia.png" alt="Iglesia de la ceremonia">
+          </div>
+          <div class="cover-rows">
+            <div class="cover-row"><div class="cover-row-label">Fecha</div><div class="cover-row-value">Sábado 9<small>Octubre 2027</small></div></div>
+            <div class="cover-row"><div class="cover-row-label">Hora</div><div class="cover-row-value">18:00 h<small>Puntualidad, por favor</small></div></div>
+            <div class="cover-row"><div class="cover-row-label">Lugar</div><div class="cover-row-value">Iglesia Virgen de Fátima<small>Miraflores, Lima</small></div></div>
+          </div>
+          <a href="https://maps.google.com/?q=Iglesia+Virgen+de+Fatima+Miraflores+Lima" target="_blank" rel="noopener" class="cover-cta">
+            Cómo llegar
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="cover-card alt reveal">
+          <div class="cover-ribbon">Portada 02</div>
+          <h3 class="cover-title">Recepción</h3>
+          <div class="cover-media">
+            <img src="foto-recepcion.png" alt="Lugar de la recepción">
+          </div>
+          <div class="cover-rows">
+            <div class="cover-row"><div class="cover-row-label">Fecha</div><div class="cover-row-value">Sábado 9<small>Octubre 2027</small></div></div>
+            <div class="cover-row"><div class="cover-row-label">Hora</div><div class="cover-row-value">20:30 h<small>Hasta las 03:00</small></div></div>
+            <div class="cover-row"><div class="cover-row-label">Lugar</div><div class="cover-row-value">Club Regatas<small>Chorrillos, Lima</small></div></div>
+          </div>
+          <a href="https://maps.google.com/?q=Club+Regatas+Chorrillos+Lima" target="_blank" rel="noopener" class="cover-cta">
+            Cómo llegar
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ITINERARIO — tira cómica
+       ============================================================ -->
+  <section class="lineup" id="lineup">
+    <div class="container" style="padding-top:0; padding-bottom:0;">
+      <div class="section-header reveal">
+        <div class="section-kicker">Minuto a Minuto</div>
+        <h2 class="section-title">La noche, <mark>en vivo</mark></h2>
+        <p class="section-desc">Cobertura completa, tal como está pasando.</p>
+      </div>
+
+      <div class="strip" id="strip">
+        <div class="strip-panel">
+          <div class="strip-time">18:00</div>
+          <div class="strip-body">
+            <h4>Ceremonia religiosa</h4>
+            <p>Empieza el show. Cámaras listas.</p>
+          </div>
+          <div class="strip-pow">¡SÍ!</div>
+        </div>
+        <div class="strip-panel">
+          <div class="strip-time">20:30</div>
+          <div class="strip-body">
+            <h4>Coctel de bienvenida</h4>
+            <p>Tragos, flashes y los primeros rumores de la noche.</p>
+          </div>
+          <div class="strip-pow">¡SALUD!</div>
+        </div>
+        <div class="strip-panel">
+          <div class="strip-time">21:30</div>
+          <div class="strip-body">
+            <h4>Cena</h4>
+            <p>Tres tiempos, cero pausas para las cámaras.</p>
+          </div>
+          <div class="strip-pow">¡YUM!</div>
+        </div>
+        <div class="strip-panel">
+          <div class="strip-time">23:00</div>
+          <div class="strip-body">
+            <h4>Primer baile</h4>
+            <p>La exclusiva más comentada de la noche.</p>
+          </div>
+          <div class="strip-pow">¡AWW!</div>
+        </div>
+        <div class="strip-panel">
+          <div class="strip-time">23:30</div>
+          <div class="strip-body">
+            <h4>Pista abierta</h4>
+            <p>DJ set en vivo. Todos son protagonistas.</p>
+          </div>
+          <div class="strip-pow">¡WOO!</div>
+        </div>
+        <div class="strip-panel">
+          <div class="strip-time">01:00</div>
+          <div class="strip-body">
+            <h4>Hora loca</h4>
+            <p>La escena más comentada del año, en vivo.</p>
+          </div>
+          <div class="strip-pow">¡POW!</div>
+        </div>
+        <div class="strip-panel">
+          <div class="strip-time">03:00</div>
+          <div class="strip-body">
+            <h4>Cierre de edición</h4>
+            <p>Última llamada. Gracias por ser parte de la exclusiva.</p>
+          </div>
+          <div class="strip-pow">¡FIN!</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALERÍA — paparazzi
+       ============================================================ -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker">Fotos Exclusivas</div>
+        <h2 class="section-title">Captados por las <mark>cámaras</mark></h2>
+      </div>
+
+      <div class="paparazzi-grid reveal">
+        <div class="pap-tile pap-1"><img class="pap-photo" src="foto-1.png" alt="Antonella y Maximiliano, foto 1"><div class="pap-photo-overlay"></div><div class="pap-caption"><span>N° 01</span><span>2015</span></div></div>
+        <div class="pap-tile pap-2"><img class="pap-photo" src="foto-2.png" alt="Antonella y Maximiliano, foto 2"><div class="pap-photo-overlay"></div><div class="pap-caption"><span>N° 02</span><span>2018</span></div></div>
+        <div class="pap-tile pap-3"><img class="pap-photo" src="foto-3.png" alt="Antonella y Maximiliano, foto 3"><div class="pap-photo-overlay"></div><div class="pap-caption"><span>N° 03</span><span>2026</span></div></div>
+        <div class="pap-tile pap-4"><img class="pap-photo" src="foto-4.png" alt="Antonella y Maximiliano, foto 4"><div class="pap-photo-overlay"></div><div class="pap-caption"><span>N° 04</span><span>Detalle</span></div></div>
+        <div class="pap-tile pap-5"><img class="pap-photo" src="foto-5.png" alt="Antonella y Maximiliano, foto 5"><div class="pap-photo-overlay"></div><div class="pap-caption"><span>N° 05</span><span>2023</span></div></div>
+        <div class="pap-tile pap-6"><img class="pap-photo" src="foto-6.png" alt="Antonella y Maximiliano, foto 6"><div class="pap-photo-overlay"></div><div class="pap-caption"><span>N° 06</span><span>Editorial</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DRESSCODE
+       ============================================================ -->
+  <section class="dresscode" id="dresscode">
+    <div class="container" style="padding-top:0;padding-bottom:0;">
+      <div class="section-header reveal">
+        <div class="section-kicker">Estilo</div>
+        <h2 class="section-title">Vístete para las <mark>cámaras</mark></h2>
+        <p class="section-desc">Formal con actitud. Estos son los colores oficiales de esta edición.</p>
+      </div>
+
+      <div class="ink-dots reveal">
+        <div class="ink-dot id-1"><div class="id-info"><div class="id-name">Amarillo</div><div class="id-code">#FFD400</div></div></div>
+        <div class="ink-dot id-2"><div class="id-info"><div class="id-name">Rosa</div><div class="id-code">#FF2D78</div></div></div>
+        <div class="ink-dot id-3"><div class="id-info"><div class="id-name">Cian</div><div class="id-code">#00C2D1</div></div></div>
+        <div class="ink-dot id-4"><div class="id-info"><div class="id-name">Violeta</div><div class="id-code">#7B3FE4</div></div></div>
+        <div class="ink-dot id-5"><div class="id-info"><div class="id-name">Negro</div><div class="id-code">#14110F</div></div></div>
+        <div class="ink-dot id-6"><div class="id-info"><div class="id-name">Papel</div><div class="id-code">#FFF8EC</div></div></div>
+      </div>
+
+      <div class="dress-note reveal">
+        <p>«El blanco y el crema están <mark>reservados</mark> para la novia.»</p>
+        <p>Se agradece un look formal con actitud, en los colores de esta edición. Nada de negro total.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RSVP — pase de prensa
+       ============================================================ -->
+  <section class="rsvp" id="rsvp">
+    <div class="rsvp-card reveal">
+      <div class="rsvp-eyebrow"><span>Acreditación</span></div>
+      <h2 class="rsvp-title">Obtén tu <mark>pase de prensa</mark></h2>
+      <p class="rsvp-desc">Cupos limitados para esta cobertura exclusiva. Confirma antes del 10 de septiembre de 2027.</p>
+
+      <form class="rsvp-form" id="rsvpForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvp-name">Nombre completo</label>
+            <input type="text" id="rsvp-name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="rsvp-phone">Teléfono</label>
+            <input type="tel" id="rsvp-phone" name="phone" required autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>¿Nos acompañarás?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="attend" value="Sí, con gusto" required>
+              <span class="radio-option-label">Sí</span>
+              <span class="radio-option-desc">Ahí estaré</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="attend" value="Lamentablemente no podré">
+              <span class="radio-option-label">No</span>
+              <span class="radio-option-desc">No podré</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvp-guests">Acompañantes</label>
+            <select id="rsvp-guests" name="guests">
+              <option value="Solo yo">Solo yo</option>
+              <option value="+1 acompañante">+1 acompañante</option>
+              <option value="+2 acompañantes">+2 acompañantes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rsvp-menu">Preferencia de menú</label>
+            <select id="rsvp-menu" name="menu">
+              <option value="Estándar">Estándar</option>
+              <option value="Vegetariano">Vegetariano</option>
+              <option value="Vegano">Vegano</option>
+              <option value="Sin gluten">Sin gluten</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rsvp-message">Mensaje para los novios (opcional)</label>
+          <textarea id="rsvp-message" name="message" rows="2"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Confirmar asistencia</button>
+      </form>
+
+      <div class="rsvp-success" id="rsvpSuccess">
+        <div class="press-pass">
+          <div class="press-pass-header"><span>Prensa</span><span>2027</span></div>
+          <div class="press-pass-name" id="ppName">Invitado</div>
+          <div class="press-pass-role">Acreditación · Acceso total</div>
+          <div class="press-pass-footer">✓ Acceso confirmado</div>
+        </div>
+        <h3>¡Bombazo confirmado!</h3>
+        <p>Recibimos tu confirmación. Ahora se abrirá WhatsApp para dejarla registrada de inmediato.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="footer-mast">A + M</div>
+    <div class="footer-date">Lima · 09 · 10 · 2027 · Edición especial</div>
+    <div class="footer-price">Vol. 01 · Núm. 2027 · $0.00 Gratis</div>
+
+    <div class="footer-actions">
+      <button class="footer-btn" id="btnShare">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>
+        Compartir
+      </button>
+      <button class="footer-btn" id="btnCalendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Al calendario
+      </button>
+      <a href="https://wa.me/51943168115?text=Hola%20Nuestra%20Boda%2C%20me%20encant%C3%B3%20el%20modelo%20Pop%20Art" target="_blank" rel="noopener" class="footer-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.5 14.4c-.3-.15-1.8-.9-2.1-1-.3-.1-.5-.15-.7.15-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.05-.3-.15-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.15-.6.15-.15.3-.4.4-.6.15-.2.2-.35.3-.55.1-.2.05-.4-.05-.55-.1-.15-.7-1.7-1-2.3-.25-.6-.5-.5-.7-.5h-.6c-.2 0-.55.1-.85.4-.3.3-1.1 1.1-1.1 2.7 0 1.6 1.15 3.1 1.3 3.3.15.2 2.25 3.4 5.4 4.75.75.35 1.35.5 1.8.65.75.25 1.45.2 2 .15.6-.1 1.85-.75 2.1-1.5.25-.7.25-1.35.2-1.5-.05-.15-.25-.25-.55-.4z"/>
+          <path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.65 1.4 5.15L2 22l4.95-1.35C8.4 21.5 10.15 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="none" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-signature">
+      Diseñado por <a href="https://nuestraboda.com.pe" target="_blank" rel="noopener">Nuestra Boda</a> · Modelo Pop Art · Nº 14
+    </div>
+  </footer>
+
+  <button class="audio-toggle" id="audioToggle" aria-label="Reproducir música">
+    <svg id="audioIconPlay" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="audioIconPause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
+  </button>
+  <audio id="audioPlayer" loop preload="none"><source src="cancion.mp3" type="audio/mpeg"></audio>
+
+  <canvas id="confetti"></canvas>
+
+  <noscript>
+    <div style="padding:40px;text-align:center;background:#ffd400;color:#14110f">
+      Esta invitación funciona mejor con JavaScript activado. Por favor, habilítalo para ver la experiencia completa.
+    </div>
+  </noscript>
+
+  <script>
+  (function(){
+    'use strict';
+
+    const CONFIG = {
+      weddingDate: new Date('2027-10-09T18:00:00-05:00'),
+      brideWhatsapp: '51943168115', // ← Reemplazar con el número real de la novia
+      brideName: 'Antonella',
+      groomName: 'Maximiliano',
+      ceremony: 'Iglesia Virgen de Fátima, Miraflores',
+      reception: 'Club Regatas, Chorrillos'
+    };
+
+    window.addEventListener('load', function(){
+      setTimeout(function(){
+        const p = document.getElementById('preloader');
+        if (p) p.classList.add('done');
+      }, 2200);
+    });
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }, { passive: true });
+
+    const menu = document.getElementById('menu');
+    document.getElementById('menuOpen').addEventListener('click', function(){
+      menu.classList.add('open'); document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('menuClose').addEventListener('click', function(){
+      menu.classList.remove('open'); document.body.style.overflow = '';
+    });
+    document.querySelectorAll('[data-close]').forEach(function(a){
+      a.addEventListener('click', function(){
+        menu.classList.remove('open'); document.body.style.overflow = '';
+      });
+    });
+
+    const cd = {
+      d: document.getElementById('cd-days'),
+      h: document.getElementById('cd-hours'),
+      m: document.getElementById('cd-mins'),
+      s: document.getElementById('cd-secs')
+    };
+    function pad(n){ return String(n).padStart(2, '0'); }
+    function updateCountdown(){
+      const now = new Date();
+      const diff = CONFIG.weddingDate - now;
+      if (diff <= 0){
+        cd.d.textContent='00'; cd.h.textContent='00'; cd.m.textContent='00'; cd.s.textContent='00';
+        return;
+      }
+      cd.d.textContent = pad(Math.floor(diff / 86400000));
+      cd.h.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      cd.m.textContent = pad(Math.floor((diff % 3600000) / 60000));
+      cd.s.textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal, #comicGrid, #strip').forEach(function(el){ io.observe(el); });
+
+    document.querySelectorAll('.radio-group').forEach(function(group){
+      group.addEventListener('change', function(){
+        group.querySelectorAll('.radio-option').forEach(function(opt){
+          const input = opt.querySelector('input');
+          if (input && input.checked) opt.classList.add('checked');
+          else opt.classList.remove('checked');
+        });
+      });
+    });
+
+    const form = document.getElementById('rsvpForm');
+    const success = document.getElementById('rsvpSuccess');
+    const ppName = document.getElementById('ppName');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const fd = new FormData(form);
+      const data = {
+        name: fd.get('name'),
+        phone: fd.get('phone'),
+        attend: fd.get('attend'),
+        guests: fd.get('guests'),
+        menu: fd.get('menu'),
+        message: fd.get('message') || '—'
+      };
+
+      ppName.textContent = data.name || 'Invitado';
+
+      const msg =
+        '*Confirmación de asistencia*\n' +
+        '_Boda de ' + CONFIG.brideName + ' & ' + CONFIG.groomName + '_\n' +
+        '\n' +
+        '*Nombre:* ' + data.name + '\n' +
+        '*Teléfono:* ' + data.phone + '\n' +
+        '*¿Asistirá?:* ' + data.attend + '\n' +
+        '*Acompañantes:* ' + data.guests + '\n' +
+        '*Menú:* ' + data.menu + '\n' +
+        '*Mensaje:* ' + data.message;
+
+      const url = 'https://wa.me/' + CONFIG.brideWhatsapp + '?text=' + encodeURIComponent(msg);
+
+      form.style.display = 'none';
+      success.classList.add('show');
+
+      launchConfetti();
+
+      setTimeout(function(){ window.open(url, '_blank'); }, 900);
+
+      // OPCIONAL: fetch a Google Sheets webhook
+      // fetch('TU_ENDPOINT', { method: 'POST', body: JSON.stringify(data) });
+    });
+
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let confettiActive = false;
+
+    function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function launchConfetti(){
+      const colors = ['#ffd400', '#ff2d78', '#00c2d1', '#7b3fe4', '#14110f'];
+      for (let i = 0; i < 140; i++){
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * canvas.height * .3,
+          r: 4 + Math.random() * 5,
+          vy: 2 + Math.random() * 3,
+          vx: -1.5 + Math.random() * 3,
+          rot: Math.random() * Math.PI * 2,
+          vr: -.15 + Math.random() * .3,
+          shape: Math.random() > .5 ? 'circle' : 'star',
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+      if (!confettiActive){ confettiActive = true; requestAnimationFrame(animateConfetti); }
+    }
+
+    function drawStar(ctx, r){
+      ctx.beginPath();
+      for (let i = 0; i < 5; i++){
+        const angle = (Math.PI * 2 / 5) * i - Math.PI / 2;
+        const x = Math.cos(angle) * r;
+        const y = Math.sin(angle) * r;
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        const innerAngle = angle + Math.PI / 5;
+        ctx.lineTo(Math.cos(innerAngle) * r * .45, Math.sin(innerAngle) * r * .45);
+      }
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function animateConfetti(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles = particles.filter(function(p){
+        p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.vy += .035;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        if (p.shape === 'circle'){
+          ctx.beginPath(); ctx.arc(0, 0, p.r, 0, Math.PI * 2); ctx.fill();
+        } else {
+          drawStar(ctx, p.r);
+        }
+        ctx.restore();
+        return p.y < canvas.height + 20;
+      });
+      if (particles.length > 0){ requestAnimationFrame(animateConfetti); }
+      else { confettiActive = false; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+    }
+
+    const audio = document.getElementById('audioPlayer');
+    const audioBtn = document.getElementById('audioToggle');
+    const iconPlay = document.getElementById('audioIconPlay');
+    const iconPause = document.getElementById('audioIconPause');
+
+    audioBtn.addEventListener('click', function(){
+      if (!audio.currentSrc && !audio.querySelector('source').src){
+        alert('El audio ambiente aún no está configurado. Agrega el src del MP3 en el <source> del audio.');
+        return;
+      }
+      if (audio.paused){
+        audio.play().catch(function(){});
+        iconPlay.style.display = 'none'; iconPause.style.display = '';
+      } else {
+        audio.pause();
+        iconPlay.style.display = ''; iconPause.style.display = 'none';
+      }
+    });
+
+    document.getElementById('btnShare').addEventListener('click', async function(){
+      const shareData = {
+        title: CONFIG.brideName + ' & ' + CONFIG.groomName,
+        text: 'Estás invitado a nuestra boda — 9 de octubre de 2027',
+        url: window.location.href
+      };
+      if (navigator.share){
+        try { await navigator.share(shareData); } catch(e){}
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          alert('Enlace copiado al portapapeles ✨');
+        } catch(e){
+          prompt('Copia este enlace:', window.location.href);
+        }
+      }
+    });
+
+    document.getElementById('btnCalendar').addEventListener('click', function(){
+      const start = '20271009T180000';
+      const end = '20271010T030000';
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Nuestra Boda//Modelo Pop Art//ES',
+        'BEGIN:VEVENT',
+        'UID:' + Date.now() + '@nuestraboda.com.pe',
+        'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z',
+        'DTSTART;TZID=America/Lima:' + start,
+        'DTEND;TZID=America/Lima:' + end,
+        'SUMMARY:Boda de ' + CONFIG.brideName + ' & ' + CONFIG.groomName,
+        'DESCRIPTION:Ceremonia en ' + CONFIG.ceremony + '. Recepción en ' + CONFIG.reception + '.',
+        'LOCATION:' + CONFIG.ceremony,
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'boda-antonella-maximiliano.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    document.querySelectorAll('img').forEach(function(img){
+      img.addEventListener('error', function(){ img.style.display = 'none'; });
+    });
+
+  })();
+  </script>
+</body>
+</html>
