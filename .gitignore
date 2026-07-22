@@ -1,0 +1,21 @@
+# Archivos internos y temporales
+.agents/
+tmp/
+**/tmp/
+
+# Backups locales
+backup-*/
+**/backup-*/
+
+# Capturas de control de calidad
+**/qa-*.png
+**/qa-*.jpg
+**/qa-*.jpeg
+**/qa-*.webp
+
+# Archivos innecesarios del sistema
+Thumbs.db
+.DS_Store
+
+# Dependencias, si existieran
+node_modules/

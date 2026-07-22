@@ -1,0 +1,3510 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f8fa">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+
+  <title>Invitación de boda | Lesly & Jairo</title>
+  <link rel="icon" href="assets/monograma-lesly-jairo.png" type="image/png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6f8fa;
+      --paper:#fbfcfd;
+      --blue:#566a85;
+      --blue-dark:#465a75;
+      --blue-soft:#bbc5d1;
+      --blue-pale:#e9eef3;
+      --accent:#7b93ad;
+      --text:#263346;
+      --muted:#617187;
+      --line:rgba(86,106,133,.24);
+      --white:#f9fbfd;
+      --shadow:0 22px 60px rgba(50,67,88,.15);
+      --danger:#8a4b4b;
+      --ok:#456853;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:'Cormorant Garamond',serif;
+      background:
+        radial-gradient(circle at 15% 4%,rgba(187,197,209,.25),transparent 28%),
+        radial-gradient(circle at 85% 14%,rgba(123,147,173,.12),transparent 30%),
+        #dde4eb;
+      overflow-x:hidden;
+    }
+    body.modal-open,
+    body.nav-open{overflow:hidden}
+    button,input,select,textarea{font:inherit}
+    button{color:inherit}
+    a{color:inherit;text-decoration:none}
+    img{display:block;width:100%}
+    [hidden]{display:none!important}
+    :focus-visible{
+      outline:3px solid var(--accent);
+      outline-offset:4px;
+    }
+
+    .invite-shell{
+      width:100%;
+      max-width:430px;
+      min-height:100vh;
+      margin:0 auto;
+      background-color:var(--bg);
+      background-image:radial-gradient(circle,rgba(86,106,133,.16) .75px,transparent 1px);
+      background-size:28px 28px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:0 0 48px rgba(38,51,70,.18);
+    }
+
+    .hero{
+      display:block;
+      width:100%;
+      min-height:100svh;
+    }
+    .story-layout{display:contents}
+    [id]{scroll-margin-top:18px}
+
+    .mobile-menu-toggle,
+    .mobile-nav,
+    .mobile-nav-backdrop{display:none}
+
+    .scroll-progress{
+      position:fixed;
+      inset:0 auto auto 0;
+      width:0;
+      height:3px;
+      z-index:10000;
+      background:linear-gradient(90deg,var(--blue-dark),var(--accent));
+    }
+
+    .grain{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      pointer-events:none;
+      opacity:.022;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitchTiles'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    section{
+      padding:50px 28px;
+      text-align:center;
+      position:relative;
+      isolation:isolate;
+    }
+    section::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      opacity:.84;
+      background-image:
+        radial-gradient(circle at 12% 22%,rgba(123,147,173,.17) 0 1px,transparent 1.7px),
+        radial-gradient(circle at 88% 76%,rgba(86,106,133,.13) 0 1px,transparent 1.7px);
+      background-size:34px 34px,42px 42px;
+      mask-image:linear-gradient(to bottom,transparent,black 18%,black 82%,transparent);
+    }
+    section>*{
+      position:relative;
+      z-index:1;
+    }
+
+    .botanical-top{
+      height:155px;
+      overflow:hidden;
+      background:linear-gradient(180deg,#edf2f6 0%,var(--bg) 94%);
+      position:relative;
+    }
+    .botanical-top img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center top;
+    }
+    .botanical-top>svg,
+    .botanical-bottom>svg,
+    .dress-illustration>svg{display:none}
+    .botanical-top .stem{fill:none;stroke:var(--blue-dark);stroke-width:2;stroke-linecap:round;opacity:.68}
+    .botanical-top .leaf{fill:rgba(86,106,133,.78);stroke:rgba(70,90,117,.7);stroke-width:.6}
+    .botanical-top .soft-leaf{fill:rgba(187,197,209,.86)}
+    .botanical-top .berry{fill:var(--accent);opacity:.72}
+
+    .intro{
+      padding-top:4px;
+      padding-bottom:48px;
+    }
+    .wedding-kicker{
+      margin:5px 0 25px;
+      color:var(--blue-dark);
+      font-size:24px;
+      letter-spacing:.4px;
+    }
+    .names{
+      margin:0;
+      color:var(--blue);
+      font-family:'Great Vibes',cursive;
+      font-size:68px;
+      line-height:.93;
+      font-weight:400;
+    }
+    .amp{
+      margin:5px 0 2px;
+      color:var(--blue-dark);
+      font-family:'Alex Brush',cursive;
+      font-size:40px;
+      line-height:1;
+    }
+    .bible-verse{
+      max-width:340px;
+      margin:34px auto 0;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.34;
+    }
+    .bible-verse strong{
+      display:block;
+      margin-top:8px;
+      color:var(--blue-dark);
+      font-weight:600;
+    }
+    .instruction{
+      margin:39px 0 0;
+      color:var(--text);
+      font-size:18px;
+      line-height:1.35;
+    }
+    .player{
+      --audio-progress:0%;
+      width:min(265px,85%);
+      margin:18px auto 0;
+    }
+    .audio-waves{
+      height:31px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:5px;
+      margin-bottom:10px;
+      opacity:0;
+      transform:translateY(5px);
+      transition:.3s ease;
+    }
+    .player.is-playing .audio-waves{
+      opacity:1;
+      transform:none;
+    }
+    .audio-waves span{
+      width:3px;
+      height:8px;
+      border-radius:99px;
+      background:var(--accent);
+      opacity:.65;
+      animation:wave 1.05s ease-in-out infinite;
+      animation-play-state:paused;
+    }
+    .player.is-playing .audio-waves span{animation-play-state:running}
+    .audio-waves span:nth-child(2){animation-delay:.08s}
+    .audio-waves span:nth-child(3){animation-delay:.16s}
+    .audio-waves span:nth-child(4){animation-delay:.24s}
+    .audio-waves span:nth-child(5){animation-delay:.32s}
+    .audio-waves span:nth-child(6){animation-delay:.40s}
+    .audio-waves span:nth-child(7){animation-delay:.48s}
+    @keyframes wave{0%,100%{height:8px;opacity:.5}50%{height:28px;opacity:1}}
+
+    .player-line{
+      height:3px;
+      margin-bottom:18px;
+      border-radius:99px;
+      background:var(--blue-soft);
+      position:relative;
+      cursor:pointer;
+      touch-action:none;
+    }
+    .player-progress{
+      position:absolute;
+      inset:0 auto 0 0;
+      width:var(--audio-progress);
+      border-radius:inherit;
+      background:var(--blue-dark);
+    }
+    .progress-dot{
+      position:absolute;
+      top:50%;
+      left:var(--audio-progress);
+      width:14px;
+      height:14px;
+      border:2px solid var(--bg);
+      border-radius:50%;
+      background:var(--blue);
+      box-shadow:0 2px 9px rgba(38,51,70,.25);
+      transform:translate(-50%,-50%);
+      pointer-events:none;
+    }
+    .controls{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      color:var(--blue);
+    }
+    .control-icon{
+      width:45px;
+      height:28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      opacity:.82;
+    }
+    .control-icon svg{width:21px;height:21px;stroke-width:1.6}
+    .play-btn{
+      width:42px;
+      height:42px;
+      padding:0 0 1px;
+      border:5px solid rgba(187,197,209,.56);
+      border-radius:50%;
+      background:var(--blue-dark);
+      color:white;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      font-size:18px;
+      transition:.25s ease;
+    }
+    .play-btn svg{width:19px;height:19px;stroke-width:1.8}
+    .play-btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(70,90,117,.22)}
+    .play-btn.is-pausing{
+      width:98px;
+      padding:0 16px;
+      border-radius:999px;
+      font:700 .58rem/1 Montserrat,sans-serif;
+      letter-spacing:.14em;
+    }
+
+    .photo-block{
+      height:335px;
+      position:relative;
+      overflow:hidden;
+      background:var(--blue-pale);
+    }
+    .photo-block img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+    }
+    .hero-photo img{object-position:56% center}
+    .story-photo img{object-position:50% 42%}
+    .mid-photo img{object-position:55% center}
+    .final-photo img{object-position:50% 42%}
+    .memory-photo img{object-position:50% 46%}
+    .photo-shade{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      background:rgba(15,22,31,.28);
+      pointer-events:none;
+    }
+    .photo-message{
+      position:absolute;
+      top:50%;
+      left:50%;
+      z-index:3;
+      width:min(82%,620px);
+      margin:0;
+      transform:translate(-50%,-50%);
+      color:white;
+      font-size:clamp(16px,4.2vw,20px);
+      font-weight:400;
+      line-height:1.48;
+      text-align:center;
+      text-shadow:0 3px 18px rgba(0,0,0,.72);
+      opacity:.92;
+      pointer-events:none;
+    }
+    .final-photo .photo-zoom-hint{z-index:4}
+    .gallery-section{
+      padding:54px 18px 62px;
+      background:linear-gradient(180deg,var(--bg),var(--paper),var(--bg));
+    }
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:minmax(0,320px);
+      justify-content:center;
+      gap:18px;
+      width:100%;
+      margin:0 auto;
+    }
+    .gallery-photo{
+      aspect-ratio:3/4;
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(123,147,173,.24);
+      border-radius:16px;
+      background:var(--blue-pale);
+      box-shadow:0 16px 34px rgba(38,51,70,.13);
+    }
+    .gallery-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .gallery-photo:nth-child(1) img{object-position:50% 48%}
+    .gallery-photo:nth-child(2) img{object-position:50% 46%}
+    .gallery-photo:nth-child(3) img{object-position:50% 43%}
+    img[src^="assets/foto-0"]{
+      cursor:zoom-in;
+      transition:transform .38s ease,filter .38s ease;
+    }
+    .photo-block:hover img[src^="assets/foto-0"],
+    .gallery-photo:hover img[src^="assets/foto-0"]{
+      transform:scale(1.025);
+      filter:saturate(1.04);
+    }
+    .photo-zoom-hint{
+      position:absolute;
+      top:16px;
+      right:14px;
+      z-index:4;
+      width:38px;
+      height:38px;
+      border:1px solid rgba(255,255,255,.58);
+      border-radius:50%;
+      background:rgba(38,51,70,.5);
+      color:white;
+      display:grid;
+      place-items:center;
+      pointer-events:none;
+      backdrop-filter:blur(7px);
+    }
+    .photo-zoom-hint svg{width:18px;height:18px;stroke-width:1.8}
+    .gallery-photo .photo-zoom-hint{top:8px;right:8px;width:34px;height:34px}
+    .photo-block::before,
+    .photo-block::after{
+      content:"";
+      position:absolute;
+      left:-2%;
+      width:104%;
+      height:56px;
+      z-index:2;
+      pointer-events:none;
+      background:var(--bg);
+    }
+    .photo-block::before{
+      top:-30px;
+      clip-path:polygon(0 70%,8% 56%,18% 66%,28% 52%,39% 65%,50% 50%,61% 64%,72% 52%,83% 65%,92% 55%,100% 68%,100% 0,0 0);
+    }
+    .photo-block::after{
+      bottom:-30px;
+      clip-path:polygon(0 32%,8% 45%,18% 34%,29% 48%,40% 35%,51% 50%,62% 36%,73% 49%,84% 35%,93% 46%,100% 32%,100% 100%,0 100%);
+    }
+    .phrase{
+      max-width:345px;
+      margin:0 auto;
+      color:var(--text);
+      font-size:24px;
+      line-height:1.25;
+    }
+    .body-text{
+      max-width:350px;
+      margin:0 auto 7px;
+      color:var(--muted);
+      font-size:18.5px;
+      line-height:1.3;
+    }
+    .script-title{
+      margin:10px 0 22px;
+      color:var(--blue);
+      font-family:'Great Vibes',cursive;
+      font-size:47px;
+      line-height:1.06;
+      font-weight:400;
+    }
+    .month{
+      margin:9px 0 16px;
+      color:var(--text);
+      font-family:Montserrat,sans-serif;
+      font-size:.72rem;
+      font-weight:500;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
+    .section-icon{
+      width:98px;
+      height:98px;
+      margin:22px auto 13px;
+      display:grid;
+      place-items:center;
+      color:var(--blue);
+    }
+    .section-icon svg{
+      width:100%;
+      height:100%;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:1.25;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+    .ornate-icon{
+      position:relative;
+      width:104px;
+      height:104px;
+      margin:0 auto 14px;
+      border:1px solid rgba(123,147,173,.4);
+      border-radius:50%;
+      background:
+        radial-gradient(circle,rgba(255,255,255,.92) 0 51%,transparent 52%),
+        linear-gradient(145deg,rgba(187,197,209,.4),rgba(251,252,253,.72));
+      color:var(--blue-dark);
+      display:grid;
+      place-items:center;
+      box-shadow:0 12px 28px rgba(50,67,88,.1),inset 0 0 0 7px rgba(255,255,255,.58);
+    }
+    .ornate-icon::before,
+    .ornate-icon::after{
+      content:"";
+      position:absolute;
+      bottom:5px;
+      width:34px;
+      height:18px;
+      border-top:1px solid var(--blue);
+      border-radius:50%;
+      opacity:.68;
+    }
+    .ornate-icon::before{left:-10px;transform:rotate(28deg)}
+    .ornate-icon::after{right:-10px;transform:rotate(-28deg)}
+    .ornate-icon>svg:not(.lucide){display:none}
+    .ornate-icon svg.lucide{
+      width:43px;
+      height:43px;
+      stroke:currentColor;
+      stroke-width:1.35;
+    }
+
+    .story-copy{
+      margin-top:18px;
+    }
+    .monogram{
+      width:125px;
+      height:125px;
+      margin:30px auto 0;
+      object-fit:contain;
+      animation:float 5.7s ease-in-out infinite;
+    }
+    .section-monogram{
+      height:auto;
+      margin:24px auto 0;
+      object-fit:contain;
+      opacity:.56;
+      mix-blend-mode:multiply;
+      filter:drop-shadow(0 9px 14px rgba(70,90,117,.1));
+      transform-origin:center;
+      animation:monogramSway 6.5s ease-in-out infinite;
+    }
+    .section-monogram--small{width:58px}
+    .section-monogram--medium{width:92px}
+    .section-monogram--large{width:138px}
+    .section-monogram--watermark{
+      position:absolute;
+      top:105px;
+      right:-22px;
+      z-index:0;
+      margin:0;
+      opacity:.13;
+      pointer-events:none;
+      transform:rotate(9deg);
+    }
+    @keyframes monogramSway{
+      0%,100%{transform:translateY(0) rotate(-1deg) scale(1)}
+      50%{transform:translateY(-7px) rotate(2deg) scale(1.035)}
+    }
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+    .family-section{
+      padding-top:44px;
+      background:
+        radial-gradient(circle at 50% 0,rgba(187,197,209,.24),transparent 32%),
+        var(--bg);
+    }
+    .family-card{
+      margin-top:24px;
+      padding:24px 18px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(251,252,253,.76);
+      box-shadow:0 13px 35px rgba(50,67,88,.08);
+    }
+    .family-group + .family-group{
+      margin-top:24px;
+      padding-top:22px;
+      border-top:1px solid var(--line);
+    }
+    .family-label{
+      margin:0 0 10px;
+      color:var(--blue-dark);
+      font-family:Montserrat,sans-serif;
+      font-size:.66rem;
+      font-weight:600;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .family-name{
+      margin:4px 0;
+      color:var(--text);
+      font-size:19px;
+      line-height:1.2;
+    }
+    .godparents{
+      margin-top:28px;
+      padding:22px 16px;
+      border:1px dashed rgba(86,106,133,.38);
+      border-radius:18px;
+      background:var(--blue-pale);
+    }
+
+    .date-section{
+      padding-top:47px;
+    }
+    .date-grid{
+      display:grid;
+      grid-template-columns:1fr 86px 1fr;
+      gap:11px;
+      align-items:center;
+      max-width:335px;
+      margin:0 auto;
+      color:var(--blue-dark);
+    }
+    .date-side{
+      padding:12px 2px;
+      border-top:1.5px solid var(--accent);
+      border-bottom:1.5px solid var(--accent);
+      font-family:Montserrat,sans-serif;
+      font-size:.65rem;
+      font-weight:500;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .day-number{
+      color:var(--blue);
+      font-size:58px;
+      line-height:1;
+      font-weight:600;
+    }
+    .count-title{
+      margin:43px 0 3px;
+      color:var(--blue);
+      font-family:'Great Vibes',cursive;
+      font-size:46px;
+      line-height:1;
+    }
+    .countdown{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      max-width:390px;
+      margin:0 auto;
+      color:var(--blue);
+    }
+    .countdown>div{
+      position:relative;
+      min-width:0;
+    }
+    .countdown>div:not(:last-child)::after{
+      content:":";
+      position:absolute;
+      top:-2px;
+      right:-3px;
+      color:var(--accent);
+      font-size:40px;
+      line-height:1;
+    }
+    .countdown strong{
+      display:block;
+      color:var(--blue);
+      font-size:42px;
+      line-height:1;
+      font-weight:500;
+      font-variant-numeric:tabular-nums;
+    }
+    .countdown span{
+      display:block;
+      margin-top:8px;
+      color:var(--blue-dark);
+      font-family:Montserrat,sans-serif;
+      font-size:.5rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .venues-wrap{
+      margin-top:46px;
+      display:grid;
+      gap:22px;
+    }
+    .venue-card{
+      padding:26px 19px 29px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:var(--paper);
+      box-shadow:0 15px 38px rgba(50,67,88,.10);
+      overflow:hidden;
+      position:relative;
+    }
+    .venue-card::before{
+      content:"";
+      position:absolute;
+      top:-90px;
+      left:50%;
+      width:220px;
+      height:180px;
+      border:1px solid rgba(123,147,173,.23);
+      border-radius:50%;
+      transform:translateX(-50%);
+    }
+    .venue-illustration{
+      width:min(190px,62%);
+      height:140px;
+      margin:0 auto 4px;
+      color:var(--blue);
+      position:relative;
+      z-index:1;
+    }
+    .venue-illustration img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+    .venue-title{
+      margin:2px 0 15px;
+      color:var(--blue);
+      font-family:'Great Vibes',cursive;
+      font-size:42px;
+      font-weight:400;
+      line-height:1;
+    }
+    .venue-card .body-text{
+      font-size:18px;
+    }
+
+    .button,
+    .submit-button,
+    .gift-button,
+    .copy-button{
+      min-height:44px;
+      padding:0 18px;
+      border:1px solid var(--blue-dark);
+      border-radius:999px;
+      background:var(--blue);
+      color:white;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      cursor:pointer;
+      font-family:Montserrat,sans-serif;
+      font-size:.62rem;
+      font-weight:600;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      transition:.25s ease;
+    }
+    .button{
+      min-width:180px;
+      margin-top:17px;
+    }
+    .button:hover,
+    .submit-button:hover,
+    .gift-button:hover,
+    .copy-button:hover{
+      background:var(--blue-dark);
+      transform:translateY(-2px);
+      box-shadow:0 10px 24px rgba(70,90,117,.2);
+    }
+    .button svg,
+    .submit-button svg{
+      width:16px;
+      height:16px;
+      stroke-width:1.8;
+    }
+
+    .itinerary-section{
+      background:linear-gradient(180deg,var(--bg),var(--blue-pale));
+    }
+    .timeline{
+      width:min(350px,100%);
+      margin:28px auto 0;
+      position:relative;
+      padding:4px 0;
+    }
+    .timeline::before{
+      content:"";
+      position:absolute;
+      top:42px;
+      bottom:42px;
+      left:50%;
+      width:3px;
+      border-radius:99px;
+      background:linear-gradient(var(--accent),var(--blue-dark));
+      transform:translateX(-50%);
+    }
+    .timeline-item{
+      display:grid;
+      grid-template-columns:1fr 48px 1fr;
+      align-items:center;
+      min-height:152px;
+      position:relative;
+    }
+    .timeline-dot{
+      width:40px;
+      height:40px;
+      margin:auto;
+      border:3px solid var(--blue-pale);
+      border-radius:50%;
+      background:var(--blue);
+      color:white;
+      display:grid;
+      place-items:center;
+      position:relative;
+      z-index:2;
+    }
+    .timeline-dot svg{width:20px;height:20px;stroke-width:1.8}
+    .timeline-content{
+      color:var(--text);
+      font-size:19px;
+      line-height:1.16;
+    }
+    .timeline-content strong{
+      display:block;
+      margin-top:4px;
+      color:var(--blue-dark);
+      font-weight:600;
+    }
+    .timeline-icon{
+      width:min(118px,100%);
+      height:96px;
+      margin:0 auto 8px;
+      color:var(--blue);
+    }
+    .timeline-icon img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      transform-origin:50% 75%;
+      filter:drop-shadow(0 7px 8px rgba(70,90,117,.08));
+      animation:itineraryIconMotion 3.8s ease-in-out infinite;
+    }
+    .timeline-item:nth-child(2) .timeline-icon img{animation-delay:.22s}
+    .timeline-item:nth-child(3) .timeline-icon img{animation-delay:.44s}
+    .timeline-item:nth-child(4) .timeline-icon img{animation-delay:.66s}
+    .timeline-item:nth-child(5) .timeline-icon img{animation-delay:.88s}
+    @keyframes itineraryIconMotion{
+      0%,100%{transform:translateY(0) rotate(0) scale(1);filter:drop-shadow(0 7px 8px rgba(70,90,117,.08))}
+      30%{transform:translateY(-3px) rotate(-.65deg) scale(1.018);filter:drop-shadow(0 9px 9px rgba(70,90,117,.11))}
+      60%{transform:translateY(-1px) rotate(.35deg) scale(1.008)}
+      82%{transform:translateY(-4px) rotate(.7deg) scale(1.02);filter:drop-shadow(0 10px 9px rgba(70,90,117,.12))}
+    }
+
+    .details-section{
+      background:var(--bg);
+    }
+    .dress-card{
+      padding:31px 18px 28px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:var(--paper);
+      box-shadow:0 16px 40px rgba(50,67,88,.09);
+    }
+    .dress-illustration{
+      width:min(240px,78%);
+      height:310px;
+      margin:0 auto 14px;
+      color:var(--blue-dark);
+    }
+    .dress-illustration img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+    .dress-note{
+      margin:15px auto 0;
+      padding:12px 14px;
+      border-radius:14px;
+      background:var(--blue-pale);
+      color:var(--blue-dark);
+      font-size:17px;
+      line-height:1.3;
+    }
+
+    .paper-quote{
+      padding:62px 28px;
+      background:
+        linear-gradient(rgba(251,252,253,.93),rgba(251,252,253,.93)),
+        radial-gradient(circle at 15% 20%,rgba(86,106,133,.12) 0 1px,transparent 2px);
+    }
+    .paper-card{
+      max-width:355px;
+      margin:auto;
+      padding:35px 23px;
+      border:1px solid rgba(86,106,133,.13);
+      background:rgba(255,255,255,.7);
+      box-shadow:0 18px 34px rgba(50,67,88,.12);
+      position:relative;
+    }
+    .paper-card::after{
+      content:"";
+      position:absolute;
+      inset:auto 7% -14px 7%;
+      height:14px;
+      background:rgba(38,51,70,.12);
+      filter:blur(10px);
+    }
+    .paper-card p{
+      margin:0;
+      color:var(--text);
+      font-size:20px;
+      font-style:italic;
+      line-height:1.55;
+      letter-spacing:.04em;
+    }
+
+    .adults-card{
+      padding:30px 20px;
+      border:1px solid var(--line);
+      border-radius:28px 28px 12px 12px;
+      background:var(--paper);
+      box-shadow:0 16px 40px rgba(50,67,88,.09);
+    }
+    .adults-icon{
+      width:100px;
+      height:76px;
+      margin:0 auto 5px;
+      color:var(--blue);
+    }
+    .adults-icon svg{
+      width:100%;
+      height:100%;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:1.35;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .gifts-section{
+      background:linear-gradient(180deg,var(--blue-pale),var(--bg));
+    }
+    .gift-intro{
+      max-width:350px;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:18.5px;
+      line-height:1.35;
+    }
+    .gift-actions{
+      display:grid;
+      gap:22px;
+      max-width:345px;
+      margin:29px auto 0;
+    }
+    .gift-option{
+      padding:23px 16px 27px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:var(--paper);
+    }
+    .gift-option h3{
+      margin:0 0 17px;
+      color:var(--blue-dark);
+      font-size:20px;
+      font-weight:600;
+    }
+    .gift-option-icon{
+      width:68px;
+      height:68px;
+      margin:0 auto 15px;
+      border:1px solid rgba(123,147,173,.34);
+      border-radius:50%;
+      background:linear-gradient(145deg,var(--paper),var(--blue-pale));
+      color:var(--blue-dark);
+      display:grid;
+      place-items:center;
+      box-shadow:inset 0 0 0 5px rgba(255,255,255,.58);
+    }
+    .gift-option-icon svg{width:29px;height:29px;stroke-width:1.45}
+    .gift-address{
+      max-width:330px;
+      margin:0 auto 18px;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.35;
+    }
+    .gift-button{
+      min-width:215px;
+    }
+
+    .rsvp-section{
+      padding-top:48px;
+      padding-bottom:60px;
+    }
+    .rsvp-card-main{
+      padding:38px 22px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:var(--paper);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .rsvp-card-main::before,
+    .rsvp-card-main::after{
+      content:"";
+      position:absolute;
+      width:170px;
+      height:170px;
+      border:1px solid rgba(123,147,173,.2);
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .rsvp-card-main::before{top:-105px;left:-90px}
+    .rsvp-card-main::after{right:-90px;bottom:-110px}
+    .rsvp-card-main>*{position:relative;z-index:1}
+    .deadline{
+      display:inline-block;
+      margin:12px auto 2px;
+      padding:9px 14px;
+      border-radius:999px;
+      background:var(--blue-pale);
+      color:var(--blue-dark);
+      font-family:Montserrat,sans-serif;
+      font-size:.58rem;
+      font-weight:600;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+    .invitation-access{
+      width:min(520px,100%);
+      margin:24px auto 8px;
+      padding:20px 18px;
+      border:1px solid rgba(123,147,173,.34);
+      border-radius:18px;
+      background:
+        radial-gradient(circle at 100% 0,rgba(187,197,209,.24),transparent 35%),
+        rgba(246,248,250,.82);
+      box-shadow:inset 0 0 0 6px rgba(255,255,255,.44),0 14px 34px rgba(50,67,88,.08);
+    }
+    .invitation-access-icon{
+      width:44px;
+      height:44px;
+      margin:0 auto 10px;
+      border:1px solid rgba(123,147,173,.38);
+      border-radius:50%;
+      background:var(--paper);
+      color:var(--blue-dark);
+      display:grid;
+      place-items:center;
+    }
+    .invitation-access-icon svg{width:21px;height:21px;stroke-width:1.5}
+    .invitation-access-eyebrow{
+      margin:0;
+      color:var(--blue-dark);
+      font:600 .56rem/1.3 Montserrat,sans-serif;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+    }
+    .invitation-access-name{
+      display:block;
+      margin:7px auto 5px;
+      color:var(--text);
+      font-size:clamp(1.45rem,6vw,2rem);
+      font-weight:600;
+      line-height:1.05;
+      text-transform:uppercase;
+    }
+    .invitation-access-message,
+    .invitation-current-response{
+      max-width:430px;
+      margin:7px auto 0;
+      color:var(--muted);
+      font-size:16.5px;
+      line-height:1.35;
+    }
+    .invitation-current-response{
+      padding-top:10px;
+      border-top:1px solid var(--line);
+      color:var(--blue-dark);
+      font-weight:600;
+    }
+    .invitation-access[data-state="loading"] .invitation-access-icon svg{animation:iconBreathe 1.2s ease-in-out infinite}
+    .invitation-access[data-state="valid"]{border-color:rgba(69,104,83,.32)}
+    .invitation-access[data-state="invalid"],
+    .invitation-access[data-state="error"]{border-color:rgba(138,75,75,.3)}
+    .invitation-retry{
+      margin:14px auto 0;
+      padding:10px 17px;
+      border:1px solid var(--blue-dark);
+      border-radius:999px;
+      background:transparent;
+      color:var(--blue-dark);
+      cursor:pointer;
+      font:600 .58rem/1 Montserrat,sans-serif;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+    .button:disabled,.submit-button:disabled{
+      opacity:.48;
+      cursor:not-allowed;
+      transform:none;
+      box-shadow:none;
+    }
+
+    .final-section{
+      padding-top:42px;
+      padding-bottom:54px;
+    }
+    .final-logo{
+      width:140px;
+      height:140px;
+      margin:0 auto 18px;
+      object-fit:contain;
+      animation:float 6.4s -1.8s ease-in-out infinite;
+    }
+    .final-text{
+      max-width:350px;
+      margin:0 auto 20px;
+      color:var(--text);
+      font-size:19px;
+      line-height:1.35;
+    }
+    .wait-title{
+      margin:25px 0 0;
+      color:var(--blue);
+      font-family:'Great Vibes',cursive;
+      font-size:48px;
+      font-weight:400;
+    }
+    .footer-date{
+      margin:10px 0 0;
+      color:var(--blue-dark);
+      font-family:Montserrat,sans-serif;
+      font-size:.58rem;
+      font-weight:600;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+    }
+
+    .botanical-bottom{
+      height:125px;
+      overflow:hidden;
+      background:linear-gradient(180deg,var(--bg),#e8eef3);
+    }
+    .botanical-bottom img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center bottom;
+    }
+    .botanical-bottom .stem{fill:none;stroke:var(--blue-dark);stroke-width:2;opacity:.6}
+    .botanical-bottom .leaf{fill:rgba(86,106,133,.72)}
+    .botanical-bottom .soft-leaf{fill:rgba(187,197,209,.82)}
+    .botanical-bottom .berry{fill:var(--accent);opacity:.7}
+
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      z-index:12000;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:max(18px,env(safe-area-inset-top)) 18px max(18px,env(safe-area-inset-bottom));
+      background:rgba(38,51,70,.66);
+      backdrop-filter:blur(8px);
+    }
+    .modal-backdrop.is-open{
+      display:flex;
+      animation:fadeIn .24s ease both;
+    }
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .modal-dialog{
+      width:min(430px,100%);
+      max-height:calc(100svh - 36px);
+      overflow:auto;
+      border:1px solid rgba(123,147,173,.38);
+      border-radius:22px;
+      background:
+        radial-gradient(circle at 100% 0,rgba(187,197,209,.24),transparent 27%),
+        radial-gradient(circle,rgba(86,106,133,.08) .65px,transparent .9px) 0 0/25px 25px,
+        var(--bg);
+      box-shadow:0 24px 80px rgba(38,51,70,.32);
+      padding:48px 20px 28px;
+      position:relative;
+      text-align:center;
+      animation:modalUp .45s cubic-bezier(.22,1,.36,1) both;
+      overscroll-behavior:contain;
+    }
+    @keyframes modalUp{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:none}}
+    .modal-close{
+      position:sticky;
+      top:14px;
+      z-index:2;
+      width:44px;
+      height:44px;
+      margin:-34px 0 14px auto;
+      border:1px solid var(--line);
+      border-radius:50%;
+      background:var(--blue-dark);
+      color:white;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+    }
+    .modal-close svg{width:20px;height:20px;stroke-width:1.8}
+    .photo-modal-backdrop{
+      align-items:center;
+      padding:14px;
+      background:rgba(21,29,41,.92);
+      backdrop-filter:blur(12px);
+    }
+    .photo-modal-dialog{
+      width:min(1180px,100%);
+      height:min(92svh,900px);
+      position:relative;
+      display:grid;
+      place-items:center;
+      padding:58px 52px 50px;
+      outline:none;
+    }
+    .photo-modal-image{
+      width:auto;
+      max-width:100%;
+      height:auto;
+      max-height:calc(92svh - 132px);
+      border-radius:12px;
+      object-fit:contain;
+      box-shadow:0 24px 70px rgba(0,0,0,.42);
+    }
+    .photo-modal-close,
+    .photo-modal-nav{
+      position:absolute;
+      z-index:3;
+      width:46px;
+      height:46px;
+      border:1px solid rgba(255,255,255,.48);
+      border-radius:50%;
+      background:rgba(38,51,70,.76);
+      color:white;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      backdrop-filter:blur(7px);
+    }
+    .photo-modal-close{top:0;right:0}
+    .photo-modal-nav{top:50%;transform:translateY(-50%)}
+    .photo-modal-prev{left:0}
+    .photo-modal-next{right:0}
+    .photo-modal-close svg,
+    .photo-modal-nav svg{width:23px;height:23px;stroke-width:1.8}
+    .photo-modal-caption{
+      position:absolute;
+      bottom:9px;
+      left:50%;
+      width:min(520px,calc(100% - 110px));
+      margin:0;
+      transform:translateX(-50%);
+      color:rgba(255,255,255,.86);
+      font:500 .68rem/1.4 Montserrat,sans-serif;
+      letter-spacing:.04em;
+      text-align:center;
+    }
+    .photo-modal-counter{color:var(--blue-pale);font-weight:700}
+    .modal-kicker{
+      margin:0 0 2px;
+      color:var(--blue-dark);
+      font-family:Montserrat,sans-serif;
+      font-size:.58rem;
+      font-weight:600;
+      letter-spacing:.17em;
+      text-transform:uppercase;
+    }
+    .modal-dialog .script-title{
+      margin-top:0;
+      margin-bottom:11px;
+      padding-inline:54px;
+      font-size:43px;
+    }
+    .rsvp-form{
+      margin:20px auto 0;
+      padding:20px 16px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:var(--paper);
+      text-align:left;
+    }
+    .form-row{
+      margin-bottom:14px;
+    }
+    .form-label{
+      display:block;
+      margin-bottom:6px;
+      color:var(--blue-dark);
+      font-family:Montserrat,sans-serif;
+      font-size:.61rem;
+      font-weight:600;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .form-input,
+    .form-select,
+    .form-textarea{
+      width:100%;
+      min-height:48px;
+      padding:12px 13px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+      color:var(--text);
+      outline:none;
+      font-size:18px;
+    }
+    .form-textarea{
+      min-height:88px;
+      resize:vertical;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus{
+      border-color:var(--blue);
+      box-shadow:0 0 0 3px rgba(123,147,173,.14);
+    }
+    .form-row.is-disabled{opacity:.48}
+    .form-input:disabled,
+    .form-select:disabled,
+    .form-textarea:disabled{
+      background:var(--blue-pale);
+      cursor:not-allowed;
+    }
+    .form-input[readonly]{
+      border-color:rgba(123,147,173,.28);
+      background:var(--blue-pale);
+      color:var(--blue-dark);
+      cursor:default;
+      font-weight:600;
+    }
+    .companions-section{
+      margin:2px 0 16px;
+      padding:16px 14px;
+      border:1px solid rgba(123,147,173,.26);
+      border-radius:15px;
+      background:linear-gradient(145deg,rgba(233,238,243,.65),rgba(255,255,255,.78));
+    }
+    .companions-section[hidden]{display:none}
+    .companions-intro{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:15.5px;
+      line-height:1.35;
+      text-align:left;
+    }
+    .companions-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:13px;
+    }
+    .companion-field{min-width:0}
+    .companion-field .form-label{margin-bottom:6px}
+    .radio-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:9px;
+    }
+    .radio-card{
+      min-height:48px;
+      padding:9px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      color:var(--text);
+      font-size:17px;
+      cursor:pointer;
+    }
+    .radio-card:has(input:checked){
+      border-color:var(--blue-dark);
+      background:var(--blue-pale);
+      box-shadow:inset 3px 0 0 var(--blue-dark);
+    }
+    .radio-card input{accent-color:var(--blue-dark)}
+    .form-help{
+      margin:5px auto 14px;
+      color:var(--muted);
+      font-size:15.5px;
+      line-height:1.28;
+      text-align:center;
+    }
+    .submit-button{
+      width:100%;
+      min-height:50px;
+    }
+    .manual-whatsapp-link{
+      width:100%;
+      min-height:48px;
+      margin:12px auto 0;
+    }
+    .status-message{
+      min-height:20px;
+      margin-top:13px;
+      color:var(--blue-dark);
+      font-size:16px;
+      line-height:1.3;
+      text-align:center;
+    }
+    .status-message.error{color:var(--danger)}
+    .status-message.ok{color:var(--ok)}
+    .status-message.warning{color:#7a642e}
+    .verification-retry{
+      width:100%;
+      min-height:46px;
+      margin:11px auto 0;
+      border:1px solid var(--blue-dark);
+      border-radius:999px;
+      background:transparent;
+      color:var(--blue-dark);
+      cursor:pointer;
+      font:600 .62rem/1 Montserrat,sans-serif;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .gift-detail-list{
+      margin:20px auto 0;
+      padding:14px 15px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--paper);
+      text-align:left;
+    }
+    .gift-detail-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:5px 10px;
+      padding:11px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .gift-detail-row:last-child{border-bottom:0}
+    .gift-detail-row strong{
+      color:var(--blue-dark);
+      font-size:17px;
+    }
+    .gift-detail-row span{
+      grid-column:1;
+      overflow-wrap:anywhere;
+      color:var(--text);
+      font-size:17px;
+    }
+    .copy-button{
+      grid-column:2;
+      grid-row:1/3;
+      align-self:center;
+      min-height:36px;
+      padding:0 13px;
+      font-size:.52rem;
+    }
+    .modal-secondary-close{
+      grid-column:auto;
+      grid-row:auto;
+      margin-top:18px;
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      z-index:14000;
+      padding:10px 16px;
+      border-radius:999px;
+      background:rgba(38,51,70,.94);
+      color:white;
+      font:500 .78rem/1.2 Montserrat,sans-serif;
+      opacity:0;
+      pointer-events:none;
+      transform:translate(-50%,12px);
+      transition:.25s ease;
+    }
+    .toast.show{
+      opacity:1;
+      transform:translate(-50%,0);
+    }
+
+    .reveal{
+      opacity:0;
+      filter:blur(6px);
+      transform:translateY(28px);
+      transition:opacity .8s ease,transform .9s cubic-bezier(.22,1,.36,1),filter .75s ease;
+    }
+    .reveal.is-visible{
+      opacity:1;
+      filter:none;
+      transform:none;
+    }
+
+    @keyframes contentRise{
+      from{opacity:0;transform:translateY(18px)}
+      to{opacity:1;transform:none}
+    }
+    @keyframes iconReveal{
+      0%{opacity:0;transform:translateY(15px) scale(.8) rotate(-5deg)}
+      65%{opacity:1;transform:translateY(-3px) scale(1.04) rotate(1deg)}
+      100%{opacity:1;transform:none}
+    }
+    @keyframes cardReveal{
+      from{opacity:0;transform:translateY(24px) scale(.975);box-shadow:0 6px 18px rgba(50,67,88,.04)}
+      to{opacity:1;transform:none}
+    }
+    @keyframes photoFocus{
+      from{opacity:.72;transform:scale(1.045)}
+      to{opacity:1;transform:scale(1)}
+    }
+    @keyframes iconBreathe{
+      0%,100%{transform:translateY(0) scale(1)}
+      50%{transform:translateY(-3px) scale(1.045)}
+    }
+    @keyframes heartBeat{
+      0%,100%{transform:scale(1)}
+      12%{transform:scale(1.1)}
+      25%{transform:scale(1)}
+    }
+    @keyframes heroLetter{
+      from{opacity:0;transform:translateY(20px);letter-spacing:.08em}
+      to{opacity:1;transform:none}
+    }
+
+    .intro :is(.wedding-kicker,.names,.bible-verse,.instruction,.player){
+      animation:contentRise .85s cubic-bezier(.22,1,.36,1) both;
+    }
+    .intro .names{animation-name:heroLetter;animation-delay:.1s}
+    .intro .bible-verse{animation-delay:.22s}
+    .intro .instruction{animation-delay:.34s}
+    .intro .player{animation-delay:.44s}
+
+    .reveal.is-visible :is(.script-title,.phrase,.month,.body-text,.gift-intro,.count-title,.deadline,.family-label,.family-name,.final-text,.wait-title,.footer-date){
+      animation:contentRise .78s cubic-bezier(.22,1,.36,1) both;
+    }
+    .reveal.is-visible :is(.script-title,.month,.family-label){animation-delay:.1s}
+    .reveal.is-visible :is(.body-text,.gift-intro,.family-name,.deadline,.final-text){animation-delay:.2s}
+    .reveal.is-visible :is(.ornate-icon,.venue-illustration){
+      animation:iconReveal .9s cubic-bezier(.22,1,.36,1) both;
+    }
+    .reveal.is-visible :is(.family-card,.godparents,.dress-card,.adults-card,.rsvp-card-main,.paper-card,.venue-card,.gift-option,.gallery-photo){
+      animation:cardReveal .85s cubic-bezier(.22,1,.36,1) backwards;
+    }
+    .reveal.is-visible :is(.venue-card,.gift-option,.gallery-photo):nth-child(2){animation-delay:.12s}
+    .reveal.is-visible :is(.venue-card,.gift-option,.gallery-photo):nth-child(3){animation-delay:.24s}
+    .reveal.is-visible .timeline-item{animation:contentRise .7s cubic-bezier(.22,1,.36,1) both}
+    .reveal.is-visible .timeline-item:nth-child(2){animation-delay:.1s}
+    .reveal.is-visible .timeline-item:nth-child(3){animation-delay:.2s}
+    .reveal.is-visible .timeline-item:nth-child(4){animation-delay:.3s}
+    .reveal.is-visible .timeline-item:nth-child(5){animation-delay:.4s}
+    .photo-block.reveal.is-visible img{animation:photoFocus 1.25s cubic-bezier(.22,1,.36,1) both}
+    .ornate-icon svg.lucide,.gift-option-icon svg{transform-origin:center;animation:iconBreathe 4.2s ease-in-out infinite}
+    .timeline-dot{transform-origin:center;animation:heartBeat 3.2s ease-in-out infinite}
+    .gift-option,.venue-card,.dress-card,.adults-card,.rsvp-card-main{transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+    .gift-option:hover,.venue-card:hover,.dress-card:hover,.adults-card:hover,.rsvp-card-main:hover{
+      transform:translateY(-5px);
+      border-color:rgba(123,147,173,.48);
+      box-shadow:0 24px 55px rgba(50,67,88,.14);
+    }
+
+    @media(min-width:700px){
+      body{padding:0}
+      section{padding:68px clamp(42px,7vw,76px)}
+      .invite-shell{max-width:none;box-shadow:none}
+      .family-card{
+        max-width:760px;
+        margin-inline:auto;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:0 34px;
+      }
+      .family-group + .family-group{
+        margin:0;
+        padding:0 0 0 34px;
+        border-top:0;
+        border-left:1px solid var(--line);
+      }
+      .godparents{max-width:760px;margin-inline:auto}
+      .venues-wrap{grid-template-columns:repeat(2,minmax(0,1fr));max-width:860px;margin-inline:auto}
+      .venue-card{display:flex;flex-direction:column}
+      .venue-card .button{margin-top:auto;align-self:center}
+      .gift-actions{grid-template-columns:repeat(2,minmax(0,1fr));max-width:760px}
+      .gift-option{display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+      .modal-backdrop{align-items:center;padding:24px}
+      .modal-dialog{
+        width:min(620px,100%);
+        border-radius:22px;
+        padding:52px 34px 32px;
+      }
+      .rsvp-form{padding:23px}
+      .companions-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+
+    @media(max-width:900px){
+      body{background:var(--bg)}
+      .invite-shell{width:100%;max-width:none;min-height:100svh;box-shadow:none}
+      .botanical-top,.botanical-bottom{background:transparent}
+      .botanical-top img,.botanical-bottom img{mix-blend-mode:multiply}
+      .photo-block{height:clamp(340px,58svh,560px)}
+      .photo-modal-dialog{padding:56px 14px 48px}
+      .photo-modal-close{top:3px;right:3px}
+      .photo-modal-nav{width:42px;height:42px}
+      .photo-modal-prev{left:3px}
+      .photo-modal-next{right:3px}
+      .mobile-menu-toggle{
+        position:fixed;
+        top:max(18px,env(safe-area-inset-top));
+        right:max(18px,env(safe-area-inset-right));
+        z-index:11500;
+        width:48px;
+        height:48px;
+        border:1px solid rgba(123,147,173,.58);
+        border-radius:50%;
+        background:rgba(251,252,253,.94);
+        color:var(--blue-dark);
+        box-shadow:0 10px 30px rgba(50,67,88,.17);
+        backdrop-filter:blur(10px);
+        display:grid;
+        place-items:center;
+        cursor:pointer;
+      }
+      .mobile-menu-toggle svg{width:21px;height:21px;stroke-width:1.55}
+      .mobile-nav-backdrop{
+        position:fixed;
+        inset:0;
+        z-index:11600;
+        display:block;
+        border:0;
+        background:rgba(38,51,70,.52);
+        opacity:0;
+        pointer-events:none;
+        transition:opacity .3s ease;
+        backdrop-filter:blur(4px);
+      }
+      .mobile-nav{
+        position:fixed;
+        z-index:11700;
+        top:0;
+        right:0;
+        width:min(360px,88vw);
+        height:100dvh;
+        min-height:100svh;
+        padding:max(28px,env(safe-area-inset-top)) max(28px,env(safe-area-inset-right)) max(32px,env(safe-area-inset-bottom)) 28px;
+        background:var(--paper);
+        display:flex;
+        flex-direction:column;
+        overflow-y:auto;
+        overscroll-behavior:contain;
+        box-shadow:-25px 0 70px rgba(38,51,70,.22);
+        transform:translateX(102%);
+        transition:transform .35s cubic-bezier(.22,.8,.3,1);
+      }
+      body.nav-open .mobile-nav{transform:translateX(0)}
+      body.nav-open .mobile-nav-backdrop{opacity:1;pointer-events:auto}
+      .mobile-nav-head{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:18px;
+        padding-bottom:22px;
+        border-bottom:1px solid var(--line);
+      }
+      .mobile-nav-brand{display:flex;align-items:center;gap:12px;min-width:0}
+      .mobile-nav-brand img{width:54px;height:54px;border-radius:50%;object-fit:contain;flex:none}
+      .mobile-nav-brand span{font-family:'Great Vibes',cursive;font-size:1.8rem;color:var(--blue);line-height:1}
+      .mobile-nav-close{
+        width:44px;
+        height:44px;
+        flex:none;
+        border:1px solid var(--line);
+        border-radius:50%;
+        background:transparent;
+        color:var(--blue-dark);
+        display:grid;
+        place-items:center;
+        cursor:pointer;
+      }
+      .mobile-nav-close svg{width:18px;height:18px;stroke-width:1.55}
+      .mobile-nav-label{
+        margin:28px 0 14px;
+        color:var(--muted);
+        font:600 .58rem/1.2 Montserrat,sans-serif;
+        letter-spacing:.24em;
+        text-transform:uppercase;
+      }
+      .mobile-nav-links{display:grid}
+      .mobile-nav-link{
+        min-height:52px;
+        display:grid;
+        grid-template-columns:34px minmax(0,1fr) auto;
+        align-items:center;
+        gap:10px;
+        border-bottom:1px solid var(--line);
+        color:var(--text);
+        font-size:1.12rem;
+        opacity:0;
+        transform:translateX(18px);
+        transition:opacity .45s ease,transform .55s cubic-bezier(.22,1,.36,1),color .2s;
+      }
+      body.nav-open .mobile-nav-link{opacity:1;transform:none}
+      body.nav-open .mobile-nav-link:nth-child(1){transition-delay:.08s}
+      body.nav-open .mobile-nav-link:nth-child(2){transition-delay:.12s}
+      body.nav-open .mobile-nav-link:nth-child(3){transition-delay:.16s}
+      body.nav-open .mobile-nav-link:nth-child(4){transition-delay:.2s}
+      body.nav-open .mobile-nav-link:nth-child(5){transition-delay:.24s}
+      body.nav-open .mobile-nav-link:nth-child(6){transition-delay:.28s}
+      body.nav-open .mobile-nav-link:nth-child(7){transition-delay:.32s}
+      body.nav-open .mobile-nav-link:nth-child(8){transition-delay:.36s}
+      body.nav-open .mobile-nav-link:nth-child(9){transition-delay:.4s}
+      body.nav-open .mobile-nav-link:nth-child(10){transition-delay:.44s}
+      body.nav-open .mobile-nav-link:nth-child(11){transition-delay:.48s}
+      .mobile-nav-link .index{color:var(--blue-dark);font:500 .52rem/1 Montserrat,sans-serif;letter-spacing:.08em}
+      .mobile-nav-link svg{width:15px;height:15px;color:var(--blue);stroke-width:1.4;transition:transform .25s ease}
+      .mobile-nav-link:hover{color:var(--blue-dark)}
+      .mobile-nav-link:hover svg{transform:translateX(3px)}
+      .mobile-nav-foot{
+        margin:auto 0 0;
+        padding-top:28px;
+        color:var(--muted);
+        text-align:center;
+        font:600 .55rem/1.3 Montserrat,sans-serif;
+        letter-spacing:.17em;
+        text-transform:uppercase;
+      }
+    }
+
+    @media(min-width:901px){
+      .invite-shell{width:100%;max-width:none}
+      .hero{
+        min-height:100vh;
+        display:grid;
+        grid-template-columns:minmax(430px,.82fr) minmax(0,1.18fr);
+        grid-template-rows:auto 1fr;
+        background:linear-gradient(135deg,var(--bg),var(--paper));
+      }
+      .hero .botanical-top{
+        grid-column:1;
+        grid-row:1;
+        height:auto;
+        aspect-ratio:3764/1088;
+        background:transparent;
+      }
+      .hero .botanical-top img{
+        object-fit:contain;
+        mix-blend-mode:multiply;
+      }
+      .hero .intro{
+        grid-column:1;
+        grid-row:2;
+        align-self:center;
+        padding:20px clamp(48px,6vw,92px) 76px;
+      }
+      .hero .hero-photo{
+        grid-column:2;
+        grid-row:1/3;
+        height:100%;
+        min-height:100vh;
+      }
+      .hero .hero-photo::before,
+      .hero .hero-photo::after{display:none}
+      .hero .hero-photo img{object-position:56% center}
+      .names{font-size:clamp(76px,7vw,116px)}
+      .amp{font-size:54px}
+      .bible-verse{max-width:520px;font-size:20px}
+      .instruction{margin-top:32px}
+      .story-layout{
+        display:grid;
+        grid-template-columns:minmax(0,1.08fr) minmax(430px,.92fr);
+        height:780px;
+        min-height:0;
+      }
+      .story-layout>section{
+        grid-column:2;
+        grid-row:1;
+        height:100%;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        padding-inline:clamp(58px,7vw,108px);
+        padding-block:42px;
+      }
+      .story-layout>.story-photo{
+        grid-column:1;
+        grid-row:1;
+        height:100%;
+        min-height:0;
+      }
+      .story-layout>.story-photo::before,
+      .story-layout>.story-photo::after{display:none}
+      .story-layout>.story-photo img{object-position:50% 34%}
+      .memory-photo{
+        width:min(540px,calc(100% - 96px));
+        height:810px;
+        margin:78px auto;
+        border-radius:18px;
+        box-shadow:0 20px 54px rgba(38,51,70,.14);
+      }
+      .memory-photo::before,
+      .memory-photo::after{display:none}
+      .memory-photo img{object-position:center}
+      .photo-message{font-size:20px}
+      .gallery-section{padding-block:82px 94px}
+      .gallery-grid{
+        width:min(1050px,100%);
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:28px;
+      }
+      .gallery-photo{border-radius:18px}
+      .phrase{max-width:570px;font-size:30px}
+      .body-text{max-width:590px;font-size:20px}
+      .script-title{font-size:clamp(52px,5vw,68px)}
+      .family-section{padding-block:92px}
+      .date-section{padding-block:92px}
+      .date-grid{max-width:500px;grid-template-columns:1fr 120px 1fr}
+      .day-number{font-size:78px}
+      .countdown{max-width:620px;margin-top:10px}
+      .countdown strong{font-size:58px}
+      .countdown span{font-size:.62rem}
+      .venues-wrap{max-width:1120px;gap:30px;margin-top:58px}
+      .venue-card{padding:34px 34px 38px}
+      .mid-photo{height:min(62vw,720px)}
+      .mid-photo img{object-position:55% 44%}
+      .itinerary-section{padding-block:96px}
+      .timeline{width:min(880px,100%);margin-top:42px}
+      .timeline-item{grid-template-columns:1fr 64px 1fr;min-height:176px}
+      .timeline-dot{width:46px;height:46px}
+      .timeline-dot svg{width:23px;height:23px}
+      .timeline-content{font-size:22px;padding-inline:34px}
+      .timeline-icon{width:140px;height:112px}
+      .details-section{padding-block:94px}
+      .dress-card{max-width:780px;margin:auto;padding:42px}
+      .dress-illustration{width:285px;height:400px;margin-bottom:18px}
+      .paper-card{max-width:720px;padding:48px}
+      .adults-card{max-width:780px;margin:auto;padding:42px}
+      .gifts-section{padding-block:94px}
+      .gift-actions{
+        max-width:1120px;
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:24px;
+      }
+      .rsvp-card-main{max-width:760px;margin:auto;padding:50px 56px}
+      .final-photo{height:min(62vw,720px)}
+      .final-photo img{object-position:50% 20%}
+      .final-section{padding-block:76px}
+      .botanical-bottom{
+        height:auto;
+        aspect-ratio:3904/1056;
+        background:transparent;
+      }
+      .botanical-bottom img{
+        object-fit:contain;
+        mix-blend-mode:multiply;
+      }
+    }
+
+    @media(max-width:360px){
+      section{padding-left:21px;padding-right:21px}
+      .names{font-size:61px}
+      .script-title{font-size:43px}
+      .countdown strong{font-size:35px}
+      .radio-grid{grid-template-columns:1fr}
+      .timeline{width:300px}
+      .photo-modal-dialog{padding-inline:36px}
+      .photo-modal-nav{width:40px;height:40px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{
+        animation-duration:.001ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.001ms!important;
+      }
+      .reveal{opacity:1!important;filter:none!important;transform:none!important}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <button class="mobile-menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-controls="mobileNav" aria-expanded="false">
+    <i data-lucide="menu" aria-hidden="true"></i>
+  </button>
+  <button class="mobile-nav-backdrop" id="menuBackdrop" type="button" aria-label="Cerrar menú" tabindex="-1"></button>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navegación de la invitación" aria-hidden="true" inert>
+    <div class="mobile-nav-head">
+      <div class="mobile-nav-brand">
+        <img src="assets/monograma-lesly-jairo.png" alt="" width="54" height="54">
+        <span>Lesly & Jairo</span>
+      </div>
+      <button class="mobile-nav-close" id="menuClose" type="button" aria-label="Cerrar menú">
+        <i data-lucide="x" aria-hidden="true"></i>
+      </button>
+    </div>
+    <p class="mobile-nav-label">Nuestra invitación</p>
+    <div class="mobile-nav-links">
+      <a class="mobile-nav-link" href="#inicio"><span class="index">01</span><span>Inicio</span><i data-lucide="chevron-right" aria-hidden="true"></i></a>
+      <a class="mobile-nav-link" href="#historia"><span class="index">02</span><span>Nuestra historia</span><i data-lucide="chevron-right" aria-hidden="true"></i></a>
+      <a class="mobile-nav-link" href="#bendicion"><span class="index">03</span><span>Bendición y padres</span><i data-lucide="chevron-right" aria-hidden="true"></i></a>
+      <a class="mobile-nav-link" href="#fecha"><span class="index">04</span><span>Fecha de la boda</span><i data-lucide="chevron-right" aria-hidden="true"></i></a>
+      <a class="mobile-nav-link" href="#lugares"><span class="index">05</span><span>Ceremonia y recepción</span><i data-lucide="chevron-right" aria-hidden="true"></i></a>
+      <a class="mobile-nav-link" href="#itinerario"><span class="index">06</span><span>Itinerario</span><i data-lucide="chevron-right" aria-hidden="true"></i></a>
+      <a class="mobile-nav-link" href="#detalles"><span class="index">07</span><span>Código de vestimenta</span><i data-lucide="chevron-right" aria-hidden="true"></i></a>
+      <a class="mobile-nav-link" href="#galeria"><span class="index">08</span><span>Nuestros momentos</span><i data-lucide="chevron-right" aria-hidden="true"></i></a>
+      <a class="mobile-nav-link" href="#adultos"><span class="index">09</span><span>Evento para adultos</span><i data-lucide="chevron-right" aria-hidden="true"></i></a>
+      <a class="mobile-nav-link" href="#regalos"><span class="index">10</span><span>Regalos</span><i data-lucide="chevron-right" aria-hidden="true"></i></a>
+      <a class="mobile-nav-link" href="#confirmacion"><span class="index">11</span><span>Confirmación</span><i data-lucide="chevron-right" aria-hidden="true"></i></a>
+    </div>
+    <p class="mobile-nav-foot">05 · 09 · 2026</p>
+  </nav>
+
+  <main class="invite-shell" id="inviteContent">
+    <div class="hero" id="inicio">
+    <div class="botanical-top" aria-hidden="true">
+      <img src="assets/encabezado.png" alt="" decoding="async">
+      <svg viewBox="0 0 500 190">
+        <path class="stem" d="M-10 15C65 30 86 100 151 112C203 121 218 65 250 28"/>
+        <path class="stem" d="M510 10C452 30 425 93 360 111C316 123 288 68 258 28"/>
+        <path class="stem" d="M40 2C45 45 84 65 101 111"/>
+        <path class="stem" d="M460 1C452 44 420 72 402 113"/>
+        <ellipse class="leaf" cx="26" cy="28" rx="18" ry="8" transform="rotate(26 26 28)"/>
+        <ellipse class="soft-leaf" cx="56" cy="49" rx="21" ry="9" transform="rotate(38 56 49)"/>
+        <ellipse class="leaf" cx="87" cy="69" rx="19" ry="8" transform="rotate(28 87 69)"/>
+        <ellipse class="soft-leaf" cx="117" cy="88" rx="21" ry="9" transform="rotate(24 117 88)"/>
+        <ellipse class="leaf" cx="149" cy="103" rx="19" ry="8" transform="rotate(11 149 103)"/>
+        <ellipse class="leaf" cx="474" cy="27" rx="18" ry="8" transform="rotate(-28 474 27)"/>
+        <ellipse class="soft-leaf" cx="444" cy="48" rx="21" ry="9" transform="rotate(-38 444 48)"/>
+        <ellipse class="leaf" cx="413" cy="70" rx="19" ry="8" transform="rotate(-28 413 70)"/>
+        <ellipse class="soft-leaf" cx="382" cy="90" rx="21" ry="9" transform="rotate(-24 382 90)"/>
+        <ellipse class="leaf" cx="350" cy="104" rx="19" ry="8" transform="rotate(-11 350 104)"/>
+        <circle class="berry" cx="198" cy="42" r="4"/><circle class="berry" cx="211" cy="55" r="3"/>
+        <circle class="berry" cx="302" cy="42" r="4"/><circle class="berry" cx="289" cy="55" r="3"/>
+      </svg>
+    </div>
+
+    <section class="intro">
+      <p class="wedding-kicker">¡Nos casamos!</p>
+      <h1 class="names">Lesly</h1>
+      <div class="amp">&</div>
+      <h1 class="names">Jairo</h1>
+
+      <p class="bible-verse">
+        “Y sobre todas estas cosas vestíos de amor, que es el vínculo perfecto.”.
+        <strong>Colosenses 3:14.</strong>
+      </p>
+
+      <p class="instruction">Presiona el corazón para escuchar nuestra canción</p>
+
+      <div class="player" id="audioPlayer">
+        <div class="audio-waves" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="player-line" id="progressBar" role="slider" aria-label="Progreso de la canción" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+          <div class="player-progress"></div>
+          <span class="progress-dot" aria-hidden="true"></span>
+        </div>
+        <div class="controls">
+          <span class="control-icon" aria-hidden="true"><i data-lucide="music-2"></i></span>
+          <button class="play-btn" id="playBtn" type="button" aria-label="Reproducir canción">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <span class="control-icon" aria-hidden="true"><i data-lucide="music-2"></i></span>
+        </div>
+      </div>
+
+      <audio id="weddingAudio" preload="metadata">
+        <source src="assets/cancion.mp3" type="audio/mpeg">
+      </audio>
+    </section>
+
+    <div class="photo-block hero-photo reveal">
+      <img src="assets/foto-01-portada.jpg" alt="Lesly y Jairo tomados de la mano" fetchpriority="high" decoding="async">
+    </div>
+    </div>
+
+    <div class="story-layout" id="historia">
+    <section class="reveal">
+      
+      <div class="section-icon ornate-icon" aria-hidden="true">
+        <i data-lucide="book-heart"></i>
+        <svg viewBox="0 0 120 120">
+          <path d="M25 101c4-22 13-36 29-42"/>
+          <path d="M95 101c-4-22-13-36-29-42"/>
+          <circle cx="48" cy="38" r="12"/>
+          <circle cx="73" cy="37" r="12"/>
+          <path d="M44 51c6 7 11 10 17 10s11-3 17-10"/>
+          <path d="M39 61c5 23 12 36 21 40"/>
+          <path d="M81 61c-5 23-12 36-21 40"/>
+          <path d="M49 32c5-7 12-8 18-2"/>
+          <path d="M56 22c3-8 12-10 18-4"/>
+        </svg>
+      </div>
+      <h2 class="script-title">Nuestra historia</h2>
+      <p class="body-text story-copy">“El amor nos encontró en el momento perfecto y desde entonces caminamos juntos con un mismo sueño: construir una vida llena de amor, respeto y felicidad. Hoy queremos dar el siguiente paso y nos haría muy felices que seas parte de este día tan especial.”</p>
+      <img class="monogram" src="assets/monograma-lesly-jairo.png" alt="Monograma de Lesly y Jairo" loading="lazy" decoding="async">
+    </section>
+
+    <div class="photo-block story-photo reveal">
+      <img src="assets/foto-02-historia.jpg" alt="Lesly y Jairo mirándose con cariño" loading="lazy" decoding="async">
+    </div>
+    </div>
+
+    <section class="family-section reveal" id="bendicion">
+      <div class="section-icon ornate-icon" aria-hidden="true">
+        <i data-lucide="church"></i>
+        <svg viewBox="0 0 120 120">
+          <path d="M60 104V52"/>
+          <path d="M60 73C43 63 30 49 27 29c17 2 29 13 33 27"/>
+          <path d="M60 79c17-10 30-24 33-44-17 2-29 13-33 27"/>
+          <path d="M60 58C48 49 42 37 42 22c13 3 19 12 18 25"/>
+          <path d="M60 58c12-9 18-21 18-36-13 3-19 12-18 25"/>
+        </svg>
+      </div>
+      <h2 class="script-title">Con la bendición de Dios y nuestros padres</h2>
+
+      <div class="family-card">
+        <div class="family-group">
+          <p class="family-label">Padres de la novia</p>
+          <p class="family-name">Biviano Trujillo Viera</p>
+          <p class="family-name">Norma Olarte Ccencho</p>
+        </div>
+
+        <div class="family-group">
+          <p class="family-label">Padres del novio</p>
+          <p class="family-name">Willy Velarde Delgado</p>
+          <p class="family-name">Marina Bertha Perez Delgado</p>
+        </div>
+      </div>
+
+      <div class="godparents">
+        <p class="family-label">Nuestros padrinos</p>
+        <p class="family-name">Biviano Trujillo Viera</p>
+        <p class="family-name">Marina Bertha Perez Delgado</p>
+      </div>
+      <img class="section-monogram section-monogram--medium" src="assets/monograma-lesly-jairo.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    </section>
+
+    <div class="photo-block memory-photo reveal">
+      <img src="assets/foto-03-recuerdo.jpg" alt="Lesly y Jairo sentados juntos en el jardín" loading="lazy" decoding="async">
+    </div>
+
+    <section class="date-section reveal" id="fecha">
+      <div class="section-icon ornate-icon" aria-hidden="true">
+        <i data-lucide="calendar-heart"></i>
+        <svg viewBox="0 0 120 120">
+          <circle cx="48" cy="61" r="28"/>
+          <circle cx="75" cy="61" r="28"/>
+          <path d="M37 32l11-14 11 14"/>
+          <path d="M64 32l11-14 11 14"/>
+          <path d="M40 19h16"/>
+          <path d="M67 19h16"/>
+        </svg>
+      </div>
+
+      <h2 class="script-title">Tenemos el agrado de invitarlos a Nuestra Boda</h2>
+      <div class="month">Septiembre</div>
+
+      <div class="date-grid">
+        <div class="date-side">Sábado</div>
+        <div class="day-number">05</div>
+        <div class="date-side">2026</div>
+      </div>
+
+      <div class="count-title">Faltan</div>
+      <div class="countdown" id="countdown">
+        <div><strong id="days">00</strong><span>Días</span></div>
+        <div><strong id="hours">00</strong><span>Horas</span></div>
+        <div><strong id="minutes">00</strong><span>Minutos</span></div>
+        <div><strong id="seconds">00</strong><span>Segundos</span></div>
+      </div>
+
+      <div class="venues-wrap" id="lugares">
+        <article class="venue-card reveal">
+          <div class="venue-illustration" aria-hidden="true">
+            <img src="assets/icono_iglesia.png" alt="" loading="lazy" decoding="async">
+          </div>
+          <h3 class="venue-title">Ceremonia religiosa</h3>
+          <p class="body-text"><strong>Hora:</strong> 06:00 p. m.</p>
+          <p class="body-text">Parroquia El Buen Pastor</p>
+          <p class="body-text">Los Olivos</p>
+          <a class="button" href="https://www.google.com/maps/place/2W2P%2BVMJ+Parroquia+El+Buen+Pastor,+Lima+15302/data=!4m2!3m1!1s0x9105cef8a6d18cb3:0x83b146000c743e28!18m1!1e1?utm_source=mstt_1&entry=gps" target="_blank" rel="noopener">
+            <i data-lucide="map-pin" aria-hidden="true"></i>Ver ubicación
+          </a>
+        </article>
+
+        <article class="venue-card reveal">
+          <div class="venue-illustration" aria-hidden="true">
+            <img src="assets/icono_recepcion.png" alt="" loading="lazy" decoding="async">
+          </div>
+          <h3 class="venue-title">Recepción</h3>
+          <p class="body-text"><strong>Hora:</strong> 08:00 p. m.</p>
+          <p class="body-text">Lima Eventos & Convenciones</p>
+          <p class="body-text">Av. Chillón Trapiche 1590, Comas</p>
+          <a class="button" href="https://www.google.com/maps/place/Lima+-+Eventos+%26+Convenciones,+Av.+Chill%C3%B3n+Trapiche+1590,+Comas+15312/data=!4m2!3m1!1s0x9105d119dc787077:0xe84ca877737b0ead!18m1!1e1?utm_source=mstt_1&entry=gps" target="_blank" rel="noopener">
+            <i data-lucide="map-pin" aria-hidden="true"></i>Ver ubicación
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <div class="photo-block mid-photo reveal">
+      <img src="assets/foto-05-celebracion.jpg" alt="Lesly y Jairo abrazados junto al lago" loading="lazy" decoding="async">
+    </div>
+
+    <section class="itinerary-section reveal" id="itinerario">
+      <h2 class="script-title">Itinerario</h2>
+      <img class="section-monogram section-monogram--small" src="assets/monograma-lesly-jairo.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-icon" aria-hidden="true">
+              <img src="assets/icono_iglesia.png" alt="" loading="lazy" decoding="async">
+            </div>
+            Ceremonia religiosa
+            <strong>06:00 p. m.</strong>
+          </div>
+          <div class="timeline-dot"><i data-lucide="heart" aria-hidden="true"></i></div>
+          <div></div>
+        </div>
+
+        <div class="timeline-item">
+          <div></div>
+          <div class="timeline-dot"><i data-lucide="heart" aria-hidden="true"></i></div>
+          <div class="timeline-content">
+            <div class="timeline-icon" aria-hidden="true">
+              <img src="assets/icono_recepcion.png" alt="" loading="lazy" decoding="async">
+            </div>
+            Recepción
+            <strong>08:00 p. m.</strong>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-icon" aria-hidden="true">
+              <img src="assets/icono_ingreso_novios.png" alt="" loading="lazy" decoding="async">
+            </div>
+            Ingreso de los novios
+            <strong>08:30 p. m.</strong>
+          </div>
+          <div class="timeline-dot"><i data-lucide="heart" aria-hidden="true"></i></div>
+          <div></div>
+        </div>
+
+        <div class="timeline-item">
+          <div></div>
+          <div class="timeline-dot"><i data-lucide="heart" aria-hidden="true"></i></div>
+          <div class="timeline-content">
+            <div class="timeline-icon" aria-hidden="true">
+              <img src="assets/icono_cena_brindis.png" alt="" loading="lazy" decoding="async">
+            </div>
+            Cena y brindis
+            <strong>10:00 p. m.</strong>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-icon" aria-hidden="true">
+              <img src="assets/icono_fiesta.png" alt="" loading="lazy" decoding="async">
+            </div>
+            Fiesta
+            <strong>11:00 p. m.</strong>
+          </div>
+          <div class="timeline-dot"><i data-lucide="heart" aria-hidden="true"></i></div>
+          <div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="details-section reveal" id="detalles">
+      <div class="dress-card">
+        <h2 class="script-title">Dresscode</h2>
+        <p class="month">Formal</p>
+
+        <div class="dress-illustration" aria-hidden="true">
+          <img src="assets/dress_code.png" alt="" loading="lazy" decoding="async">
+          <svg viewBox="0 0 200 230">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="70" cy="37" r="15"/>
+              <path d="M58 53l-17 34 19 14"/>
+              <path d="M82 53l18 33-17 14"/>
+              <path d="M60 55l10 17 10-17"/>
+              <path d="M53 77l-6 94M87 77l6 94"/>
+              <path d="M48 171h19M83 171h19"/>
+              <path d="M60 55h20l9 20-19 28-19-28z"/>
+              <path d="M70 72v31"/>
+              <circle cx="133" cy="39" r="15"/>
+              <path d="M121 54l-12 31 9 20"/>
+              <path d="M145 54l13 31-10 20"/>
+              <path d="M124 54h18l7 27-16 18-16-18z"/>
+              <path d="M133 99l-27 75h54z"/>
+              <path d="M124 54l9 15 9-15"/>
+              <path d="M70 85c24 7 38 5 63-1"/>
+            </g>
+            <path d="M133 99l-27 75h54z" fill="rgba(86,106,133,.17)"/>
+            <path d="M60 55h20l9 20-19 28-19-28z" fill="rgba(70,90,117,.14)"/>
+          </svg>
+        </div>
+
+        <p class="body-text"><strong>Damas:</strong> Vestido largo. (No blanco, no celeste)</p>
+        <p class="body-text"><strong>Caballeros:</strong> Vestimenta formal.</p>
+        
+      </div>
+    </section>
+
+    <section class="gallery-section reveal" id="galeria" aria-labelledby="galleryTitle">
+      <h2 class="script-title" id="galleryTitle">Nuestros momentos</h2>
+      <div class="gallery-grid">
+        <div class="gallery-photo">
+          <img src="assets/foto-04-recuerdo.png" alt="Lesly y Jairo compartiendo un momento especial" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-photo">
+          <img src="assets/foto-06-momento.jpg" alt="Lesly y Jairo juntos junto a un árbol" loading="lazy" decoding="async">
+        </div>
+        <div class="gallery-photo">
+          <img src="assets/foto-07-momento.jpg" alt="Lesly y Jairo abrazados junto al lago" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <section class="paper-quote reveal">
+      <div class="paper-card">
+        <p>Coincidir en esta vida siempre será el regalo más grande que Dios ha podido darnos, y permitirnos vivir este sueño es una bendición que honramos.</p>
+      </div>
+    </section>
+
+    <section class="reveal" id="adultos">
+      <div class="adults-card">
+        <div class="section-icon ornate-icon" aria-hidden="true">
+          <i data-lucide="wine"></i>
+          <svg viewBox="0 0 120 85">
+            <path d="M20 55c15-20 29-20 40 0"/>
+            <path d="M60 55c15-20 29-20 40 0"/>
+            <path d="M24 55l12 22h19l5-22"/>
+            <path d="M64 55l12 22h19l5-22"/>
+            <path d="M31 24h20l-4 31H35z"/>
+            <path d="M71 24h20l-4 31H75z"/>
+            <path d="M41 24V11M81 24V11"/>
+            <path d="M35 11h12M75 11h12"/>
+          </svg>
+        </div>
+        <h2 class="script-title">Evento solo para adultos</h2>
+        <p class="body-text">Aunque apreciamos profundamente a los más pequeños, nuestra celebración ha sido pensada para ser disfrutada únicamente por adultos. Agradecemos su comprensión.</p>
+      </div>
+    </section>
+
+    <section class="gifts-section reveal" id="regalos">
+      <img class="section-monogram section-monogram--large section-monogram--watermark" src="assets/monograma-lesly-jairo.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="section-icon ornate-icon" aria-hidden="true">
+        <i data-lucide="gift"></i>
+        <svg viewBox="0 0 120 120">
+          <rect x="22" y="48" width="76" height="54" rx="4"/>
+          <path d="M60 48v54M22 66h76"/>
+          <path d="M60 48c-18-3-26-13-21-23 8-13 21 2 21 23z"/>
+          <path d="M60 48c18-3 26-13 21-23-8-13-21 2-21 23z"/>
+        </svg>
+      </div>
+
+      <h2 class="script-title">Regalos</h2>
+      <p class="gift-intro">Tu presencia es el mejor regalo. Si deseas hacernos un detalle, puedes elegir cualquiera de las siguientes opciones:</p>
+
+      <div class="gift-actions">
+        <div class="gift-option">
+          <div class="gift-option-icon" aria-hidden="true"><i data-lucide="hand-heart"></i></div>
+          <h3>Números de cuenta</h3>
+          <button class="gift-button" type="button" data-open-modal="accountGiftModal">Ver datos</button>
+        </div>
+
+        <div class="gift-option">
+          <div class="gift-option-icon" aria-hidden="true"><i data-lucide="party-popper"></i></div>
+          <h3>Regalos en recepción</h3>
+          <button class="gift-button" type="button" data-open-modal="receptionGiftModal">Ver opción</button>
+        </div>
+
+        <div class="gift-option">
+          <div class="gift-option-icon" aria-hidden="true"><i data-lucide="map-pinned"></i></div>
+          <h3>Regalo en hogar</h3>
+          <p class="gift-address">Calle Las Viñas Mz. T3 lote 26 - Los Olivos de Pro</p>
+          <button class="gift-button" type="button" data-open-modal="houseGiftModal">Ver opción</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="rsvp-section reveal" id="confirmacion">
+      <div class="rsvp-card-main">
+        <div class="section-icon ornate-icon" aria-hidden="true">
+          <i data-lucide="mail-check"></i>
+          <svg viewBox="0 0 120 120">
+            <path d="M24 41h72v56H24z"/>
+            <path d="M24 41l36 29 36-29"/>
+            <path d="M35 33l25-16 25 16"/>
+            <path d="M45 84l10 10 22-25"/>
+          </svg>
+        </div>
+        <h2 class="script-title">Confirmación de asistencia</h2>
+        <p class="body-text">Celebrar nuestro amor es un sueño hecho realidad, y para que sea perfecto, nos encantaría contar contigo.</p>
+        <span class="deadline">Confirma hasta el 20 de agosto de 2026</span>
+        <div class="invitation-access" id="invitationAccess" data-state="loading" aria-live="polite">
+          <span class="invitation-access-icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+          <p class="invitation-access-eyebrow" id="invitationAccessEyebrow">Validando tu invitación…</p>
+          <strong class="invitation-access-name" id="invitationGuestName" hidden></strong>
+          <p class="invitation-access-message" id="invitationAccessMessage">Espera unos segundos mientras comprobamos tu enlace personalizado.</p>
+          <p class="invitation-current-response" id="invitationCurrentResponse" hidden></p>
+          <button class="invitation-retry" id="retryInvitation" type="button" hidden>Reintentar validación</button>
+        </div>
+        <button class="button" id="openRsvpModal" type="button" disabled aria-disabled="true">
+          <i data-lucide="calendar-check" aria-hidden="true"></i>Confirmar asistencia
+        </button>
+      </div>
+    </section>
+
+    <div class="photo-block final-photo reveal">
+      <img src="assets/foto-08-final.jpg" alt="Lesly y Jairo compartiendo un beso" loading="lazy" decoding="async">
+      <span class="photo-shade" aria-hidden="true"></span>
+      <p class="photo-message">“Guiados por el amor y la fe que Dios ha puesto en nuestros corazones, hemos decidido unir nuestras vidas para siempre.”</p>
+    </div>
+
+    <section class="final-section reveal">
+      <img class="final-logo" src="assets/monograma-lesly-jairo.png" alt="Monograma de Lesly y Jairo" loading="lazy" decoding="async">
+      <p class="final-text">Con mucha ilusión queremos vivir este momento rodeados de las personas que forman parte de nuestra historia. Será un honor contar con tu presencia.</p>
+      <h2 class="wait-title">¡Te esperamos!</h2>
+      <p class="footer-date">05 · 09 · 2026</p>
+    </section>
+
+    <div class="botanical-bottom" aria-hidden="true">
+      <img src="assets/pie-de-pagina.png" alt="" loading="lazy" decoding="async">
+      <svg viewBox="0 0 500 190">
+        <path class="stem" d="M-10 15C65 30 86 100 151 112C203 121 218 65 250 28"/>
+        <path class="stem" d="M510 10C452 30 425 93 360 111C316 123 288 68 258 28"/>
+        <ellipse class="leaf" cx="26" cy="28" rx="18" ry="8" transform="rotate(26 26 28)"/>
+        <ellipse class="soft-leaf" cx="56" cy="49" rx="21" ry="9" transform="rotate(38 56 49)"/>
+        <ellipse class="leaf" cx="87" cy="69" rx="19" ry="8" transform="rotate(28 87 69)"/>
+        <ellipse class="soft-leaf" cx="117" cy="88" rx="21" ry="9" transform="rotate(24 117 88)"/>
+        <ellipse class="leaf" cx="474" cy="27" rx="18" ry="8" transform="rotate(-28 474 27)"/>
+        <ellipse class="soft-leaf" cx="444" cy="48" rx="21" ry="9" transform="rotate(-38 444 48)"/>
+        <ellipse class="leaf" cx="413" cy="70" rx="19" ry="8" transform="rotate(-28 413 70)"/>
+        <ellipse class="soft-leaf" cx="382" cy="90" rx="21" ry="9" transform="rotate(-24 382 90)"/>
+        <circle class="berry" cx="198" cy="42" r="4"/>
+        <circle class="berry" cx="302" cy="42" r="4"/>
+      </svg>
+    </div>
+  </main>
+
+  <!-- FORMULARIO DE CONFIRMACIÓN -->
+  <div class="modal-backdrop" id="rsvpModal" role="dialog" aria-modal="true" aria-labelledby="rsvpModalTitle" aria-hidden="true">
+    <div class="modal-dialog" tabindex="-1">
+      <button class="modal-close" type="button" aria-label="Cerrar formulario" data-close-modal><i data-lucide="x" aria-hidden="true"></i></button>
+      <p class="modal-kicker">Lesly & Jairo</p>
+      <h2 class="script-title" id="rsvpModalTitle">Confirmación de asistencia</h2>
+      <p class="body-text" id="rsvpModalDescription">Revisa los datos de tu invitación y registra tu respuesta.</p>
+
+      <iframe name="hidden_iframe" id="hidden_iframe" hidden></iframe>
+
+      <form class="rsvp-form" id="rsvpForm" method="POST" target="hidden_iframe">
+        <input type="hidden" name="codigo_invitacion" id="invitationCodeField" value="">
+        <input type="hidden" name="submission_id" id="submissionIdField" value="">
+        <input type="hidden" name="evento" value="Boda Lesly & Jairo">
+        <input type="hidden" name="fecha_boda" value="Sábado 05 de septiembre de 2026">
+        <input type="hidden" name="origen" value="Invitación web">
+        <input type="hidden" name="user_agent" id="userAgentField" value="">
+        <input type="hidden" name="nombres_acompanantes" id="companionsConsolidatedField" value="">
+
+        <div class="form-row">
+          <label class="form-label" for="nombre">Invitado o grupo</label>
+          <input class="form-input" id="nombre" name="nombre" type="text" required readonly aria-readonly="true">
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="telefono">Celular / WhatsApp</label>
+          <input class="form-input" id="telefono" name="telefono" type="tel" inputmode="numeric" autocomplete="tel" maxlength="9" pattern="9[0-9]{8}" title="Ingresa un celular de 9 dígitos que empiece con 9" required placeholder="Ej. 987654321">
+        </div>
+
+        <div class="form-row">
+          <span class="form-label">¿Confirmas tu asistencia?</span>
+          <div class="radio-grid">
+            <label class="radio-card">
+              <input type="radio" name="asistencia" value="Sí asistiré" required>
+              Sí asistiré
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="asistencia" value="No podré asistir" required>
+              No podré asistir
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row" id="adultCountRow">
+          <label class="form-label" for="cantidad">Cantidad de adultos confirmados</label>
+          <select class="form-select" id="cantidad" name="cantidad_adultos" required>
+            <option value="" selected disabled>Seleccionar</option>
+          </select>
+          <input id="adultCountFallback" name="cantidad_adultos" type="hidden" value="0" disabled>
+        </div>
+
+        <section class="companions-section" id="companionsSection" aria-labelledby="companionsIntro" hidden>
+          <p class="companions-intro" id="companionsIntro">Indica el nombre completo de las personas que te acompañarán.</p>
+          <div class="companions-grid" id="companionsFields"></div>
+        </section>
+
+        <div class="form-row">
+          <label class="form-label" for="comentario">Mensaje o comentario opcional</label>
+          <textarea class="form-textarea" id="comentario" name="comentario" placeholder="Puedes dejar un mensaje para los novios o indicar alguna consideración especial."></textarea>
+        </div>
+
+        <p class="form-help">Al enviar, tu respuesta se registrará automáticamente y se abrirá WhatsApp para completar el aviso.</p>
+        <button class="submit-button" id="submitBtn" type="submit">
+          <i data-lucide="send" aria-hidden="true"></i>Enviar confirmación
+        </button>
+        <a class="button manual-whatsapp-link" id="manualWhatsAppLink" href="#" target="_blank" rel="noopener" hidden>
+          <i data-lucide="message-circle" aria-hidden="true"></i>Abrir WhatsApp
+        </a>
+        <div class="status-message" id="formStatus" aria-live="polite"></div>
+        <button class="verification-retry" id="retrySubmissionVerification" type="button" hidden>
+          Verificar nuevamente
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DATOS PARA REGALOS -->
+  <div class="modal-backdrop" id="accountGiftModal" role="dialog" aria-modal="true" aria-labelledby="accountGiftModalTitle" aria-hidden="true">
+    <div class="modal-dialog" tabindex="-1">
+      <button class="modal-close" type="button" aria-label="Cerrar datos de cuenta" data-close-modal><i data-lucide="x" aria-hidden="true"></i></button>
+      <p class="modal-kicker">Regalos</p>
+      <h2 class="script-title" id="accountGiftModalTitle">Opciones para un detalle</h2>
+      <p class="body-text">Puedes utilizar cualquiera de las siguientes alternativas:</p>
+
+      <div class="gift-detail-list">
+        <div class="gift-detail-row">
+          <strong>BCP Soles</strong>
+          <span>19117858645033</span>
+          <button class="copy-button" type="button" data-copy="19117858645033">Copiar</button>
+        </div>
+        <div class="gift-detail-row">
+          <strong>CCI</strong>
+          <span>00219111785864503353</span>
+          <button class="copy-button" type="button" data-copy="00219111785864503353">Copiar</button>
+        </div>
+        <div class="gift-detail-row">
+          <strong>Yape</strong>
+          <span>932544328</span>
+          <button class="copy-button" type="button" data-copy="932544328">Copiar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="receptionGiftModal" role="dialog" aria-modal="true" aria-labelledby="receptionGiftModalTitle" aria-hidden="true">
+    <div class="modal-dialog" tabindex="-1">
+      <button class="modal-close" type="button" aria-label="Cerrar regalos en recepción" data-close-modal><i data-lucide="x" aria-hidden="true"></i></button>
+      <p class="modal-kicker">Regalos</p>
+      <h2 class="script-title" id="receptionGiftModalTitle">Regalos en recepción</h2>
+      <p class="body-text">También puedes entregarnos tu obsequio durante la recepción el día de la boda. Tu presencia es lo más importante para nosotros.</p>
+      <button class="copy-button modal-secondary-close" type="button" data-close-modal>Cerrar</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="houseGiftModal" role="dialog" aria-modal="true" aria-labelledby="houseGiftModalTitle" aria-hidden="true">
+    <div class="modal-dialog" tabindex="-1">
+      <button class="modal-close" type="button" aria-label="Cerrar dirección de la casa de la novia" data-close-modal><i data-lucide="x" aria-hidden="true"></i></button>
+      <p class="modal-kicker">Regalos</p>
+      <div class="gift-option-icon" aria-hidden="true"><i data-lucide="map-pinned"></i></div>
+      <h2 class="script-title" id="houseGiftModalTitle">Casa de la novia</h2>
+      <p class="body-text">Puedes entregar tu obsequio en la siguiente dirección:</p>
+      <p class="gift-address"><strong>Calle Las Viñas Mz. T3 lote 26 - Los Olivos de Pro</strong></p>
+      <a class="button" href="https://www.google.com/maps?q=-11.9471105,-77.0793732&amp;z=17&amp;hl=es" target="_blank" rel="noopener">
+        <i data-lucide="map-pin" aria-hidden="true"></i>Ver ubicación en Google Maps
+      </a>
+    </div>
+  </div>
+
+  <div class="modal-backdrop photo-modal-backdrop" id="photoModal" role="dialog" aria-modal="true" aria-labelledby="photoModalCaption" aria-hidden="true">
+    <div class="photo-modal-dialog" tabindex="-1">
+      <button class="photo-modal-close" type="button" aria-label="Cerrar fotografía" data-close-modal><i data-lucide="x" aria-hidden="true"></i></button>
+      <button class="photo-modal-nav photo-modal-prev" id="photoPrev" type="button" aria-label="Fotografía anterior"><i data-lucide="chevron-left" aria-hidden="true"></i></button>
+      <img class="photo-modal-image" id="photoModalImage" src="" alt="">
+      <button class="photo-modal-nav photo-modal-next" id="photoNext" type="button" aria-label="Fotografía siguiente"><i data-lucide="chevron-right" aria-hidden="true"></i></button>
+      <p class="photo-modal-caption" id="photoModalCaption"><span id="photoModalText"></span> <span class="photo-modal-counter" id="photoModalCounter"></span></p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Datos copiados</div>
+
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <script>
+    if(window.lucide) lucide.createIcons();
+
+    /* Configuración de producción */
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxH4n1EZTtPzuc8z--EKH54fUConT-i6w1WQVCeP67plDqj2YINQgHSJ87MriH88FRZ/exec';
+    const WHATSAPP_NOVIOS = '51932544328';
+
+    const weddingDate = new Date('2026-09-05T18:00:00-05:00').getTime();
+
+    const inviteContent = document.getElementById('inviteContent');
+
+    const progress = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      progress.style.width = (max > 0 ? (scrollY / max) * 100 : 0) + '%';
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    const menuClose = document.getElementById('menuClose');
+    const menuBackdrop = document.getElementById('menuBackdrop');
+
+    function setMenuState(isOpen,restoreFocus = true){
+      document.body.classList.toggle('nav-open',isOpen);
+      menuToggle.setAttribute('aria-expanded',String(isOpen));
+      mobileNav.setAttribute('aria-hidden',String(!isOpen));
+      mobileNav.inert = !isOpen;
+
+      if(isOpen){
+        inviteContent.setAttribute('inert','');
+        menuClose.focus();
+      }else{
+        if(!getOpenModals().length) inviteContent.removeAttribute('inert');
+        if(restoreFocus) menuToggle.focus({preventScroll:true});
+      }
+    }
+
+    menuToggle.addEventListener('click',() => setMenuState(true));
+    menuClose.addEventListener('click',() => setMenuState(false));
+    menuBackdrop.addEventListener('click',() => setMenuState(false));
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click',() => setMenuState(false,false));
+    });
+    matchMedia('(min-width:901px)').addEventListener('change',event => {
+      if(event.matches && document.body.classList.contains('nav-open')) setMenuState(false,false);
+    });
+
+    function pad(number){
+      return String(number).padStart(2,'0');
+    }
+
+    function updateCountdown(){
+      const distance = Math.max(weddingDate - Date.now(),0);
+      document.getElementById('days').textContent = pad(Math.floor(distance / 86400000));
+      document.getElementById('hours').textContent = pad(Math.floor((distance % 86400000) / 3600000));
+      document.getElementById('minutes').textContent = pad(Math.floor((distance % 3600000) / 60000));
+      document.getElementById('seconds').textContent = pad(Math.floor((distance % 60000) / 1000));
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown,1000);
+
+    const audio = document.getElementById('weddingAudio');
+    const playBtn = document.getElementById('playBtn');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const progressBar = document.getElementById('progressBar');
+
+    function setAudioProgress(percent){
+      const value = Math.min(Math.max(percent || 0,0),100);
+      audioPlayer.style.setProperty('--audio-progress',value + '%');
+      progressBar.setAttribute('aria-valuenow',Math.round(value));
+    }
+
+    function updateAudioProgress(){
+      if(!audio.duration || Number.isNaN(audio.duration)){
+        setAudioProgress(0);
+        return;
+      }
+      setAudioProgress((audio.currentTime / audio.duration) * 100);
+    }
+
+    function updateAudioState(isPlaying){
+      audioPlayer.classList.toggle('is-playing',isPlaying);
+      playBtn.classList.toggle('is-pausing',isPlaying);
+      playBtn.setAttribute('aria-label',isPlaying ? 'Pausar canción' : 'Reproducir canción');
+      playBtn.innerHTML = isPlaying
+        ? '<span>PAUSAR</span>'
+        : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+
+    playBtn.addEventListener('click',async() => {
+      try{
+        if(audio.paused) await audio.play();
+        else audio.pause();
+      }catch(error){
+        showToast('No se pudo cargar la canción');
+      }
+    });
+
+    audio.addEventListener('play',() => updateAudioState(true));
+    audio.addEventListener('pause',() => updateAudioState(false));
+    audio.addEventListener('timeupdate',updateAudioProgress);
+    audio.addEventListener('loadedmetadata',updateAudioProgress);
+    audio.addEventListener('ended',() => {
+      audio.currentTime = 0;
+      updateAudioState(false);
+      setAudioProgress(0);
+    });
+
+    function seekAudio(clientX){
+      if(!audio.duration || Number.isNaN(audio.duration)) return;
+      const rect = progressBar.getBoundingClientRect();
+      const ratio = Math.min(Math.max((clientX - rect.left) / rect.width,0),1);
+      audio.currentTime = ratio * audio.duration;
+      setAudioProgress(ratio * 100);
+    }
+
+    let isSeeking = false;
+    progressBar.addEventListener('pointerdown',event => {
+      isSeeking = true;
+      progressBar.setPointerCapture(event.pointerId);
+      seekAudio(event.clientX);
+    });
+    progressBar.addEventListener('pointermove',event => {
+      if(isSeeking) seekAudio(event.clientX);
+    });
+    progressBar.addEventListener('pointerup',() => isSeeking = false);
+    progressBar.addEventListener('pointercancel',() => isSeeking = false);
+    progressBar.addEventListener('keydown',event => {
+      if(!audio.duration || Number.isNaN(audio.duration)) return;
+      const step = Math.max(audio.duration * .05,5);
+      if(event.key === 'ArrowLeft' || event.key === 'ArrowDown') audio.currentTime = Math.max(audio.currentTime - step,0);
+      else if(event.key === 'ArrowRight' || event.key === 'ArrowUp') audio.currentTime = Math.min(audio.currentTime + step,audio.duration);
+      else if(event.key === 'Home') audio.currentTime = 0;
+      else if(event.key === 'End') audio.currentTime = audio.duration;
+      else return;
+      event.preventDefault();
+      updateAudioProgress();
+    });
+    audio.addEventListener('error',() => showToast('No se pudo cargar la canción'));
+
+    const toast = document.getElementById('toast');
+    function showToast(message){
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'),1800);
+    }
+
+    document.querySelectorAll('[data-copy]').forEach(button => {
+      button.addEventListener('click',async() => {
+        try{
+          await navigator.clipboard.writeText(button.dataset.copy);
+          showToast('Datos copiados');
+        }catch(error){
+          showToast('No se pudo copiar');
+        }
+      });
+    });
+
+    function getOpenModals(){
+      return [...document.querySelectorAll('.modal-backdrop.is-open')];
+    }
+
+    let lastFocusedElement = null;
+
+    function getFocusableElements(modal){
+      return [...modal.querySelectorAll('button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')]
+        .filter(element => !element.hidden && element.offsetParent !== null);
+    }
+
+    function openModal(modal,focusSelector){
+      if(!modal) return;
+      lastFocusedElement = document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden','false');
+      inviteContent.setAttribute('inert','');
+      document.body.classList.add('modal-open');
+      const target = focusSelector
+        ? modal.querySelector(focusSelector)
+        : modal.querySelector('[data-close-modal],button,input,select,textarea,a');
+      if(target) setTimeout(() => target.focus(),120);
+    }
+
+    function closeModal(modal){
+      if(!modal) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden','true');
+      if(!getOpenModals().length){
+        document.body.classList.remove('modal-open');
+        inviteContent.removeAttribute('inert');
+        if(lastFocusedElement && document.contains(lastFocusedElement)) lastFocusedElement.focus({preventScroll:true});
+      }
+    }
+
+    document.querySelectorAll('[data-open-modal]').forEach(button => {
+      button.addEventListener('click',() => openModal(document.getElementById(button.dataset.openModal)));
+    });
+
+    document.querySelectorAll('[data-close-modal]').forEach(button => {
+      button.addEventListener('click',() => closeModal(button.closest('.modal-backdrop')));
+    });
+
+    const photoModal = document.getElementById('photoModal');
+    const photoModalImage = document.getElementById('photoModalImage');
+    const photoModalText = document.getElementById('photoModalText');
+    const photoModalCounter = document.getElementById('photoModalCounter');
+    const photoImages = [...document.querySelectorAll('img[src^="assets/foto-0"]')];
+    let activePhotoIndex = 0;
+
+    function showPhoto(index){
+      activePhotoIndex = (index + photoImages.length) % photoImages.length;
+      const selectedPhoto = photoImages[activePhotoIndex];
+      photoModalImage.src = selectedPhoto.currentSrc || selectedPhoto.src;
+      photoModalImage.alt = selectedPhoto.alt;
+      photoModalText.textContent = selectedPhoto.alt;
+      photoModalCounter.textContent = (activePhotoIndex + 1) + ' / ' + photoImages.length;
+    }
+
+    function openPhoto(index){
+      showPhoto(index);
+      openModal(photoModal,'.photo-modal-close');
+    }
+
+    photoImages.forEach((image,index) => {
+      image.tabIndex = 0;
+      image.setAttribute('role','button');
+      image.setAttribute('aria-label','Ampliar fotografía: ' + image.alt);
+      const zoomHint = document.createElement('span');
+      zoomHint.className = 'photo-zoom-hint';
+      zoomHint.setAttribute('aria-hidden','true');
+      zoomHint.innerHTML = '<i data-lucide="maximize-2"></i>';
+      image.parentElement.appendChild(zoomHint);
+      image.addEventListener('click',() => openPhoto(index));
+      image.addEventListener('keydown',event => {
+        if(event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        openPhoto(index);
+      });
+    });
+    if(window.lucide) lucide.createIcons();
+
+    document.getElementById('photoPrev').addEventListener('click',() => showPhoto(activePhotoIndex - 1));
+    document.getElementById('photoNext').addEventListener('click',() => showPhoto(activePhotoIndex + 1));
+
+    document.querySelectorAll('.modal-backdrop').forEach(modal => {
+      modal.addEventListener('click',event => {
+        if(event.target === modal) closeModal(modal);
+      });
+    });
+
+    document.addEventListener('keydown',event => {
+      if(document.body.classList.contains('nav-open')){
+        if(event.key === 'Escape'){
+          setMenuState(false);
+          return;
+        }
+        if(event.key === 'Tab'){
+          const focusable = getFocusableElements(mobileNav);
+          if(!focusable.length) return;
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if(event.shiftKey && document.activeElement === first){
+            event.preventDefault();
+            last.focus();
+          }else if(!event.shiftKey && document.activeElement === last){
+            event.preventDefault();
+            first.focus();
+          }
+        }
+        return;
+      }
+      const modals = getOpenModals();
+      if(!modals.length) return;
+      const activeModal = modals[modals.length - 1];
+      if(activeModal === photoModal && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')){
+        event.preventDefault();
+        showPhoto(activePhotoIndex + (event.key === 'ArrowRight' ? 1 : -1));
+        return;
+      }
+      if(event.key === 'Escape'){
+        closeModal(activeModal);
+        return;
+      }
+      if(event.key !== 'Tab') return;
+      const focusable = getFocusableElements(activeModal);
+      if(!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if(event.shiftKey && document.activeElement === first){
+        event.preventDefault();
+        last.focus();
+      }else if(!event.shiftKey && document.activeElement === last){
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    const rsvpModal = document.getElementById('rsvpModal');
+    const rsvpForm = document.getElementById('rsvpForm');
+    const hiddenIframe = document.getElementById('hidden_iframe');
+    const submitBtn = document.getElementById('submitBtn');
+    const formStatus = document.getElementById('formStatus');
+    const userAgentField = document.getElementById('userAgentField');
+    const adultCount = document.getElementById('cantidad');
+    const adultCountFallback = document.getElementById('adultCountFallback');
+    const adultCountRow = document.getElementById('adultCountRow');
+    const companionsSection = document.getElementById('companionsSection');
+    const companionsFields = document.getElementById('companionsFields');
+    const companionsConsolidatedField = document.getElementById('companionsConsolidatedField');
+    const attendanceInputs = [...document.querySelectorAll('input[name="asistencia"]')];
+    const commentInput = document.getElementById('comentario');
+    const phoneInput = document.getElementById('telefono');
+    const nameInput = document.getElementById('nombre');
+    const invitationCodeField = document.getElementById('invitationCodeField');
+    const submissionIdField = document.getElementById('submissionIdField');
+    const openRsvpButton = document.getElementById('openRsvpModal');
+    const invitationAccess = document.getElementById('invitationAccess');
+    const invitationAccessEyebrow = document.getElementById('invitationAccessEyebrow');
+    const invitationGuestName = document.getElementById('invitationGuestName');
+    const invitationAccessMessage = document.getElementById('invitationAccessMessage');
+    const invitationCurrentResponse = document.getElementById('invitationCurrentResponse');
+    const retryInvitation = document.getElementById('retryInvitation');
+    const manualWhatsAppLink = document.getElementById('manualWhatsAppLink');
+    const retrySubmissionVerification = document.getElementById('retrySubmissionVerification');
+    const rsvpModalDescription = document.getElementById('rsvpModalDescription');
+    const invitationState = {
+      status:'idle',
+      code:'',
+      guest:'',
+      maxAdults:0,
+      currentStatus:'Pendiente',
+      confirmedAdults:0,
+      companions:[]
+    };
+    let lookupSequence = 0;
+    let pendingSubmission = null;
+    let companionDrafts = [];
+    const processedSubmissionIds = new Set();
+    const allowedRsvpOrigins = new Set([
+      'https://script.google.com',
+      'https://script.googleusercontent.com'
+    ]);
+
+    function hasConfiguredGoogleScript(){
+      return Boolean(GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('PEGAR_AQUI'));
+    }
+
+    function normalizeInvitationCode(value){
+      return String(value || '').replace(/\s+/g,'').toUpperCase().slice(0,32);
+    }
+
+    function isValidInvitationCodeFormat(value){
+      return /^[A-Z0-9]{10,16}$/.test(value);
+    }
+
+    function setRsvpButton(enabled,label){
+      openRsvpButton.disabled = !enabled;
+      openRsvpButton.setAttribute('aria-disabled',String(!enabled));
+      openRsvpButton.innerHTML = '<i data-lucide="calendar-check" aria-hidden="true"></i>' + label;
+      if(window.lucide) lucide.createIcons();
+    }
+
+    function setInvitationStatus(state,options = {}){
+      invitationState.status = state;
+      invitationAccess.dataset.state = state;
+      invitationAccessEyebrow.textContent = options.eyebrow || '';
+      invitationAccessMessage.textContent = options.message || '';
+      invitationGuestName.hidden = !options.guest;
+      invitationGuestName.textContent = options.guest || '';
+      invitationCurrentResponse.hidden = !options.currentResponse;
+      invitationCurrentResponse.textContent = options.currentResponse || '';
+      retryInvitation.hidden = !options.retry;
+      setRsvpButton(Boolean(options.enabled),options.buttonLabel || 'Confirmar asistencia');
+    }
+
+    function populateAdultOptions(maxAdults,selectedValue = 0){
+      adultCount.replaceChildren();
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.disabled = true;
+      placeholder.textContent = 'Seleccionar';
+      adultCount.appendChild(placeholder);
+
+      for(let adults = 1; adults <= maxAdults; adults += 1){
+        const option = document.createElement('option');
+        option.value = String(adults);
+        option.textContent = adults === 1 ? '1 adulto' : adults + ' adultos';
+        adultCount.appendChild(option);
+      }
+
+      adultCount.value = selectedValue >= 1 && selectedValue <= maxAdults ? String(selectedValue) : '';
+      if(!adultCount.value) placeholder.selected = true;
+    }
+
+    function rememberRenderedCompanions(){
+      companionsFields.querySelectorAll('input[data-companion-index]').forEach(input => {
+        const index = Number(input.dataset.companionIndex);
+        if(Number.isInteger(index) && index >= 0) companionDrafts[index] = input.value;
+      });
+    }
+
+    function updateCompanionsConsolidated(){
+      const names = [...companionsFields.querySelectorAll('input[data-companion-index]')]
+        .map(input => input.value.trim().replace(/\s+/g,' '))
+        .filter(Boolean);
+      companionsConsolidatedField.value = names.join(' | ');
+      return names;
+    }
+
+    function renderCompanionFields(){
+      rememberRenderedCompanions();
+      const adults = Number(adultCount.value);
+      const expected = selectedAttendance() === 'Sí asistiré' && Number.isInteger(adults)
+        ? Math.max(adults - 1,0)
+        : 0;
+
+      companionsFields.replaceChildren();
+      companionsSection.hidden = expected === 0;
+      if(expected === 0){
+        companionsConsolidatedField.value = '';
+        return;
+      }
+
+      for(let index = 0; index < expected; index += 1){
+        const field = document.createElement('div');
+        field.className = 'companion-field';
+
+        const label = document.createElement('label');
+        label.className = 'form-label';
+        label.htmlFor = 'acompanante_' + (index + 1);
+        label.textContent = 'Nombre completo del acompañante ' + (index + 1);
+
+        const input = document.createElement('input');
+        input.className = 'form-input';
+        input.id = 'acompanante_' + (index + 1);
+        input.name = 'acompanante_' + (index + 1);
+        input.type = 'text';
+        input.autocomplete = 'name';
+        input.maxLength = 100;
+        input.required = true;
+        input.placeholder = 'Nombre y apellido';
+        input.dataset.companionIndex = String(index);
+        input.value = String(companionDrafts[index] || '').slice(0,100);
+        input.addEventListener('input',() => {
+          input.setCustomValidity('');
+          companionDrafts[index] = input.value;
+          updateCompanionsConsolidated();
+        });
+
+        field.append(label,input);
+        companionsFields.appendChild(field);
+      }
+      updateCompanionsConsolidated();
+    }
+
+    function validateCompanionsForSubmission(attendance,adults){
+      const expected = attendance === 'Sí asistiré' ? Math.max(adults - 1,0) : 0;
+      const inputs = [...rsvpForm.querySelectorAll('input[name^="acompanante_"]')];
+      const canonicalNames = inputs.map(input => input.name);
+      const expectedNames = Array.from({length:expected},(_,index) => 'acompanante_' + (index + 1));
+
+      if(canonicalNames.length !== expectedNames.length || canonicalNames.some((name,index) => name !== expectedNames[index])){
+        companionsConsolidatedField.value = '';
+        return {ok:false,message:'La cantidad de acompañantes no coincide con los adultos confirmados.'};
+      }
+
+      const names = [];
+      for(let index = 0; index < inputs.length; index += 1){
+        const input = inputs[index];
+        const name = input.value.trim().replace(/\s+/g,' ');
+        input.setCustomValidity('');
+        if(!name){
+          const message = 'Indica el nombre del acompañante ' + (index + 1) + '.';
+          input.setCustomValidity(message);
+          return {ok:false,message:message,input:input};
+        }
+        if(name.length > 100){
+          const message = 'El nombre del acompañante ' + (index + 1) + ' no puede superar los 100 caracteres.';
+          input.setCustomValidity(message);
+          return {ok:false,message:message,input:input};
+        }
+        input.value = name;
+        companionDrafts[index] = name;
+        names.push(name);
+      }
+
+      companionsConsolidatedField.value = names.join(' | ');
+      return {ok:true,names:names};
+    }
+
+    function prepareFormFromInvitation(){
+      nameInput.value = invitationState.guest;
+      invitationCodeField.value = invitationState.code;
+      manualWhatsAppLink.hidden = true;
+      manualWhatsAppLink.href = '#';
+      formStatus.className = 'status-message';
+      formStatus.textContent = '';
+      retrySubmissionVerification.hidden = true;
+      attendanceInputs.forEach(input => input.checked = false);
+      populateAdultOptions(invitationState.maxAdults,invitationState.confirmedAdults);
+      companionDrafts = invitationState.companions.slice();
+
+      if(invitationState.currentStatus === 'Confirmado'){
+        const attending = attendanceInputs.find(input => input.value === 'Sí asistiré');
+        if(attending) attending.checked = true;
+      }else if(invitationState.currentStatus === 'No asistirá'){
+        const notAttending = attendanceInputs.find(input => input.value === 'No podré asistir');
+        if(notAttending) notAttending.checked = true;
+      }
+
+      syncAttendanceFields();
+      if(pendingSubmission){
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Respuesta enviada';
+        if(pendingSubmission.verificationInconclusive){
+          formStatus.className = 'status-message warning';
+          formStatus.textContent = 'Tu respuesta fue enviada, pero todavía no pudimos verificar el registro. No la envíes nuevamente; pulsa “Verificar nuevamente”.';
+          retrySubmissionVerification.hidden = false;
+        }else{
+          formStatus.textContent = 'Verificando tu confirmación…';
+        }
+      }
+      rsvpModalDescription.textContent = 'Invitación para ' + invitationState.guest + '. Puedes registrar o actualizar tu respuesta.';
+    }
+
+    function applyLookupResponse(payload,requestedCode){
+      if(!payload || typeof payload !== 'object' || payload.ok !== true){
+        setInvitationStatus('invalid',{
+          eyebrow:'Invitación no validada',
+          message:'No pudimos validar esta invitación. Comunícate con los novios para recibir el enlace correcto.'
+        });
+        return;
+      }
+
+      const responseCode = normalizeInvitationCode(payload.codigo);
+      const guest = String(payload.invitado || '').trim().slice(0,160);
+      const maxAdults = Number(payload.cuposAdultos);
+      const confirmedAdults = Number(payload.adultosConfirmados || 0);
+      const currentStatus = ['Pendiente','Confirmado','No asistirá'].includes(payload.estado)
+        ? payload.estado
+        : 'Pendiente';
+
+      if(responseCode !== requestedCode || !guest || !Number.isInteger(maxAdults) || maxAdults < 1){
+        setInvitationStatus('invalid',{
+          eyebrow:'Invitación no validada',
+          message:'No pudimos validar esta invitación. Comunícate con los novios para recibir el enlace correcto.'
+        });
+        return;
+      }
+
+      invitationState.code = responseCode;
+      invitationState.guest = guest;
+      invitationState.maxAdults = maxAdults;
+      invitationState.currentStatus = currentStatus;
+      invitationState.confirmedAdults = currentStatus === 'Confirmado'
+        ? Math.min(Math.max(Number.isInteger(confirmedAdults) ? confirmedAdults : 1,1),maxAdults)
+        : 0;
+      const expectedCompanions = Math.max(invitationState.confirmedAdults - 1,0);
+      invitationState.companions = Array.isArray(payload.acompanantes)
+        ? payload.acompanantes
+            .map(name => String(name || '').trim().replace(/\s+/g,' ').slice(0,100))
+            .filter(Boolean)
+            .slice(0,expectedCompanions)
+        : [];
+
+      let currentResponse = '';
+      if(currentStatus === 'Confirmado'){
+        currentResponse = 'Tu respuesta actual: ' + invitationState.confirmedAdults +
+          (invitationState.confirmedAdults === 1 ? ' adulto confirmado.' : ' adultos confirmados.');
+      }else if(currentStatus === 'No asistirá'){
+        currentResponse = 'Tu respuesta actual: indicaste que no asistirás.';
+      }
+
+      setInvitationStatus('valid',{
+        eyebrow:'Invitación para',
+        guest:guest,
+        message:'Esta invitación es válida para un máximo de ' + maxAdults + (maxAdults === 1 ? ' adulto.' : ' adultos.'),
+        currentResponse:currentResponse,
+        enabled:true,
+        buttonLabel:currentStatus === 'Pendiente' ? 'Confirmar asistencia' : 'Actualizar confirmación'
+      });
+      populateAdultOptions(maxAdults,invitationState.confirmedAdults);
+    }
+
+    function lookupInvitationJsonp(code){
+      return new Promise((resolve,reject) => {
+        const callbackName = '__leslyJairoLookup_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+        const script = document.createElement('script');
+        const timeout = setTimeout(() => finish(new Error('Tiempo de espera agotado')),12000);
+        let finished = false;
+
+        function finish(error,payload){
+          if(finished) return;
+          finished = true;
+          clearTimeout(timeout);
+          script.remove();
+          try{ delete window[callbackName]; }catch(cleanupError){ window[callbackName] = undefined; }
+          if(error) reject(error);
+          else resolve(payload);
+        }
+
+        window[callbackName] = payload => finish(null,payload);
+        script.onerror = () => finish(new Error('Error de conexión'));
+        const url = new URL(GOOGLE_SCRIPT_URL);
+        url.searchParams.set('action','lookup');
+        url.searchParams.set('code',code);
+        url.searchParams.set('callback',callbackName);
+        url.searchParams.set('_',String(Date.now()));
+        script.src = url.toString();
+        document.head.appendChild(script);
+      });
+    }
+
+    function lookupSubmissionStatusJsonp(submissionId){
+      return new Promise((resolve,reject) => {
+        const callbackName = '__leslyJairoSubmission_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+        const script = document.createElement('script');
+        const timeout = setTimeout(() => finish(new Error('Tiempo de espera agotado')),4500);
+        let finished = false;
+
+        function finish(error,payload){
+          if(finished) return;
+          finished = true;
+          clearTimeout(timeout);
+          script.remove();
+          try{ delete window[callbackName]; }catch(cleanupError){ window[callbackName] = undefined; }
+          if(error) reject(error);
+          else resolve(payload);
+        }
+
+        window[callbackName] = payload => finish(null,payload);
+        script.onerror = () => finish(new Error('Error de conexión'));
+        const url = new URL(GOOGLE_SCRIPT_URL);
+        url.searchParams.set('action','submissionStatus');
+        url.searchParams.set('submissionId',submissionId);
+        url.searchParams.set('callback',callbackName);
+        url.searchParams.set('_',String(Date.now()));
+        script.src = url.toString();
+        document.head.appendChild(script);
+      });
+    }
+
+    async function validateInvitation(){
+      const sequence = ++lookupSequence;
+      const params = new URLSearchParams(window.location.search);
+      const rawCode = params.get('i');
+
+      if(rawCode === null || !String(rawCode).trim()){
+        invitationState.code = '';
+        setInvitationStatus('missing',{
+          eyebrow:'Enlace personalizado requerido',
+          message:'Abre el enlace personalizado que recibiste para confirmar tu asistencia.'
+        });
+        return;
+      }
+
+      const code = normalizeInvitationCode(rawCode);
+      if(!isValidInvitationCodeFormat(code)){
+        setInvitationStatus('invalid',{
+          eyebrow:'Invitación no validada',
+          message:'No pudimos validar esta invitación. Comunícate con los novios para recibir el enlace correcto.'
+        });
+        return;
+      }
+
+      invitationState.code = code;
+      setInvitationStatus('loading',{
+        eyebrow:'Validando tu invitación…',
+        message:'Espera unos segundos mientras comprobamos tu enlace personalizado.'
+      });
+
+      if(!hasConfiguredGoogleScript()){
+        setInvitationStatus('error',{
+          eyebrow:'Validación no disponible',
+          message:'No pudimos validar tu invitación en este momento. Intenta nuevamente en unos segundos.',
+          retry:true
+        });
+        return;
+      }
+
+      try{
+        const payload = await lookupInvitationJsonp(code);
+        if(sequence !== lookupSequence) return;
+        applyLookupResponse(payload,code);
+      }catch(error){
+        if(sequence !== lookupSequence) return;
+        setInvitationStatus('error',{
+          eyebrow:'Error de conexión',
+          message:'No pudimos validar tu invitación en este momento. Intenta nuevamente en unos segundos.',
+          retry:true
+        });
+      }
+    }
+
+    openRsvpButton.addEventListener('click',() => {
+      if(invitationState.status !== 'valid') return;
+      prepareFormFromInvitation();
+      openModal(rsvpModal,'#telefono');
+    });
+    retryInvitation.addEventListener('click',validateInvitation);
+
+    userAgentField.value = navigator.userAgent || '';
+
+    if(phoneInput){
+      phoneInput.addEventListener('input',() => {
+        const digits = phoneInput.value.replace(/\D/g,'').slice(0,9);
+        phoneInput.value = digits && !digits.startsWith('9') ? '' : digits;
+      });
+    }
+
+    function selectedAttendance(){
+      return rsvpForm.querySelector('input[name="asistencia"]:checked')?.value || '';
+    }
+
+    function syncAttendanceFields(){
+      const notAttending = selectedAttendance() === 'No podré asistir';
+      adultCount.disabled = notAttending;
+      adultCount.required = !notAttending;
+      adultCountFallback.disabled = !notAttending;
+      adultCountRow.classList.toggle('is-disabled',notAttending);
+
+      if(notAttending){
+        adultCount.value = '';
+        commentInput.placeholder = 'Puedes dejar un mensaje para los novios.';
+        submitBtn.innerHTML = '<i data-lucide="send" aria-hidden="true"></i>Avisar que no podré asistir';
+      }else{
+        commentInput.placeholder = 'Puedes dejar un mensaje para los novios o indicar alguna consideración especial.';
+        submitBtn.innerHTML = '<i data-lucide="send" aria-hidden="true"></i>Enviar confirmación';
+      }
+
+      renderCompanionFields();
+      if(window.lucide) lucide.createIcons();
+    }
+
+    attendanceInputs.forEach(input => input.addEventListener('change',syncAttendanceFields));
+    adultCount.addEventListener('change',renderCompanionFields);
+
+    if(hasConfiguredGoogleScript()){
+      rsvpForm.action = GOOGLE_SCRIPT_URL;
+    }
+
+    function createSubmissionId(){
+      return 'rsvp_' + Date.now() + '_' + Math.random().toString(36).slice(2,12);
+    }
+
+    function resetSubmissionControls(){
+      submitBtn.disabled = false;
+      syncAttendanceFields();
+    }
+
+    function isNestedGoogleAppsScriptOrigin(origin){
+      try{
+        const parsedOrigin = new URL(origin);
+        return parsedOrigin.protocol === 'https:' && parsedOrigin.hostname.endsWith('-script.googleusercontent.com');
+      }catch(error){
+        return false;
+      }
+    }
+
+    function isAllowedRsvpOrigin(origin){
+      return allowedRsvpOrigins.has(origin) || isNestedGoogleAppsScriptOrigin(origin);
+    }
+
+    window.addEventListener('message',event => {
+      console.info('[RSVP] Mensaje recibido:',{
+        origin:event.origin,
+        data:event.data,
+        sourceMatchesIframe:Boolean(hiddenIframe?.contentWindow && event.source === hiddenIframe.contentWindow)
+      });
+    });
+
+    rsvpForm.addEventListener('submit',event => {
+      event.preventDefault();
+      formStatus.className = 'status-message';
+      manualWhatsAppLink.hidden = true;
+
+      if(pendingSubmission) return;
+
+      if(invitationState.status !== 'valid'){
+        formStatus.classList.add('error');
+        formStatus.textContent = 'Primero debemos validar tu enlace personalizado.';
+        return;
+      }
+
+      const attendance = selectedAttendance();
+      const requestedAdults = attendance === 'No podré asistir' ? 0 : Number(adultCount.value);
+      const invalidIdentity = normalizeInvitationCode(invitationCodeField.value) !== invitationState.code ||
+        String(nameInput.value || '') !== invitationState.guest;
+      const invalidAdults = attendance === 'Sí asistiré'
+        ? (!Number.isInteger(requestedAdults) || requestedAdults < 1 || requestedAdults > invitationState.maxAdults)
+        : attendance === 'No podré asistir' ? requestedAdults !== 0 : false;
+
+      if(invalidIdentity || invalidAdults){
+        formStatus.classList.add('error');
+        formStatus.textContent = invalidAdults
+          ? 'La cantidad ingresada supera los cupos de tu invitación.'
+          : 'Los datos de la invitación cambiaron. Vuelve a abrir tu enlace personalizado.';
+        return;
+      }
+
+      const companionValidation = validateCompanionsForSubmission(attendance,requestedAdults);
+      if(!companionValidation.ok){
+        formStatus.classList.add('error');
+        formStatus.textContent = companionValidation.message;
+        if(companionValidation.input){
+          companionValidation.input.reportValidity();
+          companionValidation.input.focus();
+        }
+        return;
+      }
+
+      if(!rsvpForm.checkValidity()){
+        rsvpForm.reportValidity();
+        return;
+      }
+
+      if(!hasConfiguredGoogleScript()){
+        formStatus.classList.add('error');
+        formStatus.textContent = 'Falta configurar la URL de Google Apps Script.';
+        return;
+      }
+
+      const data = Object.fromEntries(new FormData(rsvpForm).entries());
+      if(attendance === 'No podré asistir') data.cantidad_adultos = '0';
+
+      const submissionId = createSubmissionId();
+      submissionIdField.value = submissionId;
+      data.submission_id = submissionId;
+      console.info('[RSVP] Enviando:',{
+        submissionId:submissionId,
+        codigo:invitationState.code
+      });
+      pendingSubmission = {
+        id:submissionId,
+        formData:data,
+        timeoutId:null,
+        pollToken:null,
+        verificationActive:false,
+        verificationInconclusive:false
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Guardando…';
+      formStatus.textContent = 'Guardando tu confirmación…';
+      HTMLFormElement.prototype.submit.call(rsvpForm);
+      startSubmissionVerification(submissionId,true);
+    });
+
+    function waitForRsvp(milliseconds){
+      return new Promise(resolve => setTimeout(resolve,milliseconds));
+    }
+
+    function cancelSubmissionVerification(submission){
+      if(!submission) return;
+      if(submission.pollToken) submission.pollToken.cancelled = true;
+      if(submission.timeoutId) clearTimeout(submission.timeoutId);
+      submission.pollToken = null;
+      submission.timeoutId = null;
+      submission.verificationActive = false;
+    }
+
+    function markVerificationInconclusive(submissionId,error){
+      if(!pendingSubmission || pendingSubmission.id !== submissionId) return;
+      if(processedSubmissionIds.has(submissionId)) return;
+      cancelSubmissionVerification(pendingSubmission);
+      pendingSubmission.verificationInconclusive = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Respuesta enviada';
+      formStatus.className = 'status-message warning';
+      formStatus.textContent = 'Tu respuesta fue enviada, pero todavía no pudimos verificar el registro. No la envíes nuevamente; pulsa “Verificar nuevamente”.';
+      retrySubmissionVerification.hidden = false;
+      console.error('[RSVP] Verificación inconclusa:',{
+        submissionId:submissionId,
+        error:error ? String(error.message || error) : 'Tiempo de verificación agotado'
+      });
+    }
+
+    async function startSubmissionVerification(submissionId,withInitialDelay){
+      if(!pendingSubmission || pendingSubmission.id !== submissionId) return;
+      if(pendingSubmission.verificationActive || processedSubmissionIds.has(submissionId)) return;
+
+      const submission = pendingSubmission;
+      const pollToken = {cancelled:false};
+      submission.pollToken = pollToken;
+      submission.verificationActive = true;
+      submission.verificationInconclusive = false;
+      retrySubmissionVerification.hidden = true;
+      formStatus.className = 'status-message';
+      formStatus.textContent = withInitialDelay ? 'Guardando tu confirmación…' : 'Verificando nuevamente…';
+      submission.timeoutId = setTimeout(() => {
+        markVerificationInconclusive(submissionId,new Error('Tiempo de verificación agotado'));
+      },25000);
+
+      if(withInitialDelay) await waitForRsvp(800);
+      while(!pollToken.cancelled && pendingSubmission === submission && !processedSubmissionIds.has(submissionId)){
+        try{
+          console.info('[RSVP] Verificando envío:',{submissionId:submissionId});
+          const response = await lookupSubmissionStatusJsonp(submissionId);
+          if(pollToken.cancelled || pendingSubmission !== submission) return;
+          console.info('[RSVP] Estado del envío:',response);
+          if(response && response.ok === true && response.found === true && String(response.submissionId || '') === submissionId){
+            console.info('[RSVP] Registro verificado:',{submissionId:submissionId});
+            completeRsvpSuccess(response);
+            return;
+          }
+        }catch(error){
+          if(pollToken.cancelled || pendingSubmission !== submission) return;
+          console.warn('[RSVP] Consulta de estado pendiente:',{
+            submissionId:submissionId,
+            error:String(error.message || error)
+          });
+        }
+        await waitForRsvp(1200);
+      }
+    }
+
+    function completeRsvpError(data){
+      if(!pendingSubmission) return;
+      const submissionId = pendingSubmission.id;
+      if(String(data.submissionId || '') !== submissionId || processedSubmissionIds.has(submissionId)) return;
+      processedSubmissionIds.add(submissionId);
+      cancelSubmissionVerification(pendingSubmission);
+      pendingSubmission = null;
+      retrySubmissionVerification.hidden = true;
+      resetSubmissionControls();
+      formStatus.className = 'status-message error';
+      formStatus.textContent = String(data.message || 'No pudimos registrar tu confirmación.').slice(0,220);
+    }
+
+    function completeRsvpSuccess(data){
+      if(!pendingSubmission) return;
+      const completedSubmission = pendingSubmission;
+      if(String(data.submissionId || '') !== completedSubmission.id || processedSubmissionIds.has(completedSubmission.id)) return;
+
+      processedSubmissionIds.add(completedSubmission.id);
+      cancelSubmissionVerification(completedSubmission);
+      pendingSubmission = null;
+      retrySubmissionVerification.hidden = true;
+      resetSubmissionControls();
+
+      const sentData = completedSubmission.formData;
+      const serverAttendance = data.asistencia === 'Sí asistiré' || data.asistencia === 'No podré asistir'
+        ? data.asistencia
+        : sentData.asistencia;
+      const serverAdults = Number(data.adultosConfirmados);
+      invitationState.currentStatus = serverAttendance === 'Sí asistiré' ? 'Confirmado' : 'No asistirá';
+      invitationState.confirmedAdults = serverAttendance === 'Sí asistiré' && Number.isInteger(serverAdults)
+        ? serverAdults
+        : 0;
+      const expectedSavedCompanions = Math.max(invitationState.confirmedAdults - 1,0);
+      const savedCompanions = Array.isArray(data.acompanantes)
+        ? data.acompanantes
+            .map(name => String(name || '').trim().replace(/\s+/g,' ').slice(0,100))
+            .filter(Boolean)
+            .slice(0,expectedSavedCompanions)
+        : [];
+      invitationState.companions = savedCompanions;
+      applyLookupResponse({
+        ok:true,
+        codigo:String(data.codigo || invitationState.code),
+        invitado:String(data.invitado || invitationState.guest),
+        cuposAdultos:invitationState.maxAdults,
+        estado:invitationState.currentStatus,
+        adultosConfirmados:invitationState.confirmedAdults,
+        acompanantes:savedCompanions
+      },invitationState.code);
+
+      formStatus.className = 'status-message ok';
+      formStatus.textContent = 'Confirmación registrada correctamente. Ahora se abrirá WhatsApp.';
+      const whatsappData = Object.assign({},sentData,{
+        asistencia:serverAttendance,
+        cantidad_adultos:String(invitationState.confirmedAdults)
+      });
+      const whatsappUrl = buildWhatsAppUrl(whatsappData,savedCompanions);
+      manualWhatsAppLink.href = whatsappUrl;
+
+      setTimeout(() => {
+        const whatsappWindow = window.open(whatsappUrl,'_blank');
+        if(whatsappWindow){
+          try{ whatsappWindow.opener = null; }catch(error){}
+          closeModal(rsvpModal);
+        }else{
+          manualWhatsAppLink.hidden = false;
+          formStatus.textContent = 'Confirmación registrada. Pulsa el botón para abrir WhatsApp.';
+        }
+      },700);
+    }
+
+    function handleRsvpMessage(event){
+      const data = event.data;
+
+      if(!data || typeof data !== 'object') return;
+      if(data.source !== 'lesly-jairo-rsvp') return;
+      if(!pendingSubmission) return;
+      if(String(data.submissionId || '') !== pendingSubmission.id) return;
+      if(!isAllowedRsvpOrigin(event.origin)) return;
+      if(processedSubmissionIds.has(pendingSubmission.id)) return;
+      if(data.ok === true) completeRsvpSuccess(data);
+      else completeRsvpError(data);
+    }
+
+    window.addEventListener('message',handleRsvpMessage);
+
+    retrySubmissionVerification.addEventListener('click',() => {
+      if(!pendingSubmission || pendingSubmission.verificationActive) return;
+      startSubmissionVerification(pendingSubmission.id,false);
+    });
+
+    function buildWhatsAppUrl(data,companions = []){
+      const notAttending = data.asistencia === 'No podré asistir';
+      const lines = notAttending
+        ? [
+            'Hola Lesly y Jairo, les comunico que no podré asistir a su boda del 05 de septiembre de 2026.',
+            '',
+            'Invitación: ' + invitationState.guest,
+            'Celular: ' + (data.telefono || '')
+          ]
+        : [
+            'Hola Lesly y Jairo, les envío mi confirmación para su boda del 05 de septiembre de 2026.',
+            '',
+            'Invitación: ' + invitationState.guest,
+            'Asistencia: Sí asistiré',
+            'Adultos confirmados: ' + (data.cantidad_adultos || '0'),
+            ...(companions.length
+              ? ['Acompañantes:',...companions.map(name => '- ' + name)]
+              : ['Acompañantes: Ninguno']),
+            'Celular: ' + (data.telefono || '')
+          ];
+
+      if(data.comentario && data.comentario.trim()){
+        lines.push((notAttending ? 'Mensaje: ' : 'Comentario: ') + data.comentario.trim());
+      }
+
+      return 'https://wa.me/' + WHATSAPP_NOVIOS + '?text=' + encodeURIComponent(lines.join('\n'));
+    }
+
+    validateInvitation();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    },{threshold:.12,rootMargin:'0px 0px -7% 0px'});
+
+    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+  </script>
+</body>
+</html>

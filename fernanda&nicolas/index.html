@@ -1,0 +1,2405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11458174849"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'AW-11458174849');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#3d0a1a">
+  <meta name="description" content="Fernanda & Nicolás — Une collection intime. 24 de octubre de 2026, Lima. Una invitación de alta costura por Nuestra Boda.">
+  <title>Fernanda & Nicolás — COUTURE | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+  /* ============================================================
+     MODELO 09 — "COUTURE"
+     Concepto: la boda como una colección de alta costura. Cada
+     sección es una página del atelier — croquis dibujándose,
+     hilo dorado que cose la línea de tiempo, muestras de tela
+     como paleta cromática, cinta métrica como cuenta regresiva
+     y una tipografía Bodoni Moda de contraste dramático que
+     evoca las revistas de moda europeas.
+     ============================================================ */
+
+  :root {
+    /* Paleta base — bordeaux profundo, champagne dorado, crema papel */
+    --wine:            #3d0a1a;
+    --wine-deep:       #240611;
+    --wine-mid:        #5a1226;
+    --wine-soft:       #6d1a2f;
+
+    /* Metales cálidos */
+    --champagne:       #d4af6b;
+    --champagne-bright:#f0d090;
+    --gold-thread:     #c9a05e;
+    --gold-dark:       #8f7040;
+
+    /* Papeles y cremas */
+    --paper:           #faf3e8;
+    --cream:           #f5ecdd;
+    --cream-warm:      #ecd9c0;
+    --cream-dim:       #e5d3b8;
+
+    /* Tintas */
+    --ink:             #1a0507;
+    --ink-soft:        #2a0e12;
+
+    /* Acentos */
+    --blush:           #d9a5a0;
+    --nude:            #c8a898;
+
+    /* Tipografía */
+    --font-display:    'Bodoni Moda', 'Didot', serif;
+    --font-elegant:    'Italiana', 'Bodoni Moda', serif;
+    --font-body:       'Cormorant Garamond', Georgia, serif;
+    --font-mono:       'JetBrains Mono', ui-monospace, monospace;
+
+    /* Curvas y motion */
+    --ease:            cubic-bezier(.7,0,.2,1);
+    --ease-couture:    cubic-bezier(.86,0,.07,1);
+  }
+
+  /* ===== Reset básico ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--wine-deep);
+    color: var(--cream);
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  ::selection { background: var(--champagne); color: var(--wine-deep); }
+
+  /* Scrollbar sutil */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--wine-deep); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--gold-thread), var(--gold-dark));
+    border-radius: 4px;
+  }
+
+  /* ============================================================
+     PRELOADER — hilo dorado que cose el monograma F & N
+     ============================================================ */
+  #preloader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--wine-deep);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 24px;
+    transition: opacity .8s var(--ease), visibility .8s var(--ease);
+  }
+  #preloader.done { opacity: 0; visibility: hidden; }
+
+  .pre-monogram { width: 140px; height: 140px; }
+  .pre-monogram path,
+  .pre-monogram line,
+  .pre-monogram circle {
+    fill: none;
+    stroke: var(--champagne);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: stitch 2.4s var(--ease-couture) forwards;
+  }
+  .pre-monogram .amp {
+    animation-delay: .8s;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+  }
+  @keyframes stitch {
+    to { stroke-dashoffset: 0; }
+  }
+  .pre-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    opacity: 0;
+    animation: fadeIn 1s ease .8s forwards;
+  }
+  .pre-label span { display: inline-block; }
+  @keyframes fadeIn { to { opacity: .8; } }
+
+  /* ============================================================
+     NAVEGACIÓN — sticky superior, minimalista
+     ============================================================ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background .4s var(--ease), padding .4s var(--ease), border-color .4s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(36, 6, 17, .85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 14px 32px;
+    border-bottom-color: rgba(212,175,107,.15);
+  }
+  .nav-logo {
+    font-family: var(--font-elegant);
+    font-size: 20px;
+    letter-spacing: .3em;
+    color: var(--cream);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo::before {
+    content: '';
+    width: 22px; height: 1px;
+    background: var(--champagne);
+  }
+  .nav-toggle {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(212,175,107,.4);
+    border-radius: 50%;
+    color: var(--champagne);
+    transition: background .3s var(--ease), transform .3s var(--ease);
+  }
+  .nav-toggle:hover {
+    background: rgba(212,175,107,.1);
+    transform: rotate(90deg);
+  }
+  .nav-toggle svg { width: 16px; height: 16px; }
+
+  /* Menú fullscreen */
+  .menu {
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--wine-deep);
+    display: flex; align-items: center; justify-content: center;
+    clip-path: circle(0% at calc(100% - 46px) 46px);
+    transition: clip-path .8s var(--ease-couture);
+    pointer-events: none;
+  }
+  .menu.open {
+    clip-path: circle(150% at calc(100% - 46px) 46px);
+    pointer-events: auto;
+  }
+  .menu-close {
+    position: absolute; top: 20px; right: 32px;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--champagne);
+    border-radius: 50%;
+    color: var(--champagne);
+  }
+  .menu-close svg { width: 14px; height: 14px; }
+  .menu-list {
+    list-style: none;
+    text-align: center;
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .menu-list li {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .5s var(--ease), transform .5s var(--ease);
+  }
+  .menu.open .menu-list li {
+    opacity: 1; transform: translateY(0);
+  }
+  .menu.open .menu-list li:nth-child(1) { transition-delay: .3s; }
+  .menu.open .menu-list li:nth-child(2) { transition-delay: .35s; }
+  .menu.open .menu-list li:nth-child(3) { transition-delay: .4s; }
+  .menu.open .menu-list li:nth-child(4) { transition-delay: .45s; }
+  .menu.open .menu-list li:nth-child(5) { transition-delay: .5s; }
+  .menu.open .menu-list li:nth-child(6) { transition-delay: .55s; }
+  .menu.open .menu-list li:nth-child(7) { transition-delay: .6s; }
+  .menu-list a {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--cream);
+    position: relative;
+    padding: 4px 0;
+    transition: color .3s var(--ease);
+  }
+  .menu-list a::after {
+    content: '';
+    position: absolute; left: 50%; bottom: 0;
+    width: 0; height: 1px;
+    background: var(--champagne);
+    transition: width .4s var(--ease), left .4s var(--ease);
+  }
+  .menu-list a:hover { color: var(--champagne); }
+  .menu-list a:hover::after { width: 100%; left: 0; }
+  .menu-footer {
+    position: absolute; bottom: 32px; left: 0; right: 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: rgba(212,175,107,.6);
+  }
+
+  /* ============================================================
+     HERO — La primera página del atelier
+     ============================================================ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--wine-deep);
+    overflow: hidden;
+    padding: 100px 24px 80px;
+  }
+  /* Fondo: gradiente radial + textura de papel */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(212,175,107,.15), transparent 55%),
+      radial-gradient(ellipse at 70% 80%, rgba(217,165,160,.08), transparent 60%),
+      linear-gradient(180deg, var(--wine-deep) 0%, var(--wine) 100%);
+  }
+  /* Textura sutil de trama de tela */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, transparent 0 2px, rgba(212,175,107,.02) 2px 3px),
+      repeating-linear-gradient(-45deg, transparent 0 2px, rgba(212,175,107,.02) 2px 3px);
+    pointer-events: none;
+  }
+
+  /* Ondas de seda SVG animadas al fondo */
+  .silk {
+    position: absolute; inset: 0;
+    z-index: 1;
+    opacity: .35;
+    pointer-events: none;
+  }
+  .silk path {
+    fill: none;
+    stroke: var(--champagne);
+    stroke-width: .6;
+    stroke-opacity: .5;
+    animation: silkFlow 20s ease-in-out infinite;
+    transform-origin: center;
+  }
+  .silk path:nth-child(2) { animation-delay: -4s; stroke-opacity: .35; }
+  .silk path:nth-child(3) { animation-delay: -8s; stroke-opacity: .25; }
+  .silk path:nth-child(4) { animation-delay: -12s; stroke-opacity: .3; }
+  .silk path:nth-child(5) { animation-delay: -16s; stroke-opacity: .2; }
+  @keyframes silkFlow {
+    0%, 100% { transform: translateY(0) scaleY(1); }
+    50% { transform: translateY(-20px) scaleY(1.05); }
+  }
+
+  /* Contenido del hero */
+  .hero-inner {
+    position: relative; z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .55em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: rise .9s var(--ease) .3s forwards;
+  }
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--champagne);
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-names {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(64px, 13vw, 168px);
+    line-height: .95;
+    color: var(--cream);
+    letter-spacing: -.02em;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: rise 1.2s var(--ease) .5s forwards;
+  }
+  .hero-names .amp {
+    display: block;
+    font-style: italic;
+    font-weight: 400;
+    font-size: .55em;
+    color: var(--champagne);
+    margin: -.05em 0;
+    line-height: 1;
+  }
+  .hero-names .name-2 {
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -.01em;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--cream-warm);
+    letter-spacing: .06em;
+    margin: 32px auto 48px;
+    max-width: 480px;
+    opacity: 0;
+    animation: rise 1s var(--ease) .8s forwards;
+  }
+
+  /* Etiqueta de couture al pie del hero */
+  .hero-label {
+    display: inline-block;
+    padding: 18px 28px;
+    border: 1px solid rgba(212,175,107,.4);
+    background: rgba(36,6,17,.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: left;
+    max-width: 320px;
+    opacity: 0;
+    animation: rise 1s var(--ease) 1.1s forwards;
+    position: relative;
+  }
+  .hero-label::before,
+  .hero-label::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    border: 1px solid var(--champagne);
+  }
+  .hero-label::before { top: -4px; left: -4px; border-right: none; border-bottom: none; }
+  .hero-label::after { bottom: -4px; right: -4px; border-left: none; border-top: none; }
+  .hero-label-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed rgba(212,175,107,.25);
+  }
+  .hero-label-row:last-child { margin-bottom: 0; padding-bottom: 0; border: 0; }
+  .hero-label-row span:last-child { color: var(--cream); font-weight: 500; }
+
+  /* Scroll indicator */
+  .hero-scroll {
+    position: absolute; bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: rgba(212,175,107,.7);
+    opacity: 0;
+    animation: rise 1s var(--ease) 1.6s forwards;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--champagne), transparent);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-scroll-line::after {
+    content: '';
+    position: absolute; top: -20px; left: 0;
+    width: 100%; height: 20px;
+    background: var(--champagne-bright);
+    animation: scrollDrop 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollDrop {
+    to { top: 40px; }
+  }
+
+  /* ============================================================
+     MARQUEE — términos de alta costura
+     ============================================================ */
+  .marquee {
+    background: var(--champagne);
+    color: var(--wine-deep);
+    padding: 22px 0;
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 60px;
+    animation: marquee 40s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-track span {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: .08em;
+    display: inline-flex; align-items: center; gap: 60px;
+  }
+  .marquee-track span::after {
+    content: '✦';
+    color: var(--wine);
+    font-size: 12px;
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+
+  /* ============================================================
+     SECCIONES — layout general
+     ============================================================ */
+  section { position: relative; }
+
+  .container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 100px 32px;
+  }
+  .container-narrow {
+    max-width: 780px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 20px;
+  }
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--champagne);
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(38px, 6vw, 72px);
+    line-height: 1;
+    letter-spacing: -.02em;
+    color: var(--cream);
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--champagne);
+    font-weight: 400;
+  }
+  .section-desc {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--cream-warm);
+    max-width: 520px;
+    margin: 20px auto 0;
+    line-height: 1.6;
+  }
+
+  /* ============================================================
+     HISTORIA — croquis del atelier
+     ============================================================ */
+  .story {
+    background: var(--wine);
+    position: relative;
+  }
+  .story::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(212,175,107,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,175,107,.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+  }
+  .story-sketch {
+    aspect-ratio: 3/4;
+    position: relative;
+    background: var(--cream);
+    padding: 24px;
+    border: 1px solid rgba(212,175,107,.3);
+  }
+  .story-sketch::before {
+    content: 'CROQUIS N° 001';
+    position: absolute; top: 12px; left: 24px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    color: var(--wine);
+    opacity: .6;
+  }
+  .story-sketch::after {
+    content: 'F&N — AUTOMNE 2026';
+    position: absolute; bottom: 12px; right: 24px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    color: var(--wine);
+    opacity: .6;
+  }
+  .story-sketch svg {
+    width: 100%; height: 100%;
+  }
+  .story-sketch svg path {
+    fill: none;
+    stroke: var(--wine-deep);
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    transition: stroke-dashoffset 3s var(--ease-couture);
+  }
+  .story-sketch.in-view svg path {
+    stroke-dashoffset: 0;
+  }
+  .story-sketch svg path:nth-child(2) { transition-delay: .3s; }
+  .story-sketch svg path:nth-child(3) { transition-delay: .6s; }
+  .story-sketch svg path:nth-child(4) { transition-delay: .9s; }
+
+  .story-text {
+    padding: 0 20px;
+  }
+  .story-text h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+  .story-text h3 em {
+    font-style: italic;
+    color: var(--champagne);
+  }
+  .story-text p {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--cream-warm);
+    margin-bottom: 20px;
+    line-height: 1.7;
+  }
+  .story-text p:first-of-type::first-letter {
+    font-family: var(--font-display);
+    font-size: 60px;
+    float: left;
+    line-height: .85;
+    padding: 6px 12px 0 0;
+    color: var(--champagne);
+    font-weight: 700;
+  }
+  .story-signature {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--champagne);
+    margin-top: 32px;
+    letter-spacing: .04em;
+  }
+
+  /* ============================================================
+     COUNTDOWN — cinta métrica horizontal
+     ============================================================ */
+  .countdown-wrap {
+    background: var(--wine-deep);
+    padding: 100px 32px;
+    position: relative;
+  }
+  .countdown-wrap::before,
+  .countdown-wrap::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--champagne), transparent);
+  }
+  .countdown-wrap::before { top: 0; }
+  .countdown-wrap::after { bottom: 0; }
+
+  .countdown-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .countdown-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 16px;
+  }
+  .countdown-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--cream);
+  }
+
+  .tape {
+    max-width: 900px;
+    margin: 0 auto;
+    background:
+      linear-gradient(180deg, var(--cream-warm) 0%, var(--cream) 40%, var(--cream) 60%, var(--cream-dim) 100%);
+    padding: 32px 0 24px;
+    border-radius: 6px;
+    position: relative;
+    box-shadow:
+      0 20px 60px rgba(0,0,0,.4),
+      inset 0 2px 0 rgba(255,255,255,.6),
+      inset 0 -2px 0 rgba(0,0,0,.1);
+  }
+  .tape::before {
+    content: 'MESURE — J-';
+    position: absolute; top: -22px; left: 20px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    color: var(--champagne);
+  }
+  .tape::after {
+    content: 'MAISON F&N';
+    position: absolute; top: -22px; right: 20px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    color: var(--champagne);
+  }
+
+  /* Ticks de la cinta */
+  .tape-ticks {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+    margin-bottom: 20px;
+  }
+  .tape-ticks span {
+    width: 1px;
+    background: var(--wine-deep);
+    opacity: .4;
+  }
+  .tape-ticks span:nth-child(5n+1) { height: 16px; opacity: .8; }
+  .tape-ticks span:not(:nth-child(5n+1)) { height: 8px; }
+
+  .tape-values {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    padding: 0 20px;
+  }
+  .tape-unit {
+    text-align: center;
+    position: relative;
+  }
+  .tape-unit:not(:last-child)::after {
+    content: '';
+    position: absolute; top: 20%; right: 0;
+    width: 1px; height: 60%;
+    background: var(--wine-deep);
+    opacity: .15;
+  }
+  .tape-value {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(44px, 7vw, 72px);
+    line-height: 1;
+    color: var(--wine-deep);
+    letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  .tape-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--wine-mid);
+    margin-top: 8px;
+  }
+
+  /* ============================================================
+     EVENTOS — tarjetas como etiquetas de tela con ojal
+     ============================================================ */
+  .events {
+    background: var(--wine);
+    padding: 100px 32px;
+  }
+  .events-grid {
+    max-width: 1080px;
+    margin: 60px auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .swatch-tag {
+    background: var(--cream);
+    color: var(--wine-deep);
+    padding: 50px 40px 40px;
+    position: relative;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.5);
+    transition: transform .5s var(--ease-couture);
+  }
+  .swatch-tag:hover { transform: translateY(-8px) rotate(-.5deg); }
+  /* Ojal circular */
+  .swatch-tag::before {
+    content: '';
+    position: absolute; top: 20px; left: 50%;
+    transform: translateX(-50%);
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--wine-deep);
+    box-shadow: 0 0 0 3px var(--champagne), inset 0 2px 2px rgba(0,0,0,.4);
+  }
+  /* Hilo saliendo del ojal */
+  .swatch-tag::after {
+    content: '';
+    position: absolute; top: -30px; left: 50%;
+    width: 1px; height: 40px;
+    background: repeating-linear-gradient(to bottom, var(--champagne) 0 4px, transparent 4px 6px);
+    transform: translateX(-50%);
+  }
+
+  .swatch-corner {
+    position: absolute;
+    width: 12px; height: 12px;
+    border: 1px solid var(--wine-mid);
+  }
+  .swatch-corner.tl { top: 12px; left: 12px; border-right: 0; border-bottom: 0; }
+  .swatch-corner.tr { top: 12px; right: 12px; border-left: 0; border-bottom: 0; }
+  .swatch-corner.bl { bottom: 12px; left: 12px; border-right: 0; border-top: 0; }
+  .swatch-corner.br { bottom: 12px; right: 12px; border-left: 0; border-top: 0; }
+
+  .swatch-type {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--wine-mid);
+    margin-bottom: 24px;
+    padding-top: 24px;
+  }
+  .swatch-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--wine-deep);
+  }
+  .swatch-details {
+    border-top: 1px dashed rgba(90,18,38,.3);
+    border-bottom: 1px dashed rgba(90,18,38,.3);
+    padding: 20px 0;
+    margin-bottom: 24px;
+  }
+  .swatch-detail {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 6px 0;
+    font-family: var(--font-body);
+  }
+  .swatch-detail-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--wine-mid);
+  }
+  .swatch-detail-value {
+    font-size: 18px;
+    color: var(--wine-deep);
+    text-align: right;
+    max-width: 60%;
+  }
+  .swatch-detail-value strong {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--wine-deep);
+  }
+  .swatch-cta {
+    display: block;
+    text-align: center;
+    padding: 14px 20px;
+    background: var(--wine-deep);
+    color: var(--champagne);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    transition: background .3s var(--ease), letter-spacing .3s var(--ease);
+  }
+  .swatch-cta:hover {
+    background: var(--wine-mid);
+    letter-spacing: .5em;
+  }
+
+  /* ============================================================
+     ITINERARIO — hilo dorado que cose los momentos
+     ============================================================ */
+  .itinerary {
+    background: var(--wine-deep);
+    padding: 100px 32px 120px;
+  }
+  .thread-timeline {
+    max-width: 720px;
+    margin: 80px auto 0;
+    position: relative;
+    padding: 0 20px;
+  }
+  .thread-line {
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    transform: translateX(-50%);
+    width: 2px;
+    background: transparent;
+  }
+  .thread-line svg {
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    left: -1px;
+    top: 0;
+    overflow: visible;
+  }
+  .thread-line svg line {
+    stroke: var(--champagne);
+    stroke-width: 1.5;
+    stroke-dasharray: 6 4;
+    stroke-dashoffset: 1000;
+    animation: stitchDown 3s var(--ease-couture) forwards;
+    animation-play-state: paused;
+  }
+  .thread-timeline.in-view .thread-line svg line {
+    animation-play-state: running;
+  }
+  @keyframes stitchDown {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .thread-item {
+    position: relative;
+    padding: 30px 0;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 40px;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  .thread-timeline.in-view .thread-item {
+    opacity: 1; transform: translateY(0);
+  }
+  .thread-timeline.in-view .thread-item:nth-child(2) { transition-delay: .1s; }
+  .thread-timeline.in-view .thread-item:nth-child(3) { transition-delay: .3s; }
+  .thread-timeline.in-view .thread-item:nth-child(4) { transition-delay: .5s; }
+  .thread-timeline.in-view .thread-item:nth-child(5) { transition-delay: .7s; }
+  .thread-timeline.in-view .thread-item:nth-child(6) { transition-delay: .9s; }
+  .thread-timeline.in-view .thread-item:nth-child(7) { transition-delay: 1.1s; }
+
+  .thread-node {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--champagne);
+    color: var(--wine-deep);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 0 6px var(--wine-deep), 0 0 0 7px var(--champagne);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .thread-node svg { width: 18px; height: 18px; }
+
+  .thread-time {
+    text-align: right;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 32px;
+    color: var(--cream);
+    letter-spacing: -.01em;
+    font-variant-numeric: tabular-nums;
+  }
+  .thread-time span {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-top: 4px;
+  }
+  .thread-content {
+    text-align: left;
+  }
+  .thread-content h4 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .thread-content p {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--cream-warm);
+    opacity: .85;
+    line-height: 1.5;
+  }
+
+  /* ============================================================
+     GALERÍA — lookbook editorial
+     ============================================================ */
+  .gallery {
+    background: var(--wine);
+    padding: 100px 32px;
+  }
+  .lookbook {
+    max-width: 1200px;
+    margin: 60px auto 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 140px;
+    gap: 16px;
+  }
+  .look {
+    position: relative;
+    overflow: hidden;
+    background: var(--wine-deep);
+    border: 1px solid rgba(212,175,107,.15);
+  }
+  .look-1 { grid-column: span 3; grid-row: span 3; }
+  .look-2 { grid-column: span 3; grid-row: span 2; }
+  .look-3 { grid-column: span 2; grid-row: span 2; }
+  .look-4 { grid-column: span 1; grid-row: span 2; }
+  .look-5 { grid-column: span 2; grid-row: span 2; }
+  .look-6 { grid-column: span 4; grid-row: span 2; }
+
+  .look-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background:
+      linear-gradient(135deg, var(--wine-mid) 0%, var(--wine-deep) 100%);
+    color: rgba(212,175,107,.5);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px;
+  }
+  .look-placeholder::before {
+    content: '';
+    position: absolute; inset: 12px;
+    border: 1px solid rgba(212,175,107,.2);
+  }
+  .look-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 12px 14px;
+    background: linear-gradient(to top, rgba(36,6,17,.9), transparent);
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    z-index: 2;
+    transform: translateY(100%);
+    transition: transform .4s var(--ease);
+  }
+  .look:hover .look-caption { transform: translateY(0); }
+  .look-caption span:last-child { color: var(--cream); }
+
+  /* ============================================================
+     DRESSCODE — muestras de tela reales
+     ============================================================ */
+  .dresscode {
+    background: var(--wine-deep);
+    padding: 100px 32px;
+  }
+  .swatches-row {
+    max-width: 1080px;
+    margin: 60px auto 40px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+  }
+  .fabric {
+    aspect-ratio: 3/4;
+    position: relative;
+    background: var(--cream);
+    padding: 8px;
+    box-shadow: 0 15px 30px -10px rgba(0,0,0,.4);
+    transition: transform .4s var(--ease-couture), z-index 0s .4s;
+    transform-origin: bottom center;
+  }
+  .fabric:hover {
+    transform: translateY(-16px) rotate(-1deg) scale(1.05);
+    z-index: 5;
+    transition-delay: 0s;
+  }
+  .fabric-chip {
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 8px;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+  }
+  .fabric-chip::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 3px, rgba(0,0,0,.05) 3px 4px);
+    pointer-events: none;
+  }
+  .fabric-info {
+    text-align: center;
+  }
+  .fabric-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--wine-deep);
+    margin-bottom: 2px;
+  }
+  .fabric-hex {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .2em;
+    color: var(--wine-mid);
+  }
+
+  /* Los 6 colores permitidos */
+  .fab-1 .fabric-chip { background: linear-gradient(135deg, #3d0a1a, #5a1226); }
+  .fab-2 .fabric-chip { background: linear-gradient(135deg, #6b3d2e, #4a2820); }
+  .fab-3 .fabric-chip { background: linear-gradient(135deg, #d4af6b, #b8934a); }
+  .fab-4 .fabric-chip { background: linear-gradient(135deg, #2a1f1a, #1a0f0a); }
+  .fab-5 .fabric-chip { background: linear-gradient(135deg, #4a3f2e, #2f2820); }
+  .fab-6 .fabric-chip { background: linear-gradient(135deg, #856854, #5a4535); }
+
+  .dresscode-notes {
+    max-width: 640px;
+    margin: 40px auto 0;
+    text-align: center;
+    padding: 32px;
+    border: 1px solid rgba(212,175,107,.3);
+    background: rgba(212,175,107,.04);
+  }
+  .dresscode-notes h4 {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 20px;
+  }
+  .dresscode-notes p {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+  .dresscode-notes p + p {
+    margin-top: 12px;
+    font-style: normal;
+    font-size: 14px;
+    color: var(--cream-warm);
+    opacity: .8;
+  }
+
+  /* ============================================================
+     RSVP — tarjeta de registro atelier
+     ============================================================ */
+  .rsvp {
+    background: var(--wine);
+    padding: 120px 32px;
+    position: relative;
+  }
+  .rsvp-card {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--cream);
+    color: var(--wine-deep);
+    padding: 60px 50px 50px;
+    position: relative;
+  }
+  /* Cinta adhesiva estilo washi tape */
+  .rsvp-card::before {
+    content: '';
+    position: absolute; top: -14px; left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    width: 160px; height: 28px;
+    background: repeating-linear-gradient(45deg,
+      rgba(212,175,107,.6) 0 4px,
+      rgba(212,175,107,.4) 4px 8px);
+    box-shadow: 0 4px 12px rgba(0,0,0,.2);
+  }
+
+  .rsvp-eyebrow {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--wine-mid);
+    margin-bottom: 12px;
+  }
+  .rsvp-title {
+    text-align: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 56px);
+    color: var(--wine-deep);
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .rsvp-desc {
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--wine-mid);
+    margin-bottom: 40px;
+    max-width: 480px;
+    margin-left: auto; margin-right: auto;
+  }
+
+  .rsvp-form {
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--wine-mid);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--wine-deep);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--wine-mid);
+    padding: 8px 0;
+    outline: none;
+    transition: border-color .3s var(--ease);
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold-thread);
+  }
+  .form-group select {
+    appearance: none;
+    cursor: pointer;
+    background: transparent;
+  }
+  .form-group textarea { resize: vertical; min-height: 60px; font-family: var(--font-body); }
+
+  .radio-group {
+    display: flex; gap: 12px;
+  }
+  .radio-option {
+    flex: 1;
+    padding: 14px;
+    border: 1px solid rgba(90,18,38,.3);
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s var(--ease);
+    position: relative;
+  }
+  .radio-option input {
+    position: absolute; opacity: 0; pointer-events: none;
+  }
+  .radio-option-label {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--wine-deep);
+    display: block;
+  }
+  .radio-option-desc {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--wine-mid);
+    margin-top: 4px;
+  }
+  .radio-option:has(input:checked),
+  .radio-option.checked {
+    background: var(--wine-deep);
+    border-color: var(--wine-deep);
+  }
+  .radio-option:has(input:checked) .radio-option-label,
+  .radio-option.checked .radio-option-label {
+    color: var(--champagne);
+  }
+  .radio-option:has(input:checked) .radio-option-desc,
+  .radio-option.checked .radio-option-desc {
+    color: var(--champagne-bright);
+    opacity: .8;
+  }
+
+  .form-submit {
+    margin-top: 12px;
+    padding: 18px 32px;
+    background: var(--wine-deep);
+    color: var(--champagne);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    text-align: center;
+    transition: all .4s var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+  .form-submit::before {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(240,208,144,.3), transparent);
+    transition: left .6s var(--ease);
+  }
+  .form-submit:hover {
+    background: var(--wine-mid);
+    letter-spacing: .6em;
+  }
+  .form-submit:hover::before { left: 100%; }
+
+  /* Confirmación */
+  .rsvp-success {
+    text-align: center;
+    padding: 40px 20px;
+    display: none;
+  }
+  .rsvp-success.show { display: block; }
+  .rsvp-success svg {
+    width: 60px; height: 60px;
+    color: var(--gold-thread);
+    margin: 0 auto 20px;
+  }
+  .rsvp-success h3 {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 36px;
+    color: var(--wine-deep);
+    margin-bottom: 12px;
+  }
+  .rsvp-success p {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--wine-mid);
+  }
+
+  /* ============================================================
+     FOOTER — cierre editorial
+     ============================================================ */
+  footer {
+    background: var(--wine-deep);
+    padding: 80px 32px 32px;
+    text-align: center;
+    border-top: 1px solid rgba(212,175,107,.15);
+    position: relative;
+  }
+  .footer-monogram {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 60px;
+    color: var(--champagne);
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+  .footer-date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--cream-warm);
+    margin-bottom: 40px;
+  }
+  .footer-actions {
+    display: flex; gap: 16px; justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  .footer-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px;
+    border: 1px solid var(--champagne);
+    color: var(--champagne);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    transition: all .3s var(--ease);
+  }
+  .footer-btn:hover {
+    background: var(--champagne);
+    color: var(--wine-deep);
+  }
+  .footer-btn svg { width: 14px; height: 14px; }
+
+  .footer-signature {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: rgba(212,175,107,.5);
+    padding-top: 30px;
+    border-top: 1px solid rgba(212,175,107,.1);
+  }
+  .footer-signature a {
+    color: var(--champagne);
+    transition: color .3s var(--ease);
+  }
+  .footer-signature a:hover { color: var(--champagne-bright); }
+
+  /* Botón flotante de audio */
+  .audio-toggle {
+    position: fixed; bottom: 24px; left: 24px;
+    z-index: 90;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(36,6,17,.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212,175,107,.4);
+    color: var(--champagne);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .3s var(--ease);
+  }
+  .audio-toggle:hover {
+    background: var(--champagne);
+    color: var(--wine-deep);
+  }
+  .audio-toggle svg { width: 18px; height: 18px; }
+
+  /* ============================================================
+     REVEAL — scroll animations base
+     ============================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 900px) {
+    .nav, .nav.scrolled { padding: 14px 20px; }
+    .container { padding: 80px 24px; }
+    .story-grid { grid-template-columns: 1fr; gap: 40px; }
+    .story-text { padding: 0; }
+    .events-grid { grid-template-columns: 1fr; }
+    .swatches-row { grid-template-columns: repeat(3, 1fr); }
+    .lookbook { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 110px; }
+    .look-1 { grid-column: span 4; grid-row: span 3; }
+    .look-2 { grid-column: span 4; grid-row: span 2; }
+    .look-3 { grid-column: span 2; grid-row: span 2; }
+    .look-4 { grid-column: span 2; grid-row: span 2; }
+    .look-5 { grid-column: span 2; grid-row: span 2; }
+    .look-6 { grid-column: span 4; grid-row: span 2; }
+    .thread-item {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 12px;
+      padding: 20px 0;
+    }
+    .thread-time { text-align: center; }
+    .thread-content { text-align: center; }
+    .thread-line { display: none; }
+    .rsvp-card { padding: 50px 30px 40px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 520px) {
+    .container { padding: 60px 20px; }
+    .marquee-track span { font-size: 18px; gap: 40px; }
+    .marquee-track { gap: 40px; }
+    .swatches-row { grid-template-columns: repeat(2, 1fr); }
+    .tape-values { padding: 0 10px; }
+    .tape-value { font-size: 40px; }
+    .footer-actions { flex-direction: column; align-items: center; }
+    .footer-btn { width: 100%; max-width: 260px; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Confetti canvas */
+  #confetti {
+    position: fixed; inset: 0; pointer-events: none; z-index: 500;
+  }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       PRELOADER
+       ============================================================ -->
+  <div id="preloader" aria-hidden="true">
+    <svg class="pre-monogram" viewBox="0 0 140 140">
+      <!-- F -->
+      <path d="M 30 25 L 30 110 M 30 25 L 62 25 M 30 62 L 55 62" />
+      <!-- N -->
+      <path d="M 78 110 L 78 25 L 110 110 L 110 25" />
+      <!-- Ampersand ornamental -->
+      <circle class="amp" cx="70" cy="70" r="55" />
+    </svg>
+    <div class="pre-label">Maison F&amp;N — Automne 2026</div>
+  </div>
+
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav-logo">F &amp; N</a>
+    <button class="nav-toggle" id="menuOpen" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="4" y1="8" x2="20" y2="8"/>
+        <line x1="4" y1="16" x2="20" y2="16"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Menu fullscreen -->
+  <div class="menu" id="menu">
+    <button class="menu-close" id="menuClose" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="6" y1="6" x2="18" y2="18"/>
+        <line x1="18" y1="6" x2="6" y2="18"/>
+      </svg>
+    </button>
+    <ul class="menu-list">
+      <li><a href="#hero" data-close>Inicio</a></li>
+      <li><a href="#story" data-close>Nuestra historia</a></li>
+      <li><a href="#countdown" data-close>La cuenta</a></li>
+      <li><a href="#events" data-close>Ceremonia</a></li>
+      <li><a href="#itinerary" data-close>Itinerario</a></li>
+      <li><a href="#dresscode" data-close>Vestimenta</a></li>
+      <li><a href="#rsvp" data-close>Confirmar</a></li>
+    </ul>
+    <div class="menu-footer">Maison F&amp;N · 24.10.2026</div>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <!-- Ondas de seda animadas -->
+    <svg class="silk" viewBox="0 0 1440 900" preserveAspectRatio="none">
+      <path d="M 0 150 C 300 100, 600 250, 900 180 S 1440 120, 1440 200" />
+      <path d="M 0 320 C 300 280, 600 400, 900 340 S 1440 300, 1440 380" />
+      <path d="M 0 500 C 300 450, 600 580, 900 520 S 1440 480, 1440 560" />
+      <path d="M 0 680 C 300 640, 600 760, 900 700 S 1440 660, 1440 740" />
+      <path d="M 0 830 C 300 800, 600 880, 900 840 S 1440 800, 1440 860" />
+    </svg>
+
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Une Collection Intime · Automne 2026</div>
+
+      <h1 class="hero-names">
+        Fernanda
+        <span class="amp">&amp;</span>
+        <span class="name-2">Nicolás</span>
+      </h1>
+
+      <p class="hero-tagline">
+        Cada gran historia comienza con una puntada. La nuestra se firma en Lima, el 24 de octubre.
+      </p>
+
+      <div class="hero-label">
+        <div class="hero-label-row"><span>Modèle</span> <span>Nº 09</span></div>
+        <div class="hero-label-row"><span>Saison</span> <span>Automne '26</span></div>
+        <div class="hero-label-row"><span>Date</span> <span>24 · 10 · 26</span></div>
+        <div class="hero-label-row"><span>Lieu</span> <span>Lima, PE</span></div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Descubrir</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MARQUEE — términos de alta costura
+       ============================================================ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Haute Couture</span>
+      <span>Savoir-Faire</span>
+      <span>Atelier</span>
+      <span>Sur Mesure</span>
+      <span>Maison</span>
+      <span>Broderie</span>
+      <span>Collection Privée</span>
+      <span>Petites Mains</span>
+      <!-- duplicado para loop infinito -->
+      <span>Haute Couture</span>
+      <span>Savoir-Faire</span>
+      <span>Atelier</span>
+      <span>Sur Mesure</span>
+      <span>Maison</span>
+      <span>Broderie</span>
+      <span>Collection Privée</span>
+      <span>Petites Mains</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       HISTORIA
+       ============================================================ -->
+  <section class="story" id="story">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Chapitre I</div>
+        <h2 class="section-title">Nuestra <em>historia</em></h2>
+        <p class="section-desc">
+          Como toda pieza de alta costura, empezamos con un boceto. Después vinieron las pruebas, los ajustes, las noches en el atelier. Hoy la pieza está lista.
+        </p>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-sketch reveal" id="storySketch">
+          <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid meet">
+            <!-- Silueta abstracta de novia y novio como croquis de moda -->
+            <!-- Figura 1 - vestido -->
+            <path d="M 100 60 C 100 50, 110 45, 115 45 C 120 45, 128 50, 128 60 C 128 70, 124 78, 115 78 C 106 78, 100 70, 100 60 Z
+                     M 115 78 L 115 110
+                     M 100 110 L 100 160 C 90 220, 70 320, 60 380 L 170 380 C 160 320, 140 220, 130 160 L 130 110 Z" />
+            <!-- Figura 2 - traje -->
+            <path d="M 200 60 C 200 50, 208 45, 213 45 C 218 45, 226 50, 226 60 C 226 70, 222 78, 213 78 C 204 78, 200 70, 200 60 Z
+                     M 213 78 L 213 110
+                     M 190 115 L 190 200 L 200 380 L 240 380 L 240 200 L 240 115 Z
+                     M 213 110 L 213 200" />
+            <!-- Líneas de composición -->
+            <path d="M 40 380 L 260 380 M 30 40 L 30 380 M 270 40 L 270 380" opacity=".3" />
+            <!-- Marcas de medida -->
+            <path d="M 30 100 L 25 100 M 30 200 L 25 200 M 30 300 L 25 300
+                     M 270 100 L 275 100 M 270 200 L 275 200 M 270 300 L 275 300" opacity=".4"/>
+          </svg>
+        </div>
+
+        <div class="story-text reveal">
+          <h3>Un boceto que se convirtió en <em>vida</em></h3>
+          <p>
+            Nos conocimos cuando ninguno buscaba nada más que un buen café y una conversación honesta. Lo que empezó como un encuentro casual se transformó, puntada a puntada, en la única historia que queríamos contar.
+          </p>
+          <p>
+            Después de siete años, mil viajes cortos y una casa que decidimos llamar hogar, elegimos coser este momento. Que sean testigos de la pieza terminada.
+          </p>
+          <p class="story-signature">— Fernanda &amp; Nicolás</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COUNTDOWN
+       ============================================================ -->
+  <section class="countdown-wrap" id="countdown">
+    <div class="countdown-header reveal">
+      <div class="countdown-eyebrow">Compte à Rebours</div>
+      <h2 class="countdown-title">La pieza está casi <em>terminada</em></h2>
+    </div>
+
+    <div class="tape reveal">
+      <div class="tape-ticks">
+        <!-- 25 ticks distribuidos -->
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="tape-values">
+        <div class="tape-unit">
+          <div class="tape-value" id="cd-days">00</div>
+          <div class="tape-label">Días</div>
+        </div>
+        <div class="tape-unit">
+          <div class="tape-value" id="cd-hours">00</div>
+          <div class="tape-label">Horas</div>
+        </div>
+        <div class="tape-unit">
+          <div class="tape-value" id="cd-mins">00</div>
+          <div class="tape-label">Minutos</div>
+        </div>
+        <div class="tape-unit">
+          <div class="tape-value" id="cd-secs">00</div>
+          <div class="tape-label">Segundos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EVENTOS — Ceremonia y Recepción
+       ============================================================ -->
+  <section class="events" id="events">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Chapitre II</div>
+      <h2 class="section-title">Dos <em>momentos</em>, una sola noche</h2>
+    </div>
+
+    <div class="events-grid">
+      <!-- Ceremonia -->
+      <article class="swatch-tag reveal">
+        <span class="swatch-corner tl"></span>
+        <span class="swatch-corner tr"></span>
+        <span class="swatch-corner bl"></span>
+        <span class="swatch-corner br"></span>
+        <div class="swatch-type">Cérémonie · Nº I</div>
+        <h3 class="swatch-name">Ceremonia</h3>
+        <div class="swatch-details">
+          <div class="swatch-detail">
+            <span class="swatch-detail-label">Date</span>
+            <span class="swatch-detail-value"><strong>Sábado 24</strong>Octubre 2026</span>
+          </div>
+          <div class="swatch-detail">
+            <span class="swatch-detail-label">Heure</span>
+            <span class="swatch-detail-value"><strong>17:00 hrs</strong>Puntual</span>
+          </div>
+          <div class="swatch-detail">
+            <span class="swatch-detail-label">Lieu</span>
+            <span class="swatch-detail-value"><strong>Iglesia La Virgen del Pilar</strong>San Isidro, Lima</span>
+          </div>
+        </div>
+        <a href="https://maps.google.com/?q=Iglesia+La+Virgen+del+Pilar+San+Isidro+Lima" target="_blank" rel="noopener" class="swatch-cta">Cómo llegar</a>
+      </article>
+
+      <!-- Recepción -->
+      <article class="swatch-tag reveal">
+        <span class="swatch-corner tl"></span>
+        <span class="swatch-corner tr"></span>
+        <span class="swatch-corner bl"></span>
+        <span class="swatch-corner br"></span>
+        <div class="swatch-type">Réception · Nº II</div>
+        <h3 class="swatch-name">Recepción</h3>
+        <div class="swatch-details">
+          <div class="swatch-detail">
+            <span class="swatch-detail-label">Date</span>
+            <span class="swatch-detail-value"><strong>Sábado 24</strong>Octubre 2026</span>
+          </div>
+          <div class="swatch-detail">
+            <span class="swatch-detail-label">Heure</span>
+            <span class="swatch-detail-value"><strong>20:00 hrs</strong>Hasta las 04:00</span>
+          </div>
+          <div class="swatch-detail">
+            <span class="swatch-detail-label">Lieu</span>
+            <span class="swatch-detail-value"><strong>Casa Prado</strong>Miraflores, Lima</span>
+          </div>
+        </div>
+        <a href="https://maps.google.com/?q=Casa+Prado+Miraflores+Lima" target="_blank" rel="noopener" class="swatch-cta">Cómo llegar</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ITINERARIO — hilo dorado
+       ============================================================ -->
+  <section class="itinerary" id="itinerary">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Chapitre III</div>
+      <h2 class="section-title">La noche, <em>cosida a mano</em></h2>
+      <p class="section-desc">Cada momento de la noche está hilvanado con cuidado. Este es el orden de las cosas.</p>
+    </div>
+
+    <div class="thread-timeline" id="threadTimeline">
+      <div class="thread-line" aria-hidden="true">
+        <svg preserveAspectRatio="none">
+          <line x1="2" y1="0" x2="2" y2="100%" />
+        </svg>
+      </div>
+
+      <div class="thread-item">
+        <div class="thread-time">17:00<span>Ceremonia</span></div>
+        <div class="thread-node">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L12 22 M2 12 L22 12"/></svg>
+        </div>
+        <div class="thread-content">
+          <h4>Ceremonia religiosa</h4>
+          <p>Damos el sí en la Iglesia La Virgen del Pilar.</p>
+        </div>
+      </div>
+
+      <div class="thread-item">
+        <div class="thread-time">18:30<span>Coctel</span></div>
+        <div class="thread-node">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l-6 8-6-8zM12 11v10M8 21h8"/></svg>
+        </div>
+        <div class="thread-content">
+          <h4>Coctel de bienvenida</h4>
+          <p>Champagne, bocaditos y jazz en vivo al llegar a Casa Prado.</p>
+        </div>
+      </div>
+
+      <div class="thread-item">
+        <div class="thread-time">20:00<span>Cena</span></div>
+        <div class="thread-node">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v6a4 4 0 008 0V4M8 14v7M14 4v17M18 4c0 3-1 5-2 5v12"/></svg>
+        </div>
+        <div class="thread-content">
+          <h4>Cena de gala</h4>
+          <p>Tres tiempos servidos con la mesa iluminada por velas y hilos dorados.</p>
+        </div>
+      </div>
+
+      <div class="thread-item">
+        <div class="thread-time">22:00<span>Baile</span></div>
+        <div class="thread-node">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg>
+        </div>
+        <div class="thread-content">
+          <h4>Primer baile &amp; pista abierta</h4>
+          <p>El vals para los novios y luego la noche es de todos.</p>
+        </div>
+      </div>
+
+      <div class="thread-item">
+        <div class="thread-time">00:30<span>After</span></div>
+        <div class="thread-node">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12a8 8 0 11-16 0 8 8 0 0116 0zM12 4v4M12 16v4M4 12h4M16 12h4"/></svg>
+        </div>
+        <div class="thread-content">
+          <h4>Fiesta after &amp; hora loca</h4>
+          <p>La segunda parte de la noche: DJ set, luces y sorpresas hasta el amanecer.</p>
+        </div>
+      </div>
+
+      <div class="thread-item">
+        <div class="thread-time">04:00<span>Fin</span></div>
+        <div class="thread-node">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15 8L21 9L17 14L18 21L12 18L6 21L7 14L3 9L9 8Z"/></svg>
+        </div>
+        <div class="thread-content">
+          <h4>Cierre &amp; despedida</h4>
+          <p>Nos vamos con el corazón lleno. Gracias por acompañarnos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALERÍA / LOOKBOOK
+       ============================================================ -->
+  <section class="gallery" id="gallery">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Chapitre IV</div>
+      <h2 class="section-title">Lookbook <em>íntimo</em></h2>
+      <p class="section-desc">Nuestros momentos editados como una campaña de temporada.</p>
+    </div>
+
+    <div class="lookbook reveal">
+      <div class="look look-1">
+        <div class="look-placeholder">Look 01<br>El primer encuentro</div>
+        <div class="look-caption"><span>N° 01</span><span>Automne · 2026</span></div>
+      </div>
+      <div class="look look-2">
+        <div class="look-placeholder">Look 02<br>Fin de semana en el norte</div>
+        <div class="look-caption"><span>N° 02</span><span>Máncora</span></div>
+      </div>
+      <div class="look look-3">
+        <div class="look-placeholder">Look 03<br>La propuesta</div>
+        <div class="look-caption"><span>N° 03</span><span>París</span></div>
+      </div>
+      <div class="look look-4">
+        <div class="look-placeholder">Look 04<br>Detalle</div>
+        <div class="look-caption"><span>N° 04</span><span>Anillo</span></div>
+      </div>
+      <div class="look look-5">
+        <div class="look-placeholder">Look 05<br>Casa nueva</div>
+        <div class="look-caption"><span>N° 05</span><span>Lima</span></div>
+      </div>
+      <div class="look look-6">
+        <div class="look-placeholder">Look 06<br>La preboda</div>
+        <div class="look-caption"><span>N° 06</span><span>Editorial</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DRESSCODE — muestras de tela
+       ============================================================ -->
+  <section class="dresscode" id="dresscode">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Chapitre V</div>
+      <h2 class="section-title">Código de <em>vestimenta</em></h2>
+      <p class="section-desc">Formal · Black Tie. Estos son los tonos que hemos elegido para nuestra paleta de la noche.</p>
+    </div>
+
+    <div class="swatches-row reveal">
+      <div class="fabric fab-1">
+        <div class="fabric-chip"></div>
+        <div class="fabric-info">
+          <div class="fabric-name">Bordeaux</div>
+          <div class="fabric-hex">#3D0A1A</div>
+        </div>
+      </div>
+      <div class="fabric fab-2">
+        <div class="fabric-chip"></div>
+        <div class="fabric-info">
+          <div class="fabric-name">Cognac</div>
+          <div class="fabric-hex">#6B3D2E</div>
+        </div>
+      </div>
+      <div class="fabric fab-3">
+        <div class="fabric-chip"></div>
+        <div class="fabric-info">
+          <div class="fabric-name">Champagne</div>
+          <div class="fabric-hex">#D4AF6B</div>
+        </div>
+      </div>
+      <div class="fabric fab-4">
+        <div class="fabric-chip"></div>
+        <div class="fabric-info">
+          <div class="fabric-name">Noir</div>
+          <div class="fabric-hex">#2A1F1A</div>
+        </div>
+      </div>
+      <div class="fabric fab-5">
+        <div class="fabric-chip"></div>
+        <div class="fabric-info">
+          <div class="fabric-name">Olive</div>
+          <div class="fabric-hex">#4A3F2E</div>
+        </div>
+      </div>
+      <div class="fabric fab-6">
+        <div class="fabric-chip"></div>
+        <div class="fabric-info">
+          <div class="fabric-name">Café au lait</div>
+          <div class="fabric-hex">#856854</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dresscode-notes reveal">
+      <h4>Nota del atelier</h4>
+      <p>«El blanco, el crema y el rosa palo están reservados para la novia.»</p>
+      <p>Damas: vestido largo o cocktail. Caballeros: smoking o traje oscuro con corbata. Se agradece elegir de la paleta de arriba.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RSVP
+       ============================================================ -->
+  <section class="rsvp" id="rsvp">
+    <div class="rsvp-card reveal">
+      <div class="rsvp-eyebrow">Fiche de Confirmation</div>
+      <h2 class="rsvp-title">Confirma tu <em>presencia</em></h2>
+      <p class="rsvp-desc">Por favor, completa esta ficha antes del 30 de septiembre de 2026. Nos ayuda a preparar todo con precisión de sastre.</p>
+
+      <form class="rsvp-form" id="rsvpForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvp-name">Nombre completo</label>
+            <input type="text" id="rsvp-name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="rsvp-phone">Teléfono</label>
+            <input type="tel" id="rsvp-phone" name="phone" required autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>¿Nos acompañarás?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="attend" value="Sí, con gusto" required>
+              <span class="radio-option-label">Oui</span>
+              <span class="radio-option-desc">Ahí estaré</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="attend" value="Lamentablemente no podré">
+              <span class="radio-option-label">Non</span>
+              <span class="radio-option-desc">No podré</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvp-guests">Acompañantes</label>
+            <select id="rsvp-guests" name="guests">
+              <option value="Solo yo">Solo yo</option>
+              <option value="+1 acompañante">+1 acompañante</option>
+              <option value="+2 acompañantes">+2 acompañantes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rsvp-menu">Preferencia de menú</label>
+            <select id="rsvp-menu" name="menu">
+              <option value="Estándar">Estándar</option>
+              <option value="Vegetariano">Vegetariano</option>
+              <option value="Vegano">Vegano</option>
+              <option value="Sin gluten">Sin gluten</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rsvp-message">Mensaje para los novios (opcional)</label>
+          <textarea id="rsvp-message" name="message" rows="2"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Enviar confirmación</button>
+      </form>
+
+      <div class="rsvp-success" id="rsvpSuccess">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 12l3 3 5-6"/>
+        </svg>
+        <h3>Merci beaucoup</h3>
+        <p>Recibimos tu confirmación. Ahora se abrirá WhatsApp para que quede registrada de inmediato.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="footer-monogram">F &amp; N</div>
+    <div class="footer-date">Lima · 24 · 10 · 2026</div>
+
+    <div class="footer-actions">
+      <button class="footer-btn" id="btnShare">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/>
+        </svg>
+        Compartir
+      </button>
+      <button class="footer-btn" id="btnCalendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Agregar al calendario
+      </button>
+      <a href="https://wa.me/51943168115?text=Hola%20Nuestra%20Boda%2C%20me%20encantó%20el%20modelo%20Couture" target="_blank" rel="noopener" class="footer-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.5 14.4c-.3-.15-1.8-.9-2.1-1-.3-.1-.5-.15-.7.15-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.05-.3-.15-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.15-.6.15-.15.3-.4.4-.6.15-.2.2-.35.3-.55.1-.2.05-.4-.05-.55-.1-.15-.7-1.7-1-2.3-.25-.6-.5-.5-.7-.5h-.6c-.2 0-.55.1-.85.4-.3.3-1.1 1.1-1.1 2.7 0 1.6 1.15 3.1 1.3 3.3.15.2 2.25 3.4 5.4 4.75.75.35 1.35.5 1.8.65.75.25 1.45.2 2 .15.6-.1 1.85-.75 2.1-1.5.25-.7.25-1.35.2-1.5-.05-.15-.25-.25-.55-.4z"/>
+          <path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.65 1.4 5.15L2 22l4.95-1.35C8.4 21.5 10.15 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-signature">
+      Diseñado por <a href="https://nuestraboda.com.pe" target="_blank" rel="noopener">Nuestra Boda</a> · Maison F&amp;N · Modèle Nº 09
+    </div>
+  </footer>
+
+  <!-- Audio ambiental -->
+  <button class="audio-toggle" id="audioToggle" aria-label="Reproducir música">
+    <svg id="audioIconPlay" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M8 5v14l11-7z"/>
+    </svg>
+    <svg id="audioIconPause" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+      <rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>
+    </svg>
+  </button>
+  <audio id="audioPlayer" loop preload="none">
+    <source src="" type="audio/mpeg">
+  </audio>
+
+  <canvas id="confetti"></canvas>
+
+  <noscript>
+    <div style="padding:40px;text-align:center;background:var(--wine-deep);color:var(--cream)">
+      Esta invitación funciona mejor con JavaScript activado. Por favor, habilítalo para ver la experiencia completa.
+    </div>
+  </noscript>
+
+  <script>
+  (function(){
+    'use strict';
+
+    // ============================================================
+    // CONFIG
+    // ============================================================
+    const CONFIG = {
+      weddingDate: new Date('2026-10-24T17:00:00-05:00'),
+      brideWhatsapp: '51943168115', // ← Reemplazar con el número real de la novia
+      brideName: 'Fernanda',
+      groomName: 'Nicolás',
+      ceremony: 'Iglesia La Virgen del Pilar, San Isidro',
+      reception: 'Casa Prado, Miraflores'
+    };
+
+    // ============================================================
+    // PRELOADER
+    // ============================================================
+    window.addEventListener('load', function(){
+      setTimeout(function(){
+        const p = document.getElementById('preloader');
+        if (p) p.classList.add('done');
+      }, 2600);
+    });
+
+    // ============================================================
+    // NAV — scroll effect
+    // ============================================================
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }, { passive: true });
+
+    // ============================================================
+    // MENU
+    // ============================================================
+    const menu = document.getElementById('menu');
+    document.getElementById('menuOpen').addEventListener('click', function(){
+      menu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('menuClose').addEventListener('click', function(){
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    document.querySelectorAll('[data-close]').forEach(function(a){
+      a.addEventListener('click', function(){
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ============================================================
+    // COUNTDOWN
+    // ============================================================
+    const cd = {
+      d: document.getElementById('cd-days'),
+      h: document.getElementById('cd-hours'),
+      m: document.getElementById('cd-mins'),
+      s: document.getElementById('cd-secs')
+    };
+
+    function pad(n){ return String(n).padStart(2, '0'); }
+
+    function updateCountdown(){
+      const now = new Date();
+      const diff = CONFIG.weddingDate - now;
+      if (diff <= 0) {
+        cd.d.textContent = '00'; cd.h.textContent = '00';
+        cd.m.textContent = '00'; cd.s.textContent = '00';
+        return;
+      }
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins = Math.floor((diff % 3600000) / 60000);
+      const secs = Math.floor((diff % 60000) / 1000);
+      cd.d.textContent = pad(days);
+      cd.h.textContent = pad(hours);
+      cd.m.textContent = pad(mins);
+      cd.s.textContent = pad(secs);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ============================================================
+    // SCROLL REVEAL
+    // ============================================================
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .15, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal, #storySketch, #threadTimeline').forEach(function(el){
+      io.observe(el);
+    });
+
+    // ============================================================
+    // RADIO GROUP visual state (fallback si no soporta :has())
+    // ============================================================
+    document.querySelectorAll('.radio-group').forEach(function(group){
+      group.addEventListener('change', function(){
+        group.querySelectorAll('.radio-option').forEach(function(opt){
+          const input = opt.querySelector('input');
+          if (input && input.checked) opt.classList.add('checked');
+          else opt.classList.remove('checked');
+        });
+      });
+    });
+
+    // ============================================================
+    // RSVP — envío a WhatsApp
+    // ============================================================
+    const form = document.getElementById('rsvpForm');
+    const success = document.getElementById('rsvpSuccess');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const fd = new FormData(form);
+      const data = {
+        name: fd.get('name'),
+        phone: fd.get('phone'),
+        attend: fd.get('attend'),
+        guests: fd.get('guests'),
+        menu: fd.get('menu'),
+        message: fd.get('message') || '—'
+      };
+
+      const msg =
+        '*Confirmación de asistencia*\n' +
+        '_Boda de ' + CONFIG.brideName + ' & ' + CONFIG.groomName + '_\n' +
+        '\n' +
+        '*Nombre:* ' + data.name + '\n' +
+        '*Teléfono:* ' + data.phone + '\n' +
+        '*¿Asistirá?:* ' + data.attend + '\n' +
+        '*Acompañantes:* ' + data.guests + '\n' +
+        '*Menú:* ' + data.menu + '\n' +
+        '*Mensaje:* ' + data.message;
+
+      const url = 'https://wa.me/' + CONFIG.brideWhatsapp + '?text=' + encodeURIComponent(msg);
+
+      // Mostrar success primero
+      form.style.display = 'none';
+      success.classList.add('show');
+
+      // Confetti dorado
+      launchConfetti();
+
+      // Abrir WhatsApp en nueva pestaña
+      setTimeout(function(){
+        window.open(url, '_blank');
+      }, 900);
+
+      // OPCIONAL: aquí puedes agregar fetch() a un Google Sheets vía webhook
+      // fetch('TU_ENDPOINT', { method: 'POST', body: JSON.stringify(data) });
+    });
+
+    // ============================================================
+    // CONFETTI — copos dorados sobre bordeaux
+    // ============================================================
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let confettiParticles = [];
+    let confettiActive = false;
+
+    function resizeCanvas(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function launchConfetti(){
+      const colors = ['#d4af6b', '#f0d090', '#c9a05e', '#f5ecdd', '#d9a5a0'];
+      for (let i = 0; i < 120; i++){
+        confettiParticles.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * canvas.height,
+          w: 6 + Math.random() * 8,
+          h: 2 + Math.random() * 4,
+          vy: 2 + Math.random() * 3,
+          vx: -1 + Math.random() * 2,
+          rot: Math.random() * Math.PI * 2,
+          vr: -.1 + Math.random() * .2,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+      if (!confettiActive){
+        confettiActive = true;
+        requestAnimationFrame(animateConfetti);
+      }
+    }
+
+    function animateConfetti(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confettiParticles = confettiParticles.filter(function(p){
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vr;
+        p.vy += .03;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+        return p.y < canvas.height + 20;
+      });
+      if (confettiParticles.length > 0){
+        requestAnimationFrame(animateConfetti);
+      } else {
+        confettiActive = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    // ============================================================
+    // AUDIO TOGGLE
+    // ============================================================
+    const audio = document.getElementById('audioPlayer');
+    const audioBtn = document.getElementById('audioToggle');
+    const iconPlay = document.getElementById('audioIconPlay');
+    const iconPause = document.getElementById('audioIconPause');
+
+    audioBtn.addEventListener('click', function(){
+      // Si no hay src configurado, mostramos un aviso amable
+      if (!audio.currentSrc && !audio.querySelector('source').src){
+        alert('El audio ambiente aún no está configurado. Agrega el src del MP3 en el <source> del audio.');
+        return;
+      }
+      if (audio.paused){
+        audio.play().catch(function(){});
+        iconPlay.style.display = 'none';
+        iconPause.style.display = '';
+      } else {
+        audio.pause();
+        iconPlay.style.display = '';
+        iconPause.style.display = 'none';
+      }
+    });
+
+    // ============================================================
+    // SHARE
+    // ============================================================
+    document.getElementById('btnShare').addEventListener('click', async function(){
+      const shareData = {
+        title: CONFIG.brideName + ' & ' + CONFIG.groomName,
+        text: 'Estás invitado a nuestra boda — 24 de octubre de 2026',
+        url: window.location.href
+      };
+      if (navigator.share){
+        try { await navigator.share(shareData); } catch(e){}
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          alert('Enlace copiado al portapapeles ✨');
+        } catch(e){
+          prompt('Copia este enlace:', window.location.href);
+        }
+      }
+    });
+
+    // ============================================================
+    // CALENDAR — genera un archivo .ics
+    // ============================================================
+    document.getElementById('btnCalendar').addEventListener('click', function(){
+      const start = '20261024T170000';
+      const end = '20261025T040000';
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Nuestra Boda//Modelo Couture//ES',
+        'BEGIN:VEVENT',
+        'UID:' + Date.now() + '@nuestraboda.com.pe',
+        'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z',
+        'DTSTART;TZID=America/Lima:' + start,
+        'DTEND;TZID=America/Lima:' + end,
+        'SUMMARY:Boda de ' + CONFIG.brideName + ' & ' + CONFIG.groomName,
+        'DESCRIPTION:Ceremonia en ' + CONFIG.ceremony + '. Recepción en ' + CONFIG.reception + '.',
+        'LOCATION:' + CONFIG.ceremony,
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'boda-fernanda-nicolas.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    // ============================================================
+    // IMG ERROR HANDLING (por si más adelante se agregan imágenes reales)
+    // ============================================================
+    document.querySelectorAll('img').forEach(function(img){
+      img.addEventListener('error', function(){
+        img.style.display = 'none';
+      });
+    });
+
+  })();
+  </script>
+</body>
+</html>

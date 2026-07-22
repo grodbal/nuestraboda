@@ -1,0 +1,24 @@
+INSTRUCCIONES RÁPIDAS
+
+1. Sube todo este paquete completo a Netlify, Vercel o tu hosting.
+2. El archivo principal es index.html.
+3. Si vas a usar música, coloca tu archivo MP3 en esta misma carpeta con el nombre:
+   cancion.mp3
+
+Estructura esperada:
+- index.html
+- cancion.mp3
+- img/
+  - cabecera_botanica_superior.svg
+  - footer_botanico_inferior.svg
+  - icono_pareja_bailando.svg
+  - icono_salon_reino_testigos_jehova.svg
+  - icono_recepcion.svg
+  - icono_cena.svg
+  - icono_novios_abrazandose.svg
+  - icono_aros_noviazgo.svg
+  - icono_caja_regalo.svg
+
+Nota:
+El HTML aún conserva la referencia a img/monograma-final.png.
+Si tienes ese monograma, colócalo dentro de la carpeta img.

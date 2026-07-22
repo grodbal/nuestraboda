@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11458174849"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'AW-11458174849');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efe6d3">
+  <meta name="description" content="Melanie & Victor — Herbario de una historia de amor. 17 de octubre de 2026, Lima.">
+  <title>Melanie & Victor — HERBARIO | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,460;0,9..144,560;1,9..144,420;1,9..144,500&family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+  /* ============================================================
+     MODELO 03 — "HERBARIO"
+     Concepto: el amor documentado como un cuaderno de herbario.
+     Papel envejecido, especímenes prensados, tinta botánica,
+     una enredadera que crece con el scroll y une cada capítulo.
+     ============================================================ */
+
+  :root{
+    --parchment:#efe6d3;      /* papel */
+    --parchment-deep:#e2d4b3; /* papel en sombra / paneles */
+    --parchment-dark:#d8c9a3;
+    --ink:#232b1f;            /* tinta principal */
+    --moss:#33452f;           /* verde musgo — estructura */
+    --fern:#5c7a52;           /* verde helecho — acentos vivos */
+    --sage:#93a683;           /* verde salvia — líneas suaves */
+    --ochre:#b4863c;          /* ocre — acento cálido, uso mínimo */
+    --berry:#7a3b4a;          /* baya — acento raro, confirmación */
+    --line:rgba(35,43,31,.16);
+    --line-strong:rgba(35,43,31,.32);
+    --shadow:0 24px 60px rgba(35,43,31,.14);
+
+    --font-display:'Fraunces',Georgia,'Times New Roman',serif;
+    --font-label:'Space Mono','Courier New',monospace;
+    --font-body:'Work Sans',Arial,Helvetica,sans-serif;
+
+    --ease:cubic-bezier(.22,.8,.24,1);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-weight:300;
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body.is-locked{overflow:hidden}
+
+  ::selection{background:var(--fern);color:var(--parchment)}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  a{color:inherit;text-decoration:none}
+  button,input,select,textarea{font:inherit;color:inherit}
+  button{cursor:pointer;background:none;border:0;padding:0;touch-action:manipulation}
+  :focus-visible{outline:2px solid var(--berry);outline-offset:3px}
+
+  /* textura de papel sutil */
+  .paper-grain{
+    position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+    background-image:
+      radial-gradient(rgba(35,43,31,.05) 1px,transparent 1px),
+      radial-gradient(rgba(35,43,31,.03) 1px,transparent 1px);
+    background-size:3px 3px,7px 7px;
+    background-position:0 0,1.5px 1.5px;
+  }
+
+  /* ---------- tipografía utilitaria ---------- */
+  .label{
+    font-family:var(--font-label);
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--fern);
+  }
+  .label--dim{color:rgba(35,43,31,.5)}
+
+  .headline{
+    margin:0;font-family:var(--font-display);font-optical-sizing:auto;font-weight:460;
+    font-size:clamp(40px,6.6vw,92px);line-height:1;letter-spacing:-.01em;
+  }
+  .headline em{font-style:italic;font-weight:420;color:var(--berry)}
+
+  .prose{margin:0;max-width:540px;color:#4b5344;font-size:16px;font-weight:300}
+
+  .scene{position:relative;padding:120px 6vw 120px 11vw}
+  .frame{width:min(1180px,100%);margin:0 auto}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.is-on{opacity:1;transform:none}
+  .reveal--d1{transition-delay:.1s}
+  .reveal--d2{transition-delay:.2s}
+  .reveal--d3{transition-delay:.3s}
+
+  /* ============================================================
+     LA ENREDADERA — elemento firma: crece con el scroll
+     ============================================================ */
+  .vine{
+    position:fixed;left:0;top:0;bottom:0;width:64px;z-index:40;
+    display:flex;align-items:center;pointer-events:none;
+  }
+  .vine svg{width:100%;height:100%}
+  .vine__path{
+    fill:none;stroke:var(--fern);stroke-width:2;stroke-linecap:round;
+    stroke-dasharray:3000;stroke-dashoffset:3000;
+  }
+  .vine__leaf{opacity:0;transform-origin:center;transition:opacity .5s ease,transform .5s var(--ease)}
+  .vine__leaf.is-on{opacity:1;transform:scale(1)}
+  @media (max-width:900px){ .vine{display:none} }
+
+  /* ============================================================
+     PRELOADER — germinación de una semilla
+     ============================================================ */
+  .germinate{
+    position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+    background:var(--parchment);
+    transition:opacity .8s ease,visibility .8s ease;
+  }
+  .germinate.is-done{opacity:0;visibility:hidden}
+  .germinate__stage{position:relative;width:140px;height:170px}
+  .germinate__soil{
+    position:absolute;bottom:0;left:0;right:0;height:14px;
+    background:var(--moss);border-radius:2px 2px 6px 6px;
+  }
+  .germinate__stem{
+    position:absolute;bottom:14px;left:50%;width:2px;height:0;background:var(--fern);
+    transform:translateX(-50%);
+    animation:grow 2.6s var(--ease) forwards;
+  }
+  .germinate__leaf{
+    position:absolute;bottom:14px;left:50%;width:34px;height:20px;
+    background:var(--sage);border-radius:0 100% 0 100%;
+    opacity:0;transform:translate(-50%,0) scale(.3) rotate(-10deg);
+  }
+  .germinate__leaf--l{animation:leafL 1.4s var(--ease) 1.4s forwards}
+  .germinate__leaf--r{animation:leafR 1.4s var(--ease) 1.7s forwards;border-radius:100% 0 100% 0}
+  @keyframes grow{to{height:118px}}
+  @keyframes leafL{to{opacity:1;transform:translate(-98%,-88px) scale(1) rotate(-24deg)}}
+  @keyframes leafR{to{opacity:1;transform:translate(-2%,-100px) scale(1) rotate(24deg)}}
+  .germinate__tag{
+    position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);white-space:nowrap;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--moss);
+  }
+
+  /* ============================================================
+     BARRA + MENÚ ÍNDICE
+     ============================================================ */
+  .bar{
+    position:fixed;inset:0 0 auto;z-index:70;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 6vw 22px 11vw;
+  }
+  .bar__brand{font-family:var(--font-display);font-style:italic;font-size:21px;color:var(--moss)}
+  .bar__menu{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--moss);
+    padding:10px 16px;border:1px solid var(--line-strong);border-radius:99px;
+    background:rgba(239,230,211,.7);backdrop-filter:blur(6px);
+  }
+
+  .index{
+    position:fixed;inset:0;z-index:69;background:var(--parchment-deep);
+    display:grid;place-items:center;
+    clip-path:circle(0% at calc(100% - 8vw) 34px);
+    transition:clip-path .7s var(--ease);
+  }
+  .index.is-open{clip-path:circle(150% at calc(100% - 8vw) 34px)}
+  .index nav{display:grid;gap:4px;text-align:left;width:min(560px,86vw)}
+  .index__item{
+    display:flex;align-items:baseline;gap:20px;
+    padding:14px 8px;border-bottom:1px solid var(--line);
+    font-family:var(--font-display);font-size:clamp(24px,4.4vw,38px);color:var(--ink);
+    opacity:0;transform:translateX(-16px);
+    transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s,padding-left .3s var(--ease);
+  }
+  .index.is-open .index__item{opacity:1;transform:none}
+  .index__item:hover{color:var(--berry);padding-left:18px}
+  .index__item small{font-family:var(--font-label);font-size:11px;color:var(--fern);letter-spacing:.1em}
+  .index__foot{
+    position:absolute;bottom:6vh;left:0;right:0;text-align:center;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--moss);
+  }
+
+  /* ============================================================
+     PORTADA — CUBIERTA DE HERBARIO
+     ============================================================ */
+  .hero{
+    position:relative;min-height:100svh;display:grid;place-items:center;
+    padding:130px 8vw 90px 13vw;overflow:hidden;
+    background:
+      radial-gradient(60% 50% at 82% 8%,rgba(180,134,60,.14),transparent 60%),
+      radial-gradient(70% 60% at 12% 100%,rgba(51,69,47,.12),transparent 65%);
+  }
+  .hero__frame{
+    position:relative;width:100%;max-width:920px;
+    border:1.5px solid var(--line-strong);
+    padding:clamp(36px,6vw,80px) clamp(24px,6vw,64px);
+    text-align:center;
+  }
+  .hero__frame::before,.hero__frame::after{
+    content:"";position:absolute;width:26px;height:26px;border:1.5px solid var(--ochre);
+  }
+  .hero__frame::before{top:-1.5px;left:-1.5px;border-right:0;border-bottom:0}
+  .hero__frame::after{bottom:-1.5px;right:-1.5px;border-left:0;border-top:0}
+
+  .hero__eyebrow{font-family:var(--font-label);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--fern)}
+  .hero__names{
+    margin:24px 0 0;font-family:var(--font-display);font-weight:460;
+    font-size:clamp(52px,10vw,128px);line-height:.98;color:var(--ink);
+  }
+  .hero__names em{display:block;font-style:italic;font-weight:420;color:var(--berry);font-size:.5em;margin:8px 0}
+
+  .hero__specimen{
+    margin:36px auto 0;width:min(72%,300px);aspect-ratio:4/5;position:relative;
+  }
+  .hero__specimen img{filter:sepia(.22) saturate(.85) contrast(1.02)}
+  .hero__specimen::after{
+    content:"";position:absolute;inset:0;border:1px solid var(--line-strong);
+    box-shadow:inset 0 0 0 8px var(--parchment);
+  }
+  .hero__tape{
+    position:absolute;width:52px;height:22px;background:rgba(239,230,211,.75);
+    border:1px solid var(--line);box-shadow:0 4px 10px rgba(35,43,31,.1);
+  }
+  .hero__tape--tl{top:-11px;left:-14px;transform:rotate(-38deg)}
+  .hero__tape--br{bottom:-11px;right:-14px;transform:rotate(-38deg)}
+
+  .hero__meta{
+    margin-top:34px;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;
+    font-family:var(--font-label);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--moss);
+  }
+  .hero__meta b{color:var(--berry)}
+
+  .hero__sound{
+    margin-top:30px;display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--moss);
+  }
+  .eq{display:flex;align-items:flex-end;gap:3px;height:12px}
+  .eq i{width:2px;height:4px;background:currentColor}
+  .is-playing .eq i{animation:eq .9s ease-in-out infinite}
+  .is-playing .eq i:nth-child(2){animation-delay:.15s}
+  .is-playing .eq i:nth-child(3){animation-delay:.3s}
+  @keyframes eq{0%,100%{height:4px}50%{height:12px}}
+
+  .hero__scroll{
+    position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+    font-family:var(--font-label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--moss);
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+  }
+  .hero__scroll::after{content:"";width:1px;height:34px;background:var(--line-strong);animation:scrollLine 2.2s var(--ease) infinite}
+  @keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ============================================================
+     MARQUESINA BOTÁNICA
+     ============================================================ */
+  .marquee{border-block:1px solid var(--line);padding:14px 0;overflow:hidden;background:var(--parchment-deep)}
+  .marquee__track{display:flex;gap:50px;width:max-content;animation:marquee 32s linear infinite}
+  .marquee__track span{
+    font-family:var(--font-label);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--moss);
+    display:flex;align-items:center;gap:50px;white-space:nowrap;
+  }
+  .marquee__track b{color:var(--berry)}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* ============================================================
+     SINOPSIS / NOTA DE PRENSA
+     ============================================================ */
+  .press{text-align:left}
+  .press__text{
+    margin:30px 0 0;font-family:var(--font-display);font-style:italic;font-weight:420;
+    font-size:clamp(24px,3.2vw,38px);line-height:1.5;max-width:820px;color:var(--moss);
+  }
+  .press__foot{margin-top:34px;font-family:var(--font-label);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(35,43,31,.5)}
+
+  /* ============================================================
+     CUATRO ESTACIONES — la historia
+     ============================================================ */
+  .seasons{background:var(--parchment-deep)}
+  .seasons__head{margin-bottom:80px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px}
+
+  .season{
+    display:grid;grid-template-columns:.9fr 1.1fr;gap:6vw;align-items:center;
+    padding-block:64px;border-top:1px solid var(--line);
+  }
+  .season:last-of-type{border-bottom:1px solid var(--line)}
+  .season:nth-of-type(even) .season__media{order:2}
+
+  .season__media{position:relative;aspect-ratio:4/5;max-height:600px}
+  .season__media img{filter:sepia(.18) saturate(.9)}
+  .season__media::after{content:"";position:absolute;inset:0;border:1px solid var(--line-strong);box-shadow:inset 0 0 0 7px var(--parchment-deep)}
+  .season__tag{
+    position:absolute;top:-12px;left:18px;z-index:2;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.14em;color:var(--ink);
+    background:var(--parchment);padding:6px 12px;border:1px solid var(--line-strong);
+  }
+
+  .season__num{font-family:var(--font-display);font-style:italic;font-size:clamp(15px,1.5vw,18px);color:var(--berry);letter-spacing:.06em}
+  .season__title{margin:12px 0 22px;font-family:var(--font-display);font-weight:460;font-size:clamp(30px,3.8vw,52px);line-height:1.05}
+  .season__year{
+    display:inline-block;margin-bottom:20px;font-family:var(--font-label);font-size:11px;letter-spacing:.16em;
+    color:var(--moss);border:1px solid var(--line-strong);padding:6px 12px;
+  }
+
+  /* ============================================================
+     FLORACIÓN — CUENTA REGRESIVA
+     ============================================================ */
+  .bloom{text-align:center;position:relative}
+  .bloom__date{margin:26px 0 56px;font-family:var(--font-display);font-weight:460;font-size:clamp(36px,6.4vw,84px);line-height:1.05}
+  .bloom__date em{font-style:italic;color:var(--berry)}
+  .count{display:flex;justify-content:center;gap:clamp(16px,4.6vw,58px);flex-wrap:wrap}
+  .count__unit{min-width:80px}
+  .count__num{font-family:var(--font-display);font-size:clamp(42px,7vw,84px);line-height:1;font-variant-numeric:tabular-nums;color:var(--moss)}
+  .count__label{margin-top:10px;font-family:var(--font-label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(35,43,31,.55)}
+  .count__sep{align-self:flex-start;font-family:var(--font-display);font-style:italic;font-size:clamp(30px,5vw,60px);color:var(--sage);line-height:1.2}
+  .bloom__note{margin-top:52px;font-family:var(--font-label);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(35,43,31,.55)}
+
+  /* ============================================================
+     HERBARIO — GALERÍA DE ESPECÍMENES
+     ============================================================ */
+  .herbarium{background:var(--parchment-deep)}
+  .herbarium__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:70px}
+  .plate{
+    position:relative;background:var(--parchment);border:1px solid var(--line-strong);
+    padding:16px 16px 46px;transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+  }
+  .plate:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:var(--shadow)}
+  .plate:nth-child(even):hover{transform:translateY(-6px) rotate(.6deg)}
+  .plate__photo{aspect-ratio:3/4;overflow:hidden}
+  .plate__photo img{filter:sepia(.22) saturate(.85)}
+  .plate__num{
+    position:absolute;top:-10px;left:14px;background:var(--moss);color:var(--parchment);
+    font-family:var(--font-label);font-size:10px;letter-spacing:.1em;padding:4px 9px;
+  }
+  .plate__label{
+    position:absolute;left:16px;right:16px;bottom:14px;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.06em;color:var(--moss);
+    display:flex;justify-content:space-between;gap:8px;
+  }
+  .plate--quote{
+    display:grid;place-items:center;text-align:center;padding:26px 22px 26px;aspect-ratio:3/4;
+  }
+  .plate--quote p{margin:0;font-family:var(--font-display);font-style:italic;font-size:clamp(18px,1.8vw,23px);color:var(--berry);line-height:1.4}
+
+  /* ============================================================
+     CULTIVO — ITINERARIO
+     ============================================================ */
+  .cultivo{background:var(--parchment)}
+  .cultivo__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:7vw;align-items:start}
+  .cultivo__intro{position:sticky;top:120px}
+  .cultivo__list{border-top:1px solid var(--line-strong)}
+  .cultivo__row{
+    display:grid;grid-template-columns:104px 1fr auto;gap:24px;align-items:baseline;
+    padding:28px 6px;border-bottom:1px solid var(--line);
+    transition:background .4s,padding-left .4s var(--ease);
+  }
+  .cultivo__row:hover{background:rgba(147,166,131,.12);padding-left:14px}
+  .cultivo__time{font-family:var(--font-label);font-size:13px;color:var(--berry)}
+  .cultivo__event{margin:0;font-family:var(--font-display);font-weight:460;font-size:clamp(21px,2.4vw,29px)}
+  .cultivo__desc{margin:6px 0 0;font-size:13.5px;color:#5c644f;max-width:400px}
+  .cultivo__tag{font-family:var(--font-label);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--fern)}
+
+  /* ============================================================
+     INVERNADEROS — UBICACIONES
+     ============================================================ */
+  .greenhouses{background:var(--parchment-deep)}
+  .gh__grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:66px}
+  .gh{
+    position:relative;border:1px solid var(--line-strong);padding:40px 34px 36px;
+    background:linear-gradient(180deg,rgba(147,166,131,.1),transparent);
+    transition:border-color .4s;
+  }
+  .gh:hover{border-color:var(--berry)}
+  .gh__tag{font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--berry)}
+  .gh h3{margin:18px 0 8px;font-family:var(--font-display);font-weight:460;font-size:clamp(26px,2.8vw,36px)}
+  .gh__addr{margin:0 0 8px;color:#5c644f;font-size:14px}
+  .gh__hour{font-family:var(--font-label);font-size:12px;color:var(--moss)}
+  .gh__cta{
+    display:inline-flex;align-items:center;gap:10px;margin-top:26px;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);
+    border-bottom:1px solid var(--fern);padding-bottom:6px;transition:gap .3s var(--ease),color .3s;
+  }
+  .gh__cta:hover{gap:14px;color:var(--berry)}
+  .gh__cta::after{content:"→"}
+
+  /* ============================================================
+     NOTAS DE CULTIVO — guía para invitados
+     ============================================================ */
+  .notes{background:var(--parchment)}
+  .notes__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:66px}
+  .note{border-top:1px solid var(--line-strong);padding-top:28px}
+  .note__slug{font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--berry)}
+  .note h3{margin:16px 0 12px;font-family:var(--font-display);font-weight:460;font-size:24px}
+  .note p{margin:0;color:#5c644f;font-size:14px}
+  .swatches{display:flex;gap:9px;margin-top:20px}
+  .swatches i{width:28px;height:28px;border-radius:50%;border:1px solid var(--line-strong);transition:transform .3s var(--ease)}
+  .swatches i:hover{transform:translateY(-4px)}
+  .gift-row{display:flex;flex-direction:column;gap:9px;margin-top:20px}
+  .gift-chip{
+    font-family:var(--font-label);font-size:11px;border:1px solid var(--line);padding:11px 14px;
+    display:flex;justify-content:space-between;gap:12px;color:var(--ink);
+  }
+  .gift-chip span{color:#5c644f}
+
+  /* ============================================================
+     SEMILLA — RSVP (SOBRE DE SEMILLAS)
+     ============================================================ */
+  .seed{background:var(--parchment-deep);overflow:hidden}
+  .seed__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:7vw;align-items:center}
+
+  .packet{
+    position:relative;background:var(--parchment);color:var(--ink);
+    border:1.5px solid var(--line-strong);padding:44px 38px 38px;
+  }
+  .packet::before,.packet::after{content:"";position:absolute;width:22px;height:22px;border:1.5px solid var(--ochre)}
+  .packet::before{top:-1.5px;left:-1.5px;border-right:0;border-bottom:0}
+  .packet::after{bottom:-1.5px;right:-1.5px;border-left:0;border-top:0}
+
+  .packet__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:24px}
+  .packet__title{margin:0;font-family:var(--font-display);font-weight:460;font-size:28px}
+  .packet__no{font-family:var(--font-label);font-size:10px;color:rgba(35,43,31,.5)}
+
+  .field{margin-bottom:20px}
+  .field label{display:block;margin-bottom:8px;font-family:var(--font-label);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(35,43,31,.6)}
+  .field input,.field select,.field textarea{
+    width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-strong);
+    padding:10px 2px;font-size:15px;color:var(--ink);border-radius:0;transition:border-color .3s;
+  }
+  .field textarea{resize:vertical;min-height:60px}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--berry)}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23232b1f'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center}
+
+  .seats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+  .seat{
+    border:1px solid var(--line-strong);padding:15px 12px;text-align:center;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    transition:background .3s,color .3s,border-color .3s;
+  }
+  .seat[aria-pressed="true"]{background:var(--moss);color:var(--parchment);border-color:var(--moss)}
+
+  .packet__submit{
+    width:100%;margin-top:6px;padding:17px;background:var(--moss);color:var(--parchment);
+    font-family:var(--font-label);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    transition:letter-spacing .4s var(--ease),background .3s;
+  }
+  .packet__submit:hover{letter-spacing:.32em;background:var(--ink)}
+  .packet__stub{
+    display:flex;justify-content:space-between;gap:12px;padding-top:30px;margin-top:28px;
+    border-top:1px dashed var(--line-strong);
+    font-family:var(--font-label);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(35,43,31,.55);
+  }
+
+  .packet--done{display:none;text-align:center}
+  .packet--done .packet__title{font-size:32px;margin-bottom:10px}
+  .packet--done p{color:#5c644f;max-width:380px;margin:0 auto}
+  .packet--done .stamp{
+    display:inline-block;margin-top:26px;padding:11px 20px;border:2px solid var(--moss);border-radius:4px;
+    font-family:var(--font-label);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--moss);
+    transform:rotate(-3deg);
+  }
+
+  .seed__deadline{
+    display:inline-flex;align-items:center;gap:12px;margin-top:32px;
+    font-family:var(--font-label);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--berry);
+    border:1px solid var(--berry);padding:12px 18px;
+  }
+  .seed__actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px}
+  .btn-line{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);
+    border:1px solid var(--line-strong);padding:14px 20px;transition:border-color .3s,color .3s;
+  }
+  .btn-line:hover{border-color:var(--berry);color:var(--berry)}
+
+  .confetti{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+  .confetti i{position:absolute;top:-4vh;width:9px;height:9px;background:var(--fern);opacity:.85;border-radius:0 100% 0 100%;animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:0}}
+
+  /* ============================================================
+     HERBARIO FINAL — CRÉDITOS
+     ============================================================ */
+  .colophon{background:var(--parchment);text-align:center;padding-block:140px 90px;position:relative}
+  .colophon__roll{display:grid;gap:42px;max-width:620px;margin:0 auto 80px}
+  .credit p{margin:0;font-family:var(--font-display);font-weight:460;font-size:clamp(20px,2.6vw,30px)}
+  .colophon__fin{font-family:var(--font-display);font-style:italic;font-weight:420;font-size:clamp(64px,12vw,140px);color:var(--moss)}
+  .colophon__after{margin-top:20px;font-family:var(--font-label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(35,43,31,.5)}
+
+  .footer{
+    border-top:1px solid var(--line);padding:32px 6vw 32px 11vw;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-family:var(--font-label);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(35,43,31,.55);
+  }
+  .footer b{color:var(--berry)}
+
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);
+    background:var(--moss);color:var(--parchment);
+    font-family:var(--font-label);font-size:11px;letter-spacing:.1em;padding:14px 22px;z-index:90;
+    opacity:0;pointer-events:none;transition:opacity .4s,transform .4s var(--ease);
+  }
+  .toast.is-on{opacity:1;transform:translate(-50%,0)}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width:1024px){
+    .cultivo__grid{grid-template-columns:1fr;gap:54px}
+    .cultivo__intro{position:static}
+    .seed__grid{grid-template-columns:1fr;gap:64px}
+    .herbarium__grid{grid-template-columns:repeat(2,1fr)}
+    .notes__grid{grid-template-columns:1fr 1fr}
+  }
+
+  @media (max-width:760px){
+    .scene{padding:88px 6vw}
+    .bar{padding:18px 6vw}
+    .hero{padding:120px 6vw 70px}
+    .hero__names{font-size:clamp(46px,14vw,80px)}
+    .season{grid-template-columns:1fr;gap:32px;padding-block:52px}
+    .season:nth-of-type(even) .season__media{order:0}
+    .gh__grid{grid-template-columns:1fr}
+    .notes__grid{grid-template-columns:1fr}
+    .herbarium__grid{grid-template-columns:1fr 1fr;gap:14px}
+    .cultivo__row{grid-template-columns:70px 1fr;row-gap:6px}
+    .cultivo__tag{grid-column:2}
+    .count__unit{min-width:60px}
+    .count__sep{display:none}
+    .packet{padding:36px 24px 32px}
+    .seats{grid-template-columns:1fr}
+    .colophon__roll{gap:32px}
+  }
+
+  @media (max-width:380px){
+    .hero__names{font-size:42px}
+    .headline{font-size:36px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    html{scroll-behavior:auto}
+    .reveal,.vine__leaf{opacity:1 !important;transform:none !important}
+    .marquee__track{animation:none}
+    .vine__path{stroke-dashoffset:0 !important}
+  }
+  </style>
+
+  <noscript>
+    <style>
+      body.is-locked{overflow:auto}
+      .germinate{display:none}
+      .reveal{opacity:1 !important;transform:none !important}
+      .vine{display:none}
+    </style>
+  </noscript>
+</head>
+<body class="is-locked">
+
+  <div class="paper-grain" aria-hidden="true"></div>
+
+  <!-- ENREDADERA FIRMA -->
+  <div class="vine" aria-hidden="true">
+    <svg viewBox="0 0 64 3000" preserveAspectRatio="none">
+      <path id="vinePath" class="vine__path" d="M32 0 C10 200 54 400 32 600 C10 800 54 1000 32 1200 C10 1400 54 1600 32 1800 C10 2000 54 2200 32 2400 C10 2600 54 2800 32 3000"/>
+    </svg>
+  </div>
+
+  <!-- PRELOADER -->
+  <div class="germinate" id="germinate" aria-hidden="true">
+    <div class="germinate__stage">
+      <div class="germinate__soil"></div>
+      <div class="germinate__stem"></div>
+      <div class="germinate__leaf germinate__leaf--l"></div>
+      <div class="germinate__leaf germinate__leaf--r"></div>
+      <span class="germinate__tag">Nuestra Boda · Melanie & Victor</span>
+    </div>
+  </div>
+
+  <!-- BARRA -->
+  <header class="bar">
+    <a class="bar__brand" href="#inicio">Herbario M·V</a>
+    <button class="bar__menu" id="menuBtn" aria-expanded="false" aria-controls="indexMenu">Índice</button>
+  </header>
+
+  <!-- MENÚ ÍNDICE -->
+  <div class="index" id="indexMenu">
+    <nav aria-label="Índice del herbario">
+      <a class="index__item" style="transition-delay:.08s" href="#sinopsis"><small>I.</small> Nota de prensa</a>
+      <a class="index__item" style="transition-delay:.13s" href="#estaciones"><small>II.</small> Cuatro estaciones</a>
+      <a class="index__item" style="transition-delay:.18s" href="#floracion"><small>III.</small> Floración</a>
+      <a class="index__item" style="transition-delay:.23s" href="#especimenes"><small>IV.</small> Especímenes</a>
+      <a class="index__item" style="transition-delay:.28s" href="#cultivo"><small>V.</small> Cultivo</a>
+      <a class="index__item" style="transition-delay:.33s" href="#invernaderos"><small>VI.</small> Invernaderos</a>
+      <a class="index__item" style="transition-delay:.38s" href="#notas"><small>VII.</small> Notas de cultivo</a>
+      <a class="index__item" style="transition-delay:.43s" href="#semilla"><small>VIII.</small> Tu semilla</a>
+    </nav>
+    <p class="index__foot">Melanie &amp; Victor · 17.10.2026 · Lima</p>
+  </div>
+
+  <!-- PORTADA -->
+  <section class="hero" id="inicio">
+    <div class="hero__frame">
+      <p class="hero__eyebrow">Herbario de una historia · Nº 001</p>
+      <h1 class="hero__names">Melanie<em>&amp;</em>Victor</h1>
+
+      <div class="hero__specimen">
+        <span class="hero__tape hero__tape--tl" aria-hidden="true"></span>
+        <img src="foto-portada.png" alt="Melanie y Victor">
+        <span class="hero__tape hero__tape--br" aria-hidden="true"></span>
+      </div>
+
+      <p class="hero__meta">
+        <span>Espécimen recolectado</span>
+        <b>17 · Octubre · 2026</b>
+        <span>Lima, Perú</span>
+      </p>
+
+      <button class="hero__sound" id="soundBtn" aria-pressed="false">
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span id="soundLabel">Sonido de campo</span>
+      </button>
+    </div>
+    <p class="hero__scroll">Continúa el herbario</p>
+  </section>
+
+  <audio id="audio" src="cancion.mp3" loop preload="none"></audio>
+
+  <!-- MARQUESINA -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Floración prevista <b>17 de octubre</b> Cosecha única <b>Lima · Perú</b> Confirma tu semilla antes del <b>20 de septiembre</b></span>
+      <span>Floración prevista <b>17 de octubre</b> Cosecha única <b>Lima · Perú</b> Confirma tu semilla antes del <b>20 de septiembre</b></span>
+    </div>
+  </div>
+
+  <!-- SINOPSIS -->
+  <section class="scene press" id="sinopsis">
+    <div class="frame">
+      <span class="label reveal">Nota de prensa</span>
+      <p class="press__text reveal reveal--d1">
+        Todo herbario empieza con una recolección accidental. Esta se dio una noche
+        cualquiera, en una cafetería sin nombre, entre dos personas que no buscaban nada
+        y encontraron un espécimen que decidieron cultivar durante siete años.
+      </p>
+      <p class="press__foot reveal reveal--d2">Clasificación: Amor perenne · Origen: Lima, Perú · Estado: en floración</p>
+    </div>
+  </section>
+
+  <!-- CUATRO ESTACIONES -->
+  <section class="scene seasons" id="estaciones">
+    <div class="frame">
+      <div class="seasons__head">
+        <div>
+          <span class="label reveal">La historia</span>
+          <h2 class="headline reveal reveal--d1">Cuatro <em>estaciones</em></h2>
+        </div>
+        <p class="prose reveal reveal--d2">Como toda planta perenne, esta historia atravesó sus propias estaciones antes de florecer.</p>
+      </div>
+
+      <article class="season">
+        <div class="season__media reveal">
+          <span class="season__tag">Espécimen 01</span>
+          <img src="foto-1.png" alt="Melanie y Victor en primavera de su historia">
+        </div>
+        <div class="season__copy reveal reveal--d1">
+          <span class="season__num">Primavera</span>
+          <h3 class="season__title">La siembra</h3>
+          <span class="season__year">Lima — 2019</span>
+          <p class="prose">Un café que ninguno pidió, una conversación que ninguno quiso terminar.
+          Victor llegó tarde; Melanie fingió no darse cuenta. Ahí quedó plantada la primera semilla.</p>
+        </div>
+      </article>
+
+      <article class="season">
+        <div class="season__media reveal">
+          <span class="season__tag">Espécimen 02</span>
+          <img src="foto-2.png" alt="Melanie y Victor en verano de su historia">
+        </div>
+        <div class="season__copy reveal reveal--d1">
+          <span class="season__num">Verano</span>
+          <h3 class="season__title">El crecimiento</h3>
+          <span class="season__year">2019 — 2023</span>
+          <p class="prose">Mudanzas, viajes, planes que salieron mal y salieron perfectos.
+          Aprendieron que amar es regar algo todos los días aunque no se vea crecer.</p>
+        </div>
+      </article>
+
+      <article class="season">
+        <div class="season__media reveal">
+          <span class="season__tag">Espécimen 03</span>
+          <img src="foto-3.png" alt="Melanie y Victor en otoño de su historia">
+        </div>
+        <div class="season__copy reveal reveal--d1">
+          <span class="season__num">Otoño</span>
+          <h3 class="season__title">La raíz</h3>
+          <span class="season__year">2023 — 2025</span>
+          <p class="prose">Las estaciones difíciles también alimentan la raíz.
+          Lo que parecía caer en realidad se transformaba en abono para lo que vendría.</p>
+        </div>
+      </article>
+
+      <article class="season">
+        <div class="season__media reveal">
+          <span class="season__tag">Espécimen 04</span>
+          <img src="foto-4.png" alt="La propuesta de matrimonio">
+        </div>
+        <div class="season__copy reveal reveal--d1">
+          <span class="season__num">Invierno</span>
+          <h3 class="season__title">La floración</h3>
+          <span class="season__year">Diciembre — 2025</span>
+          <p class="prose">Una pregunta de cuatro palabras y una respuesta de una sola.
+          La flor que tardó siete años en abrir. Están invitados a verla florecer del todo.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FLORACIÓN — CUENTA REGRESIVA -->
+  <section class="scene bloom" id="floracion">
+    <div class="frame">
+      <span class="label reveal">Floración</span>
+      <h2 class="bloom__date reveal reveal--d1">Sábado <em>17</em> de octubre, <em>2026</em></h2>
+
+      <div class="count reveal reveal--d2" role="timer" aria-label="Cuenta regresiva para la boda">
+        <div class="count__unit"><div class="count__num" id="cDays">000</div><div class="count__label">Días</div></div>
+        <div class="count__sep">·</div>
+        <div class="count__unit"><div class="count__num" id="cHours">00</div><div class="count__label">Horas</div></div>
+        <div class="count__sep">·</div>
+        <div class="count__unit"><div class="count__num" id="cMins">00</div><div class="count__label">Minutos</div></div>
+        <div class="count__sep">·</div>
+        <div class="count__unit"><div class="count__num" id="cSecs">00</div><div class="count__label">Segundos</div></div>
+      </div>
+
+      <p class="bloom__note reveal reveal--d3">Cosecha única · No habrá segunda floración</p>
+    </div>
+  </section>
+
+  <!-- ESPECÍMENES — GALERÍA -->
+  <section class="scene herbarium" id="especimenes">
+    <div class="frame">
+      <span class="label reveal">Colección</span>
+      <h2 class="headline reveal reveal--d1">Especímenes <em>recolectados</em></h2>
+
+      <div class="herbarium__grid">
+        <figure class="plate reveal">
+          <span class="plate__num">001</span>
+          <div class="plate__photo"><img loading="lazy" decoding="async" src="foto-1.png" alt="Espécimen uno"></div>
+          <figcaption class="plate__label"><span>Primavera</span><span>2019</span></figcaption>
+        </figure>
+        <figure class="plate reveal reveal--d1">
+          <span class="plate__num">002</span>
+          <div class="plate__photo"><img loading="lazy" decoding="async" src="foto-2.png" alt="Espécimen dos"></div>
+          <figcaption class="plate__label"><span>Verano</span><span>2021</span></figcaption>
+        </figure>
+        <div class="plate plate--quote reveal reveal--d2">
+          <p>“El amor no se cultiva solo,<br>se cultiva a diario.”</p>
+        </div>
+        <figure class="plate reveal reveal--d1">
+          <span class="plate__num">003</span>
+          <div class="plate__photo"><img loading="lazy" decoding="async" src="foto-3.png" alt="Espécimen tres"></div>
+          <figcaption class="plate__label"><span>Otoño</span><span>2024</span></figcaption>
+        </figure>
+        <figure class="plate reveal reveal--d2">
+          <span class="plate__num">004</span>
+          <div class="plate__photo"><img loading="lazy" decoding="async" src="foto-4.png" alt="Espécimen cuatro"></div>
+          <figcaption class="plate__label"><span>Invierno</span><span>2025</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CULTIVO — ITINERARIO -->
+  <section class="scene cultivo" id="cultivo">
+    <div class="frame cultivo__grid">
+      <div class="cultivo__intro">
+        <span class="label reveal">Cultivo</span>
+        <h2 class="headline reveal reveal--d1">Calendario <em>de siembra</em></h2>
+        <p class="prose reveal reveal--d2" style="margin-top:24px">
+          Como toda buena cosecha, cada momento de esta jornada tiene su tiempo exacto.
+          Recomendamos llegar con anticipación a la ceremonia.
+        </p>
+      </div>
+
+      <div class="cultivo__list reveal">
+        <div class="cultivo__row">
+          <span class="cultivo__time">4:00 PM</span>
+          <div><h3 class="cultivo__event">Apertura del jardín</h3><p class="cultivo__desc">Recepción de invitados y ubicación en la ceremonia.</p></div>
+          <span class="cultivo__tag">Invernadero 1</span>
+        </div>
+        <div class="cultivo__row">
+          <span class="cultivo__time">4:30 PM</span>
+          <div><h3 class="cultivo__event">Ceremonia</h3><p class="cultivo__desc">El momento de la floración. Se ruega silencio y celulares en modo avión.</p></div>
+          <span class="cultivo__tag">Invernadero 1</span>
+        </div>
+        <div class="cultivo__row">
+          <span class="cultivo__time">6:30 PM</span>
+          <div><h3 class="cultivo__event">Recepción</h3><p class="cultivo__desc">Cóctel de bienvenida entre jardines.</p></div>
+          <span class="cultivo__tag">Invernadero 2</span>
+        </div>
+        <div class="cultivo__row">
+          <span class="cultivo__time">8:00 PM</span>
+          <div><h3 class="cultivo__event">Cena &amp; brindis</h3><p class="cultivo__desc">Palabras de los novios y su círculo más cercano.</p></div>
+          <span class="cultivo__tag">Invernadero 2</span>
+        </div>
+        <div class="cultivo__row">
+          <span class="cultivo__time">9:30 PM</span>
+          <div><h3 class="cultivo__event">Primer baile</h3><p class="cultivo__desc">La flor abriéndose por completo.</p></div>
+          <span class="cultivo__tag">Invernadero 2</span>
+        </div>
+        <div class="cultivo__row">
+          <span class="cultivo__time">10:00 PM</span>
+          <div><h3 class="cultivo__event">Fiesta</h3><p class="cultivo__desc">Celebración extendida hasta bien entrada la noche.</p></div>
+          <span class="cultivo__tag">Invernadero 2</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVERNADEROS — UBICACIONES -->
+  <section class="scene greenhouses" id="invernaderos">
+    <div class="frame">
+      <span class="label reveal">Ubicaciones</span>
+      <h2 class="headline reveal reveal--d1">Los <em>invernaderos</em></h2>
+
+      <div class="gh__grid">
+        <article class="gh reveal">
+          <span class="gh__tag">Invernadero 1 — Ceremonia</span>
+          <h3>Parroquia Santa María Reina</h3>
+          <p class="gh__addr">Av. Santa Cruz 900, San Isidro — Lima</p>
+          <span class="gh__hour">4:30 PM</span><br>
+          <a class="gh__cta" href="https://maps.google.com/?q=Parroquia+Santa+Maria+Reina+San+Isidro+Lima" target="_blank" rel="noopener">Cómo llegar</a>
+        </article>
+
+        <article class="gh reveal reveal--d1">
+          <span class="gh__tag">Invernadero 2 — Recepción</span>
+          <h3>Hacienda Los Ficus</h3>
+          <p class="gh__addr">Km 28.5 Carretera a Cieneguilla — Lima</p>
+          <span class="gh__hour">6:30 PM</span><br>
+          <a class="gh__cta" href="https://maps.google.com/?q=Cieneguilla+Lima+Peru" target="_blank" rel="noopener">Cómo llegar</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTAS DE CULTIVO -->
+  <section class="scene notes" id="notas">
+    <div class="frame">
+      <span class="label reveal">Notas de cultivo</span>
+      <h2 class="headline reveal reveal--d1">Guía para el <em>invitado</em></h2>
+
+      <div class="notes__grid">
+        <div class="note reveal">
+          <span class="note__slug">Vestuario</span>
+          <h3>Elegante de jardín</h3>
+          <p>Tonos tierra y verdes suaves para acompañar el entorno.
+          El blanco queda reservado para la novia.</p>
+          <div class="swatches" aria-label="Paleta sugerida">
+            <i style="background:#33452f" title="Musgo"></i>
+            <i style="background:#5c7a52" title="Helecho"></i>
+            <i style="background:#b4863c" title="Ocre"></i>
+            <i style="background:#7a3b4a" title="Baya"></i>
+            <i style="background:#93a683" title="Salvia"></i>
+          </div>
+        </div>
+
+        <div class="note reveal reveal--d1">
+          <span class="note__slug">Mesa de regalos</span>
+          <h3>Lluvia de sobres</h3>
+          <p>Su presencia es el regalo más importante. Si desean acompañarnos también
+          en la próxima siembra —nuestra luna de miel—, habrá un buzón disponible.</p>
+          <div class="gift-row">
+            <span class="gift-chip">BCP Soles <span>193-2845671-0-99</span></span>
+            <span class="gift-chip">Interbank USD <span>200-3009845123</span></span>
+          </div>
+        </div>
+
+        <div class="note reveal reveal--d2">
+          <span class="note__slug">En el jardín</span>
+          <h3>Sin flashes, con presencia</h3>
+          <p>La ceremonia será registrada por nuestro equipo fotográfico.
+          Les pedimos vivirla sin celulares: compartiremos cada espécimen después.
+          Habrá movilidad de retorno a Lima a la 1:00 AM.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEMILLA — RSVP -->
+  <section class="scene seed" id="semilla">
+    <div class="frame seed__grid">
+      <div class="seed__side">
+        <span class="label reveal">Confirmación</span>
+        <h2 class="headline reveal reveal--d1">Reserva tu <em>semilla</em></h2>
+        <p class="prose reveal reveal--d2">
+          Cada asistente es una semilla que queremos ver florecer junto a nosotros.
+          Confírmanos si podrás acompañarnos en la cosecha.
+        </p>
+        <span class="seed__deadline reveal reveal--d3">Confirmar antes del 20 · 09 · 2026</span>
+        <div class="seed__actions reveal reveal--d3">
+          <a class="btn-line" id="calBtn" href="#" target="_blank" rel="noopener">Agregar al calendario</a>
+          <button class="btn-line" id="shareBtn" type="button">Compartir invitación</button>
+        </div>
+      </div>
+
+      <div>
+        <form class="packet" id="ticket" novalidate>
+          <div class="packet__head">
+            <h3 class="packet__title">Sobre de semillas</h3>
+            <span class="packet__no">Lote 17·10·26</span>
+          </div>
+
+          <div class="field">
+            <label for="fName">Nombre y apellido</label>
+            <input id="fName" name="nombre" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="fGuests">Semillas a tu nombre</label>
+            <select id="fGuests" name="acompanantes">
+              <option value="1">1 — Solo yo</option>
+              <option value="2">2 — Con acompañante</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 personas</option>
+            </select>
+          </div>
+
+          <div class="seats" role="group" aria-label="¿Asistirás?">
+            <button type="button" class="seat" data-value="si" aria-pressed="true">Confirmo mi floración</button>
+            <button type="button" class="seat" data-value="no" aria-pressed="false">No podré asistir</button>
+          </div>
+
+          <div class="field">
+            <label for="fMsg">Mensaje para los novios (opcional)</label>
+            <textarea id="fMsg" name="mensaje" rows="2"></textarea>
+          </div>
+
+          <button class="packet__submit" type="submit">Confirmar semilla</button>
+
+          <div class="packet__stub">
+            <span>Espécimen · Fila A</span>
+            <span>Melanie &amp; Victor</span>
+            <span>Lima · Perú</span>
+          </div>
+        </form>
+
+        <div class="packet packet--done" id="ticketDone" aria-live="polite">
+          <h3 class="packet__title" id="doneTitle">¡Semilla confirmada!</h3>
+          <p id="doneText">Tu lugar ya está sembrado. Nos vemos el 17 de octubre para verla florecer.</p>
+          <span class="stamp" id="doneStamp">Cosecha confirmada</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERBARIO FINAL — CRÉDITOS -->
+  <section class="colophon" id="creditos">
+    <div class="colophon__roll">
+      <div class="credit reveal"><span class="label label--dim">Ejemplares</span><p>Melanie Torres &amp; Victor Salazar</p></div>
+      <div class="credit reveal"><span class="label label--dim">Recolección</span><p>Siete años de campo</p></div>
+      <div class="credit reveal"><span class="label label--dim">Cuidado y cultivo</span><p>Nuestras familias</p></div>
+      <div class="credit reveal"><span class="label label--dim">Testigos de la floración</span><p>Ustedes, nuestros invitados</p></div>
+      <div class="credit reveal"><span class="label label--dim">Nota de campo</span><p>La canción que sonaba aquella primera noche</p></div>
+    </div>
+    <div class="colophon__fin reveal">Fin del herbario</div>
+    <p class="colophon__after reveal reveal--d1">… el jardín apenas empieza</p>
+  </section>
+
+  <footer class="footer">
+    <span>Melanie &amp; Victor · 17.10.2026</span>
+    <span>Una invitación de <b>nuestraboda.com.pe</b></span>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+  /* ============================================================
+     MODELO 03 — HERBARIO · JavaScript puro, sin dependencias
+     ============================================================ */
+  (function(){
+    "use strict";
+    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- Placeholder si falta una foto ---------- */
+    function placeholder(label){
+      var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'>"+
+        "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>"+
+        "<stop offset='0' stop-color='%23e2d4b3'/><stop offset='1' stop-color='%23d8c9a3'/></linearGradient></defs>"+
+        "<rect width='800' height='1000' fill='url(%23g)'/>"+
+        "<text x='400' y='490' text-anchor='middle' font-family='Georgia' font-style='italic' font-size='50' fill='%237a3b4a'>A %26 M</text>"+
+        "<text x='400' y='545' text-anchor='middle' font-family='monospace' letter-spacing='6' font-size='15' fill='%2333452f'>"+label+"</text>"+
+        "</svg>";
+      return "data:image/svg+xml;utf8," + svg;
+    }
+    document.querySelectorAll("img").forEach(function(img, i){
+      img.addEventListener("error", function(){
+        img.src = placeholder("ESPECIMEN " + (i === 0 ? "PORTADA" : "0" + i));
+        img.style.objectFit = "cover";
+      }, { once:true });
+    });
+
+    /* ---------- Preloader: germinación ---------- */
+    var germinate = document.getElementById("germinate");
+    function endGerminate(){
+      germinate.classList.add("is-done");
+      document.body.classList.remove("is-locked");
+    }
+    if(prefersReduced){ endGerminate(); }
+    else { setTimeout(endGerminate, 2900); }
+
+    /* ---------- Revelados por scroll ---------- */
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("is-on"); io.unobserve(e.target); }
+      });
+    }, { threshold:.16, rootMargin:"0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+    /* ---------- Enredadera: crece con el scroll ---------- */
+    var vinePath = document.getElementById("vinePath");
+    var vineLen = vinePath.getTotalLength ? vinePath.getTotalLength() : 3000;
+    vinePath.style.strokeDasharray = vineLen;
+    vinePath.style.strokeDashoffset = vineLen;
+
+    var ticking = false;
+    function onScroll(){
+      if(ticking) return; ticking = true;
+      requestAnimationFrame(function(){
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        var f = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+        if(!prefersReduced){
+          vinePath.style.strokeDashoffset = vineLen * (1 - f);
+        }
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive:true });
+    onScroll();
+
+    /* ---------- Menú índice ---------- */
+    var menuBtn = document.getElementById("menuBtn");
+    var indexMenu = document.getElementById("indexMenu");
+    function toggleMenu(force){
+      var open = typeof force === "boolean" ? force : !indexMenu.classList.contains("is-open");
+      indexMenu.classList.toggle("is-open", open);
+      menuBtn.setAttribute("aria-expanded", open);
+      menuBtn.textContent = open ? "Cerrar" : "Índice";
+      document.body.classList.toggle("is-locked", open);
+    }
+    menuBtn.addEventListener("click", function(){ toggleMenu(); });
+    indexMenu.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){ toggleMenu(false); });
+    });
+    document.addEventListener("keydown", function(e){ if(e.key === "Escape") toggleMenu(false); });
+
+    /* ---------- Sonido de campo ---------- */
+    var audio = document.getElementById("audio");
+    var soundBtn = document.getElementById("soundBtn");
+    var soundLabel = document.getElementById("soundLabel");
+    soundBtn.addEventListener("click", function(){
+      if(audio.paused){
+        audio.play().then(function(){
+          soundBtn.classList.add("is-playing");
+          soundBtn.setAttribute("aria-pressed","true");
+          soundLabel.textContent = "Sonando";
+        }).catch(function(){
+          showToast("Agrega cancion.mp3 a la carpeta para activar el sonido");
+        });
+      } else {
+        audio.pause();
+        soundBtn.classList.remove("is-playing");
+        soundBtn.setAttribute("aria-pressed","false");
+        soundLabel.textContent = "Sonido de campo";
+      }
+    });
+
+    /* ---------- Cuenta regresiva ---------- */
+    var target = new Date("2026-10-17T16:30:00-05:00").getTime();
+    var cD = document.getElementById("cDays"), cH = document.getElementById("cHours"),
+        cM = document.getElementById("cMins"), cS = document.getElementById("cSecs");
+    function pad(v,l){ v=String(v); while(v.length<l) v="0"+v; return v; }
+    function updateCount(){
+      var diff = Math.max(0, target - Date.now());
+      cD.textContent = pad(Math.floor(diff/864e5), 3);
+      cH.textContent = pad(Math.floor(diff/36e5)%24, 2);
+      cM.textContent = pad(Math.floor(diff/6e4)%60, 2);
+      cS.textContent = pad(Math.floor(diff/1e3)%60, 2);
+    }
+    updateCount(); setInterval(updateCount, 1000);
+
+    /* ---------- RSVP ---------- */
+    var ticket = document.getElementById("ticket");
+    var ticketDone = document.getElementById("ticketDone");
+    var attending = "si";
+    ticket.querySelectorAll(".seat").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        attending = btn.dataset.value;
+        ticket.querySelectorAll(".seat").forEach(function(b){
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+      });
+    });
+
+    ticket.addEventListener("submit", function(e){
+      e.preventDefault();
+      var name = document.getElementById("fName").value.trim();
+      if(!name){ showToast("Escribe tu nombre para confirmar"); document.getElementById("fName").focus(); return; }
+
+      /* Integración opcional con Google Sheets / Apps Script:
+         reemplaza ENDPOINT por tu URL y descomenta el fetch.
+      var ENDPOINT = "";
+      fetch(ENDPOINT, { method:"POST", body:new FormData(ticket) });
+      */
+
+      var first = name.split(" ")[0];
+      if(attending === "si"){
+        document.getElementById("doneTitle").textContent = "¡Semilla confirmada, " + first + "!";
+        document.getElementById("doneText").textContent =
+          "Tu lugar ya está sembrado. Nos vemos el 17 de octubre para verla florecer.";
+        document.getElementById("doneStamp").textContent = "Cosecha confirmada";
+        if(!prefersReduced) confetti();
+      } else {
+        document.getElementById("doneTitle").textContent = "Te extrañaremos, " + first;
+        document.getElementById("doneText").textContent =
+          "Gracias por avisarnos. Guardaremos un espécimen de este día solo para contártelo después.";
+        document.getElementById("doneStamp").textContent = "Presente en el corazón";
+      }
+      ticket.style.display = "none";
+      ticketDone.style.display = "block";
+      ticketDone.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block:"center" });
+    });
+
+    /* ---------- Confeti sutil (hojas) ---------- */
+    function confetti(){
+      var wrap = document.createElement("div");
+      wrap.className = "confetti";
+      var colors = ["#5c7a52","#93a683","#b4863c"];
+      for(var i=0;i<40;i++){
+        var p = document.createElement("i");
+        p.style.left = Math.random()*100 + "vw";
+        p.style.background = colors[i % colors.length];
+        p.style.animationDuration = (2.6 + Math.random()*2.2) + "s";
+        p.style.animationDelay = (Math.random()*0.6) + "s";
+        p.style.transform = "rotate(" + Math.random()*360 + "deg)";
+        wrap.appendChild(p);
+      }
+      document.body.appendChild(wrap);
+      setTimeout(function(){ wrap.remove(); }, 5600);
+    }
+
+    /* ---------- Calendario ---------- */
+    var calBtn = document.getElementById("calBtn");
+    calBtn.href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+      "&text=" + encodeURIComponent("Boda de Melanie & Victor") +
+      "&dates=20261017T213000Z/20261018T060000Z" +
+      "&details=" + encodeURIComponent("Ceremonia 4:30 PM · Recepción 6:30 PM. Un herbario de amor, cosecha única.") +
+      "&location=" + encodeURIComponent("Lima, Perú");
+
+    /* ---------- Compartir ---------- */
+    var shareBtn = document.getElementById("shareBtn");
+    shareBtn.addEventListener("click", function(){
+      var data = {
+        title: "Melanie & Victor — Nuestra Boda",
+        text: "Estás invitado a ver florecer nuestra historia. 17 de octubre de 2026, Lima.",
+        url: location.href
+      };
+      if(navigator.share){ navigator.share(data).catch(function(){}); }
+      else if(navigator.clipboard){
+        navigator.clipboard.writeText(data.url).then(function(){ showToast("Enlace copiado para compartir"); });
+      }
+    });
+
+    /* ---------- Toast ---------- */
+    var toast = document.getElementById("toast"), toastTimer;
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("is-on");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function(){ toast.classList.remove("is-on"); }, 3200);
+    }
+  })();
+  </script>
+</body>
+</html>

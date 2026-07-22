@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1026">
+  <meta name="description" content="Camila & Andrés — Bajo las mismas estrellas. 6 de marzo de 2027, Lima.">
+  <title>Camila & Andrés — CONSTELACIÓN | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+  /* ============================================================
+     MODELO 07 — "CONSTELACIÓN"
+     Concepto: dos personas bajo el mismo cielo. Índigo profundo,
+     plata y un acento de luz estelar fría. Estrellas que titilan,
+     líneas que conectan fotografías como una carta astral, y una
+     cuenta regresiva narrada como fase lunar.
+     ============================================================ */
+
+  :root{
+    --midnight:#0b1026;
+    --midnight-deep:#060812;
+    --panel:#f4f1e9;
+    --panel-deep:#e9e3d1;
+    --silver:#d7dced;
+    --silver-dim:#8b93b0;
+    --nova:#8fb1e0;         /* acento frío — luz estelar */
+    --nova-soft:rgba(143,177,224,.5);
+    --ink:#1c1c1c;
+    --line:rgba(215,220,237,.14);
+    --line-strong:rgba(215,220,237,.28);
+    --line-dark:rgba(28,28,28,.14);
+    --line-dark-strong:rgba(28,28,28,.28);
+
+    --font-display:'Spectral',Georgia,'Times New Roman',serif;
+    --font-label:'DM Mono','Courier New',monospace;
+
+    --ease:cubic-bezier(.22,.8,.24,1);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--midnight);color:var(--silver);
+    font-family:var(--font-display);font-weight:300;line-height:1.7;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+  body.is-locked{overflow:hidden}
+  ::selection{background:var(--nova);color:var(--midnight-deep)}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  a{color:inherit;text-decoration:none}
+  button,input,select,textarea{font:inherit;color:inherit}
+  button{cursor:pointer;background:none;border:0;padding:0}
+  :focus-visible{outline:2px solid var(--nova);outline-offset:3px}
+
+  .tag{font-family:var(--font-label);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--nova)}
+  .tag--dark{color:#8a6a3f}
+  .tag--dim{color:var(--silver-dim)}
+
+  .display{margin:0;font-family:var(--font-display);font-weight:300;font-size:clamp(38px,6vw,84px);line-height:1.05;letter-spacing:-.005em}
+  .display em{font-style:italic;color:var(--nova)}
+  .on-panel .display em{color:#7a5a30}
+
+  .prose{margin:0;max-width:520px;color:var(--silver-dim);font-size:16px;font-weight:300}
+  .on-panel .prose{color:#5c5748}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .reveal.is-on{opacity:1;transform:none}
+  .reveal--d1{transition-delay:.12s}
+  .reveal--d2{transition-delay:.24s}
+  .reveal--d3{transition-delay:.36s}
+
+  .scene{position:relative;padding:130px 6vw}
+  .frame{width:min(1200px,100%);margin:0 auto}
+  .on-panel{background:var(--panel);color:var(--ink)}
+
+  /* ---------- campo de estrellas ---------- */
+  .stars{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+  .star{position:absolute;border-radius:50%;background:var(--silver);opacity:.25;animation:twinkle 4s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.85}}
+
+  /* ============================================================
+     PRELOADER — ESTRELLA NACIENTE
+     ============================================================ */
+  .star-load{
+    position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+    background:var(--midnight-deep);transition:opacity .9s ease,visibility .9s ease;
+  }
+  .star-load.is-done{opacity:0;visibility:hidden}
+  .star-load__core{position:relative;width:10px;height:10px;border-radius:50%;background:var(--nova);box-shadow:0 0 18px 4px var(--nova-soft)}
+  .star-load__ray{
+    position:absolute;top:50%;left:50%;width:1px;height:0;background:linear-gradient(var(--nova),transparent);
+    transform-origin:top;animation:rayGrow 1.6s var(--ease) forwards;
+  }
+  @keyframes rayGrow{to{height:70px}}
+  .star-load__tag{
+    position:absolute;bottom:9vh;font-family:var(--font-label);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver-dim);
+  }
+
+  /* ============================================================
+     BARRA + CARTA ASTRAL
+     ============================================================ */
+  .bar{
+    position:fixed;inset:0 0 auto;z-index:70;
+    display:flex;align-items:center;justify-content:space-between;padding:22px 6vw;
+    mix-blend-mode:screen;
+  }
+  .bar__brand{font-family:var(--font-display);font-style:italic;font-size:20px;color:var(--silver)}
+  .bar__menu{
+    font-family:var(--font-label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--silver);
+    padding:10px 16px;border:1px solid var(--line-strong);
+  }
+
+  .chart{
+    position:fixed;inset:0;z-index:69;background:var(--midnight-deep);
+    display:grid;place-items:center;
+    clip-path:circle(0% at calc(100% - 7vw) 30px);
+    transition:clip-path .65s var(--ease);
+  }
+  .chart.is-open{clip-path:circle(150% at calc(100% - 7vw) 30px)}
+  .chart nav{display:grid;gap:4px;text-align:center}
+  .chart__item{
+    display:flex;align-items:baseline;gap:18px;justify-content:center;
+    font-family:var(--font-display);font-weight:300;font-size:clamp(24px,4.6vw,42px);padding:9px 20px;color:var(--silver);
+    opacity:0;transform:translateY(18px);transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s;
+  }
+  .chart.is-open .chart__item{opacity:1;transform:none}
+  .chart__item:hover{color:var(--nova);font-style:italic}
+  .chart__item small{font-family:var(--font-label);font-size:11px;color:var(--nova)}
+  .chart__foot{
+    position:absolute;bottom:6vh;left:0;right:0;text-align:center;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver-dim);
+  }
+
+  /* ============================================================
+     PORTADA
+     ============================================================ */
+  .hero{
+    position:relative;min-height:100svh;display:grid;place-items:center;
+    padding:140px 6vw 90px;overflow:hidden;
+    background:radial-gradient(70% 60% at 50% 20%,rgba(143,177,224,.14),transparent 65%),var(--midnight);
+  }
+  .hero__content{position:relative;z-index:2;text-align:center}
+  .hero__kicker{font-family:var(--font-label);font-size:11px;letter-spacing:.36em;text-transform:uppercase;color:var(--nova)}
+  .hero__names{
+    margin:22px 0 0;font-family:var(--font-display);font-weight:300;
+    font-size:clamp(56px,10.5vw,152px);line-height:.98;color:var(--silver);
+  }
+  .hero__names em{font-style:italic;color:var(--nova)}
+
+  .hero__moon{margin:36px auto 0;width:56px;height:56px;position:relative}
+  .hero__moon svg{width:100%;height:100%}
+
+  .hero__meta{
+    margin-top:28px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap;
+    font-family:var(--font-label);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--silver-dim);
+  }
+  .hero__meta b{color:var(--nova)}
+
+  .hero__sound{
+    margin-top:32px;display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--silver-dim);
+  }
+  .hero__sound:hover{color:var(--nova)}
+  .eq{display:flex;align-items:flex-end;gap:3px;height:12px}
+  .eq i{width:2px;height:4px;background:currentColor}
+  .is-playing .eq i{animation:eq .9s ease-in-out infinite}
+  .is-playing .eq i:nth-child(2){animation-delay:.15s}
+  .is-playing .eq i:nth-child(3){animation-delay:.3s}
+  @keyframes eq{0%,100%{height:4px}50%{height:12px}}
+
+  .hero__scroll{
+    position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--silver-dim);
+  }
+
+  /* ============================================================
+     TICKER
+     ============================================================ */
+  .marquee{border-block:1px solid var(--line);padding:14px 0;overflow:hidden;background:var(--midnight-deep)}
+  .marquee__track{display:flex;gap:48px;width:max-content;animation:marquee 30s linear infinite}
+  .marquee__track span{
+    display:flex;align-items:center;gap:48px;white-space:nowrap;
+    font-family:var(--font-label);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--silver-dim);
+  }
+  .marquee__track b{color:var(--nova)}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* ============================================================
+     NOTA
+     ============================================================ */
+  .note-scene .note__text{
+    margin:0 auto;max-width:800px;text-align:center;font-family:var(--font-display);font-style:italic;
+    font-size:clamp(23px,3vw,36px);line-height:1.55;
+  }
+  .note-scene .note__text em{color:#8a6a3f}
+  .note-scene .note__foot{margin-top:36px;text-align:center;font-family:var(--font-label);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8a8570}
+
+  /* ============================================================
+     TRES CONSTELACIONES — historia
+     ============================================================ */
+  .chapters{background:var(--midnight)}
+  .chapters__head{margin-bottom:80px;text-align:center}
+  .chapters__grid{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
+  .chapters__lines{position:absolute;top:34px;left:0;right:0;height:2px;z-index:0;pointer-events:none}
+  .chapters__lines svg{width:100%;height:100%;overflow:visible}
+  .chapters__lines path{fill:none;stroke:var(--nova-soft);stroke-width:1;stroke-dasharray:6 8;opacity:0;transition:opacity 1s ease}
+  .chapters__lines path.is-on{opacity:1}
+
+  .chapter-node{position:relative;text-align:center;z-index:1}
+  .chapter-node__dot{
+    width:10px;height:10px;border-radius:50%;background:var(--nova);margin:0 auto 30px;
+    box-shadow:0 0 0 6px rgba(143,177,224,.12);
+  }
+  .chapter-node__media{
+    width:170px;height:170px;border-radius:50%;overflow:hidden;margin:0 auto 26px;
+    border:1px solid var(--line-strong);
+  }
+  .chapter-node__media img{filter:grayscale(.35) contrast(1.05) brightness(.95)}
+  .chapter-node__num{font-family:var(--font-label);font-size:11px;letter-spacing:.2em;color:var(--nova);text-transform:uppercase}
+  .chapter-node__title{margin:12px 0 12px;font-family:var(--font-display);font-weight:300;font-size:clamp(22px,2.4vw,28px)}
+  .chapter-node__year{display:block;margin-bottom:14px;font-family:var(--font-label);font-size:10px;letter-spacing:.16em;color:var(--silver-dim)}
+  .chapter-node p{margin:0;color:var(--silver-dim);font-size:14px;max-width:280px;margin-inline:auto}
+
+  @media (max-width:900px){
+    .chapters__grid{grid-template-columns:1fr;gap:60px}
+    .chapters__lines{display:none}
+  }
+
+  /* ============================================================
+     CUENTA LUNAR
+     ============================================================ */
+  .lunar{background:var(--midnight-deep);text-align:center;position:relative;overflow:hidden}
+  .lunar__moon{margin:34px auto 0;width:clamp(120px,18vw,190px);position:relative}
+  .lunar__moon svg{width:100%;height:100%}
+  .lunar__date{margin-top:34px;font-family:var(--font-display);font-weight:300;font-size:clamp(30px,5vw,60px);line-height:1.1}
+  .lunar__date em{font-style:italic;color:var(--nova)}
+
+  .count{margin-top:50px;display:flex;justify-content:center;gap:clamp(16px,4.6vw,56px);flex-wrap:wrap}
+  .count__unit{min-width:80px}
+  .count__num{font-family:var(--font-display);font-weight:300;font-size:clamp(36px,6vw,64px);line-height:1;font-variant-numeric:tabular-nums;color:var(--silver)}
+  .count__label{margin-top:8px;font-family:var(--font-label);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--silver-dim)}
+  .lunar__note{margin-top:52px;font-family:var(--font-label);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--silver-dim)}
+
+  /* ============================================================
+     CÚMULO — GALERÍA CONECTADA
+     ============================================================ */
+  .cluster{background:var(--midnight)}
+  .cluster__head{margin-bottom:70px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px}
+  .cluster__field{position:relative;padding:20px 0 60px}
+  .cluster__lines{position:absolute;inset:0;z-index:0}
+  .cluster__lines svg{width:100%;height:100%}
+  .cluster__lines path{fill:none;stroke:var(--nova-soft);stroke-width:1;stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 1.6s var(--ease)}
+  .cluster__lines path.is-on{stroke-dashoffset:0}
+
+  .cluster__grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+  .node{text-align:center}
+  .node__media{
+    width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;
+    border:1px solid var(--line-strong);transition:transform .5s var(--ease),border-color .5s;
+  }
+  .node__media img{filter:grayscale(.35) contrast(1.05)}
+  .node:hover .node__media{transform:scale(1.05);border-color:var(--nova)}
+  .node__cap{margin-top:14px;font-family:var(--font-label);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--silver-dim)}
+  @media (max-width:820px){
+    .cluster__grid{grid-template-columns:repeat(2,1fr);gap:34px}
+    .cluster__lines{display:none}
+  }
+
+  /* ============================================================
+     CARTA ASTRAL DE LA NOCHE — itinerario
+     ============================================================ */
+  .agenda{background:var(--panel);color:var(--ink)}
+  .agenda__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:6vw;align-items:start}
+  .agenda__intro{position:sticky;top:118px}
+  .agenda__list{border-top:1px solid var(--line-dark-strong)}
+  .agenda__row{
+    display:grid;grid-template-columns:100px 1fr auto;gap:22px;align-items:baseline;
+    padding:26px 6px;border-bottom:1px solid var(--line-dark);
+    transition:background .35s,padding-left .35s var(--ease);
+  }
+  .agenda__row:hover{background:rgba(143,177,224,.08);padding-left:14px}
+  .agenda__time{font-family:var(--font-label);font-size:13px;color:#7a5a30}
+  .agenda__event{margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(20px,2.2vw,27px)}
+  .agenda__tag{font-family:var(--font-label);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#8a8570}
+  @media (max-width:900px){ .agenda__grid{grid-template-columns:1fr;gap:44px} .agenda__intro{position:static} }
+
+  /* ============================================================
+     COORDENADAS — ubicaciones
+     ============================================================ */
+  .coords{background:var(--midnight)}
+  .coords__grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:66px}
+  .coord{position:relative;padding:40px 34px 36px;border:1px solid var(--line);transition:border-color .4s}
+  .coord:hover{border-color:var(--nova)}
+  .coord__tag{font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--nova)}
+  .coord h3{margin:18px 0 8px;font-family:var(--font-display);font-weight:300;font-size:clamp(24px,2.6vw,32px)}
+  .coord p{margin:0 0 8px;color:var(--silver-dim);font-size:14px}
+  .coord__hour{font-family:var(--font-label);font-size:12px;color:var(--silver)}
+  .coord a{
+    display:inline-flex;align-items:center;gap:10px;margin-top:24px;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--silver);
+    border-bottom:1px solid var(--nova);padding-bottom:6px;transition:color .3s,gap .3s var(--ease);
+  }
+  .coord a:hover{color:var(--nova);gap:16px}
+  .coord a::after{content:"—"}
+  @media (max-width:640px){ .coords__grid{grid-template-columns:1fr} }
+
+  /* ============================================================
+     GUÍA DEL OBSERVADOR — notas
+     ============================================================ */
+  .guide{background:var(--panel);color:var(--ink)}
+  .guide__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:66px}
+  .note{border-top:1px solid var(--line-dark-strong);padding-top:28px}
+  .note__slug{font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#7a5a30}
+  .note h3{margin:16px 0 12px;font-family:var(--font-display);font-weight:400;font-size:23px}
+  .note p{margin:0;color:#5c5748;font-size:14px}
+  .swatches{display:flex;gap:9px;margin-top:20px}
+  .swatches i{width:26px;height:26px;border-radius:50%;border:1px solid var(--line-dark-strong)}
+  .gift-row{display:flex;flex-direction:column;gap:9px;margin-top:20px}
+  .gift-chip{
+    font-family:var(--font-label);font-size:11px;border:1px solid var(--line-dark);padding:11px 14px;
+    display:flex;justify-content:space-between;gap:12px;color:var(--ink);
+  }
+  .gift-chip span{color:#7c7862}
+  @media (max-width:820px){ .guide__grid{grid-template-columns:1fr 1fr} }
+  @media (max-width:560px){ .guide__grid{grid-template-columns:1fr} }
+
+  /* ============================================================
+     RESERVA TU LUGAR — RSVP
+     ============================================================ */
+  .rsvp{background:var(--midnight-deep);overflow:hidden}
+  .rsvp__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:6vw;align-items:center}
+
+  .card{position:relative;background:var(--panel);color:var(--ink);padding:46px 40px 40px}
+  .card::before,.card::after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--nova)}
+  .card::before{top:14px;left:14px}
+  .card::after{bottom:14px;right:14px}
+  .card__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:24px}
+  .card__title{margin:0;font-family:var(--font-display);font-weight:400;font-size:27px}
+  .card__no{font-family:var(--font-label);font-size:10px;color:#8a8570}
+
+  .field{margin-bottom:19px}
+  .field label{display:block;margin-bottom:8px;font-family:var(--font-label);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#8a8570}
+  .field input,.field select,.field textarea{
+    width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-dark-strong);
+    padding:9px 2px;font-size:15px;color:var(--ink);border-radius:0;transition:border-color .3s;
+  }
+  .field textarea{resize:vertical;min-height:56px}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#7a5a30}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%231c1c1c'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center}
+
+  .seats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+  .seat{border:1px solid var(--line-dark-strong);padding:14px 10px;text-align:center;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    transition:background .3s,color .3s,border-color .3s}
+  .seat[aria-pressed="true"]{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+
+  .card__submit{
+    width:100%;margin-top:6px;padding:16px;background:var(--ink);color:var(--panel);
+    font-family:var(--font-label);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    transition:letter-spacing .4s var(--ease),background .3s;
+  }
+  .card__submit:hover{letter-spacing:.34em;background:#000}
+  .card__stub{
+    display:flex;justify-content:space-between;gap:12px;padding-top:26px;margin-top:26px;
+    border-top:1px dashed var(--line-dark-strong);
+    font-family:var(--font-label);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#8a8570;
+  }
+
+  .card--done{display:none;text-align:center}
+  .card--done .card__title{font-size:30px;margin-bottom:10px}
+  .card--done p{color:#5c5748;max-width:360px;margin:0 auto}
+  .card--done .stamp{
+    display:inline-block;margin-top:24px;padding:10px 18px;border:1px solid var(--nova);
+    font-family:var(--font-label);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#4c6f9c;
+    border-radius:99px;
+  }
+
+  .rsvp__deadline{
+    display:inline-flex;align-items:center;gap:12px;margin-top:32px;
+    font-family:var(--font-label);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--nova);
+    border:1px solid var(--nova-soft);padding:12px 18px;
+  }
+  .rsvp__actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+  .btn-line{
+    display:inline-flex;align-items:center;gap:10px;font-family:var(--font-label);font-size:10px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--silver);border:1px solid var(--line-strong);padding:14px 20px;
+    transition:border-color .3s,color .3s;
+  }
+  .btn-line:hover{border-color:var(--nova);color:var(--nova)}
+
+  .confetti{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+  .confetti i{position:absolute;top:-4vh;width:5px;height:5px;border-radius:50%;background:var(--nova);opacity:.9;animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(110vh);opacity:0}}
+
+  @media (max-width:900px){ .rsvp__grid{grid-template-columns:1fr;gap:60px} }
+
+  /* ============================================================
+     CIERRE
+     ============================================================ */
+  .closing{background:var(--midnight);text-align:center;padding-block:150px 100px;position:relative;overflow:hidden}
+  .closing__roll{display:grid;gap:42px;max-width:620px;margin:0 auto 90px}
+  .credit .tag{display:block;margin-bottom:10px}
+  .credit p{margin:0;font-family:var(--font-display);font-weight:300;font-size:clamp(20px,2.6vw,28px)}
+  .closing__fin{font-family:var(--font-display);font-style:italic;font-weight:300;font-size:clamp(60px,12vw,140px);color:var(--nova)}
+  .closing__after{margin-top:20px;font-family:var(--font-label);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver-dim)}
+
+  .footer{
+    border-top:1px solid var(--line);padding:32px 6vw;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-family:var(--font-label);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--silver-dim);
+  }
+  .footer b{color:var(--nova)}
+
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:var(--silver);color:var(--midnight-deep);
+    font-family:var(--font-label);font-size:11px;padding:14px 22px;z-index:90;
+    opacity:0;pointer-events:none;transition:opacity .4s,transform .4s var(--ease);
+  }
+  .toast.is-on{opacity:1;transform:translate(-50%,0)}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width:760px){
+    .scene{padding:92px 6vw}
+    .bar{padding:18px 6vw}
+    .hero{padding:120px 6vw 80px}
+    .chapter-node__media{width:140px;height:140px}
+    .count__unit{min-width:60px}
+    .card{padding:36px 24px 32px}
+    .seats{grid-template-columns:1fr}
+    .closing__roll{gap:32px}
+  }
+  @media (max-width:380px){
+    .hero__names{font-size:44px}
+    .display{font-size:32px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    html{scroll-behavior:auto}
+    .reveal{opacity:1 !important;transform:none !important}
+    .marquee__track{animation:none}
+    .star{animation:none;opacity:.4}
+    .chapters__lines path,.cluster__lines path{opacity:1 !important;stroke-dashoffset:0 !important}
+  }
+  </style>
+
+  <noscript>
+    <style>
+      body.is-locked{overflow:auto}
+      .star-load{display:none}
+      .reveal{opacity:1 !important;transform:none !important}
+    </style>
+  </noscript>
+</head>
+<body class="is-locked">
+
+  <!-- PRELOADER -->
+  <div class="star-load" id="starLoad" aria-hidden="true">
+    <div style="position:relative">
+      <div class="star-load__core"></div>
+      <div class="star-load__ray" style="transform:translate(-50%,-100%) rotate(0deg)"></div>
+      <div class="star-load__ray" style="transform:translate(-50%,-100%) rotate(45deg)"></div>
+      <div class="star-load__ray" style="transform:translate(-50%,-100%) rotate(90deg)"></div>
+      <div class="star-load__ray" style="transform:translate(-50%,-100%) rotate(135deg)"></div>
+      <div class="star-load__ray" style="transform:translate(-50%,-100%) rotate(180deg)"></div>
+      <div class="star-load__ray" style="transform:translate(-50%,-100%) rotate(225deg)"></div>
+      <div class="star-load__ray" style="transform:translate(-50%,-100%) rotate(270deg)"></div>
+      <div class="star-load__ray" style="transform:translate(-50%,-100%) rotate(315deg)"></div>
+    </div>
+    <p class="star-load__tag">Nuestra Boda · Bajo las mismas estrellas</p>
+  </div>
+
+  <!-- BARRA -->
+  <header class="bar">
+    <a class="bar__brand" href="#inicio">C &amp; A</a>
+    <button class="bar__menu" id="menuBtn" aria-expanded="false" aria-controls="chart">Carta astral</button>
+  </header>
+
+  <!-- MENÚ -->
+  <div class="chart" id="chart">
+    <nav aria-label="Carta astral de secciones">
+      <a class="chart__item" style="transition-delay:.08s" href="#nota"><small>I</small> Nota</a>
+      <a class="chart__item" style="transition-delay:.13s" href="#historia"><small>II</small> Tres constelaciones</a>
+      <a class="chart__item" style="transition-delay:.18s" href="#cuenta"><small>III</small> Cuenta lunar</a>
+      <a class="chart__item" style="transition-delay:.23s" href="#cumulo"><small>IV</small> Cúmulo</a>
+      <a class="chart__item" style="transition-delay:.28s" href="#itinerario"><small>V</small> Itinerario</a>
+      <a class="chart__item" style="transition-delay:.33s" href="#coordenadas"><small>VI</small> Coordenadas</a>
+      <a class="chart__item" style="transition-delay:.38s" href="#guia"><small>VII</small> Guía</a>
+      <a class="chart__item" style="transition-delay:.43s" href="#reserva"><small>VIII</small> Reserva tu lugar</a>
+    </nav>
+    <p class="chart__foot">Camila &amp; Andrés · 06.03.2027 · Lima</p>
+  </div>
+
+  <!-- PORTADA -->
+  <section class="hero" id="inicio">
+    <div class="stars" id="starsHero" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="hero__kicker reveal">Bajo las mismas estrellas</p>
+      <h1 class="hero__names reveal reveal--d1">Camila <em>&amp;</em> Andrés</h1>
+
+      <div class="hero__moon reveal reveal--d2" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="none" stroke="#8fb1e0" stroke-width="1"/><circle cx="50" cy="50" r="4" fill="#8fb1e0"/></svg>
+      </div>
+
+      <p class="hero__meta reveal reveal--d2">
+        <span>6 de marzo de 2027</span>
+        <b>Lima, Perú</b>
+      </p>
+
+      <button class="hero__sound reveal reveal--d3" id="soundBtn" aria-pressed="false">
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span id="soundLabel">Música de fondo</span>
+      </button>
+    </div>
+    <p class="hero__scroll">Continúa el recorrido</p>
+  </section>
+
+  <audio id="audio" src="cancion.mp3" loop preload="none"></audio>
+
+  <!-- TICKER -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Alineación prevista <b>6 de marzo</b> Noche única <b>Lima · Perú</b> Confirma tu lugar antes del <b>15 de enero</b></span>
+      <span>Alineación prevista <b>6 de marzo</b> Noche única <b>Lima · Perú</b> Confirma tu lugar antes del <b>15 de enero</b></span>
+    </div>
+  </div>
+
+  <!-- NOTA -->
+  <section class="scene note-scene on-panel" id="nota">
+    <div class="frame">
+      <p class="tag tag--dark reveal" style="text-align:center;display:block;margin-bottom:32px">Una nota</p>
+      <p class="note__text reveal reveal--d1">
+        Dicen que dos estrellas nunca se tocan, pero a veces sus órbitas se
+        cruzan tanto tiempo que dejan de ser dos y empiezan a ser
+        <em>una sola constelación</em>. Esta es la noche en que decidimos
+        llamarla por su nombre.
+      </p>
+      <p class="note__foot reveal reveal--d2">Camila &amp; Andrés · Siete años en la misma órbita</p>
+    </div>
+  </section>
+
+  <!-- TRES CONSTELACIONES -->
+  <section class="scene chapters" id="historia">
+    <div class="frame">
+      <div class="chapters__head">
+        <p class="tag reveal">La historia</p>
+        <h2 class="display reveal reveal--d1">Tres <em>constelaciones</em></h2>
+      </div>
+
+      <div class="chapters__grid">
+        <svg class="chapters__lines" viewBox="0 0 900 2" preserveAspectRatio="none" aria-hidden="true">
+          <path id="chapLine1" d="M150 1 L450 1"/>
+          <path id="chapLine2" d="M450 1 L750 1"/>
+        </svg>
+
+        <article class="chapter-node reveal">
+          <span class="chapter-node__dot"></span>
+          <div class="chapter-node__media"><img src="foto-1.png" alt="Camila y Andrés, el encuentro"></div>
+          <span class="chapter-node__num">Constelación I</span>
+          <h3 class="chapter-node__title">El encuentro</h3>
+          <span class="chapter-node__year">Lima — 2018</span>
+          <p>Una fiesta de amigos en común y una conversación que decidió no apagarse cuando se apagaron las luces.</p>
+        </article>
+
+        <article class="chapter-node reveal reveal--d1">
+          <span class="chapter-node__dot"></span>
+          <div class="chapter-node__media"><img src="foto-2.png" alt="Camila y Andrés, los años"></div>
+          <span class="chapter-node__num">Constelación II</span>
+          <h3 class="chapter-node__title">La órbita</h3>
+          <span class="chapter-node__year">2018 — 2025</span>
+          <p>Ciudades distintas, la misma dirección. Aprendieron que el amor también es saber esperar el turno del otro.</p>
+        </article>
+
+        <article class="chapter-node reveal reveal--d2">
+          <span class="chapter-node__dot"></span>
+          <div class="chapter-node__media"><img src="foto-3.png" alt="La propuesta de matrimonio"></div>
+          <span class="chapter-node__num">Constelación III</span>
+          <h3 class="chapter-node__title">La alineación</h3>
+          <span class="chapter-node__year">Diciembre — 2025</span>
+          <p>Una noche despejada, una pregunta sin ensayo. La respuesta ya estaba escrita en el cielo hace tiempo.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUENTA LUNAR -->
+  <section class="scene lunar" id="cuenta">
+    <div class="stars" id="starsLunar" aria-hidden="true"></div>
+    <div class="frame">
+      <p class="tag reveal" style="text-align:center;display:block">Cuenta lunar</p>
+
+      <div class="lunar__moon reveal reveal--d1" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <clipPath id="moonClip"><circle cx="100" cy="100" r="80"/></clipPath>
+          </defs>
+          <circle cx="100" cy="100" r="80" fill="#1b2140" stroke="#8fb1e0" stroke-width="1"/>
+          <g clip-path="url(#moonClip)">
+            <rect id="moonFill" x="20" y="20" width="0" height="160" fill="#e7ecf7"/>
+          </g>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#8fb1e0" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <h2 class="lunar__date reveal reveal--d1">Sábado <em>6</em> de marzo, <em>2027</em></h2>
+
+      <div class="count reveal reveal--d2" role="timer" aria-label="Cuenta regresiva para la boda">
+        <div class="count__unit"><div class="count__num" id="cDays">000</div><div class="count__label">Días</div></div>
+        <div class="count__unit"><div class="count__num" id="cHours">00</div><div class="count__label">Horas</div></div>
+        <div class="count__unit"><div class="count__num" id="cMins">00</div><div class="count__label">Minutos</div></div>
+        <div class="count__unit"><div class="count__num" id="cSecs">00</div><div class="count__label">Segundos</div></div>
+      </div>
+
+      <p class="lunar__note reveal reveal--d3">La luna crece cada día hacia esa noche</p>
+    </div>
+  </section>
+
+  <!-- CÚMULO -->
+  <section class="scene cluster" id="cumulo">
+    <div class="frame">
+      <div class="cluster__head">
+        <div>
+          <p class="tag reveal">Cúmulo</p>
+          <h2 class="display reveal reveal--d1">Puntos de <em>luz</em></h2>
+        </div>
+        <p class="prose reveal reveal--d2">Fotografías de siete años, conectadas como una misma carta astral.</p>
+      </div>
+
+      <div class="cluster__field">
+        <svg class="cluster__lines" viewBox="0 0 900 260" preserveAspectRatio="none" aria-hidden="true">
+          <path id="clLine1" d="M110 60 L340 160"/>
+          <path id="clLine2" d="M340 160 L570 60"/>
+          <path id="clLine3" d="M570 60 L790 160"/>
+        </svg>
+        <div class="cluster__grid">
+          <div class="node reveal">
+            <div class="node__media"><img loading="lazy" decoding="async" src="foto-1.png" alt="Fotografía uno"></div>
+            <p class="node__cap">2018</p>
+          </div>
+          <div class="node reveal reveal--d1">
+            <div class="node__media"><img loading="lazy" decoding="async" src="foto-2.png" alt="Fotografía dos"></div>
+            <p class="node__cap">2021</p>
+          </div>
+          <div class="node reveal reveal--d2">
+            <div class="node__media"><img loading="lazy" decoding="async" src="foto-3.png" alt="Fotografía tres"></div>
+            <p class="node__cap">2024</p>
+          </div>
+          <div class="node reveal reveal--d1">
+            <div class="node__media"><img loading="lazy" decoding="async" src="foto-4.png" alt="Fotografía cuatro"></div>
+            <p class="node__cap">2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ITINERARIO -->
+  <section class="scene agenda" id="itinerario">
+    <div class="frame agenda__grid">
+      <div class="agenda__intro">
+        <p class="tag tag--dark reveal">Carta astral de la noche</p>
+        <h2 class="display reveal reveal--d1">El <em>itinerario</em></h2>
+        <p class="prose reveal reveal--d2" style="margin-top:24px">
+          Cada momento de la velada tiene su hora exacta, como los astros
+          tienen la suya. Recomendamos llegar con anticipación.
+        </p>
+      </div>
+
+      <div class="agenda__list reveal">
+        <div class="agenda__row"><span class="agenda__time">4:00 PM</span><h3 class="agenda__event">Apertura</h3><span class="agenda__tag">Capilla</span></div>
+        <div class="agenda__row"><span class="agenda__time">4:30 PM</span><h3 class="agenda__event">Ceremonia</h3><span class="agenda__tag">Capilla</span></div>
+        <div class="agenda__row"><span class="agenda__time">6:30 PM</span><h3 class="agenda__event">Recepción</h3><span class="agenda__tag">Terraza</span></div>
+        <div class="agenda__row"><span class="agenda__time">8:00 PM</span><h3 class="agenda__event">Cena &amp; brindis</h3><span class="agenda__tag">Terraza</span></div>
+        <div class="agenda__row"><span class="agenda__time">9:30 PM</span><h3 class="agenda__event">Primer baile</h3><span class="agenda__tag">Terraza</span></div>
+        <div class="agenda__row"><span class="agenda__time">10:00 PM</span><h3 class="agenda__event">Fiesta bajo las estrellas</h3><span class="agenda__tag">Terraza</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COORDENADAS -->
+  <section class="scene coords" id="coordenadas">
+    <div class="frame">
+      <p class="tag reveal">Ubicaciones</p>
+      <h2 class="display reveal reveal--d1">Las <em>coordenadas</em></h2>
+
+      <div class="coords__grid">
+        <article class="coord reveal">
+          <span class="coord__tag">Ceremonia</span>
+          <h3>Capilla Nuestra Señora de Fátima</h3>
+          <p>Av. La Molina 1450, La Molina — Lima</p>
+          <span class="coord__hour">4:30 PM</span><br>
+          <a href="https://maps.google.com/?q=La+Molina+Lima+Peru" target="_blank" rel="noopener">Cómo llegar</a>
+        </article>
+        <article class="coord reveal reveal--d1">
+          <span class="coord__tag">Recepción</span>
+          <h3>Terraza Mirador Las Casuarinas</h3>
+          <p>Km 3.5 Vía Las Casuarinas — Lima</p>
+          <span class="coord__hour">6:30 PM</span><br>
+          <a href="https://maps.google.com/?q=Las+Casuarinas+Lima+Peru" target="_blank" rel="noopener">Cómo llegar</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUÍA DEL OBSERVADOR -->
+  <section class="scene guide" id="guia">
+    <div class="frame">
+      <p class="tag tag--dark reveal">Guía del observador</p>
+      <h2 class="display reveal reveal--d1">Antes de <em>llegar</em></h2>
+
+      <div class="guide__grid">
+        <div class="note reveal">
+          <span class="note__slug">Vestuario</span>
+          <h3>Elegante nocturno</h3>
+          <p>Tonos profundos como el cielo son bienvenidos. El blanco queda reservado para la novia.</p>
+          <div class="swatches" aria-label="Paleta sugerida">
+            <i style="background:#0b1026"></i>
+            <i style="background:#8fb1e0"></i>
+            <i style="background:#d7dced"></i>
+            <i style="background:#1c1c1c"></i>
+          </div>
+        </div>
+
+        <div class="note reveal reveal--d1">
+          <span class="note__slug">Mesa de regalos</span>
+          <h3>Un gesto, no una lista</h3>
+          <p>Su presencia ya ilumina la noche. Si desean un gesto adicional, habrá un sobre disponible en la recepción.</p>
+          <div class="gift-row">
+            <span class="gift-chip">BCP Soles <span>193-2845671-0-99</span></span>
+            <span class="gift-chip">Interbank USD <span>200-3009845123</span></span>
+          </div>
+        </div>
+
+        <div class="note reveal reveal--d2">
+          <span class="note__slug">Durante la ceremonia</span>
+          <h3>Sin flashes propios</h3>
+          <p>La ceremonia será registrada por nuestro equipo de fotografía. Compartiremos las imágenes después. Movilidad de retorno a la 1:00 AM.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVA TU LUGAR -->
+  <section class="scene rsvp" id="reserva">
+    <div class="stars" id="starsRsvp" aria-hidden="true"></div>
+    <div class="frame rsvp__grid">
+      <div>
+        <p class="tag reveal">Confirmación</p>
+        <h2 class="display reveal reveal--d1">Reserva tu <em>lugar</em></h2>
+        <p class="prose reveal reveal--d2">
+          El cielo de esa noche tiene un lugar reservado para cada
+          persona que queremos cerca. Confírmanos tu asistencia.
+        </p>
+        <span class="rsvp__deadline reveal reveal--d3">Confirmar antes del 15 · 01 · 2027</span>
+        <div class="rsvp__actions reveal reveal--d3">
+          <a class="btn-line" id="calBtn" href="#" target="_blank" rel="noopener">Agregar al calendario</a>
+          <button class="btn-line" id="shareBtn" type="button">Compartir invitación</button>
+        </div>
+      </div>
+
+      <div>
+        <form class="card" id="ticket" novalidate>
+          <div class="card__head">
+            <h3 class="card__title">Coordenada de asistencia</h3>
+            <span class="card__no">Nº 06·03·27</span>
+          </div>
+
+          <div class="field">
+            <label for="fName">Nombre y apellido</label>
+            <input id="fName" name="nombre" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="fGuests">Lugares a tu nombre</label>
+            <select id="fGuests" name="acompanantes">
+              <option value="1">1 — Solo yo</option>
+              <option value="2">2 — Con acompañante</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 personas</option>
+            </select>
+          </div>
+
+          <div class="seats" role="group" aria-label="¿Asistirás?">
+            <button type="button" class="seat" data-value="si" aria-pressed="true">Estaré bajo el cielo</button>
+            <button type="button" class="seat" data-value="no" aria-pressed="false">No podré asistir</button>
+          </div>
+
+          <div class="field">
+            <label for="fMsg">Mensaje para los novios (opcional)</label>
+            <textarea id="fMsg" name="mensaje" rows="2"></textarea>
+          </div>
+
+          <button class="card__submit" type="submit">Confirmar lugar</button>
+
+          <div class="card__stub">
+            <span>Coordenada · Sector A</span>
+            <span>Camila &amp; Andrés</span>
+            <span>Lima · Perú</span>
+          </div>
+        </form>
+
+        <div class="card card--done" id="ticketDone" aria-live="polite">
+          <h3 class="card__title" id="doneTitle">¡Lugar confirmado!</h3>
+          <p id="doneText">Tu coordenada ya está fijada en el mapa. Nos vemos el 6 de marzo bajo el mismo cielo.</p>
+          <span class="stamp" id="doneStamp">Alineación confirmada</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="closing" id="creditos">
+    <div class="closing__roll">
+      <div class="credit reveal"><span class="tag tag--dim">Protagonistas</span><p>Camila Reyes &amp; Andrés Ponce</p></div>
+      <div class="credit reveal"><span class="tag tag--dim">Coordenadas</span><p>Lima, Perú — bajo el mismo cielo</p></div>
+      <div class="credit reveal"><span class="tag tag--dim">Producción</span><p>Nuestras familias</p></div>
+      <div class="credit reveal"><span class="tag tag--dim">Testigos de la alineación</span><p>Ustedes, nuestros invitados</p></div>
+      <div class="credit reveal"><span class="tag tag--dim">Banda sonora</span><p>La canción que sonaba aquella primera noche</p></div>
+    </div>
+    <div class="closing__fin reveal">Fin</div>
+    <p class="closing__after reveal reveal--d1">… nuestro propio universo empieza aquí</p>
+  </section>
+
+  <footer class="footer">
+    <span>Camila &amp; Andrés · 06.03.2027</span>
+    <span>Una invitación de <b>nuestraboda.com.pe</b></span>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+  /* ============================================================
+     MODELO 07 — CONSTELACIÓN · JavaScript puro, sin dependencias
+     ============================================================ */
+  (function(){
+    "use strict";
+    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- Placeholder si falta una foto ---------- */
+    function placeholder(label){
+      var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'>"+
+        "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>"+
+        "<stop offset='0' stop-color='%230b1026'/><stop offset='1' stop-color='%23060812'/></linearGradient></defs>"+
+        "<rect width='800' height='1000' fill='url(%23g)'/>"+
+        "<text x='400' y='490' text-anchor='middle' font-family='Georgia' font-style='italic' font-size='50' fill='%238fb1e0'>C %26 A</text>"+
+        "<text x='400' y='540' text-anchor='middle' font-family='monospace' letter-spacing='5' font-size='13' fill='%23d7dced'>"+label+"</text>"+
+        "</svg>";
+      return "data:image/svg+xml;utf8," + svg;
+    }
+    document.querySelectorAll("img").forEach(function(img, i){
+      img.addEventListener("error", function(){
+        img.src = placeholder("FOTO " + (i === 0 ? "01" : "0" + (i+1)));
+        img.style.objectFit = "cover";
+      }, { once:true });
+    });
+
+    /* ---------- Campos de estrellas generados ---------- */
+    function makeStars(container, count){
+      if(!container) return;
+      var frag = document.createDocumentFragment();
+      for(var i=0;i<count;i++){
+        var s = document.createElement("span");
+        s.className = "star";
+        var size = (Math.random()*2 + 1).toFixed(1);
+        s.style.width = size + "px";
+        s.style.height = size + "px";
+        s.style.top = (Math.random()*100) + "%";
+        s.style.left = (Math.random()*100) + "%";
+        s.style.animationDelay = (Math.random()*4).toFixed(2) + "s";
+        s.style.animationDuration = (3 + Math.random()*3).toFixed(2) + "s";
+        frag.appendChild(s);
+      }
+      container.appendChild(frag);
+    }
+    makeStars(document.getElementById("starsHero"), 70);
+    makeStars(document.getElementById("starsLunar"), 40);
+    makeStars(document.getElementById("starsRsvp"), 40);
+
+    /* ---------- Preloader ---------- */
+    var loader = document.getElementById("starLoad");
+    function endLoad(){ loader.classList.add("is-done"); document.body.classList.remove("is-locked"); }
+    if(prefersReduced){ endLoad(); } else { setTimeout(endLoad, 2100); }
+
+    /* ---------- Revelados por scroll ---------- */
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("is-on"); io.unobserve(e.target); }
+      });
+    }, { threshold:.16, rootMargin:"0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+    /* ---------- Líneas de constelación (una vez visibles) ---------- */
+    var lineIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("is-on"); lineIo.unobserve(e.target); }
+      });
+    }, { threshold:.3 });
+    document.querySelectorAll(".chapters__lines path, .cluster__lines path").forEach(function(p){ lineIo.observe(p); });
+
+    /* ---------- Menú ---------- */
+    var menuBtn = document.getElementById("menuBtn");
+    var chart = document.getElementById("chart");
+    function toggleMenu(force){
+      var open = typeof force === "boolean" ? force : !chart.classList.contains("is-open");
+      chart.classList.toggle("is-open", open);
+      menuBtn.setAttribute("aria-expanded", open);
+      menuBtn.textContent = open ? "Cerrar" : "Carta astral";
+      document.body.classList.toggle("is-locked", open);
+    }
+    menuBtn.addEventListener("click", function(){ toggleMenu(); });
+    chart.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){ toggleMenu(false); });
+    });
+    document.addEventListener("keydown", function(e){ if(e.key === "Escape") toggleMenu(false); });
+
+    /* ---------- Música ---------- */
+    var audio = document.getElementById("audio");
+    var soundBtn = document.getElementById("soundBtn");
+    var soundLabel = document.getElementById("soundLabel");
+    soundBtn.addEventListener("click", function(){
+      if(audio.paused){
+        audio.play().then(function(){
+          soundBtn.classList.add("is-playing");
+          soundBtn.setAttribute("aria-pressed","true");
+          soundLabel.textContent = "Sonando";
+        }).catch(function(){
+          showToast("Agrega cancion.mp3 a la carpeta para activar la música");
+        });
+      } else {
+        audio.pause();
+        soundBtn.classList.remove("is-playing");
+        soundBtn.setAttribute("aria-pressed","false");
+        soundLabel.textContent = "Música de fondo";
+      }
+    });
+
+    /* ---------- Cuenta regresiva + fase lunar simbólica ---------- */
+    var target = new Date("2027-03-06T16:30:00-05:00").getTime();
+    var startRef = new Date("2026-07-17T00:00:00-05:00").getTime(); // referencia de inicio del ciclo
+    var cD = document.getElementById("cDays"), cH = document.getElementById("cHours"),
+        cM = document.getElementById("cMins"), cS = document.getElementById("cSecs");
+    var moonFill = document.getElementById("moonFill");
+    function pad(v,l){ v=String(v); while(v.length<l) v="0"+v; return v; }
+    function updateCount(){
+      var now = Date.now();
+      var diff = Math.max(0, target - now);
+      cD.textContent = pad(Math.floor(diff/864e5), 3);
+      cH.textContent = pad(Math.floor(diff/36e5)%24, 2);
+      cM.textContent = pad(Math.floor(diff/6e4)%60, 2);
+      cS.textContent = pad(Math.floor(diff/1e3)%60, 2);
+
+      if(moonFill){
+        var total = target - startRef;
+        var elapsed = now - startRef;
+        var pct = total > 0 ? Math.min(1, Math.max(0, elapsed / total)) : 1;
+        moonFill.setAttribute("width", (160 * pct).toFixed(1));
+        moonFill.setAttribute("x", (100 - 80 * pct).toFixed(1));
+      }
+    }
+    updateCount(); setInterval(updateCount, 1000);
+
+    /* ---------- RSVP ---------- */
+    var ticket = document.getElementById("ticket");
+    var ticketDone = document.getElementById("ticketDone");
+    var attending = "si";
+    ticket.querySelectorAll(".seat").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        attending = btn.dataset.value;
+        ticket.querySelectorAll(".seat").forEach(function(b){
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+      });
+    });
+
+    ticket.addEventListener("submit", function(e){
+      e.preventDefault();
+      var name = document.getElementById("fName").value.trim();
+      if(!name){ showToast("Escribe tu nombre para confirmar"); document.getElementById("fName").focus(); return; }
+
+      /* Integración opcional con Google Sheets / Apps Script:
+         reemplaza ENDPOINT por tu URL y descomenta el fetch.
+      var ENDPOINT = "";
+      fetch(ENDPOINT, { method:"POST", body:new FormData(ticket) });
+      */
+
+      var first = name.split(" ")[0];
+      if(attending === "si"){
+        document.getElementById("doneTitle").textContent = "¡Lugar confirmado, " + first + "!";
+        document.getElementById("doneText").textContent =
+          "Tu coordenada ya está fijada en el mapa. Nos vemos el 6 de marzo bajo el mismo cielo.";
+        document.getElementById("doneStamp").textContent = "Alineación confirmada";
+        if(!prefersReduced) confetti();
+      } else {
+        document.getElementById("doneTitle").textContent = "Te extrañaremos, " + first;
+        document.getElementById("doneText").textContent =
+          "Gracias por avisarnos. Guardaremos una estrella con tu nombre para la próxima vez.";
+        document.getElementById("doneStamp").textContent = "Presente en espíritu";
+      }
+      ticket.style.display = "none";
+      ticketDone.style.display = "block";
+      ticketDone.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block:"center" });
+    });
+
+    /* ---------- Confeti (partículas de luz) ---------- */
+    function confetti(){
+      var wrap = document.createElement("div");
+      wrap.className = "confetti";
+      var colors = ["#8fb1e0","#d7dced","#ffffff"];
+      for(var i=0;i<44;i++){
+        var p = document.createElement("i");
+        p.style.left = Math.random()*100 + "vw";
+        p.style.background = colors[i % colors.length];
+        p.style.animationDuration = (2.2 + Math.random()*2.4) + "s";
+        p.style.animationDelay = (Math.random()*0.6) + "s";
+        wrap.appendChild(p);
+      }
+      document.body.appendChild(wrap);
+      setTimeout(function(){ wrap.remove(); }, 5400);
+    }
+
+    /* ---------- Calendario ---------- */
+    var calBtn = document.getElementById("calBtn");
+    calBtn.href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+      "&text=" + encodeURIComponent("Boda de Camila & Andrés") +
+      "&dates=20270306T213000Z/20270307T060000Z" +
+      "&details=" + encodeURIComponent("Ceremonia 4:30 PM · Recepción 6:30 PM. Bajo las mismas estrellas.") +
+      "&location=" + encodeURIComponent("Lima, Perú");
+
+    /* ---------- Compartir ---------- */
+    var shareBtn = document.getElementById("shareBtn");
+    shareBtn.addEventListener("click", function(){
+      var data = {
+        title: "Camila & Andrés — Nuestra Boda",
+        text: "Están invitados a nuestra boda bajo las estrellas. 6 de marzo de 2027, Lima.",
+        url: location.href
+      };
+      if(navigator.share){ navigator.share(data).catch(function(){}); }
+      else if(navigator.clipboard){
+        navigator.clipboard.writeText(data.url).then(function(){ showToast("Enlace copiado para compartir"); });
+      }
+    });
+
+    /* ---------- Toast ---------- */
+    var toast = document.getElementById("toast"), toastTimer;
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("is-on");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function(){ toast.classList.remove("is-on"); }, 3200);
+    }
+  })();
+  </script>
+</body>
+</html>

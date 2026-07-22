@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11458174849"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'AW-11458174849');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0c10">
+  <meta name="description" content="Lucero & Jorge — Una historia de amor. Estreno: 17 de octubre de 2026, Lima.">
+  <title>Lucero & Jorge — CINÉMA | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+  /* ============================================================
+     MODELO 02 — "CINÉMA"
+     Concepto: la boda contada como el estreno de una película.
+     Noche, sala oscura, celuloide, créditos, butacas.
+     ============================================================ */
+
+  :root{
+    --noir:#0b0c10;          /* sala a oscuras */
+    --carbon:#13151b;        /* telón de fondo */
+    --smoke:#1c202a;         /* paneles */
+    --pearl:#ede8dc;         /* luz de pantalla */
+    --silver:#8e939c;        /* texto secundario */
+    --champagne:#d2b380;     /* luz de proyector */
+    --champagne-soft:rgba(210,179,128,.55);
+    --signal:#b8402f;        /* punto REC — uso mínimo */
+    --line:rgba(237,232,220,.14);
+    --line-strong:rgba(237,232,220,.28);
+
+    --font-display:'Bodoni Moda',Didot,'Times New Roman',serif;
+    --font-body:'Jost',Futura,'Century Gothic',sans-serif;
+    --font-mono:'IBM Plex Mono','Courier New',monospace;
+
+    --ease:cubic-bezier(.22,.8,.24,1);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html:focus-within{scroll-behavior:smooth}
+
+  body{
+    margin:0;
+    background:var(--noir);
+    color:var(--pearl);
+    font-family:var(--font-body);
+    font-weight:300;
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  body.is-locked{overflow:hidden}
+
+  ::selection{background:var(--champagne);color:var(--noir)}
+
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  a{color:inherit;text-decoration:none}
+  button,input,select,textarea{font:inherit;color:inherit}
+  button{cursor:pointer;background:none;border:0;padding:0;touch-action:manipulation}
+
+  :focus-visible{outline:2px solid var(--champagne);outline-offset:3px}
+
+  /* Grano de película sobre toda la experiencia */
+  .grain{
+    position:fixed;inset:-50%;z-index:60;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity:.05;
+    animation:grainShift 1.2s steps(4) infinite;
+  }
+  @keyframes grainShift{
+    0%{transform:translate(0,0)}25%{transform:translate(-2%,1%)}
+    50%{transform:translate(1%,-2%)}75%{transform:translate(-1%,2%)}100%{transform:translate(2%,1%)}
+  }
+
+  /* ---------- utilidades tipográficas ---------- */
+  .slug{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--champagne);
+  }
+  .slug--dim{color:var(--silver)}
+
+  .headline{
+    margin:0;
+    font-family:var(--font-display);
+    font-weight:400;
+    font-size:clamp(44px,7.5vw,110px);
+    line-height:.98;
+    letter-spacing:.01em;
+  }
+  .headline em{font-style:italic;color:var(--champagne)}
+
+  .prose{
+    margin:0;
+    max-width:560px;
+    color:var(--silver);
+    font-size:16px;
+    font-weight:300;
+  }
+
+  .scene{position:relative;padding:130px 6vw}
+  .frame{width:min(1240px,100%);margin:0 auto}
+
+  /* ---------- revelados ---------- */
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .reveal.is-on{opacity:1;transform:none}
+  .reveal--d1{transition-delay:.12s}
+  .reveal--d2{transition-delay:.24s}
+  .reveal--d3{transition-delay:.36s}
+
+  .wipe{position:relative;overflow:hidden}
+  .wipe::after{
+    content:"";position:absolute;inset:0;background:var(--noir);
+    transform:scaleX(1);transform-origin:right;
+    transition:transform 1.2s var(--ease);
+  }
+  .wipe.is-on::after{transform:scaleX(0)}
+
+  /* ============================================================
+     PRELOADER — cuenta de cabecera de película (3 · 2 · 1)
+     ============================================================ */
+  .leader{
+    position:fixed;inset:0;z-index:100;
+    display:grid;place-items:center;
+    background:var(--noir);
+    transition:opacity .7s ease,visibility .7s ease;
+  }
+  .leader.is-done{opacity:0;visibility:hidden}
+
+  .leader__dial{
+    position:relative;
+    width:min(58vw,240px);aspect-ratio:1;
+    border-radius:50%;
+    border:1px solid var(--line-strong);
+    display:grid;place-items:center;
+  }
+  .leader__dial::before,.leader__dial::after{
+    content:"";position:absolute;background:var(--line);
+  }
+  .leader__dial::before{inset:50% 0 auto;height:1px}
+  .leader__dial::after{inset:0 auto 0 50%;width:1px}
+
+  .leader__sweep{
+    position:absolute;inset:-1px;border-radius:50%;
+    background:conic-gradient(var(--champagne-soft) 0deg,transparent 0deg);
+  }
+  .leader__num{
+    position:relative;z-index:2;
+    font-family:var(--font-display);
+    font-size:clamp(72px,18vw,120px);
+    color:var(--pearl);
+  }
+  .leader__tag{
+    position:absolute;bottom:9vh;
+    font-family:var(--font-mono);font-size:10px;
+    letter-spacing:.3em;text-transform:uppercase;color:var(--silver);
+  }
+
+  /* ============================================================
+     BARRA SUPERIOR + TIMECODE + MENÚ "ESCENAS"
+     ============================================================ */
+  .bar{
+    position:fixed;inset:0 0 auto;z-index:70;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 5vw;
+    mix-blend-mode:difference;
+  }
+  .bar__brand{font-family:var(--font-display);font-size:20px;letter-spacing:.08em;color:#fff}
+  .bar__brand span{font-style:italic}
+
+  .bar__timecode{
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:#fff;
+    display:flex;align-items:center;gap:10px;
+  }
+  .bar__rec{width:7px;height:7px;border-radius:50%;background:var(--signal);animation:blink 1.6s steps(2) infinite}
+  @keyframes blink{50%{opacity:.15}}
+
+  .bar__menu{
+    display:flex;align-items:center;gap:12px;color:#fff;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+  }
+  .bar__menu i{
+    width:34px;height:1px;background:#fff;position:relative;display:block;transition:transform .4s var(--ease);
+  }
+  .bar__menu i::after{
+    content:"";position:absolute;inset:8px 0 auto;height:1px;background:#fff;transition:transform .4s var(--ease);
+  }
+
+  .progress{
+    position:fixed;inset:0 0 auto;height:2px;z-index:71;
+    background:var(--champagne);transform-origin:left;transform:scaleX(0);
+  }
+
+  .curtain{
+    position:fixed;inset:0;z-index:69;background:var(--carbon);
+    display:grid;place-items:center;
+    clip-path:inset(0 0 100% 0);
+    transition:clip-path .8s var(--ease);
+  }
+  .curtain.is-open{clip-path:inset(0 0 0 0)}
+  .curtain nav{display:grid;gap:2px;text-align:center}
+  .curtain__item{
+    display:flex;align-items:baseline;gap:18px;justify-content:center;
+    font-family:var(--font-display);font-size:clamp(30px,5.6vw,56px);
+    padding:8px 20px;color:var(--pearl);
+    opacity:0;transform:translateY(24px);
+    transition:opacity .6s var(--ease),transform .6s var(--ease),color .3s;
+  }
+  .curtain.is-open .curtain__item{opacity:1;transform:none}
+  .curtain__item:hover{color:var(--champagne);font-style:italic}
+  .curtain__item small{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--silver)}
+  .curtain__foot{
+    position:absolute;bottom:5vh;left:0;right:0;text-align:center;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.3em;color:var(--silver);text-transform:uppercase;
+  }
+
+  /* ============================================================
+     PORTADA — SECUENCIA DE TÍTULOS CON LETTERBOX
+     ============================================================ */
+  .hero{
+    position:relative;height:100svh;min-height:600px;
+    display:grid;place-items:center;overflow:hidden;
+  }
+  .hero__media{position:absolute;inset:0;z-index:0}
+  .hero__media img{
+    filter:grayscale(1) contrast(1.06) brightness(.62);
+    object-position:50% 3%;               /* encuadre desktop */
+    animation:kenburns 26s var(--ease) both;
+  }
+  @keyframes kenburns{from{transform:scale(1.14)}to{transform:scale(1)}}
+  .hero__media::after{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(120% 90% at 50% 100%,rgba(11,12,16,.85),transparent 55%),
+      linear-gradient(180deg,rgba(11,12,16,.55),rgba(11,12,16,.15) 40%,rgba(11,12,16,.72));
+  }
+
+  /* franjas letterbox que se abren al hacer scroll */
+  .hero__band{
+    position:absolute;left:0;right:0;z-index:3;background:var(--noir);
+    height:calc(var(--letterbox,11) * 1vh);
+    transition:none;
+  }
+  .hero__band--top{top:0}
+  .hero__band--bottom{bottom:0}
+
+  .hero__titles{position:relative;z-index:2;text-align:center;padding:0 6vw}
+  .hero__kicker{
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--pearl);
+    opacity:0;animation:titleIn 1.1s var(--ease) 2.5s forwards;
+  }
+  .hero__names{
+    margin:26px 0 0;
+    font-family:var(--font-display);font-weight:400;
+    font-size:clamp(58px,11.5vw,164px);
+    line-height:.94;letter-spacing:.005em;color:var(--pearl);
+  }
+  .hero__names span{display:block;opacity:0;animation:titleIn 1.3s var(--ease) forwards}
+  .hero__names span:nth-child(1){animation-delay:2.9s}
+  .hero__names .hero__amp{
+    font-style:italic;color:var(--champagne);
+    font-size:.42em;line-height:1.4;animation-delay:3.25s;
+  }
+  .hero__names span:nth-child(3){animation-delay:3.5s}
+
+  .hero__meta{
+    margin-top:34px;display:flex;justify-content:center;gap:26px;flex-wrap:wrap;
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--silver);
+    opacity:0;animation:titleIn 1.1s var(--ease) 4.1s forwards;
+  }
+  .hero__meta b{color:var(--champagne);font-weight:500}
+
+  @keyframes titleIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+  .hero__corner{
+    position:absolute;z-index:4;bottom:calc(var(--letterbox,11) * 1vh + 22px);
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--silver);
+    opacity:0;animation:titleIn 1s var(--ease) 4.6s forwards;
+  }
+  .hero__sound{left:5vw;display:flex;align-items:center;gap:12px;color:var(--pearl)}
+  .hero__sound:hover{color:var(--champagne)}
+  .eq{display:flex;align-items:flex-end;gap:3px;height:14px}
+  .eq i{width:2px;height:4px;background:currentColor;transition:height .3s}
+  .is-playing .eq i{animation:eq 0.9s ease-in-out infinite}
+  .is-playing .eq i:nth-child(2){animation-delay:.15s}
+  .is-playing .eq i:nth-child(3){animation-delay:.3s}
+  .is-playing .eq i:nth-child(4){animation-delay:.45s}
+  @keyframes eq{0%,100%{height:4px}50%{height:14px}}
+
+  .hero__scroll{right:5vw;display:flex;align-items:center;gap:12px}
+  .hero__scroll::after{
+    content:"";width:52px;height:1px;background:var(--silver);
+    transform-origin:left;animation:scrollHint 2.4s var(--ease) infinite;
+  }
+  @keyframes scrollHint{0%{transform:scaleX(0)}55%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+
+  /* ============================================================
+     MARQUESINA
+     ============================================================ */
+  .marquee{
+    border-block:1px solid var(--line);
+    padding:16px 0;overflow:hidden;background:var(--carbon);
+  }
+  .marquee__track{
+    display:flex;gap:56px;width:max-content;
+    animation:marquee 30s linear infinite;
+  }
+  .marquee__track span{
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--silver);
+    display:flex;align-items:center;gap:56px;white-space:nowrap;
+  }
+  .marquee__track b{color:var(--champagne);font-weight:500}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* ============================================================
+     SINOPSIS
+     ============================================================ */
+  .synopsis{text-align:center;background:var(--noir)}
+  .synopsis .slug{display:block;margin-bottom:34px}
+  .synopsis__text{
+    margin:0 auto;max-width:820px;
+    font-family:var(--font-display);font-weight:400;
+    font-size:clamp(26px,3.6vw,44px);line-height:1.42;
+  }
+  .synopsis__text em{font-style:italic;color:var(--champagne)}
+  .synopsis__foot{margin-top:44px;font-family:var(--font-mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--silver)}
+
+  /* ============================================================
+     LA HISTORIA — TRES ACTOS
+     ============================================================ */
+  .acts{background:var(--carbon);padding-block:140px}
+  .acts__head{margin-bottom:90px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px}
+
+  .act{
+    display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center;
+    padding-block:70px;border-top:1px solid var(--line);
+  }
+  .act:last-of-type{border-bottom:1px solid var(--line)}
+  .act:nth-of-type(even) .act__media{order:2}
+
+  .act__media{position:relative;aspect-ratio:4/5;max-height:640px}
+  .act__media img{filter:grayscale(1) contrast(1.05);transition:filter 1s var(--ease)}
+  .act__media:hover img{filter:grayscale(0) contrast(1)}
+  .act__media::before{
+    content:attr(data-frame);
+    position:absolute;top:14px;left:14px;z-index:2;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--pearl);
+    background:rgba(11,12,16,.6);padding:6px 10px;backdrop-filter:blur(4px);
+  }
+
+  .act__num{
+    font-family:var(--font-display);font-style:italic;
+    font-size:clamp(16px,1.6vw,20px);color:var(--champagne);letter-spacing:.14em;
+  }
+  .act__title{
+    margin:14px 0 24px;
+    font-family:var(--font-display);font-weight:400;
+    font-size:clamp(34px,4.4vw,60px);line-height:1.05;
+  }
+  .act__year{
+    display:inline-block;margin-bottom:22px;
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.24em;color:var(--silver);
+    border:1px solid var(--line-strong);padding:7px 14px;border-radius:99px;
+  }
+
+  /* ============================================================
+     EL ESTRENO — CUENTA REGRESIVA
+     ============================================================ */
+  .premiere{
+    background:var(--noir);text-align:center;position:relative;overflow:hidden;
+  }
+  .premiere::before{
+    content:"";position:absolute;inset:auto -20% -55% -20%;height:80%;
+    background:radial-gradient(50% 100% at 50% 100%,rgba(210,179,128,.14),transparent 70%);
+    pointer-events:none;
+  }
+  .premiere__date{
+    margin:30px 0 60px;
+    font-family:var(--font-display);font-weight:400;
+    font-size:clamp(40px,7vw,96px);line-height:1.05;
+  }
+  .premiere__date em{font-style:italic;color:var(--champagne)}
+
+  .count{display:flex;justify-content:center;gap:clamp(18px,5vw,64px);flex-wrap:wrap}
+  .count__unit{min-width:86px}
+  .count__num{
+    font-family:var(--font-display);font-size:clamp(46px,8vw,96px);line-height:1;
+    font-variant-numeric:tabular-nums;
+  }
+  .count__label{
+    margin-top:12px;font-family:var(--font-mono);font-size:10px;
+    letter-spacing:.3em;text-transform:uppercase;color:var(--silver);
+  }
+  .count__sep{
+    align-self:flex-start;
+    font-family:var(--font-display);font-size:clamp(36px,6vw,72px);color:var(--champagne-soft);
+    line-height:1.15;
+  }
+  .premiere__note{margin-top:60px;font-family:var(--font-mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--silver)}
+
+  /* ============================================================
+     ESCENAS — GALERÍA TIRA DE CELULOIDE
+     ============================================================ */
+  .filmstrip{background:var(--carbon);padding:130px 0;overflow:hidden}
+  .filmstrip__head{padding:0 6vw;margin-bottom:64px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px}
+  .filmstrip__hint{font-family:var(--font-mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--silver)}
+
+  .strip-wrap{position:relative;background:#07080b}
+  .strip-wrap::before,.strip-wrap::after{
+    content:"";position:absolute;left:0;right:0;height:16px;z-index:3;
+    background-image:radial-gradient(circle,rgba(237,232,220,.16) 0 3.5px,transparent 4px);
+    background-size:26px 16px;background-repeat:repeat-x;
+    pointer-events:none;
+  }
+  .strip-wrap::before{top:14px}
+  .strip-wrap::after{bottom:14px}
+
+  .strip{
+    display:flex;gap:26px;
+    padding:46px 6vw 84px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+    cursor:grab;
+  }
+  .strip::-webkit-scrollbar{display:none}
+  .strip.is-dragging{cursor:grabbing;scroll-snap-type:none}
+
+  .strip__frame{
+    position:relative;flex:0 0 auto;
+    width:min(78vw,420px);aspect-ratio:3/4;
+    scroll-snap-align:center;
+    background:var(--smoke);
+  }
+  .strip__frame img{
+    filter:grayscale(1) contrast(1.08) brightness(.92);
+    transition:filter .9s var(--ease),transform .9s var(--ease);
+  }
+  .strip__frame:hover img,.strip__frame.is-center img{filter:grayscale(0);transform:scale(1.015)}
+  .strip__caption{
+    position:absolute;left:0;right:0;bottom:-38px;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--silver);
+    display:flex;justify-content:space-between;gap:14px;
+  }
+  .strip__frame--card{
+    display:grid;place-items:center;text-align:center;padding:28px;
+    border:1px solid var(--line);background:var(--noir);
+  }
+  .strip__frame--card p{
+    margin:0;font-family:var(--font-display);font-style:italic;
+    font-size:clamp(22px,2.4vw,30px);line-height:1.4;color:var(--pearl);
+  }
+
+  /* ============================================================
+     LA FUNCIÓN — PROGRAMA / HOJA DE RODAJE
+     ============================================================ */
+  .program{background:var(--noir)}
+  .program__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:7vw;align-items:start}
+  .program__intro{position:sticky;top:110px}
+
+  .program__list{border-top:1px solid var(--line-strong)}
+  .program__row{
+    display:grid;grid-template-columns:110px 1fr auto;gap:26px;align-items:baseline;
+    padding:30px 6px;border-bottom:1px solid var(--line);
+    transition:background .4s,padding-left .4s var(--ease);
+  }
+  .program__row:hover{background:rgba(210,179,128,.05);padding-left:16px}
+  .program__time{font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;color:var(--champagne)}
+  .program__event{margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(22px,2.6vw,32px)}
+  .program__desc{margin:6px 0 0;font-size:13.5px;color:var(--silver);max-width:420px}
+  .program__tag{font-family:var(--font-mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--silver)}
+
+  /* ============================================================
+     LAS SALAS — UBICACIONES
+     ============================================================ */
+  .venues{background:var(--carbon)}
+  .venues__grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:70px}
+  .hall{
+    position:relative;border:1px solid var(--line);
+    padding:44px 36px 40px;overflow:hidden;
+    transition:border-color .5s;
+    background:linear-gradient(180deg,rgba(28,32,42,.4),transparent);
+  }
+  .hall:hover{border-color:var(--champagne-soft)}
+  .hall__sala{font-family:var(--font-mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--champagne)}
+  .hall h3{margin:20px 0 8px;font-family:var(--font-display);font-weight:400;font-size:clamp(28px,3vw,40px)}
+  .hall__addr{margin:0 0 8px;color:var(--silver);font-size:14px}
+  .hall__hour{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--pearl)}
+  .hall__cta{
+    display:inline-flex;align-items:center;gap:10px;margin-top:30px;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;
+    border-bottom:1px solid var(--champagne-soft);padding-bottom:7px;color:var(--pearl);
+    transition:color .3s,gap .3s var(--ease);
+  }
+  .hall__cta:hover{color:var(--champagne);gap:16px}
+  .hall__cta::after{content:"→"}
+
+  /* ============================================================
+     GUIÓN PARA INVITADOS
+     ============================================================ */
+  .script{background:var(--noir)}
+  .script__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:70px}
+  .note{
+    border-top:1px solid var(--line-strong);padding-top:30px;
+  }
+  .note__slug{font-family:var(--font-mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--champagne)}
+  .note h3{margin:18px 0 14px;font-family:var(--font-display);font-weight:400;font-size:26px}
+  .note p{margin:0;color:var(--silver);font-size:14px}
+  .swatches{display:flex;gap:10px;margin-top:22px}
+  .swatches i{
+    width:30px;height:30px;border-radius:50%;border:1px solid var(--line-strong);
+    transition:transform .3s var(--ease);
+  }
+  .swatches i:hover{transform:translateY(-4px)}
+  .note--gift .gift-row{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+  .gift-chip{
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;
+    border:1px solid var(--line);padding:12px 16px;color:var(--pearl);
+    display:flex;justify-content:space-between;gap:12px;
+  }
+  .gift-chip span{color:var(--silver)}
+
+  /* ============================================================
+     BUTACAS — RSVP TIPO TICKET
+     ============================================================ */
+  .rsvp{background:var(--carbon);overflow:hidden}
+  .rsvp__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:7vw;align-items:center}
+
+  .ticket{
+    position:relative;background:var(--pearl);color:var(--noir);
+    padding:46px 42px 40px;
+    --notch:14px;
+    -webkit-mask:
+      radial-gradient(var(--notch) at 0 78%,transparent 97%,#000) left/51% 100% no-repeat,
+      radial-gradient(var(--notch) at 100% 78%,transparent 97%,#000) right/51% 100% no-repeat;
+    mask:
+      radial-gradient(var(--notch) at 0 78%,transparent 97%,#000) left/51% 100% no-repeat,
+      radial-gradient(var(--notch) at 100% 78%,transparent 97%,#000) right/51% 100% no-repeat;
+  }
+  .ticket::before{
+    content:"";position:absolute;left:24px;right:24px;top:calc(78% );
+    border-top:1.5px dashed rgba(11,12,16,.3);
+  }
+  .ticket__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:26px}
+  .ticket__title{margin:0;font-family:var(--font-display);font-weight:400;font-size:30px}
+  .ticket__no{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:rgba(11,12,16,.55)}
+
+  .field{margin-bottom:20px}
+  .field label{
+    display:block;margin-bottom:8px;
+    font-family:var(--font-mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:rgba(11,12,16,.6);
+  }
+  .field input,.field select,.field textarea{
+    width:100%;background:transparent;border:0;border-bottom:1px solid rgba(11,12,16,.35);
+    padding:10px 2px;font-size:15px;color:var(--noir);border-radius:0;
+    transition:border-color .3s;
+  }
+  .field textarea{resize:vertical;min-height:64px}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--noir)}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%230b0c10'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center}
+
+  .seats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0}
+  .seat{
+    border:1px solid rgba(11,12,16,.4);padding:16px 12px;text-align:center;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    transition:background .3s,color .3s,border-color .3s;
+  }
+  .seat[aria-pressed="true"]{background:var(--noir);color:var(--pearl);border-color:var(--noir)}
+
+  .ticket__submit{
+    width:100%;margin-top:8px;padding:18px;
+    background:var(--noir);color:var(--pearl);
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    transition:letter-spacing .4s var(--ease),background .3s;
+  }
+  .ticket__submit:hover{letter-spacing:.42em;background:#000}
+  .ticket__stub{
+    display:flex;justify-content:space-between;align-items:center;gap:14px;
+    padding-top:34px;margin-top:30px;
+    font-family:var(--font-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(11,12,16,.55);
+  }
+
+  .ticket--done{display:none;text-align:center}
+  .ticket--done .ticket__title{font-size:34px;margin-bottom:10px}
+  .ticket--done p{color:rgba(11,12,16,.7);max-width:380px;margin:0 auto}
+  .ticket--done .stamp{
+    display:inline-block;margin-top:28px;padding:12px 22px;
+    border:2px solid var(--noir);border-radius:4px;
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    transform:rotate(-4deg);
+  }
+
+  .rsvp__side .headline{margin-bottom:26px}
+  .rsvp__deadline{
+    display:inline-flex;align-items:center;gap:12px;margin-top:34px;
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--champagne);
+    border:1px solid var(--champagne-soft);padding:12px 18px;
+  }
+  .rsvp__actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px}
+  .btn-line{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--pearl);
+    border:1px solid var(--line-strong);padding:15px 22px;
+    transition:border-color .3s,color .3s,background .3s;
+  }
+  .btn-line:hover{border-color:var(--champagne);color:var(--champagne)}
+
+  /* confeti sutil */
+  .confetti{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+  .confetti i{
+    position:absolute;top:-4vh;width:6px;height:10px;
+    background:var(--champagne);opacity:.9;
+    animation:fall linear forwards;
+  }
+  @keyframes fall{
+    to{transform:translateY(110vh) rotate(720deg);opacity:0}
+  }
+
+  /* ============================================================
+     CRÉDITOS FINALES
+     ============================================================ */
+  .credits{
+    background:var(--noir);text-align:center;padding-block:150px 90px;position:relative;overflow:hidden;
+  }
+  .credits__roll{display:grid;gap:46px;max-width:640px;margin:0 auto 90px}
+  .credit .slug{display:block;margin-bottom:10px}
+  .credit p{margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(22px,3vw,34px)}
+  .credits__fin{
+    font-family:var(--font-display);font-style:italic;font-weight:400;
+    font-size:clamp(90px,18vw,220px);line-height:1;color:var(--pearl);
+    letter-spacing:.02em;
+  }
+  .credits__after{margin-top:26px;font-family:var(--font-mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--silver)}
+
+  .footer{
+    border-top:1px solid var(--line);padding:34px 6vw;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-family:var(--font-mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--silver);
+    background:var(--noir);
+  }
+  .footer b{color:var(--champagne);font-weight:500}
+
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);
+    background:var(--pearl);color:var(--noir);
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;
+    padding:14px 22px;z-index:90;opacity:0;pointer-events:none;
+    transition:opacity .4s,transform .4s var(--ease);
+  }
+  .toast.is-on{opacity:1;transform:translate(-50%,0)}
+
+  /* ============================================================
+     RESPONSIVE — decisiones propias por tamaño
+     ============================================================ */
+  @media (max-width:1024px){
+    .program__grid{grid-template-columns:1fr;gap:60px}
+    .program__intro{position:static}
+    .rsvp__grid{grid-template-columns:1fr;gap:70px}
+    .script__grid{grid-template-columns:1fr 1fr}
+  }
+
+  @media (max-width:760px){
+    .scene{padding:96px 6vw}
+    .hero__media img{object-position:62% 24%}   /* encuadre móvil: prioriza rostros */
+    .hero__names{font-size:clamp(52px,16vw,90px)}
+    .hero__meta{gap:14px;font-size:10px}
+    .hero__corner{bottom:calc(var(--letterbox,7) * 1vh + 16px)}
+    .hero{--letterbox:7}
+    .bar{padding:16px 6vw}
+    .bar__timecode{display:none}
+    .act{grid-template-columns:1fr;gap:34px;padding-block:56px}
+    .act:nth-of-type(even) .act__media{order:0}
+    .act__media{aspect-ratio:4/5}
+    .venues__grid{grid-template-columns:1fr}
+    .script__grid{grid-template-columns:1fr}
+    .program__row{grid-template-columns:76px 1fr;row-gap:6px}
+    .program__tag{grid-column:2}
+    .count__unit{min-width:64px}
+    .count__sep{display:none}
+    .ticket{padding:38px 26px 34px}
+    .seats{grid-template-columns:1fr}
+    .credits__roll{gap:36px}
+    .filmstrip__head{margin-bottom:48px}
+    .strip__frame{width:82vw}
+  }
+
+  @media (max-width:380px){
+    .hero__names{font-size:48px}
+    .headline{font-size:40px}
+  }
+
+  /* ============================================================
+     ACCESIBILIDAD DE MOVIMIENTO
+     ============================================================ */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    html{scroll-behavior:auto}
+    .reveal,.wipe::after,.hero__names span,.hero__kicker,.hero__meta,.hero__corner{opacity:1 !important;transform:none !important}
+    .wipe::after{display:none}
+    .grain{display:none}
+    .marquee__track{animation:none}
+  }
+  </style>
+  <noscript>
+    <style>
+      body.is-locked{overflow:auto}
+      .leader{display:none}
+      .reveal,.wipe::after,.hero__names span,.hero__kicker,.hero__meta,.hero__corner{opacity:1 !important;transform:none !important;animation:none !important}
+      .wipe::after{display:none}
+    </style>
+  </noscript>
+</head>
+<body class="is-locked">
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- PRELOADER: cuenta de cabecera 3 · 2 · 1 -->
+  <div class="leader" id="leader" aria-hidden="true">
+    <div class="leader__dial">
+      <div class="leader__sweep" id="leaderSweep"></div>
+      <div class="leader__num" id="leaderNum">3</div>
+    </div>
+    <p class="leader__tag">Nuestra Boda · Producciones</p>
+  </div>
+
+  <!-- BARRA SUPERIOR -->
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <header class="bar">
+    <a class="bar__brand" href="#inicio">L<span>&amp;</span>J</a>
+    <div class="bar__timecode" aria-hidden="true">
+      <span class="bar__rec"></span>
+      <span id="timecode">00:00 / 03:26</span>
+    </div>
+    <button class="bar__menu" id="menuBtn" aria-expanded="false" aria-controls="curtain">
+      Escenas <i></i>
+    </button>
+  </header>
+
+  <!-- MENÚ TELÓN -->
+  <div class="curtain" id="curtain">
+    <nav aria-label="Escenas de la invitación">
+      <a class="curtain__item" style="transition-delay:.10s" href="#sinopsis"><small>01</small> Sinopsis</a>
+      <a class="curtain__item" style="transition-delay:.16s" href="#historia"><small>02</small> La historia</a>
+      <a class="curtain__item" style="transition-delay:.22s" href="#estreno"><small>03</small> El estreno</a>
+      <a class="curtain__item" style="transition-delay:.28s" href="#escenas"><small>04</small> Escenas</a>
+      <a class="curtain__item" style="transition-delay:.34s" href="#funcion"><small>05</small> La función</a>
+      <a class="curtain__item" style="transition-delay:.40s" href="#salas"><small>06</small> Las salas</a>
+      <a class="curtain__item" style="transition-delay:.46s" href="#guion"><small>07</small> Guión del invitado</a>
+      <a class="curtain__item" style="transition-delay:.52s" href="#butacas"><small>08</small> Tu butaca</a>
+    </nav>
+    <p class="curtain__foot">Lucero &amp; Jorge · 17.10.2026 · Lima</p>
+  </div>
+
+  <!-- PORTADA: SECUENCIA DE TÍTULOS -->
+  <section class="hero" id="inicio">
+    <div class="hero__band hero__band--top" aria-hidden="true"></div>
+    <div class="hero__media" aria-hidden="true">
+      <img src="foto-portada.png" alt="">
+    </div>
+
+    <div class="hero__titles">
+      <p class="hero__kicker">Nuestra Boda presenta</p>
+      <h1 class="hero__names">
+        <span>Lucero</span>
+        <span class="hero__amp">&amp;</span>
+        <span>Jorge</span>
+      </h1>
+      <p class="hero__meta">
+        <span>Una historia de amor</span>
+        <b>17 · Octubre · 2026</b>
+        <span>Lima, Perú</span>
+      </p>
+    </div>
+
+    <button class="hero__corner hero__sound" id="soundBtn" aria-pressed="false">
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span id="soundLabel">Banda sonora</span>
+    </button>
+    <p class="hero__corner hero__scroll" aria-hidden="true">La función comienza</p>
+
+    <div class="hero__band hero__band--bottom" aria-hidden="true"></div>
+  </section>
+
+  <audio id="audio" src="cancion.mp3" loop preload="none"></audio>
+
+  <!-- MARQUESINA -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marqueeTrack">
+      <span>Estreno exclusivo <b>17 de octubre</b> Una sola función <b>Lima · Perú</b> Reserva tu butaca antes del <b>20 de septiembre</b></span>
+      <span>Estreno exclusivo <b>17 de octubre</b> Una sola función <b>Lima · Perú</b> Reserva tu butaca antes del <b>20 de septiembre</b></span>
+    </div>
+  </div>
+
+  <!-- SINOPSIS -->
+  <section class="scene synopsis" id="sinopsis">
+    <div class="frame">
+      <span class="slug reveal">Sinopsis</span>
+      <p class="synopsis__text reveal reveal--d1">
+        Dos personas se encontraron una noche cualquiera y decidieron que ninguna
+        noche volvería a ser <em>cualquiera</em>. Después de siete años de escenas
+        improvisadas, esta es la única que quisieron dejar por escrito.
+      </p>
+      <p class="synopsis__foot reveal reveal--d2">Duración: toda la vida · Clasificación: apta para creer en el amor</p>
+    </div>
+  </section>
+
+  <!-- LA HISTORIA EN TRES ACTOS -->
+  <section class="scene acts" id="historia">
+    <div class="frame">
+      <div class="acts__head">
+        <div>
+          <span class="slug reveal">La historia</span>
+          <h2 class="headline reveal reveal--d1">Tres <em>actos</em></h2>
+        </div>
+        <p class="prose reveal reveal--d2">Toda gran película se sostiene en su estructura. La nuestra no fue la excepción.</p>
+      </div>
+
+      <article class="act">
+        <div class="act__media wipe" data-frame="ESC. 01 — INT. CAFETERÍA. DÍA">
+          <img loading="lazy" decoding="async" src="foto-1.png" alt="Lucero y Jorge al inicio de su historia">
+        </div>
+        <div class="act__copy reveal">
+          <span class="act__num">Acto I</span>
+          <h3 class="act__title">El encuentro</h3>
+          <span class="act__year">Lima — 2019</span>
+          <p class="prose">Un café que ninguno pidió, una conversación que nadie quiso terminar.
+          Jorge llegó tarde; Lucero fingió no darse cuenta. El resto quedó fuera de cámara.</p>
+        </div>
+      </article>
+
+      <article class="act">
+        <div class="act__media wipe" data-frame="ESC. 02 — EXT. MALECÓN. ATARDECER">
+          <img loading="lazy" decoding="async" src="foto-2.png" alt="Lucero y Jorge durante sus años juntos">
+        </div>
+        <div class="act__copy reveal">
+          <span class="act__num">Acto II</span>
+          <h3 class="act__title">El nudo</h3>
+          <span class="act__year">2019 — 2025</span>
+          <p class="prose">Mudanzas, viajes, planes que salieron mal y salieron perfectos.
+          Aprendieron que el amor no es la escena espectacular: es sostener la cámara firme cuando tiembla todo lo demás.</p>
+        </div>
+      </article>
+
+      <article class="act">
+        <div class="act__media wipe" data-frame="ESC. 03 — EXT. JARDÍN. NOCHE">
+          <img loading="lazy" decoding="async" src="foto-3.png" alt="La propuesta de matrimonio">
+        </div>
+        <div class="act__copy reveal">
+          <span class="act__num">Acto III</span>
+          <h3 class="act__title">El desenlace</h3>
+          <span class="act__year">Diciembre — 2025</span>
+          <p class="prose">Una pregunta de cuatro palabras y una respuesta de una sola.
+          El desenlace de esta historia es, en realidad, el comienzo de la siguiente. Ustedes están invitados al estreno.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- EL ESTRENO: CUENTA REGRESIVA -->
+  <section class="scene premiere" id="estreno">
+    <div class="frame">
+      <span class="slug reveal">El estreno</span>
+      <h2 class="premiere__date reveal reveal--d1">Sábado <em>17</em> de octubre, <em>2026</em></h2>
+
+      <div class="count reveal reveal--d2" id="count" role="timer" aria-label="Cuenta regresiva para la boda">
+        <div class="count__unit"><div class="count__num" id="cDays">000</div><div class="count__label">Días</div></div>
+        <div class="count__sep">:</div>
+        <div class="count__unit"><div class="count__num" id="cHours">00</div><div class="count__label">Horas</div></div>
+        <div class="count__sep">:</div>
+        <div class="count__unit"><div class="count__num" id="cMins">00</div><div class="count__label">Minutos</div></div>
+        <div class="count__sep">:</div>
+        <div class="count__unit"><div class="count__num" id="cSecs">00</div><div class="count__label">Segundos</div></div>
+      </div>
+
+      <p class="premiere__note reveal reveal--d3">Función única · No habrá reestreno</p>
+    </div>
+  </section>
+
+  <!-- ESCENAS: GALERÍA FILMSTRIP -->
+  <section class="filmstrip" id="escenas">
+    <div class="filmstrip__head">
+      <div>
+        <span class="slug reveal">Escenas</span>
+        <h2 class="headline reveal reveal--d1">Material <em>de archivo</em></h2>
+      </div>
+      <p class="filmstrip__hint reveal reveal--d2">← Desliza la tira de celuloide →</p>
+    </div>
+
+    <div class="strip-wrap">
+    <div class="strip" id="strip" tabindex="0" aria-label="Galería de fotografías, desliza horizontalmente">
+      <figure class="strip__frame">
+        <img loading="lazy" decoding="async" src="foto-1.png" alt="Lucero y Jorge, escena uno">
+        <figcaption class="strip__caption"><span>ESC. 01</span><span>INT. CAFETERÍA — DÍA</span></figcaption>
+      </figure>
+      <figure class="strip__frame">
+        <img loading="lazy" decoding="async" src="foto-2.png" alt="Lucero y Jorge, escena dos">
+        <figcaption class="strip__caption"><span>ESC. 02</span><span>EXT. MALECÓN — ATARDECER</span></figcaption>
+      </figure>
+      <div class="strip__frame strip__frame--card">
+        <p>“El amor no se actúa.<br>Se filma en vivo,<br>sin segundas tomas.”</p>
+      </div>
+      <figure class="strip__frame">
+        <img loading="lazy" decoding="async" src="foto-3.png" alt="Lucero y Jorge, escena tres">
+        <figcaption class="strip__caption"><span>ESC. 03</span><span>EXT. JARDÍN — NOCHE</span></figcaption>
+      </figure>
+      <figure class="strip__frame">
+        <img loading="lazy" decoding="async" src="foto-4.png" alt="Lucero y Jorge, escena cuatro">
+        <figcaption class="strip__caption"><span>ESC. 04</span><span>INT. CASA — AMANECER</span></figcaption>
+      </figure>
+    </div>
+    </div>
+  </section>
+
+  <!-- LA FUNCIÓN: PROGRAMA -->
+  <section class="scene program" id="funcion">
+    <div class="frame program__grid">
+      <div class="program__intro">
+        <span class="slug reveal">La función</span>
+        <h2 class="headline reveal reveal--d1">Programa <em>de la noche</em></h2>
+        <p class="prose reveal reveal--d2" style="margin-top:26px">
+          Como en toda buena premiere, cada momento tiene su hora exacta.
+          Les recomendamos llegar treinta minutos antes de la primera escena.
+        </p>
+      </div>
+
+      <div class="program__list reveal">
+        <div class="program__row">
+          <span class="program__time">4:00 PM</span>
+          <div><h3 class="program__event">Apertura de puertas</h3><p class="program__desc">Recepción de invitados y ubicación en la ceremonia.</p></div>
+          <span class="program__tag">Sala 1</span>
+        </div>
+        <div class="program__row">
+          <span class="program__time">4:30 PM</span>
+          <div><h3 class="program__event">Ceremonia</h3><p class="program__desc">La escena principal. Se ruega silencio en sala y celulares en modo avión.</p></div>
+          <span class="program__tag">Sala 1</span>
+        </div>
+        <div class="program__row">
+          <span class="program__time">6:30 PM</span>
+          <div><h3 class="program__event">Recepción</h3><p class="program__desc">Cóctel de bienvenida bajo las luces del jardín.</p></div>
+          <span class="program__tag">Sala 2</span>
+        </div>
+        <div class="program__row">
+          <span class="program__time">8:00 PM</span>
+          <div><h3 class="program__event">Cena &amp; brindis</h3><p class="program__desc">Palabras de los protagonistas y de su elenco de apoyo.</p></div>
+          <span class="program__tag">Sala 2</span>
+        </div>
+        <div class="program__row">
+          <span class="program__time">9:30 PM</span>
+          <div><h3 class="program__event">Primer baile</h3><p class="program__desc">La escena que nadie querrá perderse.</p></div>
+          <span class="program__tag">Sala 2</span>
+        </div>
+        <div class="program__row">
+          <span class="program__time">10:00 PM</span>
+          <div><h3 class="program__event">Fiesta</h3><p class="program__desc">Función extendida hasta que el cuerpo diga corte.</p></div>
+          <span class="program__tag">Sala 2</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAS SALAS: UBICACIONES -->
+  <section class="scene venues" id="salas">
+    <div class="frame">
+      <span class="slug reveal">Las salas</span>
+      <h2 class="headline reveal reveal--d1">Dónde <em>sucede</em></h2>
+
+      <div class="venues__grid">
+        <article class="hall reveal">
+          <span class="hall__sala">Sala 1 — Ceremonia</span>
+          <h3>Parroquia Santa María Reina</h3>
+          <p class="hall__addr">Av. Santa Cruz 900, San Isidro — Lima</p>
+          <span class="hall__hour">4:30 PM</span><br>
+          <a class="hall__cta" href="https://maps.google.com/?q=Parroquia+Santa+Maria+Reina+San+Isidro+Lima" target="_blank" rel="noopener">Cómo llegar</a>
+        </article>
+
+        <article class="hall reveal reveal--d1">
+          <span class="hall__sala">Sala 2 — Recepción</span>
+          <h3>Hacienda Los Ficus</h3>
+          <p class="hall__addr">Km 28.5 Carretera a Cieneguilla — Lima</p>
+          <span class="hall__hour">6:30 PM</span><br>
+          <a class="hall__cta" href="https://maps.google.com/?q=Cieneguilla+Lima+Peru" target="_blank" rel="noopener">Cómo llegar</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIÓN PARA INVITADOS -->
+  <section class="scene script" id="guion">
+    <div class="frame">
+      <span class="slug reveal">Guión del invitado</span>
+      <h2 class="headline reveal reveal--d1">Notas de <em>producción</em></h2>
+
+      <div class="script__grid">
+        <div class="note reveal">
+          <span class="note__slug">Vestuario</span>
+          <h3>Etiqueta elegante</h3>
+          <p>La noche pide gala: tonos profundos y elegancia clásica.
+          El blanco queda reservado para la protagonista.</p>
+          <div class="swatches" aria-label="Paleta sugerida">
+            <i style="background:#1c202a" title="Azul noche"></i>
+            <i style="background:#3d2f3f" title="Ciruela"></i>
+            <i style="background:#54423a" title="Moka"></i>
+            <i style="background:#6e6a5c" title="Oliva humo"></i>
+            <i style="background:#8f9398" title="Gris perla"></i>
+          </div>
+        </div>
+
+        <div class="note note--gift reveal reveal--d1">
+          <span class="note__slug">Mesa de regalos</span>
+          <h3>Lluvia de sobres</h3>
+          <p>Su presencia es el mejor regalo. Si desean acompañarnos también en la próxima escena
+          —nuestra luna de miel—, habrá un buzón en la recepción.</p>
+          <div class="gift-row">
+            <span class="gift-chip">BCP Soles <span>193-2845671-0-99</span></span>
+            <span class="gift-chip">Interbank USD <span>200-3009845123</span></span>
+          </div>
+        </div>
+
+        <div class="note reveal reveal--d2">
+          <span class="note__slug">En sala</span>
+          <h3>Función sin flashes</h3>
+          <p>La ceremonia será registrada por nuestro equipo de cámaras.
+          Les pedimos vivirla sin celulares: nosotros compartiremos la película completa.
+          Habrá movilidad de retorno a Lima a la 1:00 AM.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUTACAS: RSVP -->
+  <section class="scene rsvp" id="butacas">
+    <div class="frame rsvp__grid">
+      <div class="rsvp__side">
+        <span class="slug reveal">Confirmación</span>
+        <h2 class="headline reveal reveal--d1">Reserva tu <em>butaca</em></h2>
+        <p class="prose reveal reveal--d2">
+          El aforo de esta función es limitado y cada asiento tiene nombre propio.
+          Confírmanos si podremos contar contigo en la sala.
+        </p>
+        <span class="rsvp__deadline reveal reveal--d3">Confirmar antes del 20 · 09 · 2026</span>
+        <div class="rsvp__actions reveal reveal--d3">
+          <a class="btn-line" id="calBtn" href="#" target="_blank" rel="noopener">Agregar al calendario</a>
+          <button class="btn-line" id="shareBtn" type="button">Compartir invitación</button>
+        </div>
+      </div>
+
+      <div>
+        <form class="ticket reveal" id="ticket" novalidate>
+          <div class="ticket__head">
+            <h3 class="ticket__title">Boleto de entrada</h3>
+            <span class="ticket__no">Nº 17·10·26</span>
+          </div>
+
+          <div class="field">
+            <label for="fName">Nombre y apellido</label>
+            <input id="fName" name="nombre" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="fGuests">Butacas reservadas a tu nombre</label>
+            <select id="fGuests" name="acompanantes">
+              <option value="1">1 — Solo yo</option>
+              <option value="2">2 — Con acompañante</option>
+              <option value="3">3 personas</option>
+              <option value="4">4 personas</option>
+            </select>
+          </div>
+
+          <div class="seats" role="group" aria-label="¿Asistirás?">
+            <button type="button" class="seat" data-value="si" aria-pressed="true">Asistiré a la función</button>
+            <button type="button" class="seat" data-value="no" aria-pressed="false">No podré asistir</button>
+          </div>
+
+          <div class="field">
+            <label for="fMsg">Mensaje para los protagonistas (opcional)</label>
+            <textarea id="fMsg" name="mensaje" rows="2"></textarea>
+          </div>
+
+          <button class="ticket__submit" type="submit">Confirmar reserva</button>
+
+          <div class="ticket__stub">
+            <span>Admite · Fila A</span>
+            <span>Lucero &amp; Jorge</span>
+            <span>Lima · Perú</span>
+          </div>
+        </form>
+
+        <div class="ticket ticket--done" id="ticketDone" aria-live="polite">
+          <h3 class="ticket__title" id="doneTitle">¡Butaca reservada!</h3>
+          <p id="doneText">Tu asiento tiene nombre. Nos vemos el 17 de octubre para la única función de esta historia.</p>
+          <span class="stamp" id="doneStamp">Entrada confirmada</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRÉDITOS FINALES -->
+  <section class="credits" id="creditos">
+    <div class="credits__roll">
+      <div class="credit reveal"><span class="slug slug--dim">Protagonistas</span><p>Lucero Torres &amp; Jorge Salazar</p></div>
+      <div class="credit reveal"><span class="slug slug--dim">Dirección</span><p>El destino, con guión propio</p></div>
+      <div class="credit reveal"><span class="slug slug--dim">Producción ejecutiva</span><p>Nuestras familias</p></div>
+      <div class="credit reveal"><span class="slug slug--dim">Elenco de apoyo</span><p>Ustedes, nuestros invitados</p></div>
+      <div class="credit reveal"><span class="slug slug--dim">Banda sonora original</span><p>La canción que sonaba aquella primera noche</p></div>
+    </div>
+    <div class="credits__fin reveal">Fin</div>
+    <p class="credits__after reveal reveal--d1">… del comienzo</p>
+  </section>
+
+  <footer class="footer">
+    <span>Lucero &amp; Jorge · 17.10.2026</span>
+    <span>Una invitación de <b>nuestraboda.com.pe</b></span>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+  /* ============================================================
+     MODELO 02 — CINÉMA · JavaScript puro, sin dependencias
+     ============================================================ */
+  (function(){
+    "use strict";
+
+    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- Placeholder elegante si falta una foto ---------- */
+    function placeholder(label){
+      var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'>"+
+        "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>"+
+        "<stop offset='0' stop-color='%231c202a'/><stop offset='1' stop-color='%230b0c10'/></linearGradient></defs>"+
+        "<rect width='800' height='1000' fill='url(%23g)'/>"+
+        "<text x='400' y='490' text-anchor='middle' font-family='Georgia' font-style='italic' font-size='54' fill='%23d2b380'>A %26 M</text>"+
+        "<text x='400' y='545' text-anchor='middle' font-family='monospace' letter-spacing='6' font-size='16' fill='%238e939c'>"+label+"</text>"+
+        "</svg>";
+      return "data:image/svg+xml;utf8," + svg;
+    }
+    document.querySelectorAll("img").forEach(function(img, i){
+      img.addEventListener("error", function(){
+        img.src = placeholder("FOTO " + (i === 0 ? "PORTADA" : "0" + i));
+        img.style.objectFit = "cover";
+      }, { once:true });
+    });
+
+    /* ---------- Preloader: 3 · 2 · 1 ---------- */
+    var leader = document.getElementById("leader");
+    var leaderNum = document.getElementById("leaderNum");
+    var leaderSweep = document.getElementById("leaderSweep");
+
+    function endLeader(){
+      leader.classList.add("is-done");
+      document.body.classList.remove("is-locked");
+    }
+
+    if(prefersReduced){
+      endLeader();
+    } else {
+      var n = 3, stepMs = 750, start = null;
+      function tick(ts){
+        if(!start) start = ts;
+        var p = (ts - start) / stepMs;
+        if(p >= 1){ start = ts; n--; p = 0;
+          if(n < 1){ endLeader(); return; }
+          leaderNum.textContent = n;
+        }
+        leaderSweep.style.background =
+          "conic-gradient(rgba(210,179,128,.5) " + (p*360) + "deg, transparent " + (p*360) + "deg)";
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      setTimeout(endLeader, 3200); // red de seguridad
+    }
+
+    /* ---------- Revelados por scroll ---------- */
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("is-on"); io.unobserve(e.target); }
+      });
+    }, { threshold:.18, rootMargin:"0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal,.wipe").forEach(function(el){ io.observe(el); });
+
+    /* ---------- Timecode + progreso + letterbox ---------- */
+    var progress = document.getElementById("progress");
+    var timecode = document.getElementById("timecode");
+    var hero = document.getElementById("inicio");
+    var TOTAL = 206; // “duración” de la película: 3:26
+
+    function fmt(s){ var m = Math.floor(s/60); s = Math.floor(s%60);
+      return (m<10?"0":"")+m+":"+(s<10?"0":"")+s; }
+
+    var ticking = false;
+    function onScroll(){
+      if(ticking) return; ticking = true;
+      requestAnimationFrame(function(){
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        var f = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+        progress.style.transform = "scaleX(" + f + ")";
+        timecode.textContent = fmt(f * TOTAL) + " / " + fmt(TOTAL);
+
+        // letterbox: las franjas se abren durante la primera pantalla
+        if(!prefersReduced){
+          var hf = Math.min(1, window.scrollY / (window.innerHeight * .8));
+          var base = window.innerWidth < 760 ? 7 : 11;
+          hero.style.setProperty("--letterbox", (base * (1 - hf)).toFixed(2));
+        }
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive:true });
+    onScroll();
+
+    /* ---------- Menú telón ---------- */
+    var menuBtn = document.getElementById("menuBtn");
+    var curtain = document.getElementById("curtain");
+    function toggleMenu(force){
+      var open = typeof force === "boolean" ? force : !curtain.classList.contains("is-open");
+      curtain.classList.toggle("is-open", open);
+      menuBtn.setAttribute("aria-expanded", open);
+      menuBtn.childNodes[0].textContent = open ? "Cerrar " : "Escenas ";
+      document.body.classList.toggle("is-locked", open);
+    }
+    menuBtn.addEventListener("click", function(){ toggleMenu(); });
+    curtain.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){ toggleMenu(false); });
+    });
+    document.addEventListener("keydown", function(e){
+      if(e.key === "Escape") toggleMenu(false);
+    });
+
+    /* ---------- Banda sonora ---------- */
+    var audio = document.getElementById("audio");
+    var soundBtn = document.getElementById("soundBtn");
+    var soundLabel = document.getElementById("soundLabel");
+    soundBtn.addEventListener("click", function(){
+      if(audio.paused){
+        audio.play().then(function(){
+          soundBtn.classList.add("is-playing");
+          soundBtn.setAttribute("aria-pressed","true");
+          soundLabel.textContent = "Sonando";
+        }).catch(function(){
+          showToast("Agrega cancion.mp3 a la carpeta para activar la música");
+        });
+      } else {
+        audio.pause();
+        soundBtn.classList.remove("is-playing");
+        soundBtn.setAttribute("aria-pressed","false");
+        soundLabel.textContent = "Banda sonora";
+      }
+    });
+
+    /* ---------- Cuenta regresiva ---------- */
+    var target = new Date("2026-10-17T16:30:00-05:00").getTime();
+    var cD = document.getElementById("cDays"), cH = document.getElementById("cHours"),
+        cM = document.getElementById("cMins"), cS = document.getElementById("cSecs");
+    function pad(v,l){ v=String(v); while(v.length<l) v="0"+v; return v; }
+    function updateCount(){
+      var diff = Math.max(0, target - Date.now());
+      cD.textContent = pad(Math.floor(diff/864e5), 3);
+      cH.textContent = pad(Math.floor(diff/36e5)%24, 2);
+      cM.textContent = pad(Math.floor(diff/6e4)%60, 2);
+      cS.textContent = pad(Math.floor(diff/1e3)%60, 2);
+    }
+    updateCount(); setInterval(updateCount, 1000);
+
+    /* ---------- Filmstrip: arrastre + foco central ---------- */
+    var strip = document.getElementById("strip");
+    var isDown = false, startX = 0, scrollStart = 0;
+    strip.addEventListener("pointerdown", function(e){
+      isDown = true; startX = e.clientX; scrollStart = strip.scrollLeft;
+      strip.classList.add("is-dragging"); strip.setPointerCapture(e.pointerId);
+    });
+    strip.addEventListener("pointermove", function(e){
+      if(!isDown) return;
+      strip.scrollLeft = scrollStart - (e.clientX - startX);
+    });
+    ["pointerup","pointercancel","pointerleave"].forEach(function(ev){
+      strip.addEventListener(ev, function(){ isDown = false; strip.classList.remove("is-dragging"); });
+    });
+    // en móvil, la foto centrada recupera el color
+    var frames = strip.querySelectorAll(".strip__frame");
+    var centerIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ e.target.classList.toggle("is-center", e.intersectionRatio > .75); });
+    }, { root:strip, threshold:[.75] });
+    frames.forEach(function(f){ centerIO.observe(f); });
+
+    /* ---------- RSVP ---------- */
+    var ticket = document.getElementById("ticket");
+    var ticketDone = document.getElementById("ticketDone");
+    var attending = "si";
+    ticket.querySelectorAll(".seat").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        attending = btn.dataset.value;
+        ticket.querySelectorAll(".seat").forEach(function(b){
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+      });
+    });
+
+    ticket.addEventListener("submit", function(e){
+      e.preventDefault();
+      var name = document.getElementById("fName").value.trim();
+      if(!name){ showToast("Escribe tu nombre para reservar"); document.getElementById("fName").focus(); return; }
+
+      /* Integración opcional con Google Sheets / Apps Script:
+         reemplaza ENDPOINT por tu URL y descomenta el fetch.
+      var ENDPOINT = "";
+      fetch(ENDPOINT, { method:"POST", body:new FormData(ticket) });
+      */
+
+      var first = name.split(" ")[0];
+      if(attending === "si"){
+        document.getElementById("doneTitle").textContent = "¡Butaca reservada, " + first + "!";
+        document.getElementById("doneText").textContent =
+          "Tu asiento ya tiene nombre. Nos vemos el 17 de octubre para la única función de esta historia.";
+        document.getElementById("doneStamp").textContent = "Entrada confirmada";
+        if(!prefersReduced) confetti();
+      } else {
+        document.getElementById("doneTitle").textContent = "Te extrañaremos, " + first;
+        document.getElementById("doneText").textContent =
+          "Gracias por avisarnos. Guardaremos una escena de esta película solo para contártela después.";
+        document.getElementById("doneStamp").textContent = "Presente en el corazón";
+      }
+      ticket.style.display = "none";
+      ticketDone.style.display = "block";
+      ticketDone.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block:"center" });
+    });
+
+    /* ---------- Confeti sutil ---------- */
+    function confetti(){
+      var wrap = document.createElement("div");
+      wrap.className = "confetti";
+      var colors = ["#d2b380","#ede8dc","#8e939c"];
+      for(var i=0;i<42;i++){
+        var p = document.createElement("i");
+        p.style.left = Math.random()*100 + "vw";
+        p.style.background = colors[i % colors.length];
+        p.style.animationDuration = (2.4 + Math.random()*2.2) + "s";
+        p.style.animationDelay = (Math.random()*0.6) + "s";
+        p.style.transform = "rotate(" + Math.random()*360 + "deg)";
+        wrap.appendChild(p);
+      }
+      document.body.appendChild(wrap);
+      setTimeout(function(){ wrap.remove(); }, 5600);
+    }
+
+    /* ---------- Calendario ---------- */
+    var calBtn = document.getElementById("calBtn");
+    calBtn.href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+      "&text=" + encodeURIComponent("Boda de Lucero & Jorge") +
+      "&dates=20261017T213000Z/20261018T060000Z" +
+      "&details=" + encodeURIComponent("Ceremonia 4:30 PM · Recepción 6:30 PM. Una historia de amor, función única.") +
+      "&location=" + encodeURIComponent("Lima, Perú");
+
+    /* ---------- Compartir ---------- */
+    var shareBtn = document.getElementById("shareBtn");
+    shareBtn.addEventListener("click", function(){
+      var data = {
+        title: "Lucero & Jorge — Nuestra Boda",
+        text: "Estás invitado al estreno de nuestra historia. 17 de octubre de 2026, Lima.",
+        url: location.href
+      };
+      if(navigator.share){
+        navigator.share(data).catch(function(){});
+      } else if(navigator.clipboard){
+        navigator.clipboard.writeText(data.url).then(function(){
+          showToast("Enlace copiado para compartir");
+        });
+      }
+    });
+
+    /* ---------- Toast ---------- */
+    var toast = document.getElementById("toast"), toastTimer;
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("is-on");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function(){ toast.classList.remove("is-on"); }, 3200);
+    }
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="Alessandra & Mateo — 17 de octubre de 2026, Lima.">
+  <title>Alessandra & Mateo — SILENCIO | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,350;1,6..72,400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+  /* ============================================================
+     MODELO 05 — "SILENCIO"
+     Concepto: lujo silencioso. Casi sin ornamento, una sola
+     tipografía protagonista, espacio en blanco como material
+     principal. La restricción es el efecto premium.
+     ============================================================ */
+
+  :root{
+    --white:#faf9f6;
+    --paper:#ffffff;
+    --ink:#161613;
+    --gray:#8a877e;
+    --gray-soft:#c9c6bc;
+    --line:rgba(22,22,19,.12);
+    --line-strong:rgba(22,22,19,.24);
+    --accent:#a4402c;   /* único acento de color, uso extremadamente escaso */
+
+    --font-display:'Newsreader',Georgia,'Times New Roman',serif;
+    --font-label:'Space Grotesk',Arial,Helvetica,sans-serif;
+
+    --ease:cubic-bezier(.22,.8,.24,1);
+    --gap:9vw;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--white);color:var(--ink);
+    font-family:var(--font-label);font-weight:300;line-height:1.7;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  ::selection{background:var(--ink);color:var(--white)}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  a{color:inherit;text-decoration:none}
+  button,input,textarea,select{font:inherit;color:inherit}
+  button{cursor:pointer;background:none;border:0;padding:0}
+  :focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+
+  .eyebrow{
+    margin:0 0 0;font-family:var(--font-label);font-size:11px;font-weight:400;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--gray);
+  }
+  .display{
+    margin:0;font-family:var(--font-display);font-weight:300;
+    font-size:clamp(38px,5.6vw,84px);line-height:1.06;letter-spacing:-.01em;
+  }
+  .display em{font-style:italic;color:var(--ink)}
+
+  .prose{margin:0;max-width:460px;color:#514f48;font-size:16px;font-weight:300;line-height:1.85}
+
+  .reveal{opacity:0;transition:opacity 1.3s var(--ease)}
+  .reveal.is-on{opacity:1}
+  .reveal--d1{transition-delay:.15s}
+  .reveal--d2{transition-delay:.3s}
+
+  .rule{border:0;border-top:1px solid var(--line-strong);margin:0}
+
+  .scene{position:relative;padding:150px var(--gap)}
+  .scene--tight{padding-block:110px}
+
+  /* ============================================================
+     HILO DE LECTURA — línea vertical fina que sigue el scroll
+     ============================================================ */
+  .thread{position:fixed;left:5.5vw;top:0;bottom:0;width:1px;z-index:40;background:var(--line);pointer-events:none}
+  .thread__fill{position:absolute;left:0;top:0;width:100%;height:0;background:var(--ink)}
+  .thread__dot{position:absolute;left:50%;top:0;width:5px;height:5px;border-radius:50%;background:var(--ink);transform:translate(-50%,-50%)}
+  @media (max-width:900px){ .thread{display:none} }
+
+  /* ============================================================
+     PRELOADER — trazo único
+     ============================================================ */
+  .loader{
+    position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+    background:var(--white);transition:opacity .9s ease,visibility .9s ease;
+  }
+  .loader.is-done{opacity:0;visibility:hidden}
+  .loader__line{width:min(30vw,180px);height:1px;background:var(--line-strong);position:relative;overflow:hidden}
+  .loader__line i{position:absolute;inset:0;background:var(--ink);transform:scaleX(0);transform-origin:left;animation:drawLine 1.8s var(--ease) forwards}
+  @keyframes drawLine{to{transform:scaleX(1)}}
+  .loader__tag{
+    position:absolute;margin-top:26px;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gray);
+  }
+
+  /* ============================================================
+     NAV
+     ============================================================ */
+  .bar{
+    position:fixed;inset:0 0 auto;z-index:70;
+    display:flex;align-items:center;justify-content:space-between;padding:28px var(--gap);
+    mix-blend-mode:difference;
+  }
+  .bar__brand{font-family:var(--font-display);font-style:italic;font-size:19px;color:#fff}
+  .bar__menu{font-family:var(--font-label);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#fff}
+
+  .menu{
+    position:fixed;inset:0;z-index:69;background:var(--white);
+    display:grid;place-items:center;
+    opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s var(--ease);
+  }
+  .menu.is-open{opacity:1;visibility:visible}
+  .menu nav{display:grid;gap:6px;text-align:center}
+  .menu__item{
+    font-family:var(--font-display);font-weight:300;font-size:clamp(26px,4.6vw,44px);color:var(--ink);
+    padding:10px;opacity:0;transform:translateY(14px);
+    transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s;
+  }
+  .menu.is-open .menu__item{opacity:1;transform:none}
+  .menu__item:hover{color:var(--gray)}
+  .menu__foot{
+    position:absolute;bottom:6vh;font-family:var(--font-label);font-size:10px;
+    letter-spacing:.3em;text-transform:uppercase;color:var(--gray);
+  }
+
+  /* ============================================================
+     PORTADA
+     ============================================================ */
+  .hero{position:relative;padding:170px var(--gap) 0}
+  .hero__top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap}
+  .hero__kicker{font-family:var(--font-label);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--gray)}
+  .hero__names{
+    margin:20px 0 0;font-family:var(--font-display);font-weight:300;
+    font-size:clamp(56px,10.5vw,168px);line-height:.92;letter-spacing:-.015em;
+  }
+  .hero__names em{font-style:italic;color:var(--gray)}
+
+  .hero__meta{
+    text-align:right;font-family:var(--font-label);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gray);display:grid;gap:6px;
+  }
+  .hero__meta b{color:var(--ink);font-weight:400}
+
+.hero__media{
+  margin-top:70px;
+  width:100%;
+  overflow:hidden;
+  background:var(--white);
+}
+
+.hero__media img{
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  filter:grayscale(.15) contrast(1.02);
+}
+
+  .hero__foot{
+    display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+    padding:26px var(--gap) 0;
+  }
+  .hero__sound{
+    font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+    display:flex;align-items:center;gap:10px;
+  }
+  .hero__sound:hover{color:var(--ink)}
+  .hero__sound i{width:6px;height:6px;border-radius:50%;border:1px solid var(--gray)}
+  .is-playing .hero__sound i{background:var(--ink);border-color:var(--ink)}
+  .hero__scroll{font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray)}
+
+  @media (max-width:760px){
+    .hero{padding-top:130px}
+    .hero__top{flex-direction:column;align-items:flex-start;gap:26px}
+    .hero__meta{text-align:left}
+    .hero__media{margin-top:50px;aspect-ratio:4/5;max-height:none}
+  }
+
+  /* ============================================================
+     NOTA
+     ============================================================ */
+  .note-scene{border-top:1px solid var(--line)}
+  .note__grid{display:grid;grid-template-columns:.4fr .6fr;gap:var(--gap)}
+  .note__text{
+    margin:0;font-family:var(--font-display);font-weight:300;font-style:italic;
+    font-size:clamp(24px,2.8vw,34px);line-height:1.55;color:var(--ink);
+  }
+  @media (max-width:820px){ .note__grid{grid-template-columns:1fr;gap:24px} }
+
+  /* ============================================================
+     HISTORIA — narrativa vertical sin tarjetas
+     ============================================================ */
+  .story{border-top:1px solid var(--line)}
+  .story__head{margin-bottom:100px}
+  .chapter{
+    display:grid;grid-template-columns:.34fr .66fr;gap:var(--gap);
+    padding-block:64px;border-top:1px solid var(--line);align-items:start;
+  }
+  .chapter:last-of-type{border-bottom:1px solid var(--line)}
+  .chapter__num{font-family:var(--font-label);font-size:12px;letter-spacing:.1em;color:var(--gray)}
+  .chapter__media{margin-top:22px;aspect-ratio:4/5;max-width:340px}
+  .chapter__media img{filter:grayscale(.2) contrast(1.02)}
+  .chapter__title{margin:0 0 18px;font-family:var(--font-display);font-weight:300;font-size:clamp(28px,3.4vw,44px)}
+  .chapter__year{font-family:var(--font-label);font-size:11px;letter-spacing:.14em;color:var(--gray);display:block;margin-bottom:20px}
+  @media (max-width:820px){
+    .chapter{grid-template-columns:1fr;gap:26px}
+  }
+
+  /* ============================================================
+     CUENTA REGRESIVA — un solo número
+     ============================================================ */
+  .count-scene{border-top:1px solid var(--line);text-align:center}
+  .count-scene .eyebrow{display:block;margin-bottom:36px}
+  .count-big{font-family:var(--font-display);font-weight:300;font-size:clamp(90px,16vw,220px);line-height:1;letter-spacing:-.02em}
+  .count-big em{font-style:italic;color:var(--gray)}
+  .count-sub{margin-top:18px;font-family:var(--font-label);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray)}
+  .count-fine{
+    margin-top:60px;display:flex;justify-content:center;gap:44px;flex-wrap:wrap;
+    font-family:var(--font-label);font-size:11px;letter-spacing:.1em;color:var(--gray);
+  }
+  .count-fine b{color:var(--ink);font-weight:400;font-variant-numeric:tabular-nums}
+
+  /* ============================================================
+     GALERÍA — tira sin marcos
+     ============================================================ */
+  .gallery{border-top:1px solid var(--line);padding-inline:0}
+  .gallery__head{padding:0 var(--gap) 70px}
+  .gallery__strip{display:flex;gap:2px}
+  .gallery__frame{flex:1;aspect-ratio:3/4;overflow:hidden}
+  .gallery__frame img{filter:grayscale(.2) contrast(1.03);transition:filter .8s var(--ease),transform 1.2s var(--ease)}
+  .gallery__frame:hover img{filter:grayscale(0);transform:scale(1.03)}
+  .gallery__frame--wide{flex:1.6}
+  @media (max-width:760px){
+    .gallery__strip{flex-direction:column}
+    .gallery__frame{aspect-ratio:4/5}
+  }
+
+  /* ============================================================
+     ITINERARIO — lista simple
+     ============================================================ */
+  .agenda{border-top:1px solid var(--line)}
+  .agenda__grid{display:grid;grid-template-columns:.4fr .6fr;gap:var(--gap);align-items:start}
+  .agenda__list{border-top:1px solid var(--line-strong)}
+  .agenda__row{
+    display:grid;grid-template-columns:90px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);
+  }
+  .agenda__time{font-family:var(--font-label);font-size:12px;letter-spacing:.06em;color:var(--gray)}
+  .agenda__event{margin:0;font-family:var(--font-display);font-weight:300;font-size:clamp(19px,2vw,25px)}
+  @media (max-width:820px){ .agenda__grid{grid-template-columns:1fr;gap:34px} }
+
+  /* ============================================================
+     UBICACIONES
+     ============================================================ */
+  .places{border-top:1px solid var(--line)}
+  .places__grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);margin-top:70px}
+  .place{border-top:1px solid var(--line-strong);padding-top:24px}
+  .place__tag{font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray)}
+  .place h3{margin:16px 0 6px;font-family:var(--font-display);font-weight:300;font-size:clamp(24px,2.6vw,32px)}
+  .place p{margin:0 0 18px;color:#615e56;font-size:14px}
+  .place a{
+    font-family:var(--font-label);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    border-bottom:1px solid var(--ink);padding-bottom:4px;
+  }
+  @media (max-width:640px){ .places__grid{grid-template-columns:1fr;gap:44px} }
+
+  /* ============================================================
+     NOTAS
+     ============================================================ */
+  .details{border-top:1px solid var(--line)}
+  .details__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:70px}
+  .detail{border-top:1px solid var(--line-strong);padding-top:24px}
+  .detail h3{margin:0 0 12px;font-family:var(--font-display);font-weight:300;font-size:22px}
+  .detail p{margin:0;color:#615e56;font-size:14px}
+  @media (max-width:820px){ .details__grid{grid-template-columns:1fr;gap:40px} }
+
+  /* ============================================================
+     CONFIRMACIÓN — formulario simple, sin metáfora decorativa
+     ============================================================ */
+  .rsvp{border-top:1px solid var(--line)}
+  .rsvp__grid{display:grid;grid-template-columns:.42fr .58fr;gap:var(--gap);align-items:start}
+  .rsvp__deadline{margin-top:34px;font-family:var(--font-label);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray)}
+  .rsvp__deadline b{color:var(--ink);font-weight:400}
+
+  form.plain{border-top:1px solid var(--line-strong)}
+  .field{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line)}
+  .field label{font-family:var(--font-label);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
+  .field input,.field select,.field textarea{
+    width:100%;background:transparent;border:0;padding:4px 0;
+    font-family:var(--font-display);font-weight:300;font-size:19px;color:var(--ink);
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none}
+  .field textarea{resize:vertical;min-height:44px;font-family:var(--font-label);font-size:15px}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23161613'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center}
+
+  .toggle-row{display:flex;gap:30px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .toggle{
+    font-family:var(--font-label);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);
+    padding-bottom:4px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;
+  }
+  .toggle[aria-pressed="true"]{color:var(--ink);border-color:var(--ink)}
+
+  .rsvp__submit{
+    margin-top:34px;display:inline-flex;align-items:center;gap:14px;
+    font-family:var(--font-label);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);
+    padding-bottom:6px;border-bottom:1px solid var(--ink);
+    transition:gap .35s var(--ease),color .35s;
+  }
+  .rsvp__submit:hover{gap:22px;color:var(--accent);border-color:var(--accent)}
+  .rsvp__submit::after{content:"→"}
+
+  .rsvp__done{display:none;padding-top:14px}
+  .rsvp__done .display{margin-bottom:18px}
+  .rsvp__done p{color:#615e56;max-width:420px}
+  .rsvp__done .mark{
+    display:inline-block;margin-top:24px;width:8px;height:8px;border-radius:50%;background:var(--accent);
+  }
+
+  /* ============================================================
+     CIERRE
+     ============================================================ */
+  .closing{border-top:1px solid var(--line);text-align:center;padding-block:150px 100px}
+  .closing__text{
+    margin:0 auto;max-width:640px;font-family:var(--font-display);font-weight:300;font-style:italic;
+    font-size:clamp(24px,3vw,36px);line-height:1.5;
+  }
+  .closing__mark{margin-top:40px;font-family:var(--font-display);font-size:clamp(48px,8vw,90px);color:var(--gray-soft)}
+
+  .footer{
+    border-top:1px solid var(--line);padding:32px var(--gap);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);
+  }
+
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);
+    background:var(--ink);color:var(--white);
+    font-family:var(--font-label);font-size:11px;letter-spacing:.06em;padding:14px 22px;z-index:90;
+    opacity:0;pointer-events:none;transition:opacity .4s,transform .4s var(--ease);
+  }
+  .toast.is-on{opacity:1;transform:translate(-50%,0)}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width:760px){
+    :root{--gap:7vw}
+    .scene{padding:100px var(--gap)}
+    .details__grid{gap:36px}
+    .field{grid-template-columns:1fr}
+    .field label{margin-bottom:2px}
+    .rsvp__grid{grid-template-columns:1fr;gap:50px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    html{scroll-behavior:auto}
+    .reveal{opacity:1 !important}
+    .thread__fill{transition:none}
+  }
+  </style>
+
+  <noscript>
+    <style>
+      .loader{display:none}
+      .reveal{opacity:1 !important}
+      .thread{display:none}
+    </style>
+  </noscript>
+</head>
+<body>
+
+  <!-- HILO DE LECTURA -->
+  <div class="thread" aria-hidden="true">
+    <div class="thread__fill" id="threadFill"></div>
+    <div class="thread__dot" id="threadDot"></div>
+  </div>
+
+  <!-- PRELOADER -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div>
+      <div class="loader__line"><i></i></div>
+      <p class="loader__tag">Nuestra Boda</p>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <header class="bar">
+    <a class="bar__brand" href="#inicio">A &amp; M</a>
+    <button class="bar__menu" id="menuBtn" aria-expanded="false" aria-controls="menu">Índice</button>
+  </header>
+
+  <div class="menu" id="menu">
+    <nav aria-label="Índice">
+      <a class="menu__item" style="transition-delay:.06s" href="#nota">Nota</a>
+      <a class="menu__item" style="transition-delay:.1s" href="#historia">Historia</a>
+      <a class="menu__item" style="transition-delay:.14s" href="#cuenta">Cuenta regresiva</a>
+      <a class="menu__item" style="transition-delay:.18s" href="#galeria">Galería</a>
+      <a class="menu__item" style="transition-delay:.22s" href="#itinerario">Itinerario</a>
+      <a class="menu__item" style="transition-delay:.26s" href="#lugares">Lugares</a>
+      <a class="menu__item" style="transition-delay:.3s" href="#detalles">Detalles</a>
+      <a class="menu__item" style="transition-delay:.34s" href="#confirmar">Confirmar</a>
+    </nav>
+    <p class="menu__foot">17 · 10 · 2026 · Lima</p>
+  </div>
+
+  <!-- PORTADA -->
+  <section class="hero" id="inicio">
+    <div class="hero__top">
+      <div>
+        <p class="hero__kicker reveal">Nos casamos</p>
+        <h1 class="hero__names reveal reveal--d1">Alessandra<br><em>&amp;</em> Mateo</h1>
+      </div>
+      <div class="hero__meta reveal reveal--d2">
+        <span><b>17 de octubre</b> de 2026</span>
+        <span>Lima, Perú</span>
+      </div>
+    </div>
+
+    <div class="hero__media reveal reveal--d2">
+      <img src="foto-portada.png" alt="Alessandra y Mateo">
+    </div>
+
+    <div class="hero__foot">
+      <button class="hero__sound" id="soundBtn" aria-pressed="false">
+        <i aria-hidden="true"></i><span id="soundLabel">Reproducir música</span>
+      </button>
+      <span class="hero__scroll">Desplázate</span>
+    </div>
+  </section>
+
+  <audio id="audio" src="cancion.mp3" loop preload="none"></audio>
+
+  <!-- NOTA -->
+  <section class="scene note-scene" id="nota">
+    <div class="note__grid">
+      <p class="eyebrow reveal">Una nota</p>
+      <p class="note__text reveal reveal--d1">
+        Después de siete años decidimos que ya no queríamos un día más sin
+        estar oficialmente juntos. No habrá gran producción — solo las
+        personas que más queremos, reunidas alrededor de algo simple y real.
+      </p>
+    </div>
+  </section>
+
+  <!-- HISTORIA -->
+  <section class="scene story" id="historia">
+    <div class="story__head">
+      <p class="eyebrow reveal">La historia</p>
+      <h2 class="display reveal reveal--d1">Cómo <em>llegamos aquí</em></h2>
+    </div>
+
+    <article class="chapter reveal">
+      <div>
+        <span class="chapter__num">01</span>
+        <div class="chapter__media"><img src="foto-1.png" alt="Alessandra y Mateo, el encuentro"></div>
+      </div>
+      <div>
+        <span class="chapter__year">Lima, 2019</span>
+        <h3 class="chapter__title">El encuentro</h3>
+        <p class="prose">Una cafetería sin nombre, una mesa compartida por accidente. Ninguno recuerda quién habló primero, solo que la conversación no quiso terminar.</p>
+      </div>
+    </article>
+
+    <article class="chapter reveal">
+      <div>
+        <span class="chapter__num">02</span>
+        <div class="chapter__media"><img src="foto-2.png" alt="Alessandra y Mateo, los años"></div>
+      </div>
+      <div>
+        <span class="chapter__year">2019 — 2025</span>
+        <h3 class="chapter__title">Los años ordinarios</h3>
+        <p class="prose">Mudanzas, trabajos, viajes pequeños. Nada extraordinario en apariencia, y sin embargo todo lo que importó.</p>
+      </div>
+    </article>
+
+    <article class="chapter reveal">
+      <div>
+        <span class="chapter__num">03</span>
+        <div class="chapter__media"><img src="foto-3.png" alt="La propuesta de matrimonio"></div>
+      </div>
+      <div>
+        <span class="chapter__year">Diciembre, 2025</span>
+        <h3 class="chapter__title">La decisión</h3>
+        <p class="prose">Una pregunta simple, dicha sin ceremonia, en una cocina cualquiera. La respuesta ya estaba decidida hace tiempo.</p>
+      </div>
+    </article>
+  </section>
+
+  <!-- CUENTA REGRESIVA -->
+  <section class="scene count-scene" id="cuenta">
+    <p class="eyebrow reveal">Faltan</p>
+    <div class="count-big reveal reveal--d1"><span id="cDays">000</span> <em>días</em></div>
+    <p class="count-sub reveal reveal--d1">Sábado 17 de octubre, 2026</p>
+    <div class="count-fine reveal reveal--d2">
+      <span><b id="cHours">00</b> horas</span>
+      <span><b id="cMins">00</b> minutos</span>
+      <span><b id="cSecs">00</b> segundos</span>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="gallery" id="galeria">
+    <div class="gallery__head">
+      <p class="eyebrow reveal">Galería</p>
+      <h2 class="display reveal reveal--d1">Algunas <em>fotografías</em></h2>
+    </div>
+    <div class="gallery__strip">
+      <div class="gallery__frame reveal"><img loading="lazy" decoding="async" src="foto-1.png" alt="Fotografía uno"></div>
+      <div class="gallery__frame gallery__frame--wide reveal reveal--d1"><img loading="lazy" decoding="async" src="foto-2.png" alt="Fotografía dos"></div>
+      <div class="gallery__frame reveal reveal--d2"><img loading="lazy" decoding="async" src="foto-3.png" alt="Fotografía tres"></div>
+      <div class="gallery__frame reveal reveal--d1"><img loading="lazy" decoding="async" src="foto-4.png" alt="Fotografía cuatro"></div>
+    </div>
+  </section>
+
+  <!-- ITINERARIO -->
+  <section class="scene agenda" id="itinerario">
+    <div class="agenda__grid">
+      <div>
+        <p class="eyebrow reveal">Itinerario</p>
+        <h2 class="display reveal reveal--d1">El <em>día</em></h2>
+        <p class="prose reveal reveal--d2" style="margin-top:24px">Sin apuros. Cada momento tiene su hora, pero lo importante es que estén ahí.</p>
+      </div>
+
+      <div class="agenda__list reveal">
+        <div class="agenda__row"><span class="agenda__time">4:00 PM</span><h3 class="agenda__event">Llegada de invitados</h3></div>
+        <div class="agenda__row"><span class="agenda__time">4:30 PM</span><h3 class="agenda__event">Ceremonia</h3></div>
+        <div class="agenda__row"><span class="agenda__time">6:30 PM</span><h3 class="agenda__event">Recepción</h3></div>
+        <div class="agenda__row"><span class="agenda__time">8:00 PM</span><h3 class="agenda__event">Cena y brindis</h3></div>
+        <div class="agenda__row"><span class="agenda__time">9:30 PM</span><h3 class="agenda__event">Primer baile</h3></div>
+        <div class="agenda__row"><span class="agenda__time">10:00 PM</span><h3 class="agenda__event">Celebración</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LUGARES -->
+  <section class="scene places" id="lugares">
+    <p class="eyebrow reveal">Ubicaciones</p>
+    <h2 class="display reveal reveal--d1">Dónde <em>encontrarnos</em></h2>
+
+    <div class="places__grid">
+      <article class="place reveal">
+        <span class="place__tag">Ceremonia · 4:30 PM</span>
+        <h3>Parroquia Santa María Reina</h3>
+        <p>Av. Santa Cruz 900, San Isidro — Lima</p>
+        <a href="https://maps.google.com/?q=Parroquia+Santa+Maria+Reina+San+Isidro+Lima" target="_blank" rel="noopener">Cómo llegar</a>
+      </article>
+      <article class="place reveal reveal--d1">
+        <span class="place__tag">Recepción · 6:30 PM</span>
+        <h3>Hacienda Los Ficus</h3>
+        <p>Km 28.5 Carretera a Cieneguilla — Lima</p>
+        <a href="https://maps.google.com/?q=Cieneguilla+Lima+Peru" target="_blank" rel="noopener">Cómo llegar</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- DETALLES -->
+  <section class="scene details" id="detalles">
+    <p class="eyebrow reveal">Detalles</p>
+    <h2 class="display reveal reveal--d1">Antes de <em>venir</em></h2>
+
+    <div class="details__grid">
+      <div class="detail reveal">
+        <h3>Vestimenta</h3>
+        <p>Elegante y cómoda. Tonos neutros son bienvenidos; el blanco queda reservado para la novia.</p>
+      </div>
+      <div class="detail reveal reveal--d1">
+        <h3>Regalos</h3>
+        <p>Su presencia es suficiente. Si desean un gesto adicional, habrá un sobre disponible el día del evento.</p>
+      </div>
+      <div class="detail reveal reveal--d2">
+        <h3>Durante la ceremonia</h3>
+        <p>Preferimos vivirla sin celulares en alto. Compartiremos las fotografías oficiales después.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIRMACIÓN -->
+  <section class="scene rsvp" id="confirmar">
+    <div class="rsvp__grid">
+      <div>
+        <p class="eyebrow reveal">Confirmación</p>
+        <h2 class="display reveal reveal--d1">¿Nos <em>acompañas?</em></h2>
+        <p class="rsvp__deadline reveal reveal--d2">Confirmar antes del <b>20 de septiembre</b></p>
+      </div>
+
+      <div>
+        <form class="plain reveal" id="ticket" novalidate>
+          <div class="field">
+            <label for="fName">Nombre</label>
+            <input id="fName" name="nombre" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="fGuests">Acompañantes</label>
+            <select id="fGuests" name="acompanantes">
+              <option value="1">Solo yo</option>
+              <option value="2">1 acompañante</option>
+              <option value="3">2 acompañantes</option>
+              <option value="4">3 acompañantes</option>
+            </select>
+          </div>
+          <div class="toggle-row" role="group" aria-label="¿Asistirás?">
+            <button type="button" class="toggle" data-value="si" aria-pressed="true">Asistiré</button>
+            <button type="button" class="toggle" data-value="no" aria-pressed="false">No podré ir</button>
+          </div>
+          <div class="field">
+            <label for="fMsg">Mensaje</label>
+            <textarea id="fMsg" name="mensaje" rows="1"></textarea>
+          </div>
+
+          <button class="rsvp__submit" type="submit">Enviar confirmación</button>
+        </form>
+
+        <div class="rsvp__done" id="ticketDone" aria-live="polite">
+          <h3 class="display" id="doneTitle">Gracias</h3>
+          <p id="doneText">Tu respuesta fue registrada. Nos vemos el 17 de octubre.</p>
+          <span class="mark" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="closing">
+    <p class="closing__text reveal">Gracias por ser parte de una historia<br>que decidimos seguir escribiendo juntos.</p>
+    <div class="closing__mark reveal reveal--d1">A · M</div>
+  </section>
+
+  <footer class="footer">
+    <span>Alessandra &amp; Mateo · 17.10.2026</span>
+    <span>nuestraboda.com.pe</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+  /* ============================================================
+     MODELO 05 — SILENCIO · JavaScript puro, sin dependencias
+     ============================================================ */
+  (function(){
+    "use strict";
+    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- Placeholder si falta una foto ---------- */
+    function placeholder(label){
+      var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'>"+
+        "<rect width='800' height='1000' fill='%23efece4'/>"+
+        "<text x='400' y='490' text-anchor='middle' font-family='Georgia' font-style='italic' font-size='46' fill='%23161613'>A %26 M</text>"+
+        "<text x='400' y='540' text-anchor='middle' font-family='Arial' letter-spacing='5' font-size='13' fill='%238a877e'>"+label+"</text>"+
+        "</svg>";
+      return "data:image/svg+xml;utf8," + svg;
+    }
+    document.querySelectorAll("img").forEach(function(img, i){
+      img.addEventListener("error", function(){
+        img.src = placeholder("FOTO " + (i === 0 ? "PORTADA" : "0" + i));
+        img.style.objectFit = "cover";
+      }, { once:true });
+    });
+
+    /* ---------- Preloader ---------- */
+    var loader = document.getElementById("loader");
+    function endLoad(){ loader.classList.add("is-done"); }
+    if(prefersReduced){ endLoad(); } else { setTimeout(endLoad, 2000); }
+
+    /* ---------- Revelados por scroll ---------- */
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("is-on"); io.unobserve(e.target); }
+      });
+    }, { threshold:.14, rootMargin:"0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+    /* ---------- Hilo de lectura ---------- */
+    var threadFill = document.getElementById("threadFill");
+    var threadDot = document.getElementById("threadDot");
+    var ticking = false;
+    function onScroll(){
+      if(ticking) return; ticking = true;
+      requestAnimationFrame(function(){
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        var f = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+        if(threadFill){
+          threadFill.style.height = (f*100) + "%";
+          threadDot.style.top = (f*100) + "%";
+        }
+        ticking = false;
+      });
+    }
+    window.addEventListener("scroll", onScroll, { passive:true });
+    onScroll();
+
+    /* ---------- Menú ---------- */
+    var menuBtn = document.getElementById("menuBtn");
+    var menu = document.getElementById("menu");
+    function toggleMenu(force){
+      var open = typeof force === "boolean" ? force : !menu.classList.contains("is-open");
+      menu.classList.toggle("is-open", open);
+      menuBtn.setAttribute("aria-expanded", open);
+      menuBtn.textContent = open ? "Cerrar" : "Índice";
+    }
+    menuBtn.addEventListener("click", function(){ toggleMenu(); });
+    menu.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){ toggleMenu(false); });
+    });
+    document.addEventListener("keydown", function(e){ if(e.key === "Escape") toggleMenu(false); });
+
+    /* ---------- Música ---------- */
+    var audio = document.getElementById("audio");
+    var soundBtn = document.getElementById("soundBtn");
+    var soundLabel = document.getElementById("soundLabel");
+    soundBtn.addEventListener("click", function(){
+      if(audio.paused){
+        audio.play().then(function(){
+          soundBtn.classList.add("is-playing");
+          soundBtn.setAttribute("aria-pressed","true");
+          soundLabel.textContent = "Pausar música";
+        }).catch(function(){
+          showToast("Agrega cancion.mp3 a la carpeta para activar la música");
+        });
+      } else {
+        audio.pause();
+        soundBtn.classList.remove("is-playing");
+        soundBtn.setAttribute("aria-pressed","false");
+        soundLabel.textContent = "Reproducir música";
+      }
+    });
+
+    /* ---------- Cuenta regresiva ---------- */
+    var target = new Date("2026-10-17T16:30:00-05:00").getTime();
+    var cD = document.getElementById("cDays"), cH = document.getElementById("cHours"),
+        cM = document.getElementById("cMins"), cS = document.getElementById("cSecs");
+    function pad(v,l){ v=String(v); while(v.length<l) v="0"+v; return v; }
+    function updateCount(){
+      var diff = Math.max(0, target - Date.now());
+      cD.textContent = pad(Math.floor(diff/864e5), 3);
+      cH.textContent = pad(Math.floor(diff/36e5)%24, 2);
+      cM.textContent = pad(Math.floor(diff/6e4)%60, 2);
+      cS.textContent = pad(Math.floor(diff/1e3)%60, 2);
+    }
+    updateCount(); setInterval(updateCount, 1000);
+
+    /* ---------- RSVP ---------- */
+    var ticket = document.getElementById("ticket");
+    var ticketDone = document.getElementById("ticketDone");
+    var attending = "si";
+    ticket.querySelectorAll(".toggle").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        attending = btn.dataset.value;
+        ticket.querySelectorAll(".toggle").forEach(function(b){
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+      });
+    });
+
+    ticket.addEventListener("submit", function(e){
+      e.preventDefault();
+      var name = document.getElementById("fName").value.trim();
+      if(!name){ showToast("Escribe tu nombre para confirmar"); document.getElementById("fName").focus(); return; }
+
+      /* Integración opcional con Google Sheets / Apps Script:
+         reemplaza ENDPOINT por tu URL y descomenta el fetch.
+      var ENDPOINT = "";
+      fetch(ENDPOINT, { method:"POST", body:new FormData(ticket) });
+      */
+
+      var first = name.split(" ")[0];
+      if(attending === "si"){
+        document.getElementById("doneTitle").textContent = "Gracias, " + first;
+        document.getElementById("doneText").textContent = "Tu respuesta fue registrada. Nos vemos el 17 de octubre.";
+      } else {
+        document.getElementById("doneTitle").textContent = "Entendido, " + first;
+        document.getElementById("doneText").textContent = "Gracias por avisarnos. Te tendremos presente igual.";
+      }
+      ticket.style.display = "none";
+      ticketDone.style.display = "block";
+      ticketDone.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block:"center" });
+    });
+
+    /* ---------- Toast ---------- */
+    var toast = document.getElementById("toast"), toastTimer;
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("is-on");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function(){ toast.classList.remove("is-on"); }, 3200);
+    }
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11458174849"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'AW-11458174849');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08060d">
+  <meta name="description" content="Daniela & Joaquín — Nuestra noche empieza aquí. 22 de agosto de 2026, Lima.">
+  <title>Daniela & Joaquín — NEÓN | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Martian+Mono:wght@400;500&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <style>
+  /* ============================================================
+     MODELO 08 — "NEÓN"
+     Concepto: la boda como una noche de ciudad. Luces de neón,
+     degradados holográficos, vidrio esmerilado y una energía de
+     rooftop nocturno. Alto contraste, mucho movimiento, sin miedo
+     al color.
+     ============================================================ */
+
+  :root{
+    --black:#08060d;
+    --black-deep:#040309;
+    --glass:rgba(255,255,255,.05);
+    --white:#f5f3fa;
+    --gray:#9a96b0;
+    --pink:#ff2e88;
+    --purple:#8b5cf6;
+    --cyan:#28e5ff;
+    --line:rgba(245,243,250,.14);
+    --line-strong:rgba(245,243,250,.26);
+    --holo:linear-gradient(92deg,var(--pink),var(--purple) 50%,var(--cyan));
+
+    --font-display:'Unbounded',Arial,sans-serif;
+    --font-label:'Martian Mono','Courier New',monospace;
+    --font-body:'Plus Jakarta Sans',Arial,Helvetica,sans-serif;
+
+    --ease:cubic-bezier(.22,.8,.24,1);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--black);color:var(--white);
+    font-family:var(--font-body);font-weight:300;line-height:1.7;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+  body.is-locked{overflow:hidden}
+  ::selection{background:var(--pink);color:var(--black)}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  a{color:inherit;text-decoration:none}
+  button,input,select,textarea{font:inherit;color:inherit}
+  button{cursor:pointer;background:none;border:0;padding:0}
+  :focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+  .tag{font-family:var(--font-label);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+  .tag--dim{color:var(--gray)}
+
+  .display{margin:0;font-family:var(--font-display);font-weight:600;font-size:clamp(36px,5.6vw,72px);line-height:1.04;letter-spacing:-.01em}
+  .holo-text{
+    background:var(--holo);background-size:220% 100%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation:holoShift 6s ease-in-out infinite;
+  }
+  @keyframes holoShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+  .prose{margin:0;max-width:520px;color:var(--gray);font-size:16px;font-weight:300}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.is-on{opacity:1;transform:none}
+  .reveal--d1{transition-delay:.12s}
+  .reveal--d2{transition-delay:.24s}
+  .reveal--d3{transition-delay:.36s}
+
+  .scene{position:relative;padding:130px 6vw;overflow:hidden}
+  .frame{width:min(1200px,100%);margin:0 auto;position:relative;z-index:2}
+
+  /* ---------- fondo aurora (blobs difuminados en movimiento) ---------- */
+  .aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+  .aurora i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.35;animation:auroraMove 22s ease-in-out infinite}
+  .aurora i:nth-child(1){width:44vw;height:44vw;background:var(--pink);top:-14%;left:-10%;animation-duration:24s}
+  .aurora i:nth-child(2){width:38vw;height:38vw;background:var(--cyan);bottom:-16%;right:-8%;animation-duration:28s;animation-delay:-6s}
+  .aurora i:nth-child(3){width:30vw;height:30vw;background:var(--purple);top:30%;right:20%;animation-duration:20s;animation-delay:-3s}
+  @keyframes auroraMove{
+    0%,100%{transform:translate(0,0) scale(1)}
+    33%{transform:translate(4%,-6%) scale(1.08)}
+    66%{transform:translate(-5%,5%) scale(.95)}
+  }
+
+  /* ---------- borde con degradado giratorio ---------- */
+  .glow-border{position:relative;isolation:isolate}
+  .glow-border::before{
+    content:"";position:absolute;inset:-1.5px;z-index:-1;border-radius:inherit;
+    background:conic-gradient(from 0deg,var(--pink),var(--purple),var(--cyan),var(--pink));
+    animation:spin 6s linear infinite;
+  }
+  .glow-border::after{
+    content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:var(--black-deep);
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ============================================================
+     PRELOADER — LETRERO DE NEÓN ENCENDIÉNDOSE
+     ============================================================ */
+  .neon-load{
+    position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+    background:var(--black-deep);transition:opacity .8s ease,visibility .8s ease;
+  }
+  .neon-load.is-done{opacity:0;visibility:hidden}
+  .neon-load__sign{
+    font-family:var(--font-display);font-weight:700;font-size:clamp(40px,9vw,84px);
+    color:var(--cyan);text-shadow:0 0 8px var(--cyan),0 0 26px var(--cyan),0 0 60px var(--pink);
+    animation:flicker 2.2s linear forwards;
+  }
+  @keyframes flicker{
+    0%{opacity:0}
+    3%{opacity:1}6%{opacity:.2}9%{opacity:1}
+    12%{opacity:.3}14%{opacity:1}
+    40%{opacity:1}42%{opacity:.4}44%{opacity:1}
+    70%{opacity:1}72%{opacity:.5}74%{opacity:1}
+    100%{opacity:1}
+  }
+  .neon-load__tag{
+    margin-top:20px;text-align:center;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gray);
+  }
+
+  /* ============================================================
+     BARRA + LINE-UP
+     ============================================================ */
+  .bar{
+    position:fixed;inset:0 0 auto;z-index:70;
+    display:flex;align-items:center;justify-content:space-between;padding:20px 6vw;
+    background:linear-gradient(180deg,rgba(4,3,9,.6),transparent);
+  }
+  .bar__brand{font-family:var(--font-display);font-weight:600;font-size:19px;color:var(--white)}
+  .bar__brand em{font-style:normal}
+  .bar__menu{
+    font-family:var(--font-label);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--white);
+    padding:10px 16px;border:1px solid var(--line-strong);border-radius:99px;
+  }
+  .bar__menu:hover{border-color:var(--cyan);color:var(--cyan)}
+
+  .lineup{
+    position:fixed;inset:0;z-index:69;background:var(--black-deep);
+    display:grid;place-items:center;
+    clip-path:circle(0% at calc(100% - 7vw) 30px);
+    transition:clip-path .6s var(--ease);
+  }
+  .lineup.is-open{clip-path:circle(150% at calc(100% - 7vw) 30px)}
+  .lineup nav{display:grid;gap:4px;text-align:center}
+  .lineup__item{
+    display:flex;align-items:baseline;gap:18px;justify-content:center;
+    font-family:var(--font-display);font-weight:600;font-size:clamp(24px,4.6vw,42px);padding:9px 20px;color:var(--white);
+    opacity:0;transform:translateY(18px);transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s;
+  }
+  .lineup.is-open .lineup__item{opacity:1;transform:none}
+  .lineup__item:hover{color:var(--cyan)}
+  .lineup__item small{font-family:var(--font-label);font-size:11px;color:var(--pink)}
+  .lineup__foot{
+    position:absolute;bottom:6vh;left:0;right:0;text-align:center;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gray);
+  }
+
+  /* ============================================================
+     PORTADA
+     ============================================================ */
+  .hero{
+    position:relative;min-height:100svh;display:grid;place-items:center;
+    padding:140px 6vw 90px;overflow:hidden;
+  }
+  .hero__content{position:relative;z-index:2;text-align:center}
+  .hero__kicker{font-family:var(--font-label);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gray)}
+  .hero__names{
+    margin:20px 0 0;font-family:var(--font-display);font-weight:700;
+    font-size:clamp(50px,10vw,140px);line-height:1;position:relative;
+  }
+  .hero__names .glitch{position:relative;display:inline-block}
+  .hero__names .glitch::before,.hero__names .glitch::after{
+    content:attr(data-text);position:absolute;inset:0;opacity:0;
+  }
+  .hero__names .glitch::before{color:var(--pink);mix-blend-mode:screen;animation:glitchTop 1.4s var(--ease) 1;animation-delay:.2s}
+  .hero__names .glitch::after{color:var(--cyan);mix-blend-mode:screen;animation:glitchBottom 1.4s var(--ease) 1;animation-delay:.2s}
+  @keyframes glitchTop{
+    0%{opacity:0;transform:translate(0,0)}
+    8%{opacity:.8;transform:translate(-4px,-2px)}
+    16%{opacity:0;transform:translate(3px,1px)}
+    24%{opacity:.7;transform:translate(-2px,2px)}
+    32%{opacity:0}
+    100%{opacity:0;transform:translate(0,0)}
+  }
+  @keyframes glitchBottom{
+    0%{opacity:0;transform:translate(0,0)}
+    10%{opacity:.7;transform:translate(4px,2px)}
+    18%{opacity:0;transform:translate(-3px,-1px)}
+    26%{opacity:.6;transform:translate(2px,-2px)}
+    34%{opacity:0}
+    100%{opacity:0;transform:translate(0,0)}
+  }
+
+  .hero__badge{
+    margin:36px auto 0;display:inline-flex;align-items:center;gap:10px;
+    padding:14px 24px;border-radius:99px;position:relative;
+  }
+  .hero__badge span{
+    font-family:var(--font-label);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--white);
+  }
+  .hero__badge b{color:var(--cyan)}
+
+  .hero__sound{
+    margin-top:34px;display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);
+  }
+  .hero__sound:hover{color:var(--cyan)}
+  .eq{display:flex;align-items:flex-end;gap:3px;height:12px}
+  .eq i{width:2px;height:4px;background:currentColor}
+  .is-playing .eq i{animation:eq .9s ease-in-out infinite}
+  .is-playing .eq i:nth-child(2){animation-delay:.15s}
+  .is-playing .eq i:nth-child(3){animation-delay:.3s}
+  @keyframes eq{0%,100%{height:4px}50%{height:12px}}
+
+  .hero__scroll{
+    position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--gray);
+  }
+
+  /* ============================================================
+     TICKER
+     ============================================================ */
+  .marquee{border-block:1px solid var(--line);padding:15px 0;overflow:hidden;background:var(--black-deep)}
+  .marquee__track{display:flex;gap:44px;width:max-content;animation:marquee 26s linear infinite}
+  .marquee__track span{
+    display:flex;align-items:center;gap:44px;white-space:nowrap;
+    font-family:var(--font-label);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);
+  }
+  .marquee__track b{color:var(--pink)}
+  .marquee__track i{color:var(--cyan);font-style:normal}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+
+  /* ============================================================
+     NOTA — tarjeta de vidrio con borde giratorio
+     ============================================================ */
+  .note-scene{text-align:center}
+  .note-card{
+    max-width:820px;margin:0 auto;padding:2px;border-radius:20px;
+  }
+  .note-card__inner{
+    background:rgba(255,255,255,.04);backdrop-filter:blur(14px);
+    border-radius:18px;padding:50px 36px;
+  }
+  .note-card p{
+    margin:0;font-family:var(--font-display);font-weight:500;
+    font-size:clamp(20px,2.6vw,30px);line-height:1.5;
+  }
+  .note-card__foot{margin-top:26px;font-family:var(--font-label);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray)}
+
+  /* ============================================================
+     INSTANTES — historia
+     ============================================================ */
+  .moments{background:var(--black-deep)}
+  .moments__head{margin-bottom:70px;text-align:center}
+  .moments__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .moment{position:relative;padding:2px;border-radius:18px}
+  .moment__inner{background:var(--black);border-radius:16px;overflow:hidden}
+  .moment__media{aspect-ratio:4/5;position:relative}
+  .moment__media img{filter:grayscale(.15) contrast(1.06) saturate(1.1);transition:transform .7s var(--ease)}
+  .moment:hover .moment__media img{transform:scale(1.06)}
+  .moment__media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(4,3,9,.92),transparent 55%)}
+  .moment__body{position:absolute;left:0;right:0;bottom:0;padding:22px}
+  .moment__num{font-family:var(--font-label);font-size:10px;letter-spacing:.18em;color:var(--cyan);text-transform:uppercase}
+  .moment__title{margin:10px 0 8px;font-family:var(--font-display);font-weight:600;font-size:clamp(19px,2vw,24px)}
+  .moment__year{display:block;margin-bottom:10px;font-family:var(--font-label);font-size:10px;color:var(--gray)}
+  .moment p.desc{margin:0;color:var(--gray);font-size:13px;line-height:1.5}
+
+  /* variar el color de brillo por tarjeta */
+  .moment--pink::before{content:"";position:absolute;inset:0;border-radius:18px;background:linear-gradient(140deg,var(--pink),transparent 60%);opacity:.5;z-index:-1}
+  .moment--purple::before{content:"";position:absolute;inset:0;border-radius:18px;background:linear-gradient(140deg,var(--purple),transparent 60%);opacity:.5;z-index:-1}
+  .moment--cyan::before{content:"";position:absolute;inset:0;border-radius:18px;background:linear-gradient(140deg,var(--cyan),transparent 60%);opacity:.5;z-index:-1}
+
+  @media (max-width:900px){ .moments__grid{grid-template-columns:1fr;gap:30px} }
+
+  /* ============================================================
+     CUENTA REGRESIVA — reloj digital de neón
+     ============================================================ */
+  .clock-scene{text-align:center}
+  .clock-scene__date{margin:26px 0 54px;font-family:var(--font-display);font-weight:600;font-size:clamp(30px,5vw,58px);line-height:1.1}
+  .clock{display:flex;justify-content:center;gap:clamp(10px,3vw,26px);flex-wrap:wrap}
+  .clock__unit{
+    position:relative;min-width:96px;padding:24px 14px;border-radius:16px;
+    background:rgba(255,255,255,.03);
+  }
+  .clock__num{
+    font-family:var(--font-label);font-weight:500;font-size:clamp(34px,6vw,58px);line-height:1;
+    color:var(--white);text-shadow:0 0 14px rgba(40,229,255,.55);font-variant-numeric:tabular-nums;
+  }
+  .clock__label{margin-top:10px;font-family:var(--font-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray)}
+  .clock-scene__note{margin-top:50px;font-family:var(--font-label);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray)}
+
+  /* ============================================================
+     GALERÍA
+     ============================================================ */
+  .gallery{background:var(--black-deep)}
+  .gallery__head{margin-bottom:60px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px}
+  .gallery__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .frame-glow{position:relative;padding:2px;border-radius:14px}
+  .frame-glow__inner{aspect-ratio:3/4;border-radius:12px;overflow:hidden}
+  .frame-glow__inner img{filter:grayscale(.2) contrast(1.05);transition:filter .6s var(--ease),transform .8s var(--ease)}
+  .frame-glow:hover .frame-glow__inner img{filter:grayscale(0);transform:scale(1.07)}
+  .frame-glow--a::before{content:"";position:absolute;inset:0;border-radius:14px;background:linear-gradient(150deg,var(--pink),var(--purple));z-index:-1}
+  .frame-glow--b::before{content:"";position:absolute;inset:0;border-radius:14px;background:linear-gradient(150deg,var(--purple),var(--cyan));z-index:-1}
+  .frame-glow--c::before{content:"";position:absolute;inset:0;border-radius:14px;background:linear-gradient(150deg,var(--cyan),var(--pink));z-index:-1}
+  .frame-glow--d::before{content:"";position:absolute;inset:0;border-radius:14px;background:linear-gradient(150deg,var(--pink),var(--cyan));z-index:-1}
+  @media (max-width:820px){ .gallery__grid{grid-template-columns:1fr 1fr} }
+
+  /* ============================================================
+     ITINERARIO — línea de tiempo con luces
+     ============================================================ */
+  .timeline-scene{}
+  .timeline{position:relative;padding-left:34px;border-left:1px solid var(--line-strong)}
+  .t-row{position:relative;padding-bottom:44px}
+  .t-row:last-child{padding-bottom:0}
+  .t-row::before{
+    content:"";position:absolute;left:-39px;top:4px;width:10px;height:10px;border-radius:50%;
+    background:var(--cyan);box-shadow:0 0 0 4px rgba(40,229,255,.16),0 0 14px var(--cyan);
+  }
+  .t-row:nth-child(3n+2)::before{background:var(--pink);box-shadow:0 0 0 4px rgba(255,46,136,.16),0 0 14px var(--pink)}
+  .t-row:nth-child(3n)::before{background:var(--purple);box-shadow:0 0 0 4px rgba(139,92,246,.16),0 0 14px var(--purple)}
+  .t-time{font-family:var(--font-label);font-size:12px;letter-spacing:.1em;color:var(--gray)}
+  .t-title{margin:8px 0 0;font-family:var(--font-display);font-weight:600;font-size:clamp(19px,2.2vw,25px)}
+
+  /* ============================================================
+     UBICACIONES
+     ============================================================ */
+  .venues{background:var(--black-deep)}
+  .venues__grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:60px}
+  .venue{position:relative;padding:2px;border-radius:16px}
+  .venue--pink::before{content:"";position:absolute;inset:0;border-radius:16px;background:linear-gradient(140deg,var(--pink),transparent 70%);z-index:-1}
+  .venue--cyan::before{content:"";position:absolute;inset:0;border-radius:16px;background:linear-gradient(140deg,var(--cyan),transparent 70%);z-index:-1}
+  .venue__inner{background:var(--black);border-radius:14px;padding:38px 32px}
+  .venue__tag{font-family:var(--font-label);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan)}
+  .venue h3{margin:16px 0 8px;font-family:var(--font-display);font-weight:600;font-size:clamp(22px,2.4vw,30px)}
+  .venue p{margin:0 0 8px;color:var(--gray);font-size:14px}
+  .venue__hour{font-family:var(--font-label);font-size:12px;color:var(--white)}
+  .venue a{
+    display:inline-flex;align-items:center;gap:10px;margin-top:24px;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--white);
+    border-bottom:1px solid var(--cyan);padding-bottom:5px;transition:color .3s,gap .3s var(--ease);
+  }
+  .venue a:hover{color:var(--cyan);gap:16px}
+  .venue a::after{content:"→"}
+  @media (max-width:640px){ .venues__grid{grid-template-columns:1fr} }
+
+  /* ============================================================
+     GUÍA DE LA NOCHE — notas
+     ============================================================ */
+  .guide{}
+  .guide__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:60px}
+  .note{border-top:1px solid var(--line-strong);padding-top:26px}
+  .note__slug{font-family:var(--font-label);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--pink)}
+  .note h3{margin:16px 0 12px;font-family:var(--font-display);font-weight:600;font-size:22px}
+  .note p{margin:0;color:var(--gray);font-size:14px}
+  .swatches{display:flex;gap:9px;margin-top:20px}
+  .swatches i{width:26px;height:26px;border-radius:50%;box-shadow:0 0 12px currentColor}
+  .gift-row{display:flex;flex-direction:column;gap:9px;margin-top:20px}
+  .gift-chip{
+    font-family:var(--font-label);font-size:11px;border:1px solid var(--line);padding:11px 14px;
+    display:flex;justify-content:space-between;gap:12px;
+  }
+  .gift-chip span{color:var(--gray)}
+  @media (max-width:820px){ .guide__grid{grid-template-columns:1fr 1fr} }
+  @media (max-width:560px){ .guide__grid{grid-template-columns:1fr} }
+
+  /* ============================================================
+     RSVP — TICKET DE NEÓN
+     ============================================================ */
+  .rsvp{background:var(--black-deep);overflow:hidden}
+  .rsvp__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:6vw;align-items:center}
+
+  .ticket-wrap{padding:2px;border-radius:20px}
+  .card{position:relative;background:var(--black);border-radius:18px;padding:44px 38px 38px}
+  .card__head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:24px}
+  .card__title{margin:0;font-family:var(--font-display);font-weight:600;font-size:26px}
+  .card__no{font-family:var(--font-label);font-size:10px;color:var(--gray)}
+
+  .field{margin-bottom:19px}
+  .field label{display:block;margin-bottom:8px;font-family:var(--font-label);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray)}
+  .field input,.field select,.field textarea{
+    width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-strong);
+    padding:10px 2px;font-size:15px;color:var(--white);border-radius:0;transition:border-color .3s;
+  }
+  .field textarea{resize:vertical;min-height:56px}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--cyan)}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23f5f3fa'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center}
+
+  .seats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+  .seat{
+    border:1px solid var(--line-strong);padding:14px 10px;text-align:center;
+    font-family:var(--font-label);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    transition:background .3s,color .3s,border-color .3s;
+  }
+  .seat[aria-pressed="true"]{background:var(--white);color:var(--black);border-color:var(--white)}
+
+  .card__submit{
+    width:100%;margin-top:6px;padding:16px;border-radius:10px;
+    background:var(--holo);background-size:220% 100%;color:var(--black);
+    font-family:var(--font-label);font-weight:500;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    transition:background-position .6s var(--ease);
+  }
+  .card__submit:hover{background-position:100% 50%}
+  .card__stub{
+    display:flex;justify-content:space-between;gap:12px;padding-top:26px;margin-top:26px;
+    border-top:1px dashed var(--line-strong);
+    font-family:var(--font-label);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);
+  }
+
+  .card--done{text-align:center}
+  .card--done .card__title{font-size:28px;margin-bottom:10px}
+  .card--done p{color:var(--gray);max-width:360px;margin:0 auto}
+  .card--done .stamp{
+    display:inline-block;margin-top:24px;padding:10px 20px;border-radius:99px;
+    font-family:var(--font-label);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    background:var(--holo);color:var(--black);
+  }
+
+  .rsvp__deadline{
+    display:inline-flex;align-items:center;gap:12px;margin-top:32px;
+    font-family:var(--font-label);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);
+    border:1px solid rgba(40,229,255,.4);padding:12px 18px;border-radius:99px;
+  }
+  .rsvp__actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+  .btn-line{
+    display:inline-flex;align-items:center;gap:10px;font-family:var(--font-label);font-size:10px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--white);border:1px solid var(--line-strong);
+    padding:14px 20px;border-radius:99px;transition:border-color .3s,color .3s;
+  }
+  .btn-line:hover{border-color:var(--pink);color:var(--pink)}
+
+  .confetti{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+  .confetti i{position:absolute;top:-4vh;width:7px;height:7px;border-radius:50%;animation:fall linear forwards}
+  @keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:0}}
+
+  @media (max-width:900px){ .rsvp__grid{grid-template-columns:1fr;gap:60px} }
+
+  /* ============================================================
+     CIERRE
+     ============================================================ */
+  .closing{text-align:center;padding-block:150px 100px;position:relative}
+  .closing__roll{display:grid;gap:40px;max-width:600px;margin:0 auto 90px;position:relative;z-index:2}
+  .credit .tag{display:block;margin-bottom:10px}
+  .credit p{margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(19px,2.4vw,26px)}
+  .closing__fin{position:relative;z-index:2;font-family:var(--font-display);font-weight:700;font-size:clamp(54px,12vw,140px)}
+  .closing__after{position:relative;z-index:2;margin-top:20px;font-family:var(--font-label);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gray)}
+
+  .footer{
+    border-top:1px solid var(--line);padding:32px 6vw;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-family:var(--font-label);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);
+    background:var(--black-deep);
+  }
+  .footer b{color:var(--pink)}
+
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:var(--white);color:var(--black);
+    font-family:var(--font-label);font-size:11px;padding:14px 22px;z-index:90;border-radius:10px;
+    opacity:0;pointer-events:none;transition:opacity .4s,transform .4s var(--ease);
+  }
+  .toast.is-on{opacity:1;transform:translate(-50%,0)}
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width:760px){
+    .scene{padding:92px 6vw}
+    .bar{padding:16px 6vw}
+    .hero{padding:120px 6vw 80px}
+    .clock__unit{min-width:64px;padding:16px 8px}
+    .card{padding:34px 22px 30px}
+    .seats{grid-template-columns:1fr}
+    .closing__roll{gap:30px}
+  }
+  @media (max-width:380px){
+    .hero__names{font-size:44px}
+    .display{font-size:32px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+    html{scroll-behavior:auto}
+    .reveal{opacity:1 !important;transform:none !important}
+    .marquee__track,.aurora i,.glow-border::before,.holo-text{animation:none}
+    .hero__names .glitch::before,.hero__names .glitch::after{display:none}
+  }
+  </style>
+
+  <noscript>
+    <style>
+      body.is-locked{overflow:auto}
+      .neon-load{display:none}
+      .reveal{opacity:1 !important;transform:none !important}
+    </style>
+  </noscript>
+</head>
+<body class="is-locked">
+
+  <!-- PRELOADER -->
+  <div class="neon-load" id="neonLoad" aria-hidden="true">
+    <div style="text-align:center">
+      <div class="neon-load__sign">D &amp; J</div>
+      <p class="neon-load__tag">Nuestra Boda · Nuestra noche</p>
+    </div>
+  </div>
+
+  <!-- BARRA -->
+  <header class="bar">
+    <a class="bar__brand" href="#inicio">D<em>&amp;</em>J</a>
+    <button class="bar__menu" id="menuBtn" aria-expanded="false" aria-controls="lineup">Line-up</button>
+  </header>
+
+  <!-- MENÚ -->
+  <div class="lineup" id="lineup">
+    <nav aria-label="Line-up de secciones">
+      <a class="lineup__item" style="transition-delay:.06s" href="#nota"><small>01</small> Nota</a>
+      <a class="lineup__item" style="transition-delay:.1s" href="#historia"><small>02</small> Instantes</a>
+      <a class="lineup__item" style="transition-delay:.14s" href="#cuenta"><small>03</small> Cuenta regresiva</a>
+      <a class="lineup__item" style="transition-delay:.18s" href="#galeria"><small>04</small> Galería</a>
+      <a class="lineup__item" style="transition-delay:.22s" href="#itinerario"><small>05</small> Itinerario</a>
+      <a class="lineup__item" style="transition-delay:.26s" href="#ubicaciones"><small>06</small> Ubicaciones</a>
+      <a class="lineup__item" style="transition-delay:.3s" href="#guia"><small>07</small> Guía de la noche</a>
+      <a class="lineup__item" style="transition-delay:.34s" href="#rsvp"><small>08</small> Confirmar</a>
+    </nav>
+    <p class="lineup__foot">Daniela &amp; Joaquín · 22.08.2026 · Lima</p>
+  </div>
+
+  <!-- PORTADA -->
+  <section class="hero" id="inicio">
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="hero__content">
+      <p class="hero__kicker reveal">Nuestra noche empieza aquí</p>
+      <h1 class="hero__names reveal reveal--d1">
+        <span class="glitch" data-text="Daniela">Daniela</span><br>
+        <span class="holo-text">&amp;</span><br>
+        <span class="glitch" data-text="Joaquín">Joaquín</span>
+      </h1>
+
+      <div class="hero__badge glow-border reveal reveal--d2">
+        <span><b>22 de agosto</b> · 2026 · Lima, Perú</span>
+      </div>
+
+      <button class="hero__sound reveal reveal--d3" id="soundBtn" aria-pressed="false">
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span id="soundLabel">Playlist de la noche</span>
+      </button>
+    </div>
+    <p class="hero__scroll">Sigue bajando</p>
+  </section>
+
+  <audio id="audio" src="cancion.mp3" loop preload="none"></audio>
+
+  <!-- TICKER -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Una noche <b>22 de agosto</b> <i>✦</i> Rooftop privado <b>Lima · Perú</b> <i>✦</i> Confirma antes del <b>1 de julio</b></span>
+      <span>Una noche <b>22 de agosto</b> <i>✦</i> Rooftop privado <b>Lima · Perú</b> <i>✦</i> Confirma antes del <b>1 de julio</b></span>
+    </div>
+  </div>
+
+  <!-- NOTA -->
+  <section class="scene note-scene" id="nota">
+    <div class="frame">
+      <p class="tag reveal" style="display:block;margin-bottom:32px">Una nota</p>
+      <div class="note-card glow-border reveal reveal--d1">
+        <div class="note-card__inner">
+          <p>Nos conocimos en una fiesta de fin de año y no volvimos a irnos.
+          Ocho años después, seguimos eligiendo quedarnos en la misma pista de baile
+          — solo que esta vez, con anillos.</p>
+          <p class="note-card__foot">Daniela &amp; Joaquín · Desde 2018</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTANTES -->
+  <section class="scene moments" id="historia">
+    <div class="frame">
+      <div class="moments__head">
+        <p class="tag reveal">La historia</p>
+        <h2 class="display reveal reveal--d1">Tres <span class="holo-text">instantes</span></h2>
+      </div>
+
+      <div class="moments__grid">
+        <article class="moment moment--pink reveal">
+          <div class="moment__inner">
+            <div class="moment__media">
+              <img src="foto-1.png" alt="Daniela y Joaquín, el encuentro">
+              <div class="moment__body">
+                <span class="moment__num">Instante 01</span>
+                <h3 class="moment__title">La pista</h3>
+                <span class="moment__year">Lima — 2018</span>
+                <p class="desc">Una fiesta de fin de año, una canción que ninguno recuerda y un baile que no quiso terminar.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="moment moment--purple reveal reveal--d1">
+          <div class="moment__inner">
+            <div class="moment__media">
+              <img src="foto-2.png" alt="Daniela y Joaquín, los años">
+              <div class="moment__body">
+                <span class="moment__num">Instante 02</span>
+                <h3 class="moment__title">La rutina</h3>
+                <span class="moment__year">2018 — 2025</span>
+                <p class="desc">Ciudades distintas, un mismo grupo de chat. Aprendieron a construir algo estable en medio del ruido.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="moment moment--cyan reveal reveal--d2">
+          <div class="moment__inner">
+            <div class="moment__media">
+              <img src="foto-3.png" alt="La propuesta de matrimonio">
+              <div class="moment__body">
+                <span class="moment__num">Instante 03</span>
+                <h3 class="moment__title">La decisión</h3>
+                <span class="moment__year">Diciembre — 2025</span>
+                <p class="desc">Una azotea, luces de la ciudad de fondo y una pregunta que ya no necesitaba ensayo.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUENTA REGRESIVA -->
+  <section class="scene clock-scene" id="cuenta">
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="frame">
+      <p class="tag reveal" style="display:block">Cuenta regresiva</p>
+      <h2 class="clock-scene__date reveal reveal--d1">Sábado <span class="holo-text">22</span> de agosto, <span class="holo-text">2026</span></h2>
+
+      <div class="clock reveal reveal--d2" role="timer" aria-label="Cuenta regresiva para la boda">
+        <div class="clock__unit glow-border"><div class="clock__num" id="cDays">000</div><div class="clock__label">Días</div></div>
+        <div class="clock__unit glow-border"><div class="clock__num" id="cHours">00</div><div class="clock__label">Horas</div></div>
+        <div class="clock__unit glow-border"><div class="clock__num" id="cMins">00</div><div class="clock__label">Min</div></div>
+        <div class="clock__unit glow-border"><div class="clock__num" id="cSecs">00</div><div class="clock__label">Seg</div></div>
+      </div>
+
+      <p class="clock-scene__note reveal reveal--d3">Una sola noche · Sin repeticiones</p>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="scene gallery" id="galeria">
+    <div class="frame">
+      <div class="gallery__head">
+        <div>
+          <p class="tag reveal">Galería</p>
+          <h2 class="display reveal reveal--d1">Luces <span class="holo-text">propias</span></h2>
+        </div>
+        <p class="prose reveal reveal--d2">Una selección de momentos de los últimos ocho años.</p>
+      </div>
+
+      <div class="gallery__grid">
+        <div class="frame-glow frame-glow--a reveal"><div class="frame-glow__inner"><img loading="lazy" decoding="async" src="foto-1.png" alt="Fotografía uno"></div></div>
+        <div class="frame-glow frame-glow--b reveal reveal--d1"><div class="frame-glow__inner"><img loading="lazy" decoding="async" src="foto-2.png" alt="Fotografía dos"></div></div>
+        <div class="frame-glow frame-glow--c reveal reveal--d2"><div class="frame-glow__inner"><img loading="lazy" decoding="async" src="foto-3.png" alt="Fotografía tres"></div></div>
+        <div class="frame-glow frame-glow--d reveal reveal--d1"><div class="frame-glow__inner"><img loading="lazy" decoding="async" src="foto-4.png" alt="Fotografía cuatro"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ITINERARIO -->
+  <section class="scene timeline-scene" id="itinerario">
+    <div class="frame">
+      <p class="tag reveal">Itinerario</p>
+      <h2 class="display reveal reveal--d1" style="margin-bottom:60px">La <span class="holo-text">noche</span></h2>
+
+      <div class="timeline reveal">
+        <div class="t-row"><span class="t-time">4:00 PM</span><h3 class="t-title">Apertura</h3></div>
+        <div class="t-row"><span class="t-time">4:30 PM</span><h3 class="t-title">Ceremonia</h3></div>
+        <div class="t-row"><span class="t-time">6:30 PM</span><h3 class="t-title">Recepción</h3></div>
+        <div class="t-row"><span class="t-time">8:00 PM</span><h3 class="t-title">Cena &amp; brindis</h3></div>
+        <div class="t-row"><span class="t-time">9:30 PM</span><h3 class="t-title">Primer baile</h3></div>
+        <div class="t-row"><span class="t-time">10:00 PM</span><h3 class="t-title">La fiesta empieza de verdad</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UBICACIONES -->
+  <section class="scene venues" id="ubicaciones">
+    <div class="frame">
+      <p class="tag reveal">Ubicaciones</p>
+      <h2 class="display reveal reveal--d1">Dónde <span class="holo-text">encontrarnos</span></h2>
+
+      <div class="venues__grid">
+        <article class="venue venue--pink reveal">
+          <div class="venue__inner">
+            <span class="venue__tag">Ceremonia</span>
+            <h3>Iglesia Virgen del Carmen</h3>
+            <p>Av. Larco 345, Miraflores — Lima</p>
+            <span class="venue__hour">4:30 PM</span><br>
+            <a href="https://maps.google.com/?q=Miraflores+Lima+Peru" target="_blank" rel="noopener">Cómo llegar</a>
+          </div>
+        </article>
+        <article class="venue venue--cyan reveal reveal--d1">
+          <div class="venue__inner">
+            <span class="venue__tag">Recepción</span>
+            <h3>Skybar Malecón</h3>
+            <p>Malecón de la Reserva 610, Miraflores — Lima</p>
+            <span class="venue__hour">6:30 PM</span><br>
+            <a href="https://maps.google.com/?q=Malecon+Miraflores+Lima+Peru" target="_blank" rel="noopener">Cómo llegar</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUÍA DE LA NOCHE -->
+  <section class="scene guide" id="guia">
+    <div class="frame">
+      <p class="tag reveal">Guía de la noche</p>
+      <h2 class="display reveal reveal--d1">Antes de <span class="holo-text">venir</span></h2>
+
+      <div class="guide__grid">
+        <div class="note reveal">
+          <span class="note__slug">Vestuario</span>
+          <h3>Elegante nocturno</h3>
+          <p>Negro, joya y metálicos son bienvenidos. El blanco queda reservado para la novia.</p>
+          <div class="swatches" aria-label="Paleta sugerida">
+            <i style="background:#ff2e88;color:#ff2e88"></i>
+            <i style="background:#8b5cf6;color:#8b5cf6"></i>
+            <i style="background:#28e5ff;color:#28e5ff"></i>
+            <i style="background:#08060d;color:#08060d"></i>
+          </div>
+        </div>
+
+        <div class="note reveal reveal--d1">
+          <span class="note__slug">Mesa de regalos</span>
+          <h3>Sin lista, con sobre</h3>
+          <p>Su presencia ya enciende la noche. Si desean un gesto adicional, habrá un sobre disponible en la recepción.</p>
+          <div class="gift-row">
+            <span class="gift-chip">BCP Soles <span>193-2845671-0-99</span></span>
+            <span class="gift-chip">Interbank USD <span>200-3009845123</span></span>
+          </div>
+        </div>
+
+        <div class="note reveal reveal--d2">
+          <span class="note__slug">Durante la ceremonia</span>
+          <h3>Sin flashes propios</h3>
+          <p>La ceremonia será registrada por nuestro equipo de fotografía. Compartiremos las imágenes después. Movilidad de retorno a la 1:00 AM.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="scene rsvp" id="rsvp">
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="frame rsvp__grid">
+      <div>
+        <p class="tag reveal">Confirmación</p>
+        <h2 class="display reveal reveal--d1">Confirma tu <span class="holo-text">lugar</span></h2>
+        <p class="prose reveal reveal--d2">
+          El aforo de esta noche es limitado. Asegura tu entrada
+          confirmando tu asistencia antes de la fecha de cierre.
+        </p>
+        <span class="rsvp__deadline reveal reveal--d3">Confirmar antes del 1 · 07 · 2026</span>
+        <div class="rsvp__actions reveal reveal--d3">
+          <a class="btn-line" id="calBtn" href="#" target="_blank" rel="noopener">Agregar al calendario</a>
+          <button class="btn-line" id="shareBtn" type="button">Compartir invitación</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="ticket-wrap glow-border reveal">
+          <form class="card" id="ticket" novalidate>
+            <div class="card__head">
+              <h3 class="card__title">Entrada a la noche</h3>
+              <span class="card__no">Nº 22·08·26</span>
+            </div>
+
+            <div class="field">
+              <label for="fName">Nombre y apellido</label>
+              <input id="fName" name="nombre" type="text" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label for="fGuests">Entradas a tu nombre</label>
+              <select id="fGuests" name="acompanantes">
+                <option value="1">1 — Solo yo</option>
+                <option value="2">2 — Con acompañante</option>
+                <option value="3">3 personas</option>
+                <option value="4">4 personas</option>
+              </select>
+            </div>
+
+            <div class="seats" role="group" aria-label="¿Asistirás?">
+              <button type="button" class="seat" data-value="si" aria-pressed="true">Estaré en la pista</button>
+              <button type="button" class="seat" data-value="no" aria-pressed="false">No podré asistir</button>
+            </div>
+
+            <div class="field">
+              <label for="fMsg">Mensaje para los novios (opcional)</label>
+              <textarea id="fMsg" name="mensaje" rows="2"></textarea>
+            </div>
+
+            <button class="card__submit" type="submit">Confirmar entrada</button>
+
+            <div class="card__stub">
+              <span>Acceso · Zona A</span>
+              <span>Daniela &amp; Joaquín</span>
+              <span>Lima · Perú</span>
+            </div>
+          </form>
+        </div>
+
+        <div class="ticket-wrap glow-border" style="display:none" id="ticketDoneWrap">
+          <div class="card card--done" id="ticketDone" aria-live="polite">
+            <h3 class="card__title" id="doneTitle">¡Entrada confirmada!</h3>
+            <p id="doneText">Tu lugar ya está asegurado. Nos vemos el 22 de agosto para esta noche única.</p>
+            <span class="stamp" id="doneStamp">Acceso confirmado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="closing" id="creditos">
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="closing__roll">
+      <div class="credit reveal"><span class="tag tag--dim">Protagonistas</span><p>Daniela Vargas &amp; Joaquín Herrera</p></div>
+      <div class="credit reveal"><span class="tag tag--dim">Producción</span><p>Nuestras familias</p></div>
+      <div class="credit reveal"><span class="tag tag--dim">Invitados de honor</span><p>Ustedes</p></div>
+      <div class="credit reveal"><span class="tag tag--dim">Banda sonora</span><p>La canción que sonaba aquella primera noche</p></div>
+    </div>
+    <div class="closing__fin holo-text reveal">Fin</div>
+    <p class="closing__after reveal reveal--d1">… la fiesta apenas empieza</p>
+  </section>
+
+  <footer class="footer">
+    <span>Daniela &amp; Joaquín · 22.08.2026</span>
+    <span>Una invitación de <b>nuestraboda.com.pe</b></span>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+  /* ============================================================
+     MODELO 08 — NEÓN · JavaScript puro, sin dependencias
+     ============================================================ */
+  (function(){
+    "use strict";
+    var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* ---------- Placeholder si falta una foto ---------- */
+    function placeholder(label){
+      var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'>"+
+        "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>"+
+        "<stop offset='0' stop-color='%2308060d'/><stop offset='1' stop-color='%23040309'/></linearGradient></defs>"+
+        "<rect width='800' height='1000' fill='url(%23g)'/>"+
+        "<text x='400' y='490' text-anchor='middle' font-family='Arial Black' font-size='54' fill='%23ff2e88'>D %26 J</text>"+
+        "<text x='400' y='540' text-anchor='middle' font-family='monospace' letter-spacing='5' font-size='13' fill='%2328e5ff'>"+label+"</text>"+
+        "</svg>";
+      return "data:image/svg+xml;utf8," + svg;
+    }
+    document.querySelectorAll("img").forEach(function(img, i){
+      img.addEventListener("error", function(){
+        img.src = placeholder("FOTO 0" + (i+1));
+        img.style.objectFit = "cover";
+      }, { once:true });
+    });
+
+    /* ---------- Preloader ---------- */
+    var loader = document.getElementById("neonLoad");
+    function endLoad(){ loader.classList.add("is-done"); document.body.classList.remove("is-locked"); }
+    if(prefersReduced){ endLoad(); } else { setTimeout(endLoad, 2300); }
+
+    /* ---------- Revelados por scroll ---------- */
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("is-on"); io.unobserve(e.target); }
+      });
+    }, { threshold:.16, rootMargin:"0px 0px -6% 0px" });
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+    /* ---------- Menú ---------- */
+    var menuBtn = document.getElementById("menuBtn");
+    var lineup = document.getElementById("lineup");
+    function toggleMenu(force){
+      var open = typeof force === "boolean" ? force : !lineup.classList.contains("is-open");
+      lineup.classList.toggle("is-open", open);
+      menuBtn.setAttribute("aria-expanded", open);
+      menuBtn.textContent = open ? "Cerrar" : "Line-up";
+      document.body.classList.toggle("is-locked", open);
+    }
+    menuBtn.addEventListener("click", function(){ toggleMenu(); });
+    lineup.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){ toggleMenu(false); });
+    });
+    document.addEventListener("keydown", function(e){ if(e.key === "Escape") toggleMenu(false); });
+
+    /* ---------- Playlist / audio ---------- */
+    var audio = document.getElementById("audio");
+    var soundBtn = document.getElementById("soundBtn");
+    var soundLabel = document.getElementById("soundLabel");
+    soundBtn.addEventListener("click", function(){
+      if(audio.paused){
+        audio.play().then(function(){
+          soundBtn.classList.add("is-playing");
+          soundBtn.setAttribute("aria-pressed","true");
+          soundLabel.textContent = "Sonando";
+        }).catch(function(){
+          showToast("Agrega cancion.mp3 a la carpeta para activar la playlist");
+        });
+      } else {
+        audio.pause();
+        soundBtn.classList.remove("is-playing");
+        soundBtn.setAttribute("aria-pressed","false");
+        soundLabel.textContent = "Playlist de la noche";
+      }
+    });
+
+    /* ---------- Cuenta regresiva ---------- */
+    var target = new Date("2026-08-22T16:30:00-05:00").getTime();
+    var cD = document.getElementById("cDays"), cH = document.getElementById("cHours"),
+        cM = document.getElementById("cMins"), cS = document.getElementById("cSecs");
+    function pad(v,l){ v=String(v); while(v.length<l) v="0"+v; return v; }
+    function updateCount(){
+      var diff = Math.max(0, target - Date.now());
+      cD.textContent = pad(Math.floor(diff/864e5), 3);
+      cH.textContent = pad(Math.floor(diff/36e5)%24, 2);
+      cM.textContent = pad(Math.floor(diff/6e4)%60, 2);
+      cS.textContent = pad(Math.floor(diff/1e3)%60, 2);
+    }
+    updateCount(); setInterval(updateCount, 1000);
+
+    /* ---------- RSVP ---------- */
+    var ticket = document.getElementById("ticket");
+    var ticketDoneWrap = document.getElementById("ticketDoneWrap");
+    var attending = "si";
+    ticket.querySelectorAll(".seat").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        attending = btn.dataset.value;
+        ticket.querySelectorAll(".seat").forEach(function(b){
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+      });
+    });
+
+    ticket.addEventListener("submit", function(e){
+      e.preventDefault();
+      var name = document.getElementById("fName").value.trim();
+      if(!name){ showToast("Escribe tu nombre para confirmar"); document.getElementById("fName").focus(); return; }
+
+      /* Integración opcional con Google Sheets / Apps Script:
+         reemplaza ENDPOINT por tu URL y descomenta el fetch.
+      var ENDPOINT = "";
+      fetch(ENDPOINT, { method:"POST", body:new FormData(ticket) });
+      */
+
+      var first = name.split(" ")[0];
+      if(attending === "si"){
+        document.getElementById("doneTitle").textContent = "¡Entrada confirmada, " + first + "!";
+        document.getElementById("doneText").textContent =
+          "Tu lugar ya está asegurado. Nos vemos el 22 de agosto para esta noche única.";
+        document.getElementById("doneStamp").textContent = "Acceso confirmado";
+        if(!prefersReduced) confetti();
+      } else {
+        document.getElementById("doneTitle").textContent = "Te extrañaremos, " + first;
+        document.getElementById("doneText").textContent =
+          "Gracias por avisarnos. Te guardaremos un lugar en la próxima pista de baile.";
+        document.getElementById("doneStamp").textContent = "Presente en espíritu";
+      }
+      ticket.closest(".ticket-wrap").style.display = "none";
+      ticketDoneWrap.style.display = "block";
+      ticketDoneWrap.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block:"center" });
+    });
+
+    /* ---------- Confeti neón ---------- */
+    function confetti(){
+      var wrap = document.createElement("div");
+      wrap.className = "confetti";
+      var colors = ["#ff2e88","#8b5cf6","#28e5ff"];
+      for(var i=0;i<44;i++){
+        var p = document.createElement("i");
+        p.style.left = Math.random()*100 + "vw";
+        p.style.background = colors[i % colors.length];
+        p.style.boxShadow = "0 0 8px " + colors[i % colors.length];
+        p.style.animationDuration = (2.2 + Math.random()*2.2) + "s";
+        p.style.animationDelay = (Math.random()*0.6) + "s";
+        wrap.appendChild(p);
+      }
+      document.body.appendChild(wrap);
+      setTimeout(function(){ wrap.remove(); }, 5400);
+    }
+
+    /* ---------- Calendario ---------- */
+    var calBtn = document.getElementById("calBtn");
+    calBtn.href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+      "&text=" + encodeURIComponent("Boda de Daniela & Joaquín") +
+      "&dates=20260822T213000Z/20260823T060000Z" +
+      "&details=" + encodeURIComponent("Ceremonia 4:30 PM · Recepción 6:30 PM. Una noche única.") +
+      "&location=" + encodeURIComponent("Lima, Perú");
+
+    /* ---------- Compartir ---------- */
+    var shareBtn = document.getElementById("shareBtn");
+    shareBtn.addEventListener("click", function(){
+      var data = {
+        title: "Daniela & Joaquín — Nuestra Boda",
+        text: "Están invitados a nuestra noche. 22 de agosto de 2026, Lima.",
+        url: location.href
+      };
+      if(navigator.share){ navigator.share(data).catch(function(){}); }
+      else if(navigator.clipboard){
+        navigator.clipboard.writeText(data.url).then(function(){ showToast("Enlace copiado para compartir"); });
+      }
+    });
+
+    /* ---------- Toast ---------- */
+    var toast = document.getElementById("toast"), toastTimer;
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("is-on");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function(){ toast.classList.remove("is-on"); }, 3200);
+    }
+  })();
+  </script>
+</body>
+</html>

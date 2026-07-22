@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171713">
+  <meta name="description" content="Invitación digital de boda de Antuaneth y Alonso">
+  <title>Antuaneth & Alonso | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --black:#171713;
+      --black-soft:#211f1a;
+      --ivory:#f3efe6;
+      --paper:#e8e0d2;
+      --paper-light:#f8f4ec;
+      --olive:#66614d;
+      --gold:#bca06a;
+      --gold-soft:#d7c39a;
+      --wine:#6b3433;
+      --wine-dark:#3f2020;
+      --muted:#6c665d;
+      --line:rgba(23,23,19,.18);
+      --white-line:rgba(255,255,255,.18);
+      --shadow:0 28px 80px rgba(16,15,12,.18);
+      --radius:28px;
+      --font-display:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+      --font-body:'Manrope',Arial,Helvetica,sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--font-body);
+      background:var(--ivory);
+      color:var(--black);
+      overflow-x:hidden;
+      cursor:default;
+    }
+    body.loading{overflow:hidden}
+    body.menu-open{overflow:hidden}
+
+    ::selection{background:var(--wine);color:var(--ivory)}
+    img{display:block;width:100%}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{touch-action:manipulation}
+
+    .container{width:min(1180px,100%);margin:auto}
+    .section{padding:120px 5vw;position:relative}
+    .serif{font-family:var(--font-display)}
+
+    .eyebrow{
+      margin:0 0 22px;
+      text-transform:uppercase;
+      letter-spacing:.32em;
+      font-size:9px;
+      font-weight:600;
+      color:var(--wine);
+    }
+
+    .title{
+      margin:0;
+      font-family:var(--font-display);
+      font-weight:400;
+      font-size:clamp(48px,7vw,96px);
+      line-height:.92;
+      letter-spacing:-.055em;
+    }
+
+    .lead{
+      margin:34px 0 0;
+      max-width:760px;
+      font-family:var(--font-display);
+      font-size:clamp(22px,2.2vw,31px);
+      line-height:1.5;
+      color:#5c584e;
+    }
+
+    .btn{
+      position:relative;
+      isolation:isolate;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      min-height:52px;
+      padding:16px 25px;
+      border:1px solid currentColor;
+      background:transparent;
+      color:inherit;
+      text-transform:uppercase;
+      letter-spacing:.2em;
+      font-size:9px;
+      font-weight:600;
+      cursor:pointer;
+      overflow:hidden;
+      transition:color .35s ease,transform .35s ease,border-color .35s ease;
+    }
+
+    .btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:currentColor;
+      transform:translateY(105%);
+      transition:transform .35s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+    .btn:hover::before{transform:translateY(0)}
+    .btn--light:hover{color:var(--black)}
+    .btn--dark:hover{color:var(--ivory)}
+    .btn--solid{background:var(--ivory);color:var(--black);border-color:var(--ivory)}
+    .btn--solid::before{background:var(--gold)}
+    .btn--solid:hover{color:var(--black);border-color:var(--gold)}
+
+    /* Preloader */
+    .preloader{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:grid;
+      place-items:center;
+      background:var(--black);
+      color:var(--ivory);
+      transition:opacity .9s ease,visibility .9s ease;
+    }
+
+    .preloader.hide{opacity:0;visibility:hidden}
+
+    .preloader__inner{text-align:center;position:relative}
+    .preloader__monogram{
+      font-family:var(--font-display);
+      font-size:clamp(72px,12vw,150px);
+      letter-spacing:-.08em;
+      animation:preloaderPulse 1.8s ease-in-out infinite;
+    }
+
+    .preloader__caption{
+      margin-top:20px;
+      text-transform:uppercase;
+      letter-spacing:.35em;
+      font-size:9px;
+      opacity:.6;
+    }
+
+    .preloader__track{
+      width:170px;
+      height:1px;
+      margin:28px auto 0;
+      background:rgba(255,255,255,.18);
+      overflow:hidden;
+    }
+
+    .preloader__bar{
+      display:block;
+      width:55%;
+      height:100%;
+      background:var(--gold);
+      animation:preloaderLine 1.4s ease-in-out infinite;
+    }
+
+    @keyframes preloaderPulse{50%{opacity:.6;transform:scale(.985)}}
+    @keyframes preloaderLine{0%{transform:translateX(-120%)}100%{transform:translateX(220%)}}
+
+    /* Scroll progress */
+    .scroll-progress{
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      width:100%;
+      height:3px;
+      pointer-events:none;
+      background:rgba(255,255,255,.06);
+    }
+
+    .scroll-progress span{
+      display:block;
+      width:0;
+      height:100%;
+      background:linear-gradient(90deg,var(--wine),var(--gold));
+      box-shadow:0 0 18px rgba(188,160,106,.45);
+    }
+
+    /* Floating rail */
+    .side-rail{
+      position:fixed;
+      right:22px;
+      top:50%;
+      z-index:120;
+      transform:translateY(-50%);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      mix-blend-mode:difference;
+    }
+
+    .side-rail a{
+      width:8px;
+      height:8px;
+      border:1px solid white;
+      border-radius:50%;
+      opacity:.45;
+      transition:.3s ease;
+    }
+
+    .side-rail a:hover,.side-rail a.active{opacity:1;background:white;transform:scale(1.35)}
+
+    /* Hero */
+    .hero{
+      min-height:100svh;
+      position:relative;
+      overflow:hidden;
+      color:var(--ivory);
+      background:#111;
+    }
+
+    .hero__background{
+      position:absolute;
+      inset:-4%;
+      background:
+        linear-gradient(to bottom,rgba(0,0,0,.14) 0%,rgba(0,0,0,.08) 36%,rgba(0,0,0,.82) 100%),
+        url("foto-portada.png") center 8% / cover no-repeat;
+      transform:scale(1.06);
+      animation:heroBreath 16s ease-in-out infinite alternate;
+      will-change:transform;
+    }
+
+    .hero__background::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 76%,rgba(107,52,51,.38),transparent 35%),
+        linear-gradient(90deg,rgba(0,0,0,.25),transparent 52%);
+    }
+
+    @keyframes heroBreath{to{transform:scale(1.11)}}
+
+    .grain{
+      position:absolute;
+      inset:-50%;
+      z-index:1;
+      pointer-events:none;
+      opacity:.08;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
+      animation:grainShift .25s steps(2) infinite;
+    }
+
+    @keyframes grainShift{
+      0%{transform:translate(0,0)}
+      25%{transform:translate(2%,-2%)}
+      50%{transform:translate(-2%,2%)}
+      75%{transform:translate(3%,1%)}
+      100%{transform:translate(-1%,-3%)}
+    }
+
+    .hero__nav{
+      position:relative;
+      z-index:5;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:28px 5vw;
+      text-transform:uppercase;
+      letter-spacing:.25em;
+      font-size:10px;
+    }
+
+    .brand-lockup{display:flex;align-items:center;gap:14px}
+    .brand-mark{
+      display:grid;
+      place-items:center;
+      width:34px;
+      height:34px;
+      border:1px solid rgba(255,255,255,.4);
+      border-radius:50%;
+      font-family:var(--font-display);
+      font-size:16px;
+    }
+
+    .hero-actions{display:flex;align-items:center;gap:10px}
+
+    .music,.share-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      background:rgba(15,15,13,.18);
+      color:inherit;
+      border:1px solid rgba(255,255,255,.35);
+      padding:11px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      backdrop-filter:blur(12px);
+      transition:.3s ease;
+    }
+
+    .music:hover,.share-btn:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+
+    .equalizer{display:flex;align-items:center;gap:2px;height:13px}
+    .equalizer i{display:block;width:2px;height:5px;background:currentColor;opacity:.8}
+    .music.is-playing .equalizer i:nth-child(1){animation:eq .7s ease-in-out infinite alternate}
+    .music.is-playing .equalizer i:nth-child(2){animation:eq .45s .1s ease-in-out infinite alternate}
+    .music.is-playing .equalizer i:nth-child(3){animation:eq .6s .2s ease-in-out infinite alternate}
+    @keyframes eq{to{height:13px}}
+
+    .hero__content{
+      position:relative;
+      z-index:4;
+      width:min(1240px,90vw);
+      min-height:calc(100svh - 90px);
+      margin:auto;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding-bottom:9vh;
+    }
+
+    .hero__kicker{
+      text-transform:uppercase;
+      letter-spacing:.38em;
+      font-size:10px;
+      margin-bottom:25px;
+      opacity:.78;
+    }
+
+    h1{
+      margin:0;
+      max-width:900px;
+      font-family:var(--font-display);
+      font-weight:400;
+      font-size:clamp(72px,12vw,178px);
+      line-height:.78;
+      letter-spacing:-.075em;
+      text-wrap:balance;
+    }
+
+    .amp{font-style:italic;color:var(--gold)}
+
+    .hero__bottom{
+      margin-top:42px;
+      display:flex;
+      gap:50px;
+      align-items:center;
+      font-family:var(--font-display);
+      font-size:clamp(18px,2vw,28px);
+    }
+
+    .hero__line{width:80px;height:1px;background:rgba(255,255,255,.42)}
+
+    .scroll-cue{
+      position:absolute;
+      right:5vw;
+      bottom:6vh;
+      z-index:5;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-transform:uppercase;
+      letter-spacing:.25em;
+      font-size:8px;
+      color:rgba(255,255,255,.72);
+    }
+
+    .scroll-cue__line{width:70px;height:1px;background:rgba(255,255,255,.5);overflow:hidden}
+    .scroll-cue__line::after{
+      content:"";
+      display:block;
+      width:40%;
+      height:100%;
+      background:white;
+      animation:scrollLine 1.7s ease-in-out infinite;
+    }
+    @keyframes scrollLine{0%{transform:translateX(-110%)}100%{transform:translateX(260%)}}
+
+    /* Marquee */
+    .marquee{
+      overflow:hidden;
+      background:var(--gold);
+      color:var(--black);
+      border-top:1px solid rgba(0,0,0,.12);
+      border-bottom:1px solid rgba(0,0,0,.12);
+    }
+
+    .marquee__track{
+      display:flex;
+      width:max-content;
+      padding:18px 0;
+      animation:marqueeMove 28s linear infinite;
+    }
+
+    .marquee__track span{
+      padding-right:48px;
+      font-family:var(--font-display);
+      font-size:clamp(21px,2.5vw,34px);
+      font-style:italic;
+      white-space:nowrap;
+    }
+
+    .marquee__track span::after{content:"✦";margin-left:48px;font-style:normal;font-size:.55em}
+    @keyframes marqueeMove{to{transform:translateX(-50%)}}
+
+    /* Intro */
+    .intro{
+      display:grid;
+      grid-template-columns:.72fr 1.28fr;
+      gap:8vw;
+      align-items:start;
+    }
+
+    .intro__mark{
+      font-family:var(--font-display);
+      font-size:clamp(100px,14vw,190px);
+      line-height:.7;
+      color:var(--gold);
+      font-style:italic;
+      transform-origin:center;
+    }
+
+    .intro__aside{
+      margin-top:48px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      border-top:1px solid var(--line);
+      padding-top:25px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:13px;
+    }
+
+    /* Manifesto */
+    .manifesto{
+      position:relative;
+      overflow:hidden;
+      padding:150px 5vw;
+      background:var(--paper-light);
+    }
+
+    .manifesto__orb{
+      position:absolute;
+      width:38vw;
+      height:38vw;
+      min-width:360px;
+      min-height:360px;
+      right:-10vw;
+      top:-10vw;
+      border-radius:50%;
+      background:radial-gradient(circle at 35% 35%,rgba(188,160,106,.42),rgba(107,52,51,.08) 48%,transparent 70%);
+      filter:blur(4px);
+      animation:orbFloat 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes orbFloat{to{transform:translate(-45px,55px) scale(1.08)}}
+
+    .manifesto__line{
+      position:relative;
+      z-index:2;
+      margin:0;
+      font-family:var(--font-display);
+      font-size:clamp(54px,9vw,132px);
+      line-height:.88;
+      letter-spacing:-.065em;
+    }
+
+    .manifesto__line em{
+      color:var(--wine);
+      font-weight:400;
+      position:relative;
+    }
+
+    .manifesto__line em::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:.06em;
+      height:.06em;
+      background:var(--gold);
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform 1.2s .2s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .manifesto__line.show em::after{transform:scaleX(1)}
+
+    /* Date */
+    .date-panel{
+      position:relative;
+      overflow:hidden;
+      background:var(--black);
+      color:var(--ivory);
+      padding:110px 5vw;
+    }
+
+    .date-panel::before{
+      content:"17";
+      position:absolute;
+      right:-.05em;
+      bottom:-.27em;
+      font-family:var(--font-display);
+      font-size:min(45vw,680px);
+      line-height:1;
+      color:rgba(255,255,255,.025);
+      pointer-events:none;
+    }
+
+    .date-grid{
+      position:relative;
+      z-index:2;
+      width:min(1180px,100%);
+      margin:auto;
+      display:grid;
+      grid-template-columns:1fr 1.2fr;
+      gap:8vw;
+      align-items:end;
+    }
+
+    .date-number{
+      font-family:var(--font-display);
+      font-size:clamp(150px,24vw,340px);
+      line-height:.7;
+      letter-spacing:-.12em;
+      color:var(--gold);
+      text-shadow:0 25px 60px rgba(188,160,106,.12);
+    }
+
+    .date-copy .eyebrow{color:var(--gold)}
+    .date-copy > p{
+      font-family:var(--font-display);
+      font-size:clamp(25px,3vw,42px);
+      line-height:1.35;
+      margin:0;
+    }
+
+    .countdown{
+      margin-top:60px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      border-top:1px solid rgba(255,255,255,.2);
+      border-bottom:1px solid rgba(255,255,255,.2);
+    }
+
+    .countdown div{
+      position:relative;
+      padding:30px 14px;
+      text-align:center;
+      border-right:1px solid rgba(255,255,255,.2);
+      overflow:hidden;
+    }
+
+    .countdown div::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg,rgba(188,160,106,.14),transparent);
+      transform:translateY(-101%);
+      transition:transform .45s ease;
+    }
+
+    .countdown div:hover::before{transform:translateY(0)}
+    .countdown div:last-child{border-right:0}
+    .countdown strong{
+      position:relative;
+      display:block;
+      font-family:var(--font-display);
+      font-weight:400;
+      font-size:clamp(42px,6vw,78px);
+      font-variant-numeric:tabular-nums;
+    }
+
+    .countdown span{
+      position:relative;
+      text-transform:uppercase;
+      letter-spacing:.23em;
+      font-size:8px;
+      opacity:.58;
+    }
+
+    /* Story */
+    .story{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:26px;
+      margin-top:64px;
+      perspective:1200px;
+    }
+
+    .photo{
+      min-height:660px;
+      position:relative;
+      overflow:hidden;
+      background:#222;
+      box-shadow:var(--shadow);
+      transform-style:preserve-3d;
+      transition:transform .7s cubic-bezier(.2,.8,.2,1),box-shadow .7s ease;
+    }
+
+    .photo:hover{transform:translateY(-10px) rotateX(1deg);box-shadow:0 45px 100px rgba(16,15,12,.28)}
+
+    .photo img{
+      position:absolute;
+      inset:-3%;
+      width:106%;
+      height:106%;
+      object-fit:cover;
+      object-position:center;
+      transition:transform 1.2s cubic-bezier(.2,.8,.2,1),filter .8s ease;
+    }
+
+    .photo:hover img{transform:scale(1.055);filter:saturate(1.06)}
+
+    .photo::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:1;
+      background:linear-gradient(to top,rgba(0,0,0,.76) 0%,rgba(0,0,0,.18) 46%,transparent 72%);
+    }
+
+    .photo__index{
+      position:absolute;
+      z-index:2;
+      top:26px;
+      right:28px;
+      display:grid;
+      place-items:center;
+      width:46px;
+      height:46px;
+      border:1px solid rgba(255,255,255,.42);
+      border-radius:50%;
+      color:white;
+      font-family:var(--font-display);
+      font-size:19px;
+      backdrop-filter:blur(10px);
+    }
+
+    .photo__caption{
+      position:absolute;
+      left:30px;
+      right:30px;
+      bottom:28px;
+      z-index:2;
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      color:white;
+    }
+
+    .photo__caption strong{
+      font-family:var(--font-display);
+      font-size:34px;
+      font-weight:400;
+    }
+
+    .photo__caption span{text-transform:uppercase;letter-spacing:.24em;font-size:9px}
+
+    /* Film strip */
+    .film{
+      position:relative;
+      overflow:hidden;
+      padding:120px 0;
+      background:var(--wine-dark);
+      color:var(--ivory);
+    }
+
+    .film__head{padding:0 5vw;margin-bottom:58px}
+    .film .eyebrow{color:var(--gold)}
+
+    .film__track{
+      display:flex;
+      gap:18px;
+      width:max-content;
+      padding:0 5vw;
+      animation:filmDrift 38s linear infinite;
+    }
+
+    .film:hover .film__track{animation-play-state:paused}
+    @keyframes filmDrift{to{transform:translateX(-42%)}}
+
+    .film__frame{
+      position:relative;
+      width:min(34vw,430px);
+      aspect-ratio:4/5;
+      flex:0 0 auto;
+      overflow:hidden;
+      background:#111;
+      border:8px solid var(--ivory);
+      box-shadow:0 25px 70px rgba(0,0,0,.28);
+    }
+
+    .film__frame:nth-child(even){transform:translateY(28px) rotate(1.2deg)}
+    .film__frame:nth-child(odd){transform:rotate(-1deg)}
+    .film__frame img{height:100%;object-fit:cover;transition:transform .8s ease}
+    .film__frame:hover img{transform:scale(1.06)}
+    .film__frame::after{
+      content:attr(data-caption);
+      position:absolute;
+      left:18px;
+      bottom:16px;
+      padding:8px 10px;
+      background:rgba(15,15,13,.58);
+      backdrop-filter:blur(8px);
+      font-family:var(--font-display);
+      font-style:italic;
+      font-size:20px;
+    }
+
+    /* Timeline */
+    .schedule{background:var(--paper)}
+    .timeline{
+      position:relative;
+      margin-top:60px;
+      border-top:1px solid var(--line);
+    }
+
+    .timeline__progress{
+      position:absolute;
+      left:0;
+      top:0;
+      width:3px;
+      height:0;
+      background:linear-gradient(var(--gold),var(--wine));
+      transition:height 1.8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .timeline.is-visible .timeline__progress{height:100%}
+
+    .timeline__item{
+      position:relative;
+      display:grid;
+      grid-template-columns:160px 1fr 1fr;
+      gap:35px;
+      padding:38px 20px 38px 34px;
+      border-bottom:1px solid var(--line);
+      align-items:center;
+      transition:background .35s ease,padding-left .35s ease;
+    }
+
+    .timeline__item::before{
+      content:"";
+      position:absolute;
+      left:-5px;
+      top:50%;
+      width:11px;
+      height:11px;
+      border-radius:50%;
+      background:var(--paper);
+      border:2px solid var(--wine);
+      transform:translateY(-50%);
+      z-index:2;
+    }
+
+    .timeline__item:hover{background:rgba(255,255,255,.22);padding-left:46px}
+    .timeline__time{font-family:var(--font-display);font-size:31px;color:var(--wine)}
+    .timeline__item h3{margin:0;font-family:var(--font-display);font-weight:400;font-size:34px}
+    .timeline__item p{margin:0;color:#6c665d;line-height:1.7}
+
+    /* Calendar CTA */
+    .calendar-band{
+      padding:55px 5vw;
+      background:var(--gold);
+      color:var(--black);
+    }
+
+    .calendar-band__inner{
+      width:min(1180px,100%);
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:28px;
+    }
+
+    .calendar-band h3{margin:0;font-family:var(--font-display);font-weight:400;font-size:clamp(32px,4vw,58px)}
+    .calendar-band p{margin:8px 0 0;opacity:.7}
+
+    /* Signature */
+    .signature{
+      padding:150px 5vw;
+      background:var(--wine);
+      color:var(--ivory);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .signature::before,.signature::after{
+      content:"";
+      position:absolute;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:50%;
+      animation:ringFloat 9s ease-in-out infinite alternate;
+    }
+
+    .signature::before{width:460px;height:460px;left:-160px;top:-190px}
+    .signature::after{width:600px;height:600px;right:-270px;bottom:-320px;animation-delay:-3s}
+    @keyframes ringFloat{to{transform:translate(25px,22px) scale(1.06)}}
+
+    .signature__spark{
+      position:absolute;
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 20px rgba(188,160,106,.8);
+      animation:sparkFloat 6s ease-in-out infinite;
+    }
+
+    .signature__spark:nth-of-type(1){left:22%;top:28%}
+    .signature__spark:nth-of-type(2){right:20%;top:35%;animation-delay:-2s}
+    .signature__spark:nth-of-type(3){left:48%;bottom:18%;animation-delay:-4s}
+    @keyframes sparkFloat{50%{transform:translateY(-25px);opacity:.35}}
+
+    .signature h2{
+      position:relative;
+      margin:0;
+      font-family:var(--font-display);
+      font-weight:400;
+      font-style:italic;
+      font-size:clamp(58px,10vw,138px);
+    }
+
+    .signature p{
+      position:relative;
+      margin:25px auto 0;
+      max-width:650px;
+      font-family:var(--font-display);
+      font-size:25px;
+      line-height:1.5;
+    }
+
+    /* Venue experience */
+    .venue{
+      background:var(--black-soft);
+      color:var(--ivory);
+      overflow:hidden;
+    }
+
+    .venue-grid{
+      display:grid;
+      grid-template-columns:1fr 1.15fr;
+      gap:6vw;
+      align-items:center;
+    }
+
+    .venue .eyebrow{color:var(--gold)}
+    .venue .lead{color:rgba(255,255,255,.62)}
+
+    .venue-map{
+      position:relative;
+      min-height:600px;
+      border:1px solid rgba(255,255,255,.18);
+      background:
+        linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+        radial-gradient(circle at 60% 40%,rgba(188,160,106,.13),transparent 36%),
+        #191814;
+      background-size:52px 52px,52px 52px,auto,auto;
+      overflow:hidden;
+    }
+
+    .venue-map::before,.venue-map::after{
+      content:"";
+      position:absolute;
+      border:1px solid rgba(188,160,106,.35);
+      border-radius:46% 54% 56% 44%/45% 36% 64% 55%;
+    }
+
+    .venue-map::before{width:70%;height:46%;left:8%;top:10%;transform:rotate(-12deg)}
+    .venue-map::after{width:54%;height:38%;right:4%;bottom:9%;transform:rotate(19deg)}
+
+    .map-path{
+      position:absolute;
+      left:18%;
+      top:22%;
+      width:58%;
+      height:54%;
+      border:2px dashed rgba(255,255,255,.2);
+      border-left-color:var(--gold);
+      border-bottom-color:var(--gold);
+      border-radius:46% 54% 50% 50%;
+      transform:rotate(-8deg);
+    }
+
+    .map-pin{
+      position:absolute;
+      z-index:3;
+      display:grid;
+      place-items:center;
+      width:54px;
+      height:54px;
+      border-radius:50% 50% 50% 0;
+      transform:rotate(-45deg);
+      background:var(--wine);
+      color:white;
+      box-shadow:0 18px 45px rgba(0,0,0,.28);
+      animation:pinBounce 2.2s ease-in-out infinite;
+    }
+
+    .map-pin span{transform:rotate(45deg);font-family:var(--font-display);font-size:19px}
+    .map-pin--one{left:18%;top:20%}
+    .map-pin--two{right:18%;bottom:24%;animation-delay:-1.1s;background:var(--gold);color:var(--black)}
+    @keyframes pinBounce{50%{transform:rotate(-45deg) translate(5px,-5px)}}
+
+    .venue-list{margin-top:44px;display:grid;gap:18px}
+    .venue-item{
+      display:grid;
+      grid-template-columns:70px 1fr auto;
+      gap:20px;
+      align-items:center;
+      padding:20px 0;
+      border-top:1px solid rgba(255,255,255,.15);
+    }
+
+    .venue-item__number{font-family:var(--font-display);font-size:42px;color:var(--gold)}
+    .venue-item h3{margin:0 0 6px;font-family:var(--font-display);font-size:28px;font-weight:400}
+    .venue-item p{margin:0;color:rgba(255,255,255,.52);font-size:12px;line-height:1.6}
+    .venue-item a{font-size:9px;text-transform:uppercase;letter-spacing:.18em;border-bottom:1px solid currentColor;padding-bottom:5px}
+
+    /* Music experience */
+    .song{
+      background:var(--paper-light);
+      overflow:hidden;
+    }
+
+    .song-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:8vw;
+      align-items:center;
+    }
+
+    .vinyl-stage{
+      position:relative;
+      min-height:560px;
+      display:grid;
+      place-items:center;
+    }
+
+    .vinyl-stage::before{
+      content:"";
+      position:absolute;
+      width:75%;
+      height:75%;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(188,160,106,.28),transparent 68%);
+      filter:blur(18px);
+    }
+
+    .vinyl{
+      position:relative;
+      width:min(76vw,430px);
+      aspect-ratio:1;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at center,var(--gold) 0 7%,#1b1a17 7.3% 13%,transparent 13.2%),
+        repeating-radial-gradient(circle at center,#151512 0 3px,#24231f 4px 6px);
+      box-shadow:0 40px 90px rgba(16,15,12,.28);
+      animation:vinylIdle 18s linear infinite;
+      animation-play-state:paused;
+    }
+
+    .vinyl.is-playing{animation-play-state:running}
+    @keyframes vinylIdle{to{transform:rotate(360deg)}}
+
+    .vinyl::after{
+      content:"A · M";
+      position:absolute;
+      inset:38%;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--wine);
+      color:var(--ivory);
+      font-family:var(--font-display);
+      font-size:26px;
+    }
+
+    .song-copy blockquote{
+      margin:38px 0 0;
+      padding-left:24px;
+      border-left:2px solid var(--gold);
+      font-family:var(--font-display);
+      font-size:clamp(23px,2.6vw,38px);
+      line-height:1.35;
+      font-style:italic;
+      color:var(--wine-dark);
+    }
+
+    .song-controls{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+
+    /* Details */
+    .details{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:55px;
+    }
+
+    .card{
+      --mx:50%;
+      --my:50%;
+      position:relative;
+      border:1px solid var(--line);
+      padding:36px;
+      min-height:290px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      overflow:hidden;
+      background:rgba(255,255,255,.18);
+      transition:transform .45s ease,border-color .45s ease,box-shadow .45s ease;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:radial-gradient(320px circle at var(--mx) var(--my),rgba(188,160,106,.24),transparent 48%);
+      opacity:0;
+      transition:opacity .35s ease;
+    }
+
+    .card:hover{transform:translateY(-8px);border-color:rgba(107,52,51,.35);box-shadow:0 25px 60px rgba(16,15,12,.11)}
+    .card:hover::before{opacity:1}
+    .card > *{position:relative}
+    .card small{text-transform:uppercase;letter-spacing:.25em;color:var(--wine)}
+    .card h3{font-family:var(--font-display);font-weight:400;font-size:34px;margin:30px 0 12px;line-height:1.05}
+    .card p{margin:0;color:#686259;line-height:1.7}
+
+    .dress-palette{display:flex;gap:9px;margin-top:22px}
+    .dress-palette span{width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+    .dress-palette span:nth-child(1){background:#1c1b18}
+    .dress-palette span:nth-child(2){background:#6b3433}
+    .dress-palette span:nth-child(3){background:#66614d}
+    .dress-palette span:nth-child(4){background:#bca06a}
+
+    /* Guest note */
+    .guest-note{
+      padding:140px 5vw;
+      background:var(--paper);
+    }
+
+    .guest-note__paper{
+      position:relative;
+      width:min(900px,100%);
+      margin:auto;
+      padding:90px 8vw;
+      background:var(--paper-light);
+      box-shadow:0 40px 90px rgba(16,15,12,.13);
+      transform:rotate(-.8deg);
+    }
+
+    .guest-note__paper::before{
+      content:"";
+      position:absolute;
+      inset:18px;
+      border:1px solid rgba(107,52,51,.16);
+      pointer-events:none;
+    }
+
+    .seal{
+      position:absolute;
+      right:7%;
+      top:-45px;
+      display:grid;
+      place-items:center;
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      background:radial-gradient(circle at 35% 25%,#8b4a48,var(--wine-dark));
+      color:var(--ivory);
+      font-family:var(--font-display);
+      font-size:25px;
+      box-shadow:0 15px 30px rgba(63,32,32,.28);
+      transform:rotate(8deg);
+      animation:sealRock 5s ease-in-out infinite;
+    }
+
+    @keyframes sealRock{50%{transform:rotate(2deg) translateY(-5px)}}
+
+    .guest-note blockquote{
+      margin:0;
+      font-family:var(--font-display);
+      font-size:clamp(31px,4.6vw,62px);
+      line-height:1.12;
+      text-align:center;
+      color:var(--wine-dark);
+    }
+
+    .guest-note p{text-align:center;margin:28px 0 0;color:var(--muted);line-height:1.8}
+
+    /* RSVP */
+    .rsvp{
+      position:relative;
+      overflow:hidden;
+      background:var(--black);
+      color:var(--ivory);
+    }
+
+    .rsvp::before{
+      content:"";
+      position:absolute;
+      width:650px;
+      height:650px;
+      right:-240px;
+      top:-240px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(107,52,51,.45),transparent 70%);
+      animation:orbFloat 12s ease-in-out infinite alternate-reverse;
+    }
+
+    .rsvp-grid{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:8vw;
+    }
+
+    .rsvp .eyebrow{color:var(--gold)}
+    .rsvp .lead{color:rgba(255,255,255,.62)}
+
+    .form{
+      display:grid;
+      gap:20px;
+      padding:38px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.035);
+      backdrop-filter:blur(12px);
+    }
+
+    .field label{
+      display:block;
+      text-transform:uppercase;
+      letter-spacing:.2em;
+      font-size:9px;
+      opacity:.65;
+      margin-bottom:8px;
+    }
+
+    .field input,.field select,.field textarea{
+      width:100%;
+      border:0;
+      border-bottom:1px solid rgba(255,255,255,.28);
+      padding:13px 0;
+      background:transparent;
+      color:var(--ivory);
+      outline:none;
+      transition:border-color .3s ease;
+    }
+
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+    .field select option{color:#111}
+    .field textarea{min-height:90px;resize:vertical}
+    .form__helper{margin:0;color:rgba(255,255,255,.48);font-size:11px;line-height:1.6}
+
+    .rsvp-success{
+      position:absolute;
+      inset:0;
+      z-index:20;
+      display:grid;
+      place-items:center;
+      padding:30px;
+      text-align:center;
+      background:rgba(23,23,19,.94);
+      backdrop-filter:blur(14px);
+      opacity:0;
+      visibility:hidden;
+      transition:.55s ease;
+    }
+
+    .rsvp-success.show{opacity:1;visibility:visible}
+    .rsvp-success__mark{
+      display:grid;
+      place-items:center;
+      width:84px;
+      height:84px;
+      margin:0 auto 24px;
+      border:1px solid var(--gold);
+      border-radius:50%;
+      font-family:var(--font-display);
+      font-size:32px;
+      color:var(--gold);
+    }
+    .rsvp-success h3{font-family:var(--font-display);font-size:46px;font-weight:400;margin:0 0 12px}
+    .rsvp-success p{margin:0;color:rgba(255,255,255,.62)}
+
+    /* Closing */
+    .closing{
+      position:relative;
+      min-height:90svh;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      color:var(--ivory);
+      text-align:center;
+      background:#111;
+    }
+
+    .closing__bg{
+      position:absolute;
+      inset:-4%;
+      background:
+        linear-gradient(rgba(0,0,0,.38),rgba(0,0,0,.72)),
+        url("foto-2.png") center 36% / cover no-repeat;
+      transform:scale(1.05);
+      transition:transform 1.2s ease;
+    }
+
+    .closing:hover .closing__bg{transform:scale(1.09)}
+    .closing__content{position:relative;z-index:2;width:min(850px,88vw)}
+    .closing__content h2{
+      margin:0;
+      font-family:var(--font-display);
+      font-weight:400;
+      font-style:italic;
+      font-size:clamp(74px,13vw,180px);
+      line-height:.8;
+    }
+    .closing__content p{margin:28px 0 0;font-family:var(--font-display);font-size:clamp(23px,3vw,38px)}
+
+    footer{
+      padding:28px 5vw;
+      background:#0e0e0c;
+      color:rgba(255,255,255,.5);
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      text-transform:uppercase;
+      letter-spacing:.2em;
+      font-size:9px;
+    }
+
+    /* Reveal system */
+    .reveal{
+      opacity:0;
+      transform:translateY(34px);
+      transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal--left{transform:translateX(-45px)}
+    .reveal--right{transform:translateX(45px)}
+    .reveal--scale{transform:scale(.94)}
+    .reveal.show{opacity:1;transform:none}
+
+    [data-stagger] > *{
+      opacity:0;
+      transform:translateY(28px);
+      transition:opacity .75s ease,transform .75s ease;
+    }
+
+    [data-stagger].show > *{opacity:1;transform:none}
+    [data-stagger].show > *:nth-child(2){transition-delay:.12s}
+    [data-stagger].show > *:nth-child(3){transition-delay:.24s}
+    [data-stagger].show > *:nth-child(4){transition-delay:.36s}
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:22px;
+      z-index:300;
+      transform:translate(-50%,120px);
+      background:var(--ivory);
+      color:var(--black);
+      padding:14px 20px;
+      box-shadow:0 16px 45px rgba(0,0,0,.22);
+      transition:.4s;
+    }
+    .toast.show{transform:translate(-50%,0)}
+
+    .confetti{
+      position:fixed;
+      z-index:999;
+      width:9px;
+      height:14px;
+      pointer-events:none;
+      animation:confettiFall 1.7s cubic-bezier(.18,.78,.3,1) forwards;
+    }
+    @keyframes confettiFall{
+      to{transform:translate(var(--x),110vh) rotate(var(--r));opacity:0}
+    }
+
+    /* Responsive */
+    @media(max-width:1024px){
+      .side-rail{display:none}
+      .venue-grid,.song-grid{gap:5vw}
+      .venue-map{min-height:520px}
+    }
+
+    @media(max-width:850px){
+      .section{padding:88px 6vw}
+      .intro,.date-grid,.rsvp-grid,.story,.venue-grid,.song-grid{grid-template-columns:1fr}
+      .date-grid,.venue-grid,.song-grid{gap:50px}
+      .story{margin-top:45px}
+      .photo{min-height:520px}
+      .film__frame{width:64vw}
+      .timeline__item{grid-template-columns:110px 1fr;padding-left:28px}
+      .timeline__item p{grid-column:2}
+      .details{grid-template-columns:1fr}
+      .calendar-band__inner{align-items:flex-start;flex-direction:column}
+      .venue-map{min-height:480px;order:2}
+      .form{padding:28px}
+      .hero__background{background-position:58% center}
+      .scroll-cue{display:none}
+      .intro__aside{grid-template-columns:1fr}
+    }
+
+    @media(max-width:560px){
+      .hero__nav{padding:18px 5vw}
+      .brand-lockup > span:last-child{display:none}
+      .share-btn{display:none}
+      .music{padding:10px 13px}
+      h1{font-size:clamp(66px,22vw,105px)}
+      .hero__content{padding-bottom:7vh}
+      .hero__bottom{gap:18px;align-items:flex-start;flex-direction:column;margin-top:28px}
+      .hero__line{display:none}
+      .countdown{grid-template-columns:repeat(2,1fr)}
+      .countdown div:nth-child(2){border-right:0}
+      .countdown div:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.2)}
+      .timeline__item{grid-template-columns:1fr;gap:10px}
+      .timeline__item p{grid-column:auto}
+      .date-number{font-size:48vw}
+      .manifesto{padding:95px 6vw}
+      .manifesto__line{font-size:16vw}
+      .film__frame{width:76vw}
+      .guest-note{padding:95px 5vw}
+      .guest-note__paper{padding:72px 9vw}
+      .seal{width:72px;height:72px;top:-36px;font-size:21px}
+      .venue-item{grid-template-columns:52px 1fr}
+      .venue-item a{grid-column:2;justify-self:start}
+      footer{flex-direction:column}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+      .hero__background{transform:none}
+      .film__track{animation:none}
+    }
+  </style>
+</head>
+
+<body class="loading">
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__monogram">A·A</div>
+      <div class="preloader__caption">Una historia para siempre</div>
+      <div class="preloader__track"><span class="preloader__bar"></span></div>
+    </div>
+  </div>
+
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <nav class="side-rail" aria-label="Navegación rápida">
+    <a href="#inicio" aria-label="Portada"></a>
+    <a href="#historia" aria-label="Historia"></a>
+    <a href="#fecha" aria-label="Fecha"></a>
+    <a href="#itinerario" aria-label="Itinerario"></a>
+    <a href="#detalles" aria-label="Detalles"></a>
+    <a href="#confirmacion" aria-label="Confirmación"></a>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="hero__background" id="heroBackground" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <nav class="hero__nav">
+      <a href="#inicio" class="brand-lockup" aria-label="Ir al inicio">
+        <span class="brand-mark">A·A</span>
+        <span>Nuestra Boda</span>
+      </a>
+
+      <div class="hero-actions">
+        <button class="share-btn" id="shareBtn" type="button" aria-label="Compartir invitación">Compartir</button>
+        <button class="music" id="musicBtn" type="button" aria-label="Reproducir música">
+          <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span id="musicLabel">Música</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="hero__content">
+      <p class="hero__kicker reveal">Tenemos el honor de invitarte</p>
+      <h1 class="reveal">Antuaneth<br><span class="amp">&</span> Alonso</h1>
+      <div class="hero__bottom reveal">
+        <span>17 · 10 · 2026</span>
+        <span class="hero__line"></span>
+        <span>Lima, Perú</span>
+      </div>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">
+      <span>Descubre nuestra historia</span>
+      <span class="scroll-cue__line"></span>
+    </div>
+  </header>
+
+  <main>
+    <section class="marquee" aria-label="Mensaje de boda">
+      <div class="marquee__track">
+        <span>Dos vidas, una historia</span>
+        <span>El comienzo de nuestro para siempre</span>
+        <span>17 de octubre de 2026</span>
+        <span>Dos vidas, una historia</span>
+        <span>El comienzo de nuestro para siempre</span>
+        <span>17 de octubre de 2026</span>
+      </div>
+    </section>
+
+    <section class="section" id="historia">
+      <div class="container intro">
+        <div>
+          <div class="intro__mark reveal reveal--scale">∞</div>
+          <div class="intro__aside reveal" data-stagger>
+            <p><strong>Desde 2019</strong><br>Construyendo recuerdos, viajes y sueños compartidos.</p>
+            <p><strong>Hasta siempre</strong><br>Una promesa que empieza con quienes más queremos cerca.</p>
+          </div>
+        </div>
+
+        <div class="reveal reveal--right">
+          <p class="eyebrow">Nuestra historia</p>
+          <h2 class="title">El amor encontró su lugar.</h2>
+          <p class="lead">Después de compartir caminos, sueños y una vida llena de pequeños momentos, elegimos comenzar para siempre. Queremos que seas parte de este día.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="manifesto">
+      <div class="manifesto__orb" aria-hidden="true"></div>
+      <div class="container">
+        <p class="manifesto__line reveal reveal--left">No celebramos solo una fecha. Celebramos cada casualidad que nos trajo hasta <em>aquí</em>.</p>
+      </div>
+    </section>
+
+    <section class="date-panel" id="fecha">
+      <div class="date-grid">
+        <div class="date-number reveal reveal--scale">17</div>
+
+        <div class="date-copy reveal reveal--right">
+          <p class="eyebrow">Octubre · 2026</p>
+          <p>Sábado, cuatro y treinta de la tarde. Una fecha que guardaremos para siempre.</p>
+
+          <div class="countdown" aria-label="Cuenta regresiva para la boda">
+            <div><strong id="days">00</strong><span>Días</span></div>
+            <div><strong id="hours">00</strong><span>Horas</span></div>
+            <div><strong id="minutes">00</strong><span>Minutos</span></div>
+            <div><strong id="seconds">00</strong><span>Segundos</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow reveal">Capítulos nuestros</p>
+        <h2 class="title reveal">Dos momentos.<br>Una sola historia.</h2>
+
+        <div class="story" data-stagger>
+          <article class="photo">
+            <img src="foto-1.png" alt="Antuaneth y Alonso en un momento especial" loading="lazy">
+            <span class="photo__index">01</span>
+            <div class="photo__caption">
+              <strong>El encuentro</strong>
+              <span>2019</span>
+            </div>
+          </article>
+
+          <article class="photo">
+            <img src="foto-2.png" alt="Antuaneth y Alonso celebrando su compromiso" loading="lazy">
+            <span class="photo__index">02</span>
+            <div class="photo__caption">
+              <strong>La promesa</strong>
+              <span>2025</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="film" aria-label="Galería de recuerdos">
+      <div class="film__head container">
+        <p class="eyebrow reveal">Recuerdos en movimiento</p>
+        <h2 class="title reveal">Instantes que ya son eternos.</h2>
+      </div>
+
+      <div class="film__track" aria-hidden="true">
+        <figure class="film__frame" data-caption="Nuestro comienzo">
+          <img src="foto-1.png" alt="" loading="lazy" style="object-position:center 30%">
+        </figure>
+        <figure class="film__frame" data-caption="Una tarde juntos">
+          <img src="foto-2.png" alt="" loading="lazy" style="object-position:center 36%">
+        </figure>
+        <figure class="film__frame" data-caption="Sí, para siempre">
+          <img src="foto-portada.png" alt="" loading="lazy" style="object-position:center 24%">
+        </figure>
+        <figure class="film__frame" data-caption="Nuestro comienzo">
+          <img src="foto-1.png" alt="" loading="lazy" style="object-position:center 40%">
+        </figure>
+        <figure class="film__frame" data-caption="Una tarde juntos">
+          <img src="foto-2.png" alt="" loading="lazy" style="object-position:center 42%">
+        </figure>
+        <figure class="film__frame" data-caption="Sí, para siempre">
+          <img src="foto-portada.png" alt="" loading="lazy" style="object-position:center 26%">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section schedule" id="itinerario">
+      <div class="container">
+        <p class="eyebrow reveal">El gran día</p>
+        <h2 class="title reveal">Itinerario de la celebración</h2>
+
+        <div class="timeline reveal" id="timeline">
+          <span class="timeline__progress" aria-hidden="true"></span>
+
+          <div class="timeline__item">
+            <div class="timeline__time">4:30 PM</div>
+            <h3>Ceremonia</h3>
+            <p>Parroquia Nuestra Señora de Fátima, Miraflores.</p>
+          </div>
+
+          <div class="timeline__item">
+            <div class="timeline__time">6:30 PM</div>
+            <h3>Cóctel de bienvenida</h3>
+            <p>Casa Prado, recepción principal.</p>
+          </div>
+
+          <div class="timeline__item">
+            <div class="timeline__time">8:00 PM</div>
+            <h3>Cena y celebración</h3>
+            <p>Brindis, cena, baile y una noche para recordar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="calendar-band">
+      <div class="calendar-band__inner">
+        <div class="reveal">
+          <h3>Guarda nuestra fecha</h3>
+          <p>Añádela a tu calendario para que este día también empiece a ser parte de tu historia.</p>
+        </div>
+        <button class="btn btn--dark reveal" id="calendarBtn" type="button">Agregar al calendario</button>
+      </div>
+    </section>
+
+    <section class="signature">
+      <span class="signature__spark"></span>
+      <span class="signature__spark"></span>
+      <span class="signature__spark"></span>
+      <h2 class="reveal reveal--scale">Esto recién comienza.</h2>
+      <p class="reveal">“Donde tú estés, ahí quiero construir todos mis días.”</p>
+    </section>
+
+    <section class="section venue" id="ubicacion">
+      <div class="container venue-grid">
+        <div class="reveal reveal--left">
+          <p class="eyebrow">El lugar</p>
+          <h2 class="title">Dos escenarios.<br>Una celebración.</h2>
+          <p class="lead">Preparamos cada momento para que puedas acompañarnos sin preocupaciones, desde la ceremonia hasta el último baile.</p>
+
+          <div class="venue-list">
+            <article class="venue-item">
+              <div class="venue-item__number">01</div>
+              <div>
+                <h3>Ceremonia</h3>
+                <p>Parroquia Nuestra Señora de Fátima · Miraflores · 4:30 PM</p>
+              </div>
+              <a href="https://www.google.com/maps/search/?api=1&query=Parroquia+Nuestra+Se%C3%B1ora+de+F%C3%A1tima+Miraflores" target="_blank" rel="noopener">Ver mapa</a>
+            </article>
+
+            <article class="venue-item">
+              <div class="venue-item__number">02</div>
+              <div>
+                <h3>Recepción</h3>
+                <p>Casa Prado · Miraflores · 6:30 PM</p>
+              </div>
+              <a href="https://www.google.com/maps/search/?api=1&query=Casa+Prado+Miraflores+Lima" target="_blank" rel="noopener">Ver mapa</a>
+            </article>
+          </div>
+        </div>
+
+        <div class="venue-map reveal reveal--scale" aria-label="Mapa artístico de las ubicaciones">
+          <span class="map-path" aria-hidden="true"></span>
+          <span class="map-pin map-pin--one"><span>01</span></span>
+          <span class="map-pin map-pin--two"><span>02</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section song" id="cancion">
+      <div class="container song-grid">
+        <div class="vinyl-stage reveal reveal--scale">
+          <div class="vinyl" id="vinyl" aria-hidden="true"></div>
+        </div>
+
+        <div class="song-copy reveal reveal--right">
+          <p class="eyebrow">Nuestra canción</p>
+          <h2 class="title">La banda sonora de este momento.</h2>
+          <blockquote>Hay canciones que se escuchan. Y hay otras que se convierten en un lugar al que siempre queremos volver.</blockquote>
+          <div class="song-controls">
+            <button class="btn btn--dark" id="songBtn" type="button">Escuchar canción</button>
+            <button class="btn btn--dark" id="restartSongBtn" type="button">Reiniciar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="detalles">
+      <div class="container">
+        <p class="eyebrow reveal">Información para nuestros invitados</p>
+        <h2 class="title reveal">Cada detalle pensado para ti.</h2>
+
+        <div class="details" data-stagger>
+          <article class="card spotlight-card">
+            <small>Dress code</small>
+            <div>
+              <h3>Elegante</h3>
+              <p>Traje formal. Reservamos los tonos blanco y marfil para la novia.</p>
+              <div class="dress-palette" aria-label="Paleta de colores sugerida">
+                <span title="Negro"></span><span title="Vino"></span><span title="Olivo"></span><span title="Dorado"></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card spotlight-card">
+            <small>Regalos</small>
+            <div>
+              <h3>Tu presencia es nuestro mejor regalo</h3>
+              <p>También habilitamos una opción especial para quienes deseen acompañarnos con un obsequio.</p>
+            </div>
+          </article>
+
+          <article class="card spotlight-card">
+            <small>Ubicación</small>
+            <div>
+              <h3>Cómo llegar</h3>
+              <p>Encuentra la ruta directa hacia la ceremonia y la recepción desde tu celular.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="guest-note">
+      <div class="guest-note__paper reveal reveal--scale">
+        <div class="seal">A·M</div>
+        <blockquote>Esta invitación no estaría completa sin tu nombre en nuestra historia.</blockquote>
+        <p>Gracias por acompañarnos, por celebrar nuestro amor y por hacer que este día tenga aún más significado.</p>
+      </div>
+    </section>
+
+    <section class="section rsvp" id="confirmacion">
+      <div class="container rsvp-grid">
+        <div class="reveal reveal--left">
+          <p class="eyebrow">Confirma tu asistencia</p>
+          <h2 class="title">Queremos celebrar contigo.</h2>
+          <p class="lead">Confirma tu asistencia hasta el 20 de septiembre de 2026.</p>
+        </div>
+
+        <div class="form reveal reveal--right" id="rsvpForm">
+          <div class="field">
+            <label for="name">Nombre completo</label>
+            <input id="name" name="name" placeholder="Escribe tu nombre" autocomplete="name">
+          </div>
+
+          <div class="field">
+            <label for="attendance">¿Podrás asistir?</label>
+            <select id="attendance" name="attendance">
+              <option value="Sí, asistiré">Sí, asistiré</option>
+              <option value="No podré asistir">No podré asistir</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="guests">Número de asistentes</label>
+            <input id="guests" name="guests" type="number" value="1" min="1" max="6">
+          </div>
+
+          <div class="field">
+            <label for="message">Mensaje para los novios</label>
+            <textarea id="message" name="message" placeholder="Déjanos unas palabras"></textarea>
+          </div>
+
+          <button class="btn btn--light" id="confirmBtn" type="button">Confirmar asistencia</button>
+          <p class="form__helper">La confirmación puede conectarse posteriormente con Google Sheets, Make, Zapier o n8n.</p>
+
+          <div class="rsvp-success" id="rsvpSuccess" aria-live="polite">
+            <div>
+              <div class="rsvp-success__mark">✓</div>
+              <h3>Gracias por confirmar</h3>
+              <p>Tu respuesta quedó registrada para Antuaneth y Alonso.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="closing__bg" aria-hidden="true"></div>
+      <div class="closing__content reveal reveal--scale">
+        <p class="eyebrow" style="color:var(--gold)">Nos vemos muy pronto</p>
+        <h2>A & M</h2>
+        <p>17 de octubre de 2026 · Lima, Perú</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Antuaneth & Alonso</span>
+    <span>Diseñado por Nuestra Boda</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Tu confirmación fue registrada</div>
+
+  <audio id="music" loop preload="metadata">
+    <source src="cancion.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const target = new Date("2026-10-17T16:30:00-05:00").getTime();
+
+    const $ = (selector, scope = document) => scope.querySelector(selector);
+    const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
+
+    function tick(){
+      const distance = Math.max(0, target - Date.now());
+      const values = [
+        Math.floor(distance / 86400000),
+        Math.floor((distance % 86400000) / 3600000),
+        Math.floor((distance % 3600000) / 60000),
+        Math.floor((distance % 60000) / 1000)
+      ];
+
+      ["days","hours","minutes","seconds"].forEach((id,index) => {
+        const element = document.getElementById(id);
+        if(element) element.textContent = String(values[index]).padStart(2,"0");
+      });
+    }
+
+    tick();
+    setInterval(tick,1000);
+
+    window.addEventListener("load",() => {
+      setTimeout(() => {
+        $("#preloader").classList.add("hide");
+        document.body.classList.remove("loading");
+        $$(".hero .reveal").forEach((element,index) => {
+          setTimeout(() => element.classList.add("show"),180 + index * 130);
+        });
+      },850);
+    });
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("show");
+          if(entry.target.id === "timeline") entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },{threshold:.13,rootMargin:"0px 0px -35px 0px"});
+
+    $$(".reveal,[data-stagger],#timeline").forEach(element => revealObserver.observe(element));
+
+    const scrollProgress = $("#scrollProgress");
+    const heroBackground = $("#heroBackground");
+    const sections = $$("main section[id],header[id]");
+    const railLinks = $$(".side-rail a");
+
+    function handleScroll(){
+      const scrollTop = window.scrollY;
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? (scrollTop / scrollable) * 100 : 0;
+      scrollProgress.style.width = `${progress}%`;
+
+      if(heroBackground && window.innerWidth > 850){
+        heroBackground.style.transform = `scale(1.06) translateY(${Math.min(scrollTop * .055,45)}px)`;
+      }
+
+      let currentId = "inicio";
+      sections.forEach(section => {
+        const top = section.offsetTop - window.innerHeight * .42;
+        if(scrollTop >= top) currentId = section.id;
+      });
+
+      railLinks.forEach(link => {
+        link.classList.toggle("active",link.getAttribute("href") === `#${currentId}`);
+      });
+    }
+
+    window.addEventListener("scroll",handleScroll,{passive:true});
+    handleScroll();
+
+    const music = $("#music");
+    const musicBtn = $("#musicBtn");
+    const musicLabel = $("#musicLabel");
+    const songBtn = $("#songBtn");
+    const restartSongBtn = $("#restartSongBtn");
+    const vinyl = $("#vinyl");
+    let playing = false;
+
+    function updateMusicUI(){
+      musicBtn.classList.toggle("is-playing",playing);
+      vinyl.classList.toggle("is-playing",playing);
+      musicLabel.textContent = playing ? "Pausar" : "Música";
+      songBtn.textContent = playing ? "Pausar canción" : "Escuchar canción";
+    }
+
+    async function toggleMusic(){
+      try{
+        if(!playing){
+          await music.play();
+          playing = true;
+        }else{
+          music.pause();
+          playing = false;
+        }
+        updateMusicUI();
+      }catch(error){
+        alert("Coloca un archivo llamado cancion.mp3 junto al index.html.");
+      }
+    }
+
+    musicBtn.addEventListener("click",toggleMusic);
+    songBtn.addEventListener("click",toggleMusic);
+    restartSongBtn.addEventListener("click",async() => {
+      music.currentTime = 0;
+      if(!playing){
+        try{await music.play();playing = true}catch(error){return}
+      }
+      updateMusicUI();
+    });
+
+    const shareBtn = $("#shareBtn");
+    shareBtn.addEventListener("click",async() => {
+      const shareData = {
+        title:"Antuaneth & Alonso | Nuestra Boda",
+        text:"Acompáñanos a celebrar nuestra boda el 17 de octubre de 2026.",
+        url:window.location.href
+      };
+
+      try{
+        if(navigator.share){
+          await navigator.share(shareData);
+        }else if(navigator.clipboard){
+          await navigator.clipboard.writeText(window.location.href);
+          showToast("Enlace copiado");
+        }else{
+          showToast("Copia el enlace desde la barra del navegador");
+        }
+      }catch(error){
+        if(error.name !== "AbortError") showToast("No se pudo compartir el enlace");
+      }
+    });
+
+    $("#calendarBtn").addEventListener("click",() => {
+      const icsContent = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Nuestra Boda//ES",
+        "BEGIN:VEVENT",
+        "UID:Antuaneth-Alonso-20261017@nuestraboda.com.pe",
+        "DTSTAMP:20260716T120000Z",
+        "DTSTART:20261017T213000Z",
+        "DTEND:20261018T050000Z",
+        "SUMMARY:Boda de Antuaneth y Alonso",
+        "DESCRIPTION:Ceremonia y celebración de la boda de Antuaneth y Alonso.",
+        "LOCATION:Miraflores, Lima, Perú",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([icsContent],{type:"text/calendar;charset=utf-8"});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "boda-Antuaneth-Alonso.ics";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      showToast("Fecha lista para agregar al calendario");
+    });
+
+    $$(".spotlight-card").forEach(card => {
+      card.addEventListener("pointermove",event => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx",`${event.clientX - rect.left}px`);
+        card.style.setProperty("--my",`${event.clientY - rect.top}px`);
+      });
+    });
+
+    const confirmBtn = $("#confirmBtn");
+    const rsvpSuccess = $("#rsvpSuccess");
+
+    confirmBtn.addEventListener("click",() => {
+      const name = $("#name").value.trim();
+      if(!name){
+        $("#name").focus();
+        showToast("Escribe tu nombre para continuar");
+        return;
+      }
+
+      rsvpSuccess.classList.add("show");
+      showToast("Tu confirmación fue registrada");
+      launchConfetti();
+
+      setTimeout(() => rsvpSuccess.classList.remove("show"),4200);
+    });
+
+    function showToast(message){
+      const toast = $("#toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove("show"),2600);
+    }
+
+    function launchConfetti(){
+      const colors = ["#bca06a","#6b3433","#f3efe6","#66614d"];
+      for(let index = 0; index < 42; index += 1){
+        const piece = document.createElement("span");
+        piece.className = "confetti";
+        piece.style.left = `${42 + Math.random() * 16}%`;
+        piece.style.top = `${35 + Math.random() * 8}%`;
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.setProperty("--x",`${(Math.random() - .5) * 520}px`);
+        piece.style.setProperty("--r",`${Math.random() * 900 - 450}deg`);
+        piece.style.animationDelay = `${Math.random() * .18}s`;
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(),2100);
+      }
+    }
+  </script>
+</body>
+</html>
