@@ -1,4 +1,4 @@
 git status
 git add -A
-git commit -m "Agregar invitacion Ana y Pedro"
+git commit -m "Agregar cambios realizados"
 git push
