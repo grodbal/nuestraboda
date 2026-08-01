@@ -333,6 +333,21 @@
       position:absolute;
     }
 
+    /* ---------- vista previa en vivo (iframe de la propia invitación) ---------- */
+    .model-preview{
+      position:absolute;inset:0;overflow:hidden;background:transparent;
+    }
+    .model-preview iframe{
+      position:absolute;top:0;left:50%;
+      width:1440px;height:900px;
+      border:0;pointer-events:none;
+      transform-origin:top center;
+      opacity:0;transition:opacity .7s ease;
+      background:#0c0b10;
+      transform:translateX(-50%) scale(.3);
+    }
+    .model-preview iframe.is-ready{opacity:1}
+
     .model-thumb{
       position:absolute;inset:0;z-index:1;
       transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .8s ease;
@@ -797,8 +812,8 @@
 
       var thumbHtml = m.thumb
         ? '<img class="model-thumb" loading="lazy" decoding="async" src="' + esc(m.thumb) + '" alt="" onerror="this.remove()">'
-        : ""; // sin thumb todavía: se queda con el fondo "art" generativo (ver script de screenshots)
-
+        : '<div class="model-preview" data-preview-src="' + esc(m.href || "") + '" ' +
+            'data-preview-title="Vista previa de la invitación de ' + esc((m.coupleTitle || "").replace(/<br>/gi," ")) + '"></div>';
 
       card.innerHTML =
         '<div class="art"></div>' +
@@ -869,6 +884,85 @@
         });
       });
     }
+
+    /* ---------- vistas previas en vivo: SOLO bajo demanda (Opción B) ----------
+       En reposo, cada tarjeta muestra el fondo "art" generativo (liviano, ya
+       calculado en CSS con la paleta del modelo) o el thumb estático si existe.
+       El iframe con la invitación real SOLO se crea cuando hay intención real
+       de verla: hover sostenido en desktop, o foco por teclado. En touch/mobile
+       no se crea ningún iframe — se prioriza velocidad, y el usuario de todas
+       formas va a tocar la tarjeta para entrar a la invitación real.
+       Además se limita a MAX_LOADED iframes vivos a la vez: si se supera,
+       se descarta el más antiguo para liberar memoria y evitar que varias
+       invitaciones (con su propio GA, fuentes y JS) compitan en paralelo. */
+    var PREVIEW_W = 1440; // ancho virtual al que están pensadas las portadas (desktop)
+    var HOVER_DELAY = 220; // ms de hover sostenido antes de cargar (evita cargas al pasar de largo)
+    var MAX_LOADED = 3;    // iframes de invitación real cargados simultáneamente, como máximo
+    var previewWraps = Array.prototype.slice.call(document.querySelectorAll(".model-preview"));
+    var loadedWraps = []; // orden de carga (el más viejo se desaloja primero)
+
+    var canHoverPreview = !!(window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+
+    function fitPreview(wrap){
+      var iframe = wrap.querySelector("iframe");
+      if(!iframe) return;
+      var scale = wrap.clientWidth / PREVIEW_W;
+      iframe.style.transform = "translateX(-50%) scale(" + scale + ")";
+    }
+
+    function unloadPreview(wrap){
+      var iframe = wrap.querySelector("iframe");
+      if(iframe) iframe.remove();
+      var idx = loadedWraps.indexOf(wrap);
+      if(idx > -1) loadedWraps.splice(idx, 1);
+    }
+
+    function loadPreview(wrap){
+      if(!wrap || wrap.querySelector("iframe")) return; // ya está cargada
+      var src = wrap.dataset.previewSrc;
+      if(!src) return;
+
+      if(loadedWraps.length >= MAX_LOADED){
+        unloadPreview(loadedWraps[0]);
+      }
+
+      var iframe = document.createElement("iframe");
+      iframe.title = wrap.dataset.previewTitle || "Vista previa de la invitación";
+      iframe.tabIndex = -1;
+      iframe.setAttribute("aria-hidden", "true");
+      iframe.loading = "lazy";
+      iframe.scrolling = "no";
+      iframe.sandbox = "allow-scripts allow-same-origin";
+      wrap.appendChild(iframe);
+      fitPreview(wrap);
+      iframe.addEventListener("load", function(){ iframe.classList.add("is-ready"); }, { once:true });
+      iframe.src = src;
+      loadedWraps.push(wrap);
+    }
+
+    if(previewWraps.length && canHoverPreview){
+      previewWraps.forEach(function(wrap){
+        var card = wrap.closest(".model");
+        if(!card) return;
+        var hoverTimer;
+        card.addEventListener("mouseenter", function(){
+          hoverTimer = setTimeout(function(){ loadPreview(wrap); }, HOVER_DELAY);
+        }, { passive:true });
+        card.addEventListener("mouseleave", function(){
+          clearTimeout(hoverTimer);
+        }, { passive:true });
+        card.addEventListener("focus", function(){ loadPreview(wrap); }); // accesibilidad: navegación por teclado
+      });
+    }
+    /* En touch/mobile no se agrega ningún listener de carga: la tarjeta se
+       queda con el fondo "art" generativo hasta que el usuario toca para
+       entrar a la invitación real. */
+
+    var resizeTimer;
+    window.addEventListener("resize", function(){
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function(){ previewWraps.forEach(fitPreview); }, 150);
+    }, { passive:true });
 
     /* ---------- scroll: barra de progreso + nav ---------- */
     var progress = document.getElementById("progress");

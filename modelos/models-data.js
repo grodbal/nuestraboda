@@ -23,17 +23,18 @@
                  Además alimenta los filtros de arriba de la grilla:
                  categorías repetidas se agrupan automáticamente.
    description   (opcional) Una frase corta describiendo el modelo.
-   thumb         (opcional) Si NO la defines, la tarjeta muestra
-                 automáticamente una vista previa EN VIVO de la
-                 portada real de esa invitación (un iframe a escala
-                 reducida apuntando a "href"). No necesitas sacar
-                 capturas de pantalla — simplemente sube la carpeta
-                 y la vista previa se genera sola.
-                 Solo define "thumb" si prefieres usar una imagen
-                 estática en vez de la vista previa en vivo (por
-                 ejemplo, para aligerar la carga en conexiones lentas
-                 o si una invitación en particular es muy pesada).
-                 Ej: thumb: "../valentina&rodrigo/preview.jpg"
+   thumb         (opcional, pero MUY recomendado) Imagen estática de
+                 la portada del modelo. Si la defines, se muestra tal
+                 cual en la tarjeta — carga instantánea, sin depender
+                 de la invitación real. Si NO la defines, la tarjeta
+                 se queda con un fondo generado (marco, cortina, etc.)
+                 hasta que la agregues.
+                 Genera este archivo automáticamente corriendo
+                 generar-thumbnails.js — captura solo el "hero" (la
+                 primera hoja) de cada invitación y guarda un
+                 "preview.webp" dentro de la carpeta de ese modelo,
+                 dejando esta línea lista para copiar:
+                 Ej: thumb: "../valentina&rodrigo/preview.webp"
    palette       (opcional) Arreglo de 3 colores hex para el fondo
                  de respaldo que se ve mientras carga la vista previa
                  en vivo (o si "href" aún no existe), ej.
@@ -53,7 +54,8 @@ window.SITE_MODELS = [
     category: "Editorial contemporáneo",
     description: "Una composición editorial de alto contraste con fotografía protagonista.",
     palette: ["#85675b", "#251e1c", "#d1b277"],
-    motif: 1
+    motif: 1,
+    thumb: "../alessandra&mateo/preview.webp"
   },
   {
     href: "../valentina&rodrigo/",
@@ -61,7 +63,8 @@ window.SITE_MODELS = [
     category: "Editorial revista",
     description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
     palette: ["#1a1921", "#664751", "#ffffff"],
-    motif: 3
+    motif: 3,
+    thumb: "../valentina&rodrigo/preview.webp"
   },
   {
     href: "../antonella&maxi/",
@@ -69,7 +72,8 @@ window.SITE_MODELS = [
     category: "Editorial revista",
     description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
     palette: ["#1a1921", "#664751", "#ffffff"],
-    motif: 1
+    motif: 1,
+    thumb: "../antonella&maxi/preview.webp"
   },
   {
     href: "../ariana&diego/",
@@ -77,7 +81,8 @@ window.SITE_MODELS = [
     category: "Editorial revista",
     description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
     palette: ["#1a1921", "#664751", "#ffffff"],
-    motif: 8
+    motif: 8,
+    thumb: "../ariana&diego/preview.webp"
   },
   {
     href: "../camila&bruno/",
@@ -85,7 +90,8 @@ window.SITE_MODELS = [
     category: "Editorial revista",
     description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
     palette: ["#1a1921", "#664751", "#ffffff"],
-    motif: 5
+    motif: 5,
+    thumb: "../camila&bruno/preview.webp"
   },
   {
     href: "../fernanda&nicolas/",
@@ -93,7 +99,8 @@ window.SITE_MODELS = [
     category: "Editorial revista",
     description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
     palette: ["#1a1921", "#664751", "#ffffff"],
-    motif: 4
+    motif: 4,
+    thumb: "../fernanda&nicolas/preview.webp"
   },
   {
     href: "../macarena&antonio/",
@@ -101,7 +108,8 @@ window.SITE_MODELS = [
     category: "Editorial revista",
     description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
     palette: ["#1a1921", "#664751", "#ffffff"],
-    motif: 6
+    motif: 6,
+    thumb: "../macarena&antonio/preview.webp"
   },
   {
     href: "../sayuri&renzo/",
@@ -109,7 +117,8 @@ window.SITE_MODELS = [
     category: "Editorial revista",
     description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
     palette: ["#1a1921", "#664751", "#ffffff"],
-    motif: 7
+    motif: 7,
+    thumb: "../sayuri&renzo/preview.webp"
   },
   {
     href: "../antuaneth&alonso/",
@@ -117,7 +126,8 @@ window.SITE_MODELS = [
     category: "Romance nocturno",
     description: "Una experiencia profunda, elegante y cinematográfica.",
     palette: ["#bc2b30", "#541b25", "#1e090e"],
-    motif: 2
+    motif: 2,
+    thumb: "../antuaneth&alonso/preview.webp"
   },
   {
     href: "../daniela&joaquin/",
@@ -125,7 +135,8 @@ window.SITE_MODELS = [
     category: "Viaje y destinos",
     description: "La historia de la pareja contada como un recorrido entre lugares y recuerdos.",
     palette: ["#d9d0bd", "#82734e", "#7b3438"],
-    motif: 3
+    motif: 3,
+    thumb: "../daniela&joaquin/preview.webp"
   },
     {
     href: "../camila&andres/",
@@ -133,7 +144,8 @@ window.SITE_MODELS = [
     category: "Viaje y destinos",
     description: "La historia de la pareja contada como un recorrido entre lugares y recuerdos.",
     palette: ["#d9d0bd", "#82734e", "#7b3438"],
-    motif: 8
+    motif: 8,
+    thumb: "../camila&andres/preview.webp"
   },
   {
     href: "../melanie&victor/",
@@ -141,7 +153,8 @@ window.SITE_MODELS = [
     category: "Álbum analógico",
     description: "Recuerdos espontáneos presentados como páginas de un álbum personal.",
     palette: ["#d2a59c", "#80625f", "#f0e5d5"],
-    motif: 4
+    motif: 4,
+    thumb: "../melanie&victor/preview.webp"
   },
   {
     href: "../valentina&sebastian/",
@@ -149,7 +162,8 @@ window.SITE_MODELS = [
     category: "Editorial nocturno",
     description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
     palette: ["#1a1921", "#664751", "#ffffff"],
-    motif: 8
+    motif: 8,
+    thumb: "../valentina&sebastian/preview.webp"
   },
   {
     href: "../camila&sebastian/",
@@ -157,7 +171,8 @@ window.SITE_MODELS = [
     category: "Jardín contemporáneo",
     description: "Naturaleza, texturas orgánicas y una composición elegante sin excesos.",
     palette: ["#15221c", "#60705d", "#e7d2a4"],
-    motif: 5
+    motif: 5,
+    thumb: "../camila&sebastian/preview.webp"
   },
   {
     href: "../ingrid&gonzalo/",
@@ -165,7 +180,8 @@ window.SITE_MODELS = [
     category: "Arquitectura clásica",
     description: "Una puesta en escena sofisticada inspirada en hoteles y salones europeos.",
     palette: ["#bda476", "#3a3123", "#171410"],
-    motif: 6
+    motif: 6,
+    thumb: "../ingrid&gonzalo/preview.webp"
   },
   {
     href: "../lucero&jorge/",
@@ -173,7 +189,8 @@ window.SITE_MODELS = [
     category: "Arquitectura clásica",
     description: "Una puesta en escena sofisticada inspirada en hoteles y salones europeos.",
     palette: ["#bda476", "#3a3123", "#171410"],
-    motif: 2
+    motif: 2,
+    thumb: "../lucero&jorge/preview.webp"
   },
   {
     href: "../isabel&gabriel/",
@@ -181,7 +198,8 @@ window.SITE_MODELS = [
     category: "Botánico elegante",
     description: "Una invitación luminosa con sensibilidad romántica y detalles naturales.",
     palette: ["#f0e5d4", "#879075", "#ffffff"],
-    motif: 7
+    motif: 7,
+    thumb: "../isabel&gabriel/preview.webp"
   },
   {
     href: "../renata&nicolas/",
@@ -189,7 +207,8 @@ window.SITE_MODELS = [
     category: "Arquitectura clásica",
     description: "Una puesta en escena sofisticada inspirada en hoteles y salones europeos.",
     palette: ["#bda476", "#3a3123", "#171410"],
-    motif: 6
+    motif: 6,
+    thumb: "../renata&nicolas/preview.webp"
   }
 
   /* Copia este bloque para agregar un modelo nuevo:
