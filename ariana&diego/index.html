@@ -628,21 +628,43 @@
       linear-gradient(135deg, var(--black-card), var(--black-soft));
     display: flex; align-items: center; justify-content: center;
     position: relative;
+    overflow: hidden;
     border-bottom: 1px solid var(--grey-line);
   }
   .product-media::before {
     content: '';
     position: absolute; inset: 16px;
     border: 1px dashed var(--grey-line);
+    z-index: 2;
+    pointer-events: none;
+  }
+  /* Foto real dentro del product-media, con duotono streetwear */
+  .product-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.15) brightness(.92);
+    z-index: 0;
+  }
+  .product-photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(204,255,0,.16), rgba(10,10,10,.5));
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 1;
   }
   .product-media-label {
+    position: absolute;
+    left: 16px; right: 16px; bottom: 16px;
+    z-index: 2;
+    background: rgba(10,10,10,.72);
     font-family: var(--font-mono);
     font-size: 9px;
     letter-spacing: .3em;
     text-transform: uppercase;
     color: var(--grey);
-    text-align: center;
-    padding: 0 30px;
+    text-align: left;
+    padding: 8px 10px;
   }
   .product-badge {
     position: absolute; top: 14px; left: 14px;
@@ -819,17 +841,33 @@
     background: var(--black);
     border: 1px solid var(--grey-line);
   }
-  .look-placeholder {
+  /* Foto real dentro del tile de lookbook, con duotono streetwear */
+  .look-photo {
     position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--black-card), var(--black));
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.15) brightness(.92);
+    z-index: 0;
+  }
+  .look-photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(204,255,0,.18), rgba(10,10,10,.45));
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .look-placeholder {
+    position: absolute; top: 12px; left: 12px; right: 12px;
+    z-index: 2;
+    background: rgba(10,10,10,.72);
     color: var(--grey);
     font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: .25em;
+    font-size: 8px;
+    letter-spacing: .2em;
     text-transform: uppercase;
-    text-align: center;
-    padding: 20px;
+    text-align: left;
+    padding: 5px 9px;
+    width: fit-content;
   }
   .look-price-tag {
     position: absolute; top: 12px; right: 12px;
@@ -855,6 +893,7 @@
     color: var(--lime);
     transform: translateY(100%);
     transition: transform .4s var(--ease);
+    z-index: 2;
   }
   .look-tile:hover .look-caption { transform: translateY(0); }
   .look-caption span:last-child { color: var(--white); }
@@ -1429,8 +1468,10 @@
       <div class="events-grid">
         <article class="product-card reveal">
           <div class="product-media">
+            <img class="product-photo" src="foto-ceremonia.jpg" alt="Iglesia San Felipe, ceremonia">
+            <div class="product-photo-overlay"></div>
             <div class="product-badge">Pieza 01</div>
-            <div class="product-media-label">Product Photo · Ceremonia</div>
+            
           </div>
           <div class="product-body">
             <div class="product-sku">SKU: CER-210827-01</div>
@@ -1449,8 +1490,10 @@
 
         <article class="product-card reveal">
           <div class="product-media">
+            <img class="product-photo" src="foto-recepcion.jfif" alt="Almacén 21, recepción">
+            <div class="product-photo-overlay"></div>
             <div class="product-badge">Pieza 02</div>
-            <div class="product-media-label">Product Photo · Recepción</div>
+            
           </div>
           <div class="product-body">
             <div class="product-sku">SKU: REC-210827-02</div>
@@ -1583,29 +1626,41 @@
 
       <div class="lookbook-grid reveal">
         <div class="look-tile look-1">
-          <div class="look-placeholder">Foto 01 · El primer encuentro</div>
+          <img class="look-photo" src="foto-look-1.png" alt="El primer encuentro, 2016">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">El primer encuentro</div>
           <div class="look-price-tag">Cop</div>
           <div class="look-caption"><span>N° 01</span><span>2016 · Festival</span></div>
         </div>
         <div class="look-tile look-2">
-          <div class="look-placeholder">Foto 02 · Viaje</div>
+          <img class="look-photo" src="foto-look-2.png" alt="Viaje, 2019">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">Viaje</div>
           <div class="look-caption"><span>N° 02</span><span>2019</span></div>
         </div>
         <div class="look-tile look-3">
-          <div class="look-placeholder">Foto 03 · La propuesta</div>
+          <img class="look-photo" src="foto-look-3.png" alt="La propuesta, 2025">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">La propuesta</div>
           <div class="look-price-tag">Cop</div>
           <div class="look-caption"><span>N° 03</span><span>2025</span></div>
         </div>
         <div class="look-tile look-4">
-          <div class="look-placeholder">Foto 04 · Anillo</div>
+          <img class="look-photo" src="foto-look-4.png" alt="Anillo, detalle">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">Anillo</div>
           <div class="look-caption"><span>N° 04</span><span>Detalle</span></div>
         </div>
         <div class="look-tile look-5">
-          <div class="look-placeholder">Foto 05 · Nuestro depa</div>
+          <img class="look-photo" src="foto-look-5.png" alt="Nuestro depa, 2026">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">Nuestro depa</div>
           <div class="look-caption"><span>N° 05</span><span>2026</span></div>
         </div>
         <div class="look-tile look-6">
-          <div class="look-placeholder">Foto 06 · La preboda</div>
+          <img class="look-photo" src="foto-look-6.png" alt="La preboda">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">La preboda</div>
           <div class="look-price-tag">Cop</div>
           <div class="look-caption"><span>N° 06</span><span>Editorial</span></div>
         </div>

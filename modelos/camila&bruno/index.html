@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11458174849"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'AW-11458174849');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#180a08">
+  <meta name="description" content="Camila & Bruno — Live in concert. 6 de marzo de 2027, Cieneguilla, Lima. Una invitación por Nuestra Boda.">
+  <title>Camila & Bruno — FESTIVAL | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+  /* ============================================================
+     MODELO 12 — "FESTIVAL"
+     Concepto: la boda como cartel de festival de música. Sol
+     poniente en degradado sobre negro, tipografía Bebas Neue a
+     todo volumen como masthead de poster pegado en la calle,
+     grano de papel, lineup con horarios de "escenario" para cada
+     momento de la noche, cuenta regresiva como stub de entrada
+     perforado y RSVP como compra de pulsera de acceso.
+     ============================================================ */
+
+  :root {
+    /* Cielo de atardecer — la paleta del poster */
+    --ink:             #150807;
+    --ink-deep:        #0d0504;
+    --ink-soft:        #241110;
+    --paper:           #f6ede1;
+    --paper-dim:       #e8dbc8;
+
+    /* Degradado atardecer */
+    --sun-orange:      #ff6b35;
+    --sun-coral:       #ff3d68;
+    --sun-pink:        #e0227e;
+    --sun-violet:      #7b2ff7;
+    --sun-yellow:      #ffc93c;
+
+    /* Texto */
+    --cream:           #f6ede1;
+    --cream-dim:       #d8c9b4;
+    --smoke:           #9c8b7d;
+
+    /* Tipografía */
+    --font-display:    'Bebas Neue', 'Archivo Black', sans-serif;
+    --font-body:        'Space Grotesk', system-ui, sans-serif;
+    --font-mono:        'Space Mono', ui-monospace, monospace;
+
+    --ease:            cubic-bezier(.6,0,.15,1);
+    --ease-pop:        cubic-bezier(.2,1.4,.4,1);
+  }
+
+  /* ===== Reset ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--ink);
+    color: var(--cream);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Grano de papel global */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: .05;
+    mix-blend-mode: overlay;
+    background-image:
+      repeating-conic-gradient(from 0deg, rgba(255,255,255,.4) 0deg 1deg, transparent 1deg 3deg);
+    background-size: 3px 3px;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  ::selection { background: var(--sun-coral); color: var(--ink); }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--sun-orange), var(--sun-pink), var(--sun-violet));
+    border-radius: 4px;
+  }
+
+  /* ============================================================
+     PRELOADER — sello de acceso "ON SALE"
+     ============================================================ */
+  #preloader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 20px;
+    transition: opacity .8s var(--ease), visibility .8s var(--ease);
+  }
+  #preloader.done { opacity: 0; visibility: hidden; }
+
+  .pre-mark {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 12vw, 110px);
+    letter-spacing: .04em;
+    line-height: .9;
+    background: linear-gradient(100deg, var(--sun-yellow), var(--sun-orange), var(--sun-pink), var(--sun-violet));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradientMove 2.4s linear infinite;
+  }
+  @keyframes gradientMove { to { background-position: 300% 0; } }
+
+  .pre-bar {
+    width: 220px; height: 3px;
+    background: rgba(246,237,225,.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .pre-bar::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--sun-orange), var(--sun-pink));
+    transform: translateX(-100%);
+    animation: barLoad 2.2s var(--ease) forwards;
+  }
+  @keyframes barLoad { to { transform: translateX(0); } }
+
+  .pre-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--smoke);
+  }
+
+  /* ============================================================
+     NAV
+     ============================================================ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background .4s var(--ease), padding .4s var(--ease);
+  }
+  .nav.scrolled {
+    background: rgba(21,8,7,.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 13px 32px;
+    border-bottom: 1px solid rgba(255,107,53,.15);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: .05em;
+    color: var(--cream);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo span {
+    background: linear-gradient(100deg, var(--sun-orange), var(--sun-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .nav-toggle {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid rgba(246,237,225,.3);
+    color: var(--cream);
+    transition: all .3s var(--ease);
+  }
+  .nav-toggle:hover {
+    border-color: var(--sun-orange);
+    background: rgba(255,107,53,.1);
+  }
+  .nav-toggle svg { width: 16px; height: 16px; }
+
+  /* Menu fullscreen */
+  .menu {
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--ink-deep);
+    display: flex; align-items: center; justify-content: center;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: clip-path .7s var(--ease-pop);
+    pointer-events: none;
+  }
+  .menu.open {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    pointer-events: auto;
+  }
+  .menu-close {
+    position: absolute; top: 20px; right: 32px;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--sun-orange);
+    color: var(--sun-orange);
+  }
+  .menu-close svg { width: 14px; height: 14px; }
+  .menu-list { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 8px; }
+  .menu-list li {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .5s var(--ease), transform .5s var(--ease);
+  }
+  .menu.open .menu-list li { opacity: 1; transform: translateY(0); }
+  .menu.open .menu-list li:nth-child(1) { transition-delay: .25s; }
+  .menu.open .menu-list li:nth-child(2) { transition-delay: .3s; }
+  .menu.open .menu-list li:nth-child(3) { transition-delay: .35s; }
+  .menu.open .menu-list li:nth-child(4) { transition-delay: .4s; }
+  .menu.open .menu-list li:nth-child(5) { transition-delay: .45s; }
+  .menu.open .menu-list li:nth-child(6) { transition-delay: .5s; }
+  .menu.open .menu-list li:nth-child(7) { transition-delay: .55s; }
+  .menu-list a {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 8vw, 76px);
+    letter-spacing: .03em;
+    color: var(--cream);
+    transition: color .3s var(--ease);
+  }
+  .menu-list a:hover {
+    background: linear-gradient(100deg, var(--sun-orange), var(--sun-pink), var(--sun-violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .menu-footer {
+    position: absolute; bottom: 30px; left: 0; right: 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: rgba(246,237,225,.4);
+  }
+
+  /* ============================================================
+     HERO — el poster
+     ============================================================ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    padding: 110px 24px 70px;
+  }
+
+  /* Sol degradado animado */
+  .sunset {
+    position: absolute; inset: 0;
+    z-index: 0;
+  }
+  .sunset-glow {
+    position: absolute;
+    left: 50%; bottom: -10%;
+    transform: translateX(-50%);
+    width: 130vw; height: 130vw;
+    max-width: 1400px; max-height: 1400px;
+    background: radial-gradient(circle,
+      var(--sun-yellow) 0%,
+      var(--sun-orange) 18%,
+      var(--sun-coral) 34%,
+      var(--sun-pink) 50%,
+      var(--sun-violet) 68%,
+      var(--ink) 82%);
+    border-radius: 50%;
+    opacity: .85;
+    animation: sunPulse 10s ease-in-out infinite;
+  }
+  @keyframes sunPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); }
+    50% { transform: translateX(-50%) scale(1.05); }
+  }
+  /* Líneas horizontales tipo horizonte synth */
+  .sunset-lines {
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg, transparent 0 34px, rgba(21,8,7,.5) 34px 36px
+    );
+    mix-blend-mode: multiply;
+    opacity: .5;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 20%, var(--ink) 88%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    text-align: center;
+    max-width: 1000px;
+    width: 100%;
+  }
+
+  .hero-presents {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .6em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: rise .9s var(--ease) .3s forwards;
+  }
+
+  .hero-names {
+    font-family: var(--font-display);
+    font-size: clamp(78px, 17vw, 220px);
+    line-height: .86;
+    letter-spacing: .01em;
+    color: var(--paper);
+    margin-bottom: 6px;
+    opacity: 0;
+    animation: rise 1.1s var(--ease) .45s forwards;
+    text-shadow: 0 6px 40px rgba(0,0,0,.5);
+  }
+  .hero-names .amp {
+    display: block;
+    font-size: .5em;
+    line-height: 1;
+    background: linear-gradient(100deg, var(--sun-yellow), var(--sun-orange), var(--sun-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    margin: -.06em 0;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(26px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tagline {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: clamp(15px, 1.8vw, 19px);
+    color: var(--cream-dim);
+    max-width: 480px;
+    margin: 26px auto 40px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: rise 1s var(--ease) .7s forwards;
+  }
+
+  /* Bloque tipo entrada de festival */
+  .hero-ticket {
+    display: inline-flex;
+    align-items: stretch;
+    background: var(--paper);
+    color: var(--ink);
+    position: relative;
+    opacity: 0;
+    animation: rise 1s var(--ease) .95s forwards;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.6);
+  }
+  .hero-ticket::before,
+  .hero-ticket::after {
+    content: '';
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    width: 20px; height: 20px;
+    background: var(--ink);
+    border-radius: 50%;
+  }
+  .hero-ticket::before { left: -10px; }
+  .hero-ticket::after { right: -10px; }
+  .ticket-seg {
+    padding: 18px 26px;
+    text-align: left;
+    position: relative;
+  }
+  .ticket-seg:not(:last-child) {
+    border-right: 2px dashed rgba(21,8,7,.25);
+  }
+  .ticket-seg-label {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    margin-bottom: 4px;
+  }
+  .ticket-seg-value {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: .03em;
+    color: var(--ink);
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 26px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    opacity: 0;
+    animation: rise 1s var(--ease) 1.3s forwards;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--sun-orange), transparent);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-scroll-line::after {
+    content: '';
+    position: absolute; top: -16px; left: 0;
+    width: 100%; height: 16px;
+    background: var(--sun-yellow);
+    animation: scrollDrop 2s ease-in-out infinite;
+  }
+  @keyframes scrollDrop { to { top: 40px; } }
+
+  /* ============================================================
+     MARQUEE
+     ============================================================ */
+  .marquee {
+    background: linear-gradient(90deg, var(--sun-orange), var(--sun-coral), var(--sun-pink), var(--sun-violet));
+    padding: 18px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee-track {
+    display: flex; gap: 50px;
+    animation: marquee 30s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-track span {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: .05em;
+    color: var(--ink);
+    display: inline-flex; align-items: center; gap: 50px;
+  }
+  .marquee-track span::after { content: '★'; font-size: 12px; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* ============================================================
+     SECCIONES — base
+     ============================================================ */
+  section { position: relative; }
+  .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 110px 32px; }
+
+  .section-header { text-align: center; margin-bottom: 64px; }
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--sun-orange);
+    margin-bottom: 18px;
+  }
+  .section-eyebrow::before, .section-eyebrow::after {
+    content: ''; width: 22px; height: 1px; background: currentColor; opacity: .5;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 7vw, 84px);
+    line-height: .95;
+    letter-spacing: .01em;
+    color: var(--cream);
+  }
+  .section-title span {
+    background: linear-gradient(100deg, var(--sun-orange), var(--sun-pink), var(--sun-violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .section-desc {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--cream-dim);
+    max-width: 520px;
+    margin: 20px auto 0;
+    line-height: 1.7;
+  }
+
+  /* ============================================================
+     HISTORIA — "Nuestro tour" (discografía de la relación)
+     ============================================================ */
+  .tour {
+    background: var(--ink-soft);
+  }
+  .tour-grid {
+    max-width: 900px;
+    margin: 60px auto 0;
+  }
+  .tour-row {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding: 22px 24px;
+    border-bottom: 1px solid rgba(246,237,225,.1);
+    transition: background .3s var(--ease);
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  .tour-grid.in-view .tour-row {
+    opacity: 1; transform: translateX(0);
+    transition: opacity .7s var(--ease), transform .7s var(--ease), background .3s var(--ease);
+  }
+  .tour-grid.in-view .tour-row:nth-child(2) { transition-delay: .1s; }
+  .tour-grid.in-view .tour-row:nth-child(3) { transition-delay: .2s; }
+  .tour-grid.in-view .tour-row:nth-child(4) { transition-delay: .3s; }
+  .tour-grid.in-view .tour-row:nth-child(5) { transition-delay: .4s; }
+  .tour-row:hover { background: rgba(255,107,53,.06); }
+  .tour-year {
+    font-family: var(--font-display);
+    font-size: 30px;
+    color: var(--sun-orange);
+  }
+  .tour-info h4 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--cream);
+    margin-bottom: 3px;
+  }
+  .tour-info p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--cream-dim);
+  }
+  .tour-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid rgba(255,107,53,.4);
+    color: var(--sun-orange);
+    white-space: nowrap;
+  }
+  .tour-quote {
+    text-align: center;
+    max-width: 560px;
+    margin: 56px auto 0;
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3.4vw, 34px);
+    line-height: 1.25;
+    color: var(--paper);
+    letter-spacing: .01em;
+  }
+  .tour-quote span {
+    background: linear-gradient(100deg, var(--sun-orange), var(--sun-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* ============================================================
+     COUNTDOWN — stub de entrada perforado
+     ============================================================ */
+  .countdown-wrap { padding: 110px 32px; }
+  .countdown-header { text-align: center; margin-bottom: 56px; }
+
+  .stub-row {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.5);
+    position: relative;
+  }
+  .stub {
+    padding: 30px 10px;
+    text-align: center;
+    position: relative;
+  }
+  .stub:not(:last-child) {
+    border-right: 2px dashed rgba(21,8,7,.25);
+  }
+  .stub:not(:last-child)::before,
+  .stub:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -9px;
+    width: 18px; height: 18px;
+    background: var(--ink);
+    border-radius: 50%;
+  }
+  .stub:not(:last-child)::before { top: -9px; }
+  .stub:not(:last-child)::after { bottom: -9px; }
+  .stub-value {
+    font-family: var(--font-display);
+    font-size: clamp(46px, 7vw, 76px);
+    line-height: 1;
+    letter-spacing: .01em;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .stub-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    margin-top: 10px;
+  }
+  .stub-caption {
+    text-align: center;
+    margin-top: 26px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+  }
+
+  /* ============================================================
+     EVENTOS — dos escenarios
+     ============================================================ */
+  .events { background: var(--ink-soft); }
+  .events-grid {
+    max-width: 1080px;
+    margin: 60px auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .stage-card {
+    background: var(--ink);
+    border: 1px solid rgba(246,237,225,.1);
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .4s var(--ease);
+  }
+  .stage-card:hover { transform: translateY(-6px); }
+  .stage-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--sun-orange), var(--sun-pink));
+  }
+  .stage-card.alt::before {
+    background: linear-gradient(90deg, var(--sun-pink), var(--sun-violet));
+  }
+  .stage-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--sun-orange);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .stage-card.alt .stage-tag { color: var(--sun-pink); }
+  .stage-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .stage-name {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5vw, 56px);
+    line-height: .95;
+    color: var(--paper);
+    margin-bottom: 28px;
+  }
+  .stage-rows {
+    border-top: 1px solid rgba(246,237,225,.12);
+    padding-top: 22px;
+    margin-bottom: 26px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .stage-row { display: grid; grid-template-columns: 84px 1fr; gap: 16px; }
+  .stage-row-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    padding-top: 4px;
+  }
+  .stage-row-value {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--cream);
+  }
+  .stage-row-value small {
+    display: block;
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--cream-dim);
+    margin-top: 2px;
+  }
+  .stage-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 24px;
+    background: linear-gradient(100deg, var(--sun-orange), var(--sun-pink));
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .stage-card.alt .stage-cta { background: linear-gradient(100deg, var(--sun-pink), var(--sun-violet)); }
+  .stage-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 26px -6px rgba(255,107,53,.5); }
+  .stage-cta svg { width: 13px; height: 13px; }
+
+  /* ============================================================
+     ITINERARIO — LINEUP
+     ============================================================ */
+  .lineup {
+    padding: 110px 32px 130px;
+  }
+  .lineup-table {
+    max-width: 780px;
+    margin: 60px auto 0;
+  }
+  .lineup-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 110px;
+    gap: 20px;
+    align-items: center;
+    padding: 20px 8px;
+    border-bottom: 1px solid rgba(246,237,225,.08);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .7s var(--ease), transform .7s var(--ease), background .3s var(--ease);
+  }
+  .lineup-table.in-view .lineup-row { opacity: 1; transform: translateY(0); }
+  .lineup-table.in-view .lineup-row:nth-child(2) { transition-delay: .05s; }
+  .lineup-table.in-view .lineup-row:nth-child(3) { transition-delay: .15s; }
+  .lineup-table.in-view .lineup-row:nth-child(4) { transition-delay: .25s; }
+  .lineup-table.in-view .lineup-row:nth-child(5) { transition-delay: .35s; }
+  .lineup-table.in-view .lineup-row:nth-child(6) { transition-delay: .45s; }
+  .lineup-table.in-view .lineup-row:nth-child(7) { transition-delay: .55s; }
+  .lineup-row:hover { background: rgba(255,107,53,.05); }
+  .lineup-time {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--sun-orange);
+    font-variant-numeric: tabular-nums;
+  }
+  .lineup-info h4 {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 30px);
+    letter-spacing: .01em;
+    color: var(--paper);
+    line-height: 1;
+  }
+  .lineup-info p {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 13px;
+    color: var(--cream-dim);
+    margin-top: 4px;
+  }
+  .lineup-stage {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border: 1px solid rgba(255,107,53,.35);
+    color: var(--sun-orange);
+    justify-self: end;
+  }
+  .lineup-stage.alt { border-color: rgba(224,34,126,.4); color: var(--sun-pink); }
+
+  /* ============================================================
+     GALERÍA — press pit
+     ============================================================ */
+  .gallery { background: var(--ink-soft); }
+  .press-grid {
+    max-width: 1180px;
+    margin: 60px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 190px;
+    gap: 16px;
+  }
+  .press-1 { grid-column: span 2; grid-row: span 2; }
+  .press-2 { grid-column: span 1; grid-row: span 1; }
+  .press-3 { grid-column: span 1; grid-row: span 2; }
+  .press-4 { grid-column: span 1; grid-row: span 1; }
+  .press-5 { grid-column: span 2; grid-row: span 1; }
+  .press-6 { grid-column: span 2; grid-row: span 1; }
+
+  .press {
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+    border: 1px solid rgba(246,237,225,.1);
+    transform: rotate(0deg);
+    transition: transform .4s var(--ease);
+  }
+  .press:nth-child(odd) { transform: rotate(-.6deg); }
+  .press:nth-child(even) { transform: rotate(.6deg); }
+  .press:hover { transform: rotate(0deg) scale(1.02); z-index: 2; }
+  /* Cinta de esquina */
+  .press::before {
+    content: '';
+    position: absolute; top: -6px; left: 16px;
+    width: 46px; height: 18px;
+    background: rgba(246,237,225,.4);
+    transform: rotate(-8deg);
+    z-index: 3;
+  }
+  /* Foto real dentro del tile, con duotono sunset (mismo tratamiento que el resto del catálogo) */
+  .press-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.15) brightness(.95);
+    z-index: 0;
+  }
+  .press-photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,107,53,.4), rgba(224,34,126,.3));
+    mix-blend-mode: color;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .press-placeholder {
+    position: absolute; top: 22px; left: 14px; right: 14px;
+    z-index: 2;
+    background: rgba(21,8,7,.72);
+    color: var(--smoke);
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 5px 9px;
+    width: fit-content;
+  }
+  .press-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 12px 14px;
+    background: linear-gradient(to top, rgba(13,5,4,.92), transparent);
+    display: flex; justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--sun-orange);
+    transform: translateY(100%);
+    transition: transform .4s var(--ease);
+  }
+  .press:hover .press-caption { transform: translateY(0); }
+  .press-caption span:last-child { color: var(--cream); }
+
+  /* ============================================================
+     DRESSCODE — wristbands
+     ============================================================ */
+  .dresscode { padding: 110px 32px; }
+  .wristbands {
+    max-width: 1040px;
+    margin: 60px auto 40px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+  }
+  .wristband {
+    aspect-ratio: 3/4;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 18px 36px -14px rgba(0,0,0,.5);
+    transition: transform .4s var(--ease);
+  }
+  .wristband:hover { transform: translateY(-8px) rotate(-1deg); }
+  .wb-1 { background: linear-gradient(160deg, #150807, #0d0504); }
+  .wb-2 { background: linear-gradient(160deg, #4a1a10, #2a0d08); }
+  .wb-3 { background: linear-gradient(160deg, var(--sun-orange), #b8451c); }
+  .wb-4 { background: linear-gradient(160deg, var(--sun-pink), #8a1050); }
+  .wb-5 { background: linear-gradient(160deg, var(--sun-violet), #4a1899); }
+  .wb-6 { background: linear-gradient(160deg, var(--sun-yellow), #c99818); }
+  .wristband::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(90deg, transparent 0 8px, rgba(0,0,0,.08) 8px 9px);
+  }
+  .wb-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 12px 12px 14px;
+    background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
+    z-index: 2;
+  }
+  .wb-name {
+    font-family: var(--font-display);
+    font-size: 15px;
+    letter-spacing: .03em;
+    color: var(--paper);
+  }
+  .wb-hex {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .2em;
+    color: rgba(246,237,225,.7);
+  }
+
+  .dress-note {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 34px 38px;
+    background: rgba(255,107,53,.05);
+    border: 1px solid rgba(255,107,53,.25);
+  }
+  .dress-note h4 {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--sun-orange);
+    margin-bottom: 16px;
+  }
+  .dress-note p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--cream);
+    line-height: 1.7;
+  }
+  .dress-note p + p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--cream-dim);
+  }
+
+  /* ============================================================
+     RSVP — obtener pulsera
+     ============================================================ */
+  .rsvp { background: var(--ink-soft); padding: 130px 32px; position: relative; }
+  .rsvp-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 56px 48px 46px;
+    position: relative;
+    box-shadow: 0 40px 90px -25px rgba(0,0,0,.6);
+  }
+  .rsvp-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 6px;
+    background: linear-gradient(90deg, var(--sun-orange), var(--sun-pink), var(--sun-violet));
+  }
+  .rsvp-eyebrow {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--sun-orange);
+    margin-bottom: 12px;
+  }
+  .rsvp-title {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5.4vw, 62px);
+    letter-spacing: .01em;
+    line-height: .95;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .rsvp-title span {
+    background: linear-gradient(100deg, var(--sun-orange), var(--sun-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .rsvp-desc {
+    text-align: center;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--smoke);
+    margin-bottom: 40px;
+    max-width: 460px;
+    margin-left: auto; margin-right: auto;
+  }
+
+  .rsvp-form { display: flex; flex-direction: column; gap: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-group { display: flex; flex-direction: column; gap: 7px; }
+  .form-group label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--smoke);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid rgba(21,8,7,.2);
+    padding: 8px 2px;
+    outline: none;
+    transition: border-color .3s var(--ease);
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--sun-orange); }
+  .form-group select { appearance: none; cursor: pointer; }
+  .form-group textarea { resize: vertical; min-height: 58px; }
+
+  .radio-group { display: flex; gap: 12px; }
+  .radio-option {
+    flex: 1; padding: 14px; border: 2px solid rgba(21,8,7,.18);
+    text-align: center; cursor: pointer; position: relative;
+    transition: all .3s var(--ease);
+  }
+  .radio-option input { position: absolute; opacity: 0; pointer-events: none; }
+  .radio-option-label {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--ink);
+    display: block;
+  }
+  .radio-option-desc {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    margin-top: 3px;
+  }
+  .radio-option:has(input:checked),
+  .radio-option.checked {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .radio-option:has(input:checked) .radio-option-label,
+  .radio-option.checked .radio-option-label {
+    background: linear-gradient(100deg, var(--sun-orange), var(--sun-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .radio-option:has(input:checked) .radio-option-desc,
+  .radio-option.checked .radio-option-desc { color: var(--paper); }
+
+  .form-submit {
+    margin-top: 10px;
+    padding: 17px 30px;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: background .3s var(--ease);
+  }
+  .form-submit::before {
+    content: '';
+    position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,107,53,.4), transparent);
+    transition: left .6s var(--ease);
+  }
+  .form-submit:hover { background: #000; }
+  .form-submit:hover::before { left: 100%; }
+
+  .rsvp-success { text-align: center; padding: 30px 10px; display: none; }
+  .rsvp-success.show { display: block; }
+
+  /* Pulsera final generada */
+  .wristband-result {
+    display: inline-flex; align-items: center; gap: 0;
+    background: linear-gradient(100deg, var(--sun-orange), var(--sun-pink), var(--sun-violet));
+    padding: 4px;
+    border-radius: 999px;
+    margin: 0 auto 24px;
+    transform: scale(0);
+    animation: wbPop .5s var(--ease-pop) .2s forwards;
+  }
+  @keyframes wbPop { to { transform: scale(1); } }
+  .wristband-inner {
+    background: var(--ink);
+    border-radius: 999px;
+    padding: 14px 28px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .wristband-qr {
+    width: 40px; height: 40px;
+    background:
+      repeating-linear-gradient(0deg, var(--paper) 0 3px, transparent 3px 6px),
+      repeating-linear-gradient(90deg, var(--paper) 0 3px, transparent 3px 6px);
+    background-blend-mode: multiply;
+    background-color: var(--paper);
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .wristband-text { text-align: left; }
+  .wristband-access {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--sun-orange);
+  }
+  .wristband-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--paper);
+    letter-spacing: .02em;
+  }
+
+  .rsvp-success h3 {
+    font-family: var(--font-display);
+    font-size: 38px;
+    letter-spacing: .01em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .rsvp-success p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--smoke);
+    line-height: 1.7;
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer {
+    padding: 90px 32px 36px;
+    text-align: center;
+    background: var(--ink);
+    position: relative;
+  }
+  .footer-mark {
+    font-family: var(--font-display);
+    font-size: clamp(56px, 10vw, 100px);
+    line-height: .9;
+    letter-spacing: .02em;
+    margin-bottom: 12px;
+    background: linear-gradient(100deg, var(--sun-yellow), var(--sun-orange), var(--sun-pink), var(--sun-violet));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: gradientMove 6s linear infinite;
+  }
+  .footer-date {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    margin-bottom: 40px;
+  }
+  .footer-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+  .footer-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 22px;
+    border: 1.5px solid rgba(246,237,225,.25);
+    color: var(--cream);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    transition: all .3s var(--ease);
+  }
+  .footer-btn:hover {
+    background: linear-gradient(100deg, var(--sun-orange), var(--sun-pink));
+    color: var(--ink);
+    border-color: transparent;
+  }
+  .footer-btn svg { width: 13px; height: 13px; }
+
+  .footer-fine {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: .1em;
+    color: rgba(246,237,225,.35);
+    max-width: 560px;
+    margin: 0 auto 30px;
+    line-height: 1.8;
+  }
+  .footer-signature {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--smoke);
+    padding-top: 26px;
+    border-top: 1px solid rgba(246,237,225,.1);
+  }
+  .footer-signature a { color: var(--sun-orange); transition: color .3s var(--ease); }
+  .footer-signature a:hover { color: var(--cream); }
+
+  .audio-toggle {
+    position: fixed; bottom: 24px; left: 24px; z-index: 90;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(21,8,7,.85);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255,107,53,.5);
+    color: var(--sun-orange);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .3s var(--ease);
+  }
+  .audio-toggle:hover { background: var(--sun-orange); color: var(--ink); }
+  .audio-toggle svg { width: 18px; height: 18px; }
+
+  .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 900px) {
+    .nav, .nav.scrolled { padding: 14px 20px; }
+    .container { padding: 80px 22px; }
+    .hero-ticket { flex-direction: column; }
+    .ticket-seg:not(:last-child) { border-right: 0; border-bottom: 2px dashed rgba(21,8,7,.25); }
+    .hero-ticket::before, .hero-ticket::after { display: none; }
+    .events-grid { grid-template-columns: 1fr; }
+    .stub-row { grid-template-columns: repeat(2, 1fr); }
+    .stub:nth-child(2)::before, .stub:nth-child(2)::after { display: none; }
+    .stub:nth-child(1), .stub:nth-child(2) { border-bottom: 2px dashed rgba(21,8,7,.25); padding-bottom: 26px; }
+    .lineup-row { grid-template-columns: 60px 1fr; }
+    .lineup-stage { display: none; }
+    .press-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+    .press-1 { grid-column: span 2; grid-row: span 2; }
+    .press-2, .press-4 { grid-column: span 1; grid-row: span 1; }
+    .press-3 { grid-column: span 1; grid-row: span 2; }
+    .press-5, .press-6 { grid-column: span 2; grid-row: span 1; }
+    .wristbands { grid-template-columns: repeat(3, 1fr); }
+    .rsvp-card { padding: 44px 26px 38px; }
+    .form-row { grid-template-columns: 1fr; }
+    .tour-row { grid-template-columns: 60px 1fr; }
+    .tour-tag { display: none; }
+  }
+
+  @media (max-width: 520px) {
+    .container { padding: 64px 18px; }
+    .marquee-track span { font-size: 18px; gap: 34px; }
+    .marquee-track { gap: 34px; }
+    .wristbands { grid-template-columns: repeat(2, 1fr); }
+    .footer-actions { flex-direction: column; align-items: center; }
+    .footer-btn { width: 100%; max-width: 260px; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  #confetti { position: fixed; inset: 0; pointer-events: none; z-index: 500; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       PRELOADER
+       ============================================================ -->
+  <div id="preloader" aria-hidden="true">
+    <div class="pre-mark">C+B</div>
+    <div class="pre-bar"></div>
+    <div class="pre-label">On sale now · Lima 2027</div>
+  </div>
+
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav-logo">C<span>+</span>B</a>
+    <button class="nav-toggle" id="menuOpen" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/>
+      </svg>
+    </button>
+  </nav>
+
+  <div class="menu" id="menu">
+    <button class="menu-close" id="menuClose" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+      </svg>
+    </button>
+    <ul class="menu-list">
+      <li><a href="#hero" data-close>Inicio</a></li>
+      <li><a href="#tour" data-close>Nuestro tour</a></li>
+      <li><a href="#countdown" data-close>Cuenta regresiva</a></li>
+      <li><a href="#events" data-close>Escenarios</a></li>
+      <li><a href="#lineup" data-close>Lineup</a></li>
+      <li><a href="#dresscode" data-close>Vestimenta</a></li>
+      <li><a href="#rsvp" data-close>Confirmar</a></li>
+    </ul>
+    <div class="menu-footer">C+B Fest · 06.03.2027</div>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="sunset">
+      <div class="sunset-glow"></div>
+      <div class="sunset-lines"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-presents">Nuestra Boda presenta</div>
+
+      <h1 class="hero-names">
+        Camila
+        <span class="amp">&amp;</span>
+        Bruno
+      </h1>
+
+      <p class="hero-tagline">
+        Un solo show, una sola noche. La banda somos nosotros dos, y el escenario es para siempre.
+      </p>
+
+      <div class="hero-ticket">
+        <div class="ticket-seg">
+          <div class="ticket-seg-label">Fecha</div>
+          <div class="ticket-seg-value">06.03.2027</div>
+        </div>
+        <div class="ticket-seg">
+          <div class="ticket-seg-label">Puertas</div>
+          <div class="ticket-seg-value">18:00 H</div>
+        </div>
+        <div class="ticket-seg">
+          <div class="ticket-seg-label">Venue</div>
+          <div class="ticket-seg-value">Lima, PE</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MARQUEE
+       ============================================================ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Live In Concert</span>
+      <span>Sold Out</span>
+      <span>Main Stage</span>
+      <span>06 · 03 · 2027</span>
+      <span>General Admission</span>
+      <span>One Night Only</span>
+      <!-- duplicado -->
+      <span>Live In Concert</span>
+      <span>Sold Out</span>
+      <span>Main Stage</span>
+      <span>06 · 03 · 2027</span>
+      <span>General Admission</span>
+      <span>One Night Only</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       HISTORIA — Nuestro tour
+       ============================================================ -->
+  <section class="tour" id="tour">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Discografía</div>
+        <h2 class="section-title">Nuestro <span>tour</span></h2>
+        <p class="section-desc">Cada año fue una fecha más en la gira. Este es el setlist completo, hasta hoy.</p>
+      </div>
+
+      <div class="tour-grid" id="tourGrid">
+        <div class="tour-row">
+          <div class="tour-year">2017</div>
+          <div class="tour-info">
+            <h4>El primer encuentro</h4>
+            <p>Un festival de verdad, en realidad. Ahí nos vimos por primera vez.</p>
+          </div>
+          <div class="tour-tag">Track 01</div>
+        </div>
+        <div class="tour-row">
+          <div class="tour-year">2019</div>
+          <div class="tour-info">
+            <h4>La primera gira juntos</h4>
+            <p>Recorrimos tres países en un mes con una mochila cada uno.</p>
+          </div>
+          <div class="tour-tag">Track 02</div>
+        </div>
+        <div class="tour-row">
+          <div class="tour-year">2022</div>
+          <div class="tour-info">
+            <h4>Nuestro estudio</h4>
+            <p>Firmamos el contrato de un departamento que hoy es nuestra casa.</p>
+          </div>
+          <div class="tour-tag">Track 03</div>
+        </div>
+        <div class="tour-row">
+          <div class="tour-year">2025</div>
+          <div class="tour-info">
+            <h4>El anuncio</h4>
+            <p>En medio de un concierto real, Bruno se arrodilló. Dijimos que sí, obvio.</p>
+          </div>
+          <div class="tour-tag">Track 04</div>
+        </div>
+        <div class="tour-row">
+          <div class="tour-year">2027</div>
+          <div class="tour-info">
+            <h4>La fecha final</h4>
+            <p>El show más importante de todos. Y tú estás invitado.</p>
+          </div>
+          <div class="tour-tag">Track 05</div>
+        </div>
+      </div>
+
+      <p class="tour-quote">Cada relación tiene su <span>setlist</span>. El nuestro está a punto de tocar la última canción — la mejor de todas.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COUNTDOWN
+       ============================================================ -->
+  <section class="countdown-wrap" id="countdown">
+    <div class="countdown-header reveal">
+      <div class="section-eyebrow">Cuenta regresiva</div>
+      <h2 class="section-title">Puertas abren <span>en</span></h2>
+    </div>
+
+    <div class="stub-row reveal">
+      <div class="stub">
+        <div class="stub-value" id="cd-days">00</div>
+        <div class="stub-label">Días</div>
+      </div>
+      <div class="stub">
+        <div class="stub-value" id="cd-hours">00</div>
+        <div class="stub-label">Horas</div>
+      </div>
+      <div class="stub">
+        <div class="stub-value" id="cd-mins">00</div>
+        <div class="stub-label">Minutos</div>
+      </div>
+      <div class="stub">
+        <div class="stub-value" id="cd-secs">00</div>
+        <div class="stub-label">Segundos</div>
+      </div>
+    </div>
+    <div class="stub-caption">Admisión general · No reembolsable · Una noche única</div>
+  </section>
+
+  <!-- ============================================================
+       EVENTOS — dos escenarios
+       ============================================================ -->
+  <section class="events" id="events">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Escenarios</div>
+        <h2 class="section-title">Dos <span>escenarios</span>, una noche</h2>
+      </div>
+
+      <div class="events-grid">
+        <article class="stage-card reveal">
+          <div class="stage-tag">Main Stage</div>
+          <h3 class="stage-name">Ceremonia</h3>
+          <div class="stage-rows">
+            <div class="stage-row">
+              <div class="stage-row-label">Fecha</div>
+              <div class="stage-row-value">Sábado 6<small>Marzo 2027</small></div>
+            </div>
+            <div class="stage-row">
+              <div class="stage-row-label">Hora</div>
+              <div class="stage-row-value">18:00 h<small>Puertas puntuales</small></div>
+            </div>
+            <div class="stage-row">
+              <div class="stage-row-label">Lugar</div>
+              <div class="stage-row-value">Capilla San Marcos<small>La Molina, Lima</small></div>
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=Capilla+San+Marcos+La+Molina+Lima" target="_blank" rel="noopener" class="stage-cta">
+            Cómo llegar
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="stage-card alt reveal">
+          <div class="stage-tag">Sunset Stage</div>
+          <h3 class="stage-name">Recepción</h3>
+          <div class="stage-rows">
+            <div class="stage-row">
+              <div class="stage-row-label">Fecha</div>
+              <div class="stage-row-value">Sábado 6<small>Marzo 2027</small></div>
+            </div>
+            <div class="stage-row">
+              <div class="stage-row-label">Hora</div>
+              <div class="stage-row-value">20:00 h<small>Hasta las 03:00</small></div>
+            </div>
+            <div class="stage-row">
+              <div class="stage-row-label">Lugar</div>
+              <div class="stage-row-value">Fundo El Roble<small>Cieneguilla, Lima</small></div>
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=Fundo+El+Roble+Cieneguilla+Lima" target="_blank" rel="noopener" class="stage-cta">
+            Cómo llegar
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LINEUP
+       ============================================================ -->
+  <section class="lineup" id="lineup">
+    <div class="container" style="padding-top:0; padding-bottom:0;">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Programación</div>
+        <h2 class="section-title">El <span>lineup</span> de la noche</h2>
+        <p class="section-desc">Así se ve el cartel completo, acto por acto.</p>
+      </div>
+
+      <div class="lineup-table" id="lineupTable">
+        <div class="lineup-row">
+          <div class="lineup-time">18:00</div>
+          <div class="lineup-info">
+            <h4>Ceremonia religiosa</h4>
+            <p>Apertura del show. Sin retrasos.</p>
+          </div>
+          <div class="lineup-stage">Main Stage</div>
+        </div>
+        <div class="lineup-row">
+          <div class="lineup-time">20:00</div>
+          <div class="lineup-info">
+            <h4>Coctel de bienvenida</h4>
+            <p>Tragos, bocaditos y la primera tanda de música en vivo.</p>
+          </div>
+          <div class="lineup-stage alt">Sunset Stage</div>
+        </div>
+        <div class="lineup-row">
+          <div class="lineup-time">21:00</div>
+          <div class="lineup-info">
+            <h4>Cena</h4>
+            <p>Tres tiempos servidos bajo luces cálidas de escenario.</p>
+          </div>
+          <div class="lineup-stage alt">Sunset Stage</div>
+        </div>
+        <div class="lineup-row">
+          <div class="lineup-time">22:30</div>
+          <div class="lineup-info">
+            <h4>Primer baile</h4>
+            <p>El tema que nos define, sonando por primera vez como esposos.</p>
+          </div>
+          <div class="lineup-stage alt">Sunset Stage</div>
+        </div>
+        <div class="lineup-row">
+          <div class="lineup-time">23:00</div>
+          <div class="lineup-info">
+            <h4>Set en vivo &amp; pista abierta</h4>
+            <p>DJ set completo. La pista es tuya toda la noche.</p>
+          </div>
+          <div class="lineup-stage alt">Sunset Stage</div>
+        </div>
+        <div class="lineup-row">
+          <div class="lineup-time">01:00</div>
+          <div class="lineup-info">
+            <h4>Hora loca</h4>
+            <p>Sorpresas, luces y el segundo aire de la fiesta.</p>
+          </div>
+          <div class="lineup-stage alt">Sunset Stage</div>
+        </div>
+        <div class="lineup-row">
+          <div class="lineup-time">03:00</div>
+          <div class="lineup-info">
+            <h4>Cierre del show</h4>
+            <p>Gracias por venir. Nos vemos en la próxima gira.</p>
+          </div>
+          <div class="lineup-stage alt">Sunset Stage</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALERÍA — press pit
+       ============================================================ -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Press Pit</div>
+        <h2 class="section-title">Detrás de <span>escena</span></h2>
+      </div>
+
+      <div class="press-grid reveal">
+        <div class="press press-1">
+          <img class="press-photo" src="foto-press-1.png" alt="El primer show juntos, 2019">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">El primer show juntos</div>
+          <div class="press-caption"><span>N° 01</span><span>2019 · Gira</span></div>
+        </div>
+        <div class="press press-2">
+          <img class="press-photo" src="foto-press-2.png" alt="Backstage, 2021">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">Backstage</div>
+          <div class="press-caption"><span>N° 02</span><span>2021</span></div>
+        </div>
+        <div class="press press-3">
+          <img class="press-photo" src="foto-press-3.png" alt="La propuesta, 2025">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">La propuesta</div>
+          <div class="press-caption"><span>N° 03</span><span>2025 · Concierto</span></div>
+        </div>
+        <div class="press press-4">
+          <img class="press-photo" src="foto-press-4.png" alt="Anillo, detalle">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">Anillo</div>
+          <div class="press-caption"><span>N° 04</span><span>Detalle</span></div>
+        </div>
+        <div class="press press-5">
+          <img class="press-photo" src="foto-press-5.png" alt="Ensayo general, 2026">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">Ensayo general</div>
+          <div class="press-caption"><span>N° 05</span><span>2026</span></div>
+        </div>
+        <div class="press press-6">
+          <img class="press-photo" src="foto-press-6.png" alt="La preboda">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">La preboda</div>
+          <div class="press-caption"><span>N° 06</span><span>Editorial</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DRESSCODE
+       ============================================================ -->
+  <section class="dresscode" id="dresscode">
+    <div class="container" style="padding-top:0;padding-bottom:0;">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Vestimenta</div>
+        <h2 class="section-title">Elige tu <span>pulsera</span></h2>
+        <p class="section-desc">Formal festivo. Estos son los tonos que hemos elegido para la noche.</p>
+      </div>
+
+      <div class="wristbands reveal">
+        <div class="wristband wb-1">
+          <div class="wb-info">
+            <div class="wb-name">Noche</div>
+            <div class="wb-hex">#150807</div>
+          </div>
+        </div>
+        <div class="wristband wb-2">
+          <div class="wb-info">
+            <div class="wb-name">Brasa</div>
+            <div class="wb-hex">#4A1A10</div>
+          </div>
+        </div>
+        <div class="wristband wb-3">
+          <div class="wb-info">
+            <div class="wb-name">Naranja</div>
+            <div class="wb-hex">#FF6B35</div>
+          </div>
+        </div>
+        <div class="wristband wb-4">
+          <div class="wb-info">
+            <div class="wb-name">Coral</div>
+            <div class="wb-hex">#E0227E</div>
+          </div>
+        </div>
+        <div class="wristband wb-5">
+          <div class="wb-info">
+            <div class="wb-name">Violeta</div>
+            <div class="wb-hex">#7B2FF7</div>
+          </div>
+        </div>
+        <div class="wristband wb-6">
+          <div class="wb-info">
+            <div class="wb-name">Sol</div>
+            <div class="wb-hex">#FFC93C</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dress-note reveal">
+        <h4>Nota importante</h4>
+        <p>«El blanco y el crema están reservados para la novia.»</p>
+        <p>Se agradece un look festivo-formal, en los tonos de la paleta de arriba. Nada de jeans ni zapatillas deportivas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RSVP
+       ============================================================ -->
+  <section class="rsvp" id="rsvp">
+    <div class="rsvp-card reveal">
+      <div class="rsvp-eyebrow">Obtén tu acceso</div>
+      <h2 class="rsvp-title">Consigue tu <span>pulsera</span></h2>
+      <p class="rsvp-desc">Cupos limitados. Confirma antes del 30 de enero de 2027 para asegurar tu lugar en el show.</p>
+
+      <form class="rsvp-form" id="rsvpForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvp-name">Nombre completo</label>
+            <input type="text" id="rsvp-name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="rsvp-phone">Teléfono</label>
+            <input type="tel" id="rsvp-phone" name="phone" required autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>¿Nos acompañarás?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="attend" value="Sí, con gusto" required>
+              <span class="radio-option-label">Sí</span>
+              <span class="radio-option-desc">Ahí estaré</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="attend" value="Lamentablemente no podré">
+              <span class="radio-option-label">No</span>
+              <span class="radio-option-desc">No podré</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvp-guests">Acompañantes</label>
+            <select id="rsvp-guests" name="guests">
+              <option value="Solo yo">Solo yo</option>
+              <option value="+1 acompañante">+1 acompañante</option>
+              <option value="+2 acompañantes">+2 acompañantes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rsvp-menu">Preferencia de menú</label>
+            <select id="rsvp-menu" name="menu">
+              <option value="Estándar">Estándar</option>
+              <option value="Vegetariano">Vegetariano</option>
+              <option value="Vegano">Vegano</option>
+              <option value="Sin gluten">Sin gluten</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rsvp-message">Mensaje para los novios (opcional)</label>
+          <textarea id="rsvp-message" name="message" rows="2"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Confirmar asistencia</button>
+      </form>
+
+      <div class="rsvp-success" id="rsvpSuccess">
+        <div class="wristband-result">
+          <div class="wristband-inner">
+            <div class="wristband-qr"></div>
+            <div class="wristband-text">
+              <div class="wristband-access">Acceso otorgado</div>
+              <div class="wristband-name" id="wbGuestName">Invitado</div>
+            </div>
+          </div>
+        </div>
+        <h3>¡Nos vemos ahí!</h3>
+        <p>Recibimos tu confirmación. Ahora se abrirá WhatsApp para dejarla registrada de inmediato.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="footer-mark">C+B</div>
+    <div class="footer-date">Lima · 06 · 03 · 2027 · One Night Only</div>
+
+    <div class="footer-actions">
+      <button class="footer-btn" id="btnShare">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/>
+        </svg>
+        Compartir
+      </button>
+      <button class="footer-btn" id="btnCalendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Al calendario
+      </button>
+      <a href="https://wa.me/51943168115?text=Hola%20Nuestra%20Boda%2C%20me%20encant%C3%B3%20el%20modelo%20Festival" target="_blank" rel="noopener" class="footer-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.5 14.4c-.3-.15-1.8-.9-2.1-1-.3-.1-.5-.15-.7.15-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.05-.3-.15-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.15-.6.15-.15.3-.4.4-.6.15-.2.2-.35.3-.55.1-.2.05-.4-.05-.55-.1-.15-.7-1.7-1-2.3-.25-.6-.5-.5-.7-.5h-.6c-.2 0-.55.1-.85.4-.3.3-1.1 1.1-1.1 2.7 0 1.6 1.15 3.1 1.3 3.3.15.2 2.25 3.4 5.4 4.75.75.35 1.35.5 1.8.65.75.25 1.45.2 2 .15.6-.1 1.85-.75 2.1-1.5.25-.7.25-1.35.2-1.5-.05-.15-.25-.25-.55-.4z"/>
+          <path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.65 1.4 5.15L2 22l4.95-1.35C8.4 21.5 10.15 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+
+    <p class="footer-fine">
+      Este evento es organizado de manera independiente por Camila &amp; Bruno. No afiliado a ningún festival comercial. Aforo limitado. Entrada válida únicamente para los invitados confirmados en esta lista.
+    </p>
+
+    <div class="footer-signature">
+      Diseñado por <a href="https://nuestraboda.com.pe" target="_blank" rel="noopener">Nuestra Boda</a> · Modelo Festival · Nº 12
+    </div>
+  </footer>
+
+  <button class="audio-toggle" id="audioToggle" aria-label="Reproducir música">
+    <svg id="audioIconPlay" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="audioIconPause" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+      <rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>
+    </svg>
+  </button>
+  <audio id="audioPlayer" loop preload="none">
+    <source src="" type="audio/mpeg">
+  </audio>
+
+  <canvas id="confetti"></canvas>
+
+  <noscript>
+    <div style="padding:40px;text-align:center;background:#150807;color:#f6ede1">
+      Esta invitación funciona mejor con JavaScript activado. Por favor, habilítalo para ver la experiencia completa.
+    </div>
+  </noscript>
+
+  <script>
+  (function(){
+    'use strict';
+
+    const CONFIG = {
+      weddingDate: new Date('2027-03-06T18:00:00-05:00'),
+      brideWhatsapp: '51943168115', // ← Reemplazar con el número real de la novia
+      brideName: 'Camila',
+      groomName: 'Bruno',
+      ceremony: 'Capilla San Marcos, La Molina',
+      reception: 'Fundo El Roble, Cieneguilla'
+    };
+
+    // Preloader
+    window.addEventListener('load', function(){
+      setTimeout(function(){
+        const p = document.getElementById('preloader');
+        if (p) p.classList.add('done');
+      }, 2500);
+    });
+
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }, { passive: true });
+
+    // Menu
+    const menu = document.getElementById('menu');
+    document.getElementById('menuOpen').addEventListener('click', function(){
+      menu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('menuClose').addEventListener('click', function(){
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    document.querySelectorAll('[data-close]').forEach(function(a){
+      a.addEventListener('click', function(){
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Countdown
+    const cd = {
+      d: document.getElementById('cd-days'),
+      h: document.getElementById('cd-hours'),
+      m: document.getElementById('cd-mins'),
+      s: document.getElementById('cd-secs')
+    };
+    function pad(n){ return String(n).padStart(2, '0'); }
+    function updateCountdown(){
+      const now = new Date();
+      const diff = CONFIG.weddingDate - now;
+      if (diff <= 0){
+        cd.d.textContent='00'; cd.h.textContent='00'; cd.m.textContent='00'; cd.s.textContent='00';
+        return;
+      }
+      cd.d.textContent = pad(Math.floor(diff / 86400000));
+      cd.h.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      cd.m.textContent = pad(Math.floor((diff % 3600000) / 60000));
+      cd.s.textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Scroll reveal
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal, #tourGrid, #lineupTable').forEach(function(el){ io.observe(el); });
+
+    // Radio group visual state
+    document.querySelectorAll('.radio-group').forEach(function(group){
+      group.addEventListener('change', function(){
+        group.querySelectorAll('.radio-option').forEach(function(opt){
+          const input = opt.querySelector('input');
+          if (input && input.checked) opt.classList.add('checked');
+          else opt.classList.remove('checked');
+        });
+      });
+    });
+
+    // RSVP → WhatsApp
+    const form = document.getElementById('rsvpForm');
+    const success = document.getElementById('rsvpSuccess');
+    const wbGuestName = document.getElementById('wbGuestName');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const fd = new FormData(form);
+      const data = {
+        name: fd.get('name'),
+        phone: fd.get('phone'),
+        attend: fd.get('attend'),
+        guests: fd.get('guests'),
+        menu: fd.get('menu'),
+        message: fd.get('message') || '—'
+      };
+
+      wbGuestName.textContent = data.name || 'Invitado';
+
+      const msg =
+        '*Confirmación de asistencia*\n' +
+        '_Boda de ' + CONFIG.brideName + ' & ' + CONFIG.groomName + '_\n' +
+        '\n' +
+        '*Nombre:* ' + data.name + '\n' +
+        '*Teléfono:* ' + data.phone + '\n' +
+        '*¿Asistirá?:* ' + data.attend + '\n' +
+        '*Acompañantes:* ' + data.guests + '\n' +
+        '*Menú:* ' + data.menu + '\n' +
+        '*Mensaje:* ' + data.message;
+
+      const url = 'https://wa.me/' + CONFIG.brideWhatsapp + '?text=' + encodeURIComponent(msg);
+
+      form.style.display = 'none';
+      success.classList.add('show');
+
+      launchConfetti();
+
+      setTimeout(function(){ window.open(url, '_blank'); }, 900);
+
+      // OPCIONAL: fetch a Google Sheets webhook
+      // fetch('TU_ENDPOINT', { method: 'POST', body: JSON.stringify(data) });
+    });
+
+    // Confetti multicolor festival
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let confettiActive = false;
+
+    function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function launchConfetti(){
+      const colors = ['#ff6b35', '#ff3d68', '#e0227e', '#7b2ff7', '#ffc93c', '#f6ede1'];
+      for (let i = 0; i < 150; i++){
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * canvas.height * .3,
+          w: 6 + Math.random() * 8,
+          h: 3 + Math.random() * 5,
+          vy: 2 + Math.random() * 3.5,
+          vx: -2 + Math.random() * 4,
+          rot: Math.random() * Math.PI * 2,
+          vr: -.15 + Math.random() * .3,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+      if (!confettiActive){ confettiActive = true; requestAnimationFrame(animateConfetti); }
+    }
+
+    function animateConfetti(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles = particles.filter(function(p){
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vr;
+        p.vy += .04;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+        return p.y < canvas.height + 20;
+      });
+      if (particles.length > 0){ requestAnimationFrame(animateConfetti); }
+      else { confettiActive = false; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+    }
+
+    // Audio
+    const audio = document.getElementById('audioPlayer');
+    const audioBtn = document.getElementById('audioToggle');
+    const iconPlay = document.getElementById('audioIconPlay');
+    const iconPause = document.getElementById('audioIconPause');
+
+    audioBtn.addEventListener('click', function(){
+      if (!audio.currentSrc && !audio.querySelector('source').src){
+        alert('El audio ambiente aún no está configurado. Agrega el src del MP3 en el <source> del audio.');
+        return;
+      }
+      if (audio.paused){
+        audio.play().catch(function(){});
+        iconPlay.style.display = 'none'; iconPause.style.display = '';
+      } else {
+        audio.pause();
+        iconPlay.style.display = ''; iconPause.style.display = 'none';
+      }
+    });
+
+    // Share
+    document.getElementById('btnShare').addEventListener('click', async function(){
+      const shareData = {
+        title: CONFIG.brideName + ' & ' + CONFIG.groomName,
+        text: 'Estás invitado a nuestra boda — 6 de marzo de 2027',
+        url: window.location.href
+      };
+      if (navigator.share){
+        try { await navigator.share(shareData); } catch(e){}
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          alert('Enlace copiado al portapapeles ✨');
+        } catch(e){
+          prompt('Copia este enlace:', window.location.href);
+        }
+      }
+    });
+
+    // Calendar .ics
+    document.getElementById('btnCalendar').addEventListener('click', function(){
+      const start = '20270306T180000';
+      const end = '20270307T030000';
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Nuestra Boda//Modelo Festival//ES',
+        'BEGIN:VEVENT',
+        'UID:' + Date.now() + '@nuestraboda.com.pe',
+        'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z',
+        'DTSTART;TZID=America/Lima:' + start,
+        'DTEND;TZID=America/Lima:' + end,
+        'SUMMARY:Boda de ' + CONFIG.brideName + ' & ' + CONFIG.groomName,
+        'DESCRIPTION:Ceremonia en ' + CONFIG.ceremony + '. Recepción en ' + CONFIG.reception + '.',
+        'LOCATION:' + CONFIG.ceremony,
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'boda-camila-bruno.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    document.querySelectorAll('img').forEach(function(img){
+      img.addEventListener('error', function(){ img.style.display = 'none'; });
+    });
+
+  })();
+  </script>
+</body>
+</html>

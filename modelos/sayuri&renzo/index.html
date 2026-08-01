@@ -1,0 +1,2597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11458174849"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'AW-11458174849');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f0e6">
+  <meta name="description" content="Sayuri & Renzo — Kintsugi: las grietas doradas de nuestra historia. 14 de noviembre de 2026, Lima. Una invitación por Nuestra Boda.">
+  <title>Sayuri & Renzo — KINTSUGI | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+  /* ============================================================
+     MODELO 11 — "KINTSUGI"
+     Concepto: el arte japonés de reparar cerámica con oro.
+     La boda como una pieza única cuyas grietas — la historia,
+     los años, lo vivido — están selladas en oro y la hacen más
+     valiosa. Papel washi crema, tinta sumi, oro de urushi y
+     un punto de bermellón como el sello hanko. Silencio,
+     espacio negativo y una grieta dorada que recorre toda la
+     invitación cosiendo las secciones entre sí.
+     ============================================================ */
+
+  :root {
+    /* Papel washi — la base luminosa */
+    --washi:           #f5f0e6;
+    --washi-warm:      #efe7d8;
+    --washi-deep:      #e8dcc8;
+    --washi-shadow:    #ddd0b8;
+
+    /* Tinta sumi */
+    --sumi:            #1c1a17;
+    --sumi-soft:       #33302b;
+    --sumi-faint:      #5c5750;
+    --sumi-mist:       #8a8378;
+
+    /* Oro kintsugi */
+    --gold:            #b8923e;
+    --gold-bright:     #d4af5c;
+    --gold-deep:       #96742c;
+    --gold-glow:       rgba(184,146,62,.35);
+
+    /* Bermellón hanko */
+    --shu:             #c73e2e;
+    --shu-deep:        #a32e20;
+
+    /* Verdes matcha sutiles */
+    --matcha:          #7a7d5e;
+    --matcha-soft:     #a3a689;
+
+    /* Tipografía */
+    --font-jp:         'Shippori Mincho', 'Noto Serif JP', serif;
+    --font-serif:      'Cormorant Garamond', Georgia, serif;
+    --font-sans:       'Zen Kaku Gothic New', system-ui, sans-serif;
+
+    /* Motion */
+    --ease:            cubic-bezier(.65,0,.25,1);
+    --ease-zen:        cubic-bezier(.86,0,.14,1);
+  }
+
+  /* ===== Reset ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-serif);
+    background: var(--washi);
+    color: var(--sumi);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Textura de papel washi — fibras sutiles */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 20% 10%, rgba(184,146,62,.03), transparent),
+      radial-gradient(ellipse 600px 800px at 80% 90%, rgba(122,125,94,.03), transparent),
+      repeating-linear-gradient(2deg, transparent 0 90px, rgba(28,26,23,.012) 90px 91px),
+      repeating-linear-gradient(88deg, transparent 0 70px, rgba(28,26,23,.012) 70px 71px);
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  ::selection { background: var(--gold); color: var(--washi); }
+
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--washi-warm); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+  /* ============================================================
+     PRELOADER — círculo ensō pintado a pincel
+     ============================================================ */
+  #preloader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--washi);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 28px;
+    transition: opacity 1s var(--ease), visibility 1s var(--ease);
+  }
+  #preloader.done { opacity: 0; visibility: hidden; }
+
+  .enso {
+    width: 150px; height: 150px;
+  }
+  .enso path {
+    fill: none;
+    stroke: var(--sumi);
+    stroke-width: 7;
+    stroke-linecap: round;
+    stroke-dasharray: 420;
+    stroke-dashoffset: 420;
+    animation: ensoDraw 2.2s var(--ease-zen) .3s forwards;
+    opacity: .92;
+  }
+  /* La grieta dorada que atraviesa el ensō */
+  .enso .crack {
+    stroke: var(--gold);
+    stroke-width: 2;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: ensoDraw 1.2s var(--ease-zen) 2s forwards;
+    filter: drop-shadow(0 0 3px var(--gold-glow));
+  }
+  @keyframes ensoDraw {
+    to { stroke-dashoffset: 0; }
+  }
+  .pre-word {
+    font-family: var(--font-jp);
+    font-size: 13px;
+    letter-spacing: 1em;
+    text-indent: 1em;
+    color: var(--sumi-faint);
+    opacity: 0;
+    animation: fadeUp 1s var(--ease) 1.4s forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============================================================
+     NAV
+     ============================================================ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 22px 34px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background .4s var(--ease), padding .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  .nav.scrolled {
+    background: rgba(245,240,230,.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 14px 34px;
+    box-shadow: 0 1px 0 rgba(28,26,23,.06);
+  }
+  .nav-logo {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: 19px;
+    letter-spacing: .35em;
+    color: var(--sumi);
+    display: flex; align-items: center; gap: 12px;
+  }
+  /* Mini sello hanko en el logo */
+  .nav-logo::after {
+    content: '結';
+    font-size: 11px;
+    color: var(--washi);
+    background: var(--shu);
+    width: 22px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 3px;
+    letter-spacing: 0;
+    text-indent: 0;
+  }
+  .nav-toggle {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(28,26,23,.2);
+    border-radius: 50%;
+    color: var(--sumi);
+    transition: all .3s var(--ease);
+  }
+  .nav-toggle:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: rotate(90deg);
+  }
+  .nav-toggle svg { width: 16px; height: 16px; }
+
+  /* Menú fullscreen */
+  .menu {
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--sumi);
+    display: flex; align-items: center; justify-content: center;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path .8s var(--ease-zen);
+    pointer-events: none;
+  }
+  .menu.open {
+    clip-path: inset(0 0 0% 0);
+    pointer-events: auto;
+  }
+  .menu-close {
+    position: absolute; top: 22px; right: 34px;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(245,240,230,.4);
+    border-radius: 50%;
+    color: var(--washi);
+  }
+  .menu-close svg { width: 14px; height: 14px; }
+  .menu-list {
+    list-style: none;
+    text-align: center;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .menu-list li {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .5s var(--ease), transform .5s var(--ease);
+  }
+  .menu.open .menu-list li { opacity: 1; transform: translateY(0); }
+  .menu.open .menu-list li:nth-child(1) { transition-delay: .3s; }
+  .menu.open .menu-list li:nth-child(2) { transition-delay: .36s; }
+  .menu.open .menu-list li:nth-child(3) { transition-delay: .42s; }
+  .menu.open .menu-list li:nth-child(4) { transition-delay: .48s; }
+  .menu.open .menu-list li:nth-child(5) { transition-delay: .54s; }
+  .menu.open .menu-list li:nth-child(6) { transition-delay: .6s; }
+  .menu.open .menu-list li:nth-child(7) { transition-delay: .66s; }
+  .menu-list a {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(30px, 5.5vw, 52px);
+    color: var(--washi);
+    position: relative;
+    transition: color .3s var(--ease), letter-spacing .3s var(--ease);
+  }
+  .menu-list a:hover {
+    color: var(--gold-bright);
+    letter-spacing: .04em;
+  }
+  .menu-footer {
+    position: absolute; bottom: 34px; left: 0; right: 0;
+    text-align: center;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: rgba(245,240,230,.5);
+  }
+
+  /* ============================================================
+     GRIETA MAESTRA — SVG fijo que se dibuja con el scroll
+     ============================================================ */
+  .master-crack {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: visible;
+  }
+  .master-crack path {
+    fill: none;
+    stroke: var(--gold);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 2px var(--gold-glow));
+  }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    padding: 110px 24px 90px;
+    z-index: 2;
+  }
+
+  /* Mancha de tinta sumi difuminada en una esquina */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -15%; right: -10%;
+    width: 55vw; height: 55vw;
+    max-width: 700px; max-height: 700px;
+    background: radial-gradient(circle at 60% 40%, rgba(28,26,23,.06), rgba(28,26,23,.02) 45%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -20%; left: -12%;
+    width: 45vw; height: 45vw;
+    max-width: 560px; max-height: 560px;
+    background: radial-gradient(circle at 40% 60%, rgba(122,125,94,.07), transparent 65%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 3;
+    text-align: center;
+    max-width: 940px;
+    width: 100%;
+  }
+
+  /* Texto vertical japonés a los lados (tategaki) */
+  .tategaki {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    font-family: var(--font-jp);
+    font-size: 13px;
+    letter-spacing: .6em;
+    color: var(--sumi-mist);
+    opacity: 0;
+    animation: fadeUp 1.4s var(--ease) 1.8s forwards;
+  }
+  .tategaki.left { left: 4vw; }
+  .tategaki.right { right: 4vw; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 16px;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: .55em;
+    text-transform: uppercase;
+    text-indent: .55em;
+    color: var(--gold-deep);
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 1s var(--ease) .4s forwards;
+  }
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-names {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: clamp(56px, 11vw, 140px);
+    line-height: 1.05;
+    letter-spacing: .02em;
+    color: var(--sumi);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 1.3s var(--ease) .6s forwards;
+    position: relative;
+  }
+  .hero-names .amp-wrap {
+    display: block;
+    position: relative;
+    height: clamp(60px, 9vw, 110px);
+    margin: clamp(-6px, -.5vw, -2px) 0;
+  }
+  /* El ensō pequeño con & adentro entre los nombres */
+  .hero-names .amp-enso {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(56px, 8.5vw, 100px);
+    height: clamp(56px, 8.5vw, 100px);
+  }
+  .hero-names .amp-enso svg { width: 100%; height: 100%; }
+  .hero-names .amp-enso circle {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 5;
+    animation: slowSpin 30s linear infinite;
+    transform-origin: center;
+  }
+  @keyframes slowSpin { to { transform: rotate(360deg); } }
+  .hero-names .amp-char {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -52%);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(30px, 4.6vw, 54px);
+    color: var(--gold-deep);
+  }
+
+  .hero-kanji {
+    font-family: var(--font-jp);
+    font-size: clamp(14px, 1.6vw, 18px);
+    letter-spacing: 1.2em;
+    text-indent: 1.2em;
+    color: var(--sumi-faint);
+    margin: 30px 0 44px;
+    opacity: 0;
+    animation: fadeUp 1s var(--ease) 1s forwards;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(17px, 2vw, 21px);
+    color: var(--sumi-soft);
+    max-width: 520px;
+    margin: 0 auto 52px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 1s var(--ease) 1.2s forwards;
+  }
+
+  /* Datos como sello de caligrafía */
+  .hero-seal-row {
+    display: inline-flex;
+    align-items: stretch;
+    gap: 0;
+    border: 1px solid rgba(28,26,23,.18);
+    opacity: 0;
+    animation: fadeUp 1s var(--ease) 1.5s forwards;
+  }
+  .hero-seal-item {
+    padding: 18px 32px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-seal-item:not(:last-child)::after {
+    content: '';
+    position: absolute; right: 0; top: 20%;
+    height: 60%; width: 1px;
+    background: rgba(28,26,23,.15);
+  }
+  .hero-seal-label {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 9px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    text-indent: .4em;
+    color: var(--sumi-mist);
+    margin-bottom: 6px;
+  }
+  .hero-seal-value {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: 17px;
+    color: var(--sumi);
+    letter-spacing: .05em;
+  }
+  /* Sello hanko rojo al final de la fila */
+  .hero-seal-hanko {
+    background: var(--shu);
+    color: var(--washi);
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 22px;
+    font-family: var(--font-jp);
+    font-size: 22px;
+    writing-mode: vertical-rl;
+    letter-spacing: .2em;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 34px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 9px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    text-indent: .5em;
+    color: var(--sumi-mist);
+    z-index: 3;
+    opacity: 0;
+    animation: fadeUp 1s var(--ease) 2s forwards;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 44px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-scroll-line::after {
+    content: '';
+    position: absolute; top: -16px; left: 0;
+    width: 100%; height: 16px;
+    background: var(--gold-bright);
+    animation: scrollDrop 2.4s ease-in-out infinite;
+  }
+  @keyframes scrollDrop { to { top: 44px; } }
+
+  /* ============================================================
+     HAIKU — transiciones poéticas entre secciones
+     ============================================================ */
+  .haiku {
+    padding: 90px 24px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .haiku-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(19px, 2.6vw, 26px);
+    line-height: 2;
+    color: var(--sumi-soft);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .haiku-text span {
+    display: block;
+  }
+  .haiku-mark {
+    width: 5px; height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin: 28px auto 0;
+    box-shadow: 0 0 8px var(--gold-glow);
+  }
+
+  /* ============================================================
+     SECCIONES — base
+     ============================================================ */
+  section { position: relative; z-index: 2; }
+
+  .container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 110px 32px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+  .section-kanji {
+    font-family: var(--font-jp);
+    font-size: 15px;
+    letter-spacing: .9em;
+    text-indent: .9em;
+    color: var(--gold-deep);
+    margin-bottom: 18px;
+  }
+  .section-title {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: clamp(36px, 5.5vw, 62px);
+    line-height: 1.15;
+    letter-spacing: .01em;
+    color: var(--sumi);
+  }
+  .section-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-deep);
+  }
+  .section-desc {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 17px;
+    color: var(--sumi-faint);
+    max-width: 520px;
+    margin: 22px auto 0;
+    line-height: 1.8;
+  }
+
+  /* ============================================================
+     HISTORIA — la cerámica y sus grietas
+     ============================================================ */
+  .story {
+    position: relative;
+  }
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+  }
+
+  /* El plato kintsugi ilustrado */
+  .bowl-figure {
+    aspect-ratio: 1;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .bowl-figure svg { width: 100%; height: 100%; max-width: 460px; }
+  .bowl-base {
+    fill: var(--washi-deep);
+    stroke: var(--sumi);
+    stroke-width: 1.4;
+  }
+  .bowl-inner {
+    fill: var(--washi-warm);
+    stroke: var(--sumi);
+    stroke-width: .8;
+    opacity: .8;
+  }
+  .bowl-crack {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    transition: stroke-dashoffset 2.8s var(--ease-zen);
+    filter: drop-shadow(0 0 3px var(--gold-glow));
+  }
+  .bowl-figure.in-view .bowl-crack { stroke-dashoffset: 0; }
+  .bowl-figure.in-view .bowl-crack.c2 { transition-delay: .5s; }
+  .bowl-figure.in-view .bowl-crack.c3 { transition-delay: 1s; }
+  /* Polvo de oro flotando alrededor */
+  .bowl-dust {
+    fill: var(--gold-bright);
+    opacity: 0;
+    animation: dustFloat 5s ease-in-out infinite;
+  }
+  .bowl-figure.in-view .bowl-dust { opacity: .7; }
+  .bowl-dust:nth-of-type(2) { animation-delay: -1.4s; }
+  .bowl-dust:nth-of-type(3) { animation-delay: -2.8s; }
+  .bowl-dust:nth-of-type(4) { animation-delay: -3.6s; }
+  @keyframes dustFloat {
+    0%, 100% { transform: translateY(0); opacity: .7; }
+    50% { transform: translateY(-14px); opacity: .3; }
+  }
+
+  .story-text h3 {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: clamp(26px, 3.6vw, 40px);
+    line-height: 1.3;
+    color: var(--sumi);
+    margin-bottom: 26px;
+  }
+  .story-text h3 em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-deep);
+  }
+  .story-text p {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 17px;
+    color: var(--sumi-soft);
+    margin-bottom: 20px;
+    line-height: 1.9;
+  }
+  .story-highlight {
+    border-left: 2px solid var(--gold);
+    padding: 6px 0 6px 24px;
+    margin: 30px 0;
+    font-style: italic;
+    color: var(--sumi);
+    font-size: 18px;
+  }
+  .story-sign {
+    font-family: var(--font-jp);
+    font-size: 17px;
+    letter-spacing: .2em;
+    color: var(--gold-deep);
+    margin-top: 34px;
+  }
+
+  /* ============================================================
+     COUNTDOWN — azulejos de cerámica con grieta dorada
+     ============================================================ */
+  .countdown-wrap {
+    padding: 110px 32px;
+    background: var(--sumi);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Grieta dorada de fondo en la sección oscura */
+  .countdown-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 15%;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+    opacity: .4;
+    transform: rotate(8deg);
+  }
+  .countdown-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 22%;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--gold) 40%, transparent 80%);
+    opacity: .25;
+    transform: rotate(-5deg);
+  }
+
+  .countdown-header {
+    text-align: center;
+    margin-bottom: 64px;
+    position: relative;
+    z-index: 2;
+  }
+  .countdown-header .section-kanji { color: var(--gold-bright); }
+  .countdown-header .cd-title {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: clamp(30px, 4.5vw, 52px);
+    color: var(--washi);
+  }
+  .countdown-header .cd-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-bright);
+  }
+
+  .tiles {
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    position: relative;
+    z-index: 2;
+  }
+  .tile {
+    aspect-ratio: 4/5;
+    background: linear-gradient(150deg, var(--washi) 0%, var(--washi-warm) 55%, var(--washi-deep) 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    position: relative;
+    box-shadow:
+      0 24px 50px -18px rgba(0,0,0,.55),
+      inset 0 1px 0 rgba(255,255,255,.7);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: transform .5s var(--ease-zen);
+  }
+  .tile:hover { transform: translateY(-8px) rotate(-.6deg); }
+  /* Grieta dorada única por azulejo */
+  .tile svg.tile-crack {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .tile svg.tile-crack path {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 2px var(--gold-glow));
+    opacity: .85;
+  }
+  .tile-value {
+    font-family: var(--font-jp);
+    font-weight: 600;
+    font-size: clamp(40px, 6.5vw, 66px);
+    line-height: 1;
+    color: var(--sumi);
+    font-variant-numeric: tabular-nums;
+    position: relative; z-index: 2;
+  }
+  .tile-label {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: .45em;
+    text-transform: uppercase;
+    text-indent: .45em;
+    color: var(--sumi-faint);
+    margin-top: 12px;
+    position: relative; z-index: 2;
+  }
+  .tile-kanji {
+    position: absolute;
+    bottom: 10px; right: 12px;
+    font-family: var(--font-jp);
+    font-size: 13px;
+    color: var(--gold-deep);
+    opacity: .55;
+  }
+
+  /* ============================================================
+     EVENTOS — piezas de cerámica reparadas
+     ============================================================ */
+  .events-grid {
+    max-width: 1040px;
+    margin: 64px auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+  }
+  .ceramic-card {
+    background: linear-gradient(160deg, #fdfaf3 0%, var(--washi) 50%, var(--washi-warm) 100%);
+    padding: 52px 44px 44px;
+    position: relative;
+    box-shadow:
+      0 30px 60px -22px rgba(28,26,23,.28),
+      inset 0 1px 0 rgba(255,255,255,.8);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform .5s var(--ease-zen), box-shadow .5s var(--ease);
+  }
+  .ceramic-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 40px 80px -24px rgba(28,26,23,.35),
+      inset 0 1px 0 rgba(255,255,255,.8);
+  }
+  /* Grieta kintsugi cruzando cada tarjeta */
+  .ceramic-card > svg.card-crack {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+  .ceramic-card > svg.card-crack path {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 900;
+    stroke-dashoffset: 900;
+    transition: stroke-dashoffset 3s var(--ease-zen) .3s;
+    filter: drop-shadow(0 0 2px var(--gold-glow));
+    opacity: .9;
+  }
+  .ceramic-card.in-view > svg.card-crack path { stroke-dashoffset: 0; }
+
+  .cer-kanji {
+    font-family: var(--font-jp);
+    font-size: 13px;
+    letter-spacing: .7em;
+    color: var(--gold-deep);
+    margin-bottom: 14px;
+    position: relative; z-index: 2;
+  }
+  .cer-title {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: clamp(32px, 4.4vw, 46px);
+    color: var(--sumi);
+    line-height: 1.1;
+    margin-bottom: 34px;
+    position: relative; z-index: 2;
+  }
+  .cer-rows {
+    border-top: 1px solid rgba(28,26,23,.12);
+    padding-top: 26px;
+    margin-bottom: 30px;
+    display: flex; flex-direction: column; gap: 18px;
+    position: relative; z-index: 2;
+  }
+  .cer-row {
+    display: grid;
+    grid-template-columns: 86px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+  .cer-row-label {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 9px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--sumi-mist);
+    padding-top: 6px;
+  }
+  .cer-row-value {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--sumi);
+  }
+  .cer-row-value small {
+    display: block;
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--sumi-faint);
+    margin-top: 2px;
+  }
+  .cer-cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    padding: 14px 28px;
+    background: var(--sumi);
+    color: var(--washi);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    text-indent: .4em;
+    border-radius: 2px;
+    position: relative; z-index: 2;
+    transition: background .3s var(--ease), gap .3s var(--ease);
+  }
+  .cer-cta:hover { background: var(--gold-deep); gap: 18px; }
+  .cer-cta svg { width: 13px; height: 13px; }
+
+  /* ============================================================
+     ITINERARIO — camino de piedras (ishidatami)
+     ============================================================ */
+  .path-timeline {
+    max-width: 680px;
+    margin: 80px auto 0;
+    position: relative;
+  }
+  /* Línea de grava punteada */
+  .path-line {
+    position: absolute;
+    left: 50%; top: 20px; bottom: 20px;
+    transform: translateX(-50%);
+    width: 1px;
+    background: repeating-linear-gradient(to bottom, var(--gold) 0 5px, transparent 5px 12px);
+    opacity: 0;
+    transition: opacity 1.2s var(--ease);
+  }
+  .path-timeline.in-view .path-line { opacity: .6; }
+
+  .stone {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 90px 1fr;
+    gap: 30px;
+    align-items: center;
+    padding: 26px 0;
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  .path-timeline.in-view .stone { opacity: 1; transform: translateY(0); }
+  .path-timeline.in-view .stone:nth-child(3) { transition-delay: .15s; }
+  .path-timeline.in-view .stone:nth-child(4) { transition-delay: .35s; }
+  .path-timeline.in-view .stone:nth-child(5) { transition-delay: .55s; }
+  .path-timeline.in-view .stone:nth-child(6) { transition-delay: .75s; }
+  .path-timeline.in-view .stone:nth-child(7) { transition-delay: .95s; }
+
+  /* La piedra: forma orgánica con borde dorado */
+  .stone-mark {
+    width: 84px; height: 74px;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .stone-mark svg.stone-shape {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+  }
+  .stone-shape path.rock {
+    fill: var(--washi-warm);
+    stroke: var(--sumi);
+    stroke-width: 1.1;
+  }
+  .stone-shape path.vein {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 2px var(--gold-glow));
+  }
+  .stone-time {
+    position: relative; z-index: 2;
+    font-family: var(--font-jp);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--sumi);
+    letter-spacing: .02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stone-info-r { text-align: left; }
+  .stone-info-l { text-align: right; }
+  .stone-info h4 {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: 21px;
+    color: var(--sumi);
+    margin-bottom: 4px;
+  }
+  .stone-info p {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 14.5px;
+    color: var(--sumi-faint);
+    line-height: 1.6;
+  }
+  .stone-info .jp {
+    display: block;
+    font-family: var(--font-jp);
+    font-size: 11px;
+    letter-spacing: .4em;
+    color: var(--gold-deep);
+    margin-bottom: 6px;
+  }
+
+  /* ============================================================
+     GALERÍA — paneles shōji
+     ============================================================ */
+  .gallery {
+    background: var(--washi-warm);
+  }
+  .shoji-grid {
+    max-width: 1140px;
+    margin: 64px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 190px;
+    gap: 14px;
+  }
+  .shoji {
+    position: relative;
+    overflow: hidden;
+    background: var(--washi);
+    border: 1px solid rgba(28,26,23,.14);
+    cursor: pointer;
+  }
+  .shoji-1 { grid-column: span 2; grid-row: span 2; }
+  .shoji-2 { grid-column: span 1; grid-row: span 1; }
+  .shoji-3 { grid-column: span 1; grid-row: span 2; }
+  .shoji-4 { grid-column: span 1; grid-row: span 1; }
+  .shoji-5 { grid-column: span 2; grid-row: span 1; }
+  .shoji-6 { grid-column: span 2; grid-row: span 1; }
+
+  /* Retícula de listones de madera del shōji */
+  .shoji::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent 0 calc(33.3% - 1px), rgba(28,26,23,.16) calc(33.3% - 1px) 33.3%),
+      repeating-linear-gradient(90deg, transparent 0 calc(33.3% - 1px), rgba(28,26,23,.16) calc(33.3% - 1px) 33.3%);
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity .6s var(--ease);
+  }
+  /* Al hover, el panel se "abre" — la retícula se desvanece y la luz entra */
+  .shoji:hover::before { opacity: .25; }
+  /* Foto real dentro del panel, con duotono wabi-sabi (sepia + oro tenue) */
+  .shoji-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) sepia(.18) contrast(1.08) brightness(1.02);
+    z-index: 0;
+    transition: transform .7s var(--ease-zen);
+  }
+  .shoji:hover .shoji-photo { transform: scale(1.04); }
+  .shoji-photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(140deg, rgba(184,146,62,.22), rgba(28,26,23,.28));
+    mix-blend-mode: color;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .shoji-placeholder {
+    position: absolute; top: 14px; left: 14px; right: 14px;
+    z-index: 3;
+    background: rgba(245,240,230,.82);
+    color: var(--sumi-faint);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 8px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 5px 9px;
+    width: fit-content;
+  }
+  .shoji-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 12px 14px;
+    background: linear-gradient(to top, rgba(245,240,230,.96), transparent);
+    display: flex; justify-content: space-between;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--sumi-faint);
+    z-index: 3;
+    transform: translateY(100%);
+    transition: transform .45s var(--ease);
+  }
+  .shoji:hover .shoji-caption { transform: translateY(0); }
+  .shoji-caption span:last-child { color: var(--gold-deep); }
+
+  /* ============================================================
+     DRESSCODE — telas teñidas con tinta
+     ============================================================ */
+  .ink-swatches {
+    max-width: 1040px;
+    margin: 64px auto 44px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+  }
+  .ink-chip {
+    aspect-ratio: 3/4.2;
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 18px 36px -14px rgba(28,26,23,.35);
+    transition: transform .5s var(--ease-zen);
+  }
+  .ink-chip:hover { transform: translateY(-10px) rotate(-1deg); }
+  .ink-chip-color {
+    position: absolute; inset: 0;
+  }
+  /* Textura de teñido shibori sutil */
+  .ink-chip-color::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 45% at 50% 20%, rgba(255,255,255,.12), transparent),
+      repeating-linear-gradient(35deg, transparent 0 6px, rgba(0,0,0,.05) 6px 7px);
+  }
+  .ink-1 .ink-chip-color { background: linear-gradient(170deg, #33302b, #1c1a17); }
+  .ink-2 .ink-chip-color { background: linear-gradient(170deg, #5c5750, #3d3a33); }
+  .ink-3 .ink-chip-color { background: linear-gradient(170deg, #7a7d5e, #565941); }
+  .ink-4 .ink-chip-color { background: linear-gradient(170deg, #8a7a5c, #6b5d42); }
+  .ink-5 .ink-chip-color { background: linear-gradient(170deg, #a3927a, #857463); }
+  .ink-6 .ink-chip-color { background: linear-gradient(170deg, #6e5344, #503b30); }
+
+  .ink-chip-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 12px 12px 14px;
+    background: linear-gradient(to top, rgba(28,26,23,.75), transparent);
+    color: var(--washi);
+    z-index: 2;
+  }
+  .ink-chip-name {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+  .ink-chip-jp {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 9px;
+    letter-spacing: .25em;
+    opacity: .75;
+  }
+
+  .dress-note {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 38px 40px;
+    border: 1px solid rgba(184,146,62,.4);
+    position: relative;
+    background: rgba(253,250,243,.6);
+  }
+  /* Esquinas doradas estilo marco japonés */
+  .dress-note::before,
+  .dress-note::after {
+    content: '';
+    position: absolute;
+    width: 14px; height: 14px;
+    border: 1.5px solid var(--gold);
+  }
+  .dress-note::before { top: -1.5px; left: -1.5px; border-right: 0; border-bottom: 0; }
+  .dress-note::after { bottom: -1.5px; right: -1.5px; border-left: 0; border-top: 0; }
+  .dress-note h4 {
+    font-family: var(--font-jp);
+    font-size: 12px;
+    letter-spacing: .7em;
+    text-indent: .7em;
+    color: var(--gold-deep);
+    margin-bottom: 18px;
+  }
+  .dress-note p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--sumi);
+    line-height: 1.8;
+  }
+  .dress-note p + p {
+    margin-top: 12px;
+    font-style: normal;
+    font-size: 14px;
+    color: var(--sumi-faint);
+  }
+
+  /* ============================================================
+     RSVP — carta washi con sello hanko
+     ============================================================ */
+  .rsvp {
+    background: var(--sumi);
+    padding: 130px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Grietas doradas de fondo */
+  .rsvp::before {
+    content: '';
+    position: absolute;
+    top: -10%; left: 8%;
+    width: 1px; height: 120%;
+    background: linear-gradient(to bottom, transparent, var(--gold) 40%, transparent 90%);
+    opacity: .3;
+    transform: rotate(12deg);
+  }
+  .rsvp::after {
+    content: '';
+    position: absolute;
+    top: -10%; right: 12%;
+    width: 1px; height: 120%;
+    background: linear-gradient(to bottom, transparent 10%, var(--gold) 55%, transparent);
+    opacity: .22;
+    transform: rotate(-7deg);
+  }
+
+  .rsvp-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: linear-gradient(165deg, #fdfaf3, var(--washi) 60%, var(--washi-warm));
+    color: var(--sumi);
+    padding: 64px 52px 52px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 40px 90px -30px rgba(0,0,0,.6);
+    border-radius: 3px;
+  }
+  /* Sello hanko en la esquina */
+  .rsvp-hanko {
+    position: absolute;
+    top: 26px; right: 26px;
+    width: 54px; height: 54px;
+    background: var(--shu);
+    color: var(--washi);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-jp);
+    font-size: 20px;
+    writing-mode: vertical-rl;
+    letter-spacing: .15em;
+    border-radius: 4px;
+    transform: rotate(-4deg);
+    box-shadow: 0 6px 14px rgba(199,62,46,.35);
+  }
+
+  .rsvp-kanji {
+    text-align: center;
+    font-family: var(--font-jp);
+    font-size: 13px;
+    letter-spacing: .8em;
+    text-indent: .8em;
+    color: var(--gold-deep);
+    margin-bottom: 14px;
+  }
+  .rsvp-title {
+    text-align: center;
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: clamp(32px, 4.6vw, 48px);
+    color: var(--sumi);
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+  .rsvp-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-deep);
+  }
+  .rsvp-desc {
+    text-align: center;
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--sumi-faint);
+    margin-bottom: 44px;
+    max-width: 440px;
+    margin-left: auto; margin-right: auto;
+    line-height: 1.8;
+  }
+
+  .rsvp-form { display: flex; flex-direction: column; gap: 24px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--sumi-mist);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    color: var(--sumi);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(28,26,23,.28);
+    padding: 9px 2px;
+    outline: none;
+    transition: border-color .3s var(--ease);
+    border-radius: 0;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group select { appearance: none; cursor: pointer; }
+  .form-group textarea { resize: vertical; min-height: 62px; }
+
+  .radio-group { display: flex; gap: 14px; }
+  .radio-option {
+    flex: 1;
+    padding: 16px;
+    border: 1px solid rgba(28,26,23,.22);
+    text-align: center;
+    cursor: pointer;
+    transition: all .35s var(--ease);
+    position: relative;
+    border-radius: 2px;
+  }
+  .radio-option input { position: absolute; opacity: 0; pointer-events: none; }
+  .radio-option-label {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: 21px;
+    color: var(--sumi);
+    display: block;
+  }
+  .radio-option-desc {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--sumi-mist);
+    margin-top: 4px;
+  }
+  .radio-option:has(input:checked),
+  .radio-option.checked {
+    background: var(--sumi);
+    border-color: var(--sumi);
+  }
+  .radio-option:has(input:checked) .radio-option-label,
+  .radio-option.checked .radio-option-label { color: var(--gold-bright); }
+  .radio-option:has(input:checked) .radio-option-desc,
+  .radio-option.checked .radio-option-desc { color: var(--washi); opacity: .75; }
+
+  .form-submit {
+    margin-top: 14px;
+    padding: 19px 32px;
+    background: var(--sumi);
+    color: var(--washi);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    text-indent: .5em;
+    border-radius: 2px;
+    transition: background .4s var(--ease), letter-spacing .4s var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+  .form-submit::before {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212,175,92,.35), transparent);
+    transition: left .7s var(--ease);
+  }
+  .form-submit:hover { background: var(--gold-deep); letter-spacing: .6em; }
+  .form-submit:hover::before { left: 100%; }
+
+  .rsvp-success {
+    text-align: center;
+    padding: 44px 20px;
+    display: none;
+  }
+  .rsvp-success.show { display: block; }
+  /* Sello hanko grande estampado al confirmar */
+  .success-stamp {
+    width: 90px; height: 90px;
+    margin: 0 auto 26px;
+    background: var(--shu);
+    color: var(--washi);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-jp);
+    font-size: 30px;
+    writing-mode: vertical-rl;
+    letter-spacing: .1em;
+    border-radius: 6px;
+    transform: rotate(-5deg) scale(0);
+    box-shadow: 0 10px 24px rgba(199,62,46,.4);
+    animation: stampIn .55s var(--ease-zen) .2s forwards;
+  }
+  @keyframes stampIn {
+    0% { transform: rotate(-30deg) scale(2.4); opacity: 0; }
+    60% { transform: rotate(-3deg) scale(.94); opacity: 1; }
+    100% { transform: rotate(-5deg) scale(1); opacity: 1; }
+  }
+  .rsvp-success h3 {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: 34px;
+    color: var(--sumi);
+    margin-bottom: 12px;
+  }
+  .rsvp-success p {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--sumi-faint);
+    line-height: 1.8;
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer {
+    padding: 100px 32px 40px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .footer-enso {
+    width: 90px; height: 90px;
+    margin: 0 auto 20px;
+  }
+  .footer-enso path {
+    fill: none;
+    stroke: var(--sumi);
+    stroke-width: 5;
+    stroke-linecap: round;
+    opacity: .85;
+  }
+  .footer-enso .fcrack {
+    stroke: var(--gold);
+    stroke-width: 1.6;
+    filter: drop-shadow(0 0 2px var(--gold-glow));
+  }
+  .footer-names {
+    font-family: var(--font-jp);
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: .25em;
+    color: var(--sumi);
+    margin-bottom: 8px;
+  }
+  .footer-date {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--sumi-mist);
+    margin-bottom: 44px;
+  }
+  .footer-actions {
+    display: flex; gap: 16px; justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+  .footer-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px;
+    border: 1px solid rgba(28,26,23,.25);
+    color: var(--sumi);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    text-indent: .4em;
+    border-radius: 2px;
+    transition: all .35s var(--ease);
+  }
+  .footer-btn:hover {
+    background: var(--sumi);
+    border-color: var(--sumi);
+    color: var(--gold-bright);
+  }
+  .footer-btn svg { width: 14px; height: 14px; }
+
+  .footer-signature {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 9px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--sumi-mist);
+    padding-top: 30px;
+    border-top: 1px solid rgba(28,26,23,.1);
+  }
+  .footer-signature a {
+    color: var(--gold-deep);
+    transition: color .3s var(--ease);
+  }
+  .footer-signature a:hover { color: var(--sumi); }
+
+  /* Audio */
+  .audio-toggle {
+    position: fixed; bottom: 24px; left: 24px;
+    z-index: 90;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: rgba(245,240,230,.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(28,26,23,.2);
+    color: var(--sumi);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .3s var(--ease);
+    box-shadow: 0 8px 20px -8px rgba(28,26,23,.25);
+  }
+  .audio-toggle:hover {
+    background: var(--sumi);
+    color: var(--gold-bright);
+  }
+  .audio-toggle svg { width: 18px; height: 18px; }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity .9s var(--ease), transform .9s var(--ease);
+  }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 900px) {
+    .nav, .nav.scrolled { padding: 14px 20px; }
+    .container { padding: 84px 22px; }
+    .tategaki { display: none; }
+    .story-grid { grid-template-columns: 1fr; gap: 44px; }
+    .bowl-figure { max-width: 340px; margin: 0 auto; }
+    .tiles { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .events-grid { grid-template-columns: 1fr; gap: 32px; }
+    .stone {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 12px;
+      padding: 18px 0;
+    }
+    .stone-mark { margin: 0 auto; }
+    .stone-info-l, .stone-info-r { text-align: center; }
+    .path-line { display: none; }
+    .shoji-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+    .shoji-1 { grid-column: span 2; grid-row: span 2; }
+    .shoji-2 { grid-column: span 1; grid-row: span 1; }
+    .shoji-3 { grid-column: span 1; grid-row: span 2; }
+    .shoji-4 { grid-column: span 1; grid-row: span 1; }
+    .shoji-5 { grid-column: span 2; grid-row: span 1; }
+    .shoji-6 { grid-column: span 2; grid-row: span 1; }
+    .ink-swatches { grid-template-columns: repeat(3, 1fr); }
+    .rsvp-card { padding: 52px 28px 40px; }
+    .rsvp-hanko { width: 44px; height: 44px; font-size: 16px; top: 18px; right: 18px; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-seal-row { flex-direction: column; }
+    .hero-seal-item:not(:last-child)::after {
+      right: 20%; left: 20%; top: auto; bottom: 0;
+      width: auto; height: 1px;
+    }
+    .hero-seal-hanko { writing-mode: horizontal-tb; padding: 12px; }
+  }
+
+  @media (max-width: 520px) {
+    .container { padding: 66px 18px; }
+    .ink-swatches { grid-template-columns: repeat(2, 1fr); }
+    .tiles { gap: 12px; }
+    .tile-value { font-size: 34px; }
+    .footer-actions { flex-direction: column; align-items: center; }
+    .footer-btn { width: 100%; max-width: 260px; justify-content: center; }
+    .haiku { padding: 64px 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  #confetti {
+    position: fixed; inset: 0; pointer-events: none; z-index: 500;
+  }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       PRELOADER — ensō
+       ============================================================ -->
+  <div id="preloader" aria-hidden="true">
+    <svg class="enso" viewBox="0 0 150 150">
+      <path d="M 96 22 A 58 58 0 1 0 118 45" />
+      <path class="crack" d="M 40 30 L 55 52 L 48 66 L 68 88 L 62 104 L 78 122" />
+    </svg>
+    <div class="pre-word">金継ぎ</div>
+  </div>
+
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav-logo">S · R</a>
+    <button class="nav-toggle" id="menuOpen" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="4" y1="8" x2="20" y2="8"/>
+        <line x1="4" y1="16" x2="20" y2="16"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Menu -->
+  <div class="menu" id="menu">
+    <button class="menu-close" id="menuClose" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="6" y1="6" x2="18" y2="18"/>
+        <line x1="18" y1="6" x2="6" y2="18"/>
+      </svg>
+    </button>
+    <ul class="menu-list">
+      <li><a href="#hero" data-close>Inicio</a></li>
+      <li><a href="#story" data-close>Nuestra historia</a></li>
+      <li><a href="#countdown" data-close>Cuenta regresiva</a></li>
+      <li><a href="#events" data-close>Ceremonia</a></li>
+      <li><a href="#itinerary" data-close>Itinerario</a></li>
+      <li><a href="#dresscode" data-close>Vestimenta</a></li>
+      <li><a href="#rsvp" data-close>Confirmar</a></li>
+    </ul>
+    <div class="menu-footer">Kintsugi · 14.11.2026</div>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <!-- Grieta dorada del hero que se dibuja al cargar -->
+    <svg class="master-crack" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path id="heroCrack" stroke-width="1.6"
+        d="M 1440 120 L 1310 180 L 1330 260 L 1210 330 L 1240 420 L 1120 480"
+        stroke-dasharray="800" stroke-dashoffset="800">
+        <animate attributeName="stroke-dashoffset" from="800" to="0" dur="2.5s" begin="2.8s" fill="freeze" calcMode="spline" keySplines="0.65 0 0.25 1"/>
+      </path>
+      <path stroke-width="1.2"
+        d="M 0 700 L 140 660 L 170 720 L 300 690 L 340 760"
+        stroke-dasharray="500" stroke-dashoffset="500">
+        <animate attributeName="stroke-dashoffset" from="500" to="0" dur="2s" begin="3.4s" fill="freeze" calcMode="spline" keySplines="0.65 0 0.25 1"/>
+      </path>
+    </svg>
+
+    <span class="tategaki left">二千二十六年十一月十四日</span>
+    <span class="tategaki right">金で結ばれた物語</span>
+
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Kintsugi · El arte de unirse en oro</div>
+
+      <h1 class="hero-names">
+        Sayuri
+        <span class="amp-wrap">
+          <span class="amp-enso">
+            <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46"/></svg>
+          </span>
+          <span class="amp-char">&amp;</span>
+        </span>
+        Renzo
+      </h1>
+
+      <div class="hero-kanji">小百合 と 蓮蔵</div>
+
+      <p class="hero-tagline">
+        Dicen que las piezas reparadas con oro son más valiosas que las intactas. Nosotros somos la prueba.
+      </p>
+
+      <div class="hero-seal-row">
+        <div class="hero-seal-item">
+          <div class="hero-seal-label">Fecha</div>
+          <div class="hero-seal-value">14 · 11 · 2026</div>
+        </div>
+        <div class="hero-seal-item">
+          <div class="hero-seal-label">Hora</div>
+          <div class="hero-seal-value">17:30 h</div>
+        </div>
+        <div class="hero-seal-item">
+          <div class="hero-seal-label">Lugar</div>
+          <div class="hero-seal-value">Lima, Perú</div>
+        </div>
+        <div class="hero-seal-hanko">結婚</div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Descubrir</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HAIKU I
+       ============================================================ -->
+  <div class="haiku reveal">
+    <p class="haiku-text">
+      <span>Rota una vez,</span>
+      <span>la vasija guarda el oro —</span>
+      <span>brilla al quebrarse.</span>
+    </p>
+    <div class="haiku-mark"></div>
+  </div>
+
+  <!-- ============================================================
+       HISTORIA
+       ============================================================ -->
+  <section class="story" id="story">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kanji">物語</div>
+        <h2 class="section-title">Nuestra <em>historia</em></h2>
+      </div>
+
+      <div class="story-grid">
+        <div class="bowl-figure reveal" id="bowlFigure">
+          <svg viewBox="0 0 460 460">
+            <!-- Plato/cuenco de cerámica -->
+            <ellipse class="bowl-base" cx="230" cy="240" rx="170" ry="150"/>
+            <ellipse class="bowl-inner" cx="230" cy="228" rx="128" ry="108"/>
+            <!-- Grietas doradas -->
+            <path class="bowl-crack" d="M 110 160 L 160 205 L 148 240 L 200 280 L 190 320 L 235 360"/>
+            <path class="bowl-crack c2" d="M 330 130 L 295 185 L 315 225 L 275 270 L 290 315"/>
+            <path class="bowl-crack c3" d="M 230 120 L 240 170 L 218 210"/>
+            <!-- Polvo de oro flotando -->
+            <circle class="bowl-dust" cx="120" cy="110" r="2.5"/>
+            <circle class="bowl-dust" cx="360" cy="90" r="2"/>
+            <circle class="bowl-dust" cx="395" cy="200" r="2.8"/>
+            <circle class="bowl-dust" cx="80" cy="300" r="2.2"/>
+          </svg>
+        </div>
+
+        <div class="story-text reveal">
+          <h3>Cada grieta, <em>sellada en oro</em></h3>
+          <p>
+            Nos conocimos hace nueve años, en la universidad. Desde entonces hemos vivido mudanzas, distancias, un año entero en países distintos y todos los pequeños quiebres que trae la vida real.
+          </p>
+          <p>
+            Nunca intentamos fingir que no pasaron. Hicimos lo contrario: los reparamos juntos, con paciencia, y cada uno nos dejó más unidos que antes.
+          </p>
+          <div class="story-highlight">
+            Como en el kintsugi, no escondemos las grietas. Las llenamos de oro.
+          </div>
+          <p class="story-sign">— 小百合 と 蓮蔵</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COUNTDOWN — azulejos con grietas
+       ============================================================ -->
+  <section class="countdown-wrap" id="countdown">
+    <div class="countdown-header reveal">
+      <div class="section-kanji">秒読み</div>
+      <h2 class="cd-title">La pieza se <em>completa</em></h2>
+    </div>
+
+    <div class="tiles reveal">
+      <div class="tile">
+        <svg class="tile-crack" viewBox="0 0 100 125" preserveAspectRatio="none">
+          <path d="M 12 0 L 28 32 L 20 55 L 42 85 L 36 125"/>
+        </svg>
+        <div class="tile-value" id="cd-days">00</div>
+        <div class="tile-label">Días</div>
+        <div class="tile-kanji">日</div>
+      </div>
+      <div class="tile">
+        <svg class="tile-crack" viewBox="0 0 100 125" preserveAspectRatio="none">
+          <path d="M 100 20 L 68 40 L 76 70 L 50 95 L 58 125"/>
+        </svg>
+        <div class="tile-value" id="cd-hours">00</div>
+        <div class="tile-label">Horas</div>
+        <div class="tile-kanji">時</div>
+      </div>
+      <div class="tile">
+        <svg class="tile-crack" viewBox="0 0 100 125" preserveAspectRatio="none">
+          <path d="M 0 60 L 30 52 L 45 78 L 78 70 L 100 90"/>
+        </svg>
+        <div class="tile-value" id="cd-mins">00</div>
+        <div class="tile-label">Minutos</div>
+        <div class="tile-kanji">分</div>
+      </div>
+      <div class="tile">
+        <svg class="tile-crack" viewBox="0 0 100 125" preserveAspectRatio="none">
+          <path d="M 60 0 L 44 30 L 62 55 L 38 82 L 52 110 L 40 125"/>
+        </svg>
+        <div class="tile-value" id="cd-secs">00</div>
+        <div class="tile-label">Segundos</div>
+        <div class="tile-kanji">秒</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HAIKU II
+       ============================================================ -->
+  <div class="haiku reveal">
+    <p class="haiku-text">
+      <span>Bajo el mismo sol,</span>
+      <span>dos caminos se cruzaron —</span>
+      <span>ahora son uno.</span>
+    </p>
+    <div class="haiku-mark"></div>
+  </div>
+
+  <!-- ============================================================
+       EVENTOS
+       ============================================================ -->
+  <section class="events" id="events">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kanji">式典</div>
+        <h2 class="section-title">Ceremonia y <em>celebración</em></h2>
+      </div>
+
+      <div class="events-grid">
+        <article class="ceramic-card reveal" data-crack>
+          <svg class="card-crack" viewBox="0 0 400 480" preserveAspectRatio="none">
+            <path d="M 60 0 L 95 70 L 78 130 L 120 210 L 100 290 L 140 380 L 125 480"/>
+          </svg>
+          <div class="cer-kanji">儀式 · 一</div>
+          <h3 class="cer-title">Ceremonia</h3>
+          <div class="cer-rows">
+            <div class="cer-row">
+              <div class="cer-row-label">Fecha</div>
+              <div class="cer-row-value">Sábado 14<small>Noviembre 2026</small></div>
+            </div>
+            <div class="cer-row">
+              <div class="cer-row-label">Hora</div>
+              <div class="cer-row-value">17:30 h<small>Puntualidad, por favor</small></div>
+            </div>
+            <div class="cer-row">
+              <div class="cer-row-label">Lugar</div>
+              <div class="cer-row-value">Parroquia Santa María Reina<small>San Isidro, Lima</small></div>
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=Parroquia+Santa+Maria+Reina+San+Isidro+Lima" target="_blank" rel="noopener" class="cer-cta">
+            Cómo llegar
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="ceramic-card reveal" data-crack>
+          <svg class="card-crack" viewBox="0 0 400 480" preserveAspectRatio="none">
+            <path d="M 400 60 L 330 100 L 350 170 L 290 240 L 315 320 L 260 400 L 280 480"/>
+          </svg>
+          <div class="cer-kanji">宴会 · 二</div>
+          <h3 class="cer-title">Recepción</h3>
+          <div class="cer-rows">
+            <div class="cer-row">
+              <div class="cer-row-label">Fecha</div>
+              <div class="cer-row-value">Sábado 14<small>Noviembre 2026</small></div>
+            </div>
+            <div class="cer-row">
+              <div class="cer-row-label">Hora</div>
+              <div class="cer-row-value">19:30 h<small>Hasta las 03:00</small></div>
+            </div>
+            <div class="cer-row">
+              <div class="cer-row-label">Lugar</div>
+              <div class="cer-row-value">Jardín del Olivar<small>San Isidro, Lima</small></div>
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=El+Olivar+San+Isidro+Lima" target="_blank" rel="noopener" class="cer-cta">
+            Cómo llegar
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ITINERARIO — camino de piedras
+       ============================================================ -->
+  <section class="itinerary" id="itinerary">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kanji">道のり</div>
+        <h2 class="section-title">El camino de <em>la noche</em></h2>
+        <p class="section-desc">Como un jardín japonés, la noche se recorre piedra a piedra, sin prisa.</p>
+      </div>
+
+      <div class="path-timeline" id="pathTimeline">
+        <div class="path-line" aria-hidden="true"></div>
+
+        <div class="stone">
+          <div class="stone-info stone-info-l">
+            <span class="jp">儀式</span>
+            <h4>Ceremonia religiosa</h4>
+            <p>Damos el sí ante Dios y nuestras familias.</p>
+          </div>
+          <div class="stone-mark">
+            <svg class="stone-shape" viewBox="0 0 84 74">
+              <path class="rock" d="M 14 40 Q 8 18 32 12 Q 58 4 72 24 Q 82 42 66 58 Q 44 72 24 62 Q 10 54 14 40 Z"/>
+              <path class="vein" d="M 26 20 L 40 36 L 34 50"/>
+            </svg>
+            <span class="stone-time">17:30</span>
+          </div>
+          <div></div>
+        </div>
+
+        <div class="stone">
+          <div></div>
+          <div class="stone-mark">
+            <svg class="stone-shape" viewBox="0 0 84 74">
+              <path class="rock" d="M 12 34 Q 14 12 38 10 Q 64 8 72 30 Q 78 50 58 62 Q 36 72 20 58 Q 8 46 12 34 Z"/>
+              <path class="vein" d="M 58 18 L 46 34 L 54 48"/>
+            </svg>
+            <span class="stone-time">19:30</span>
+          </div>
+          <div class="stone-info stone-info-r">
+            <span class="jp">乾杯</span>
+            <h4>Brindis de bienvenida</h4>
+            <p>Sake y pisco: dos tradiciones, un solo brindis.</p>
+          </div>
+        </div>
+
+        <div class="stone">
+          <div class="stone-info stone-info-l">
+            <span class="jp">晩餐</span>
+            <h4>Cena</h4>
+            <p>Menú nikkei de tres tiempos, preparado en casa.</p>
+          </div>
+          <div class="stone-mark">
+            <svg class="stone-shape" viewBox="0 0 84 74">
+              <path class="rock" d="M 16 44 Q 6 24 26 14 Q 50 2 68 20 Q 80 36 68 54 Q 52 70 30 64 Q 14 58 16 44 Z"/>
+              <path class="vein" d="M 30 24 L 42 40 L 36 56 M 42 40 L 56 46"/>
+            </svg>
+            <span class="stone-time">20:30</span>
+          </div>
+          <div></div>
+        </div>
+
+        <div class="stone">
+          <div></div>
+          <div class="stone-mark">
+            <svg class="stone-shape" viewBox="0 0 84 74">
+              <path class="rock" d="M 10 36 Q 12 14 36 10 Q 62 6 74 28 Q 80 48 62 60 Q 40 72 22 60 Q 6 50 10 36 Z"/>
+              <path class="vein" d="M 24 46 L 40 34 L 52 44 L 62 36"/>
+            </svg>
+            <span class="stone-time">22:30</span>
+          </div>
+          <div class="stone-info stone-info-r">
+            <span class="jp">初舞</span>
+            <h4>Primer baile</h4>
+            <p>El vals de los novios y la pista se abre para todos.</p>
+          </div>
+        </div>
+
+        <div class="stone">
+          <div class="stone-info stone-info-l">
+            <span class="jp">祭り</span>
+            <h4>Fiesta</h4>
+            <p>DJ set, hora loca y sorpresas hasta la madrugada.</p>
+          </div>
+          <div class="stone-mark">
+            <svg class="stone-shape" viewBox="0 0 84 74">
+              <path class="rock" d="M 14 38 Q 10 16 34 11 Q 60 6 71 26 Q 79 44 64 58 Q 42 71 24 61 Q 10 52 14 38 Z"/>
+              <path class="vein" d="M 34 18 L 44 34 L 38 48 L 48 60"/>
+            </svg>
+            <span class="stone-time">23:30</span>
+          </div>
+          <div></div>
+        </div>
+
+        <div class="stone">
+          <div></div>
+          <div class="stone-mark">
+            <svg class="stone-shape" viewBox="0 0 84 74">
+              <path class="rock" d="M 12 40 Q 10 16 36 12 Q 62 8 73 28 Q 81 46 63 59 Q 41 71 23 60 Q 8 51 12 40 Z"/>
+              <path class="vein" d="M 28 50 L 42 38 L 50 24"/>
+            </svg>
+            <span class="stone-time">03:00</span>
+          </div>
+          <div class="stone-info stone-info-r">
+            <span class="jp">感謝</span>
+            <h4>Despedida</h4>
+            <p>Nos vamos con gratitud. Arigatō por acompañarnos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALERÍA — shōji
+       ============================================================ -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kanji">思い出</div>
+        <h2 class="section-title">Detrás del <em>shōji</em></h2>
+        <p class="section-desc">Cada panel guarda un recuerdo. Acércate y déjalo abrirse.</p>
+      </div>
+
+      <div class="shoji-grid reveal">
+        <div class="shoji shoji-1">
+          <img class="shoji-photo" src="foto-shoji-1.png" alt="El primer viaje juntos, Kioto 2018">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">El primer viaje juntos</div>
+          <div class="shoji-caption"><span>N° 01</span><span>2018 · Kioto</span></div>
+        </div>
+        <div class="shoji shoji-2">
+          <img class="shoji-photo" src="foto-shoji-2.png" alt="Hanami, 2019">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">Hanami</div>
+          <div class="shoji-caption"><span>N° 02</span><span>2019</span></div>
+        </div>
+        <div class="shoji shoji-3">
+          <img class="shoji-photo" src="foto-shoji-3.png" alt="La propuesta, Cusco 2025">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">La propuesta</div>
+          <div class="shoji-caption"><span>N° 03</span><span>2025 · Cusco</span></div>
+        </div>
+        <div class="shoji shoji-4">
+          <img class="shoji-photo" src="foto-shoji-4.png" alt="El anillo, detalle">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">El anillo</div>
+          <div class="shoji-caption"><span>N° 04</span><span>Detalle</span></div>
+        </div>
+        <div class="shoji shoji-5">
+          <img class="shoji-photo" src="foto-shoji-5.png" alt="Familia, 2026">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">Familia</div>
+          <div class="shoji-caption"><span>N° 05</span><span>2026</span></div>
+        </div>
+        <div class="shoji shoji-6">
+          <img class="shoji-photo" src="foto-shoji-6.png" alt="La preboda">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">La preboda</div>
+          <div class="shoji-caption"><span>N° 06</span><span>Editorial</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HAIKU III
+       ============================================================ -->
+  <div class="haiku reveal">
+    <p class="haiku-text">
+      <span>Viste la calma:</span>
+      <span>tinta, tierra y matcha —</span>
+      <span>deja el oro al cielo.</span>
+    </p>
+    <div class="haiku-mark"></div>
+  </div>
+
+  <!-- ============================================================
+       DRESSCODE
+       ============================================================ -->
+  <section class="dresscode" id="dresscode">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kanji">装い</div>
+        <h2 class="section-title">Código de <em>vestimenta</em></h2>
+        <p class="section-desc">Formal. Elegimos una paleta serena, teñida como telas de tinta y tierra.</p>
+      </div>
+
+      <div class="ink-swatches reveal">
+        <div class="ink-chip ink-1">
+          <div class="ink-chip-color"></div>
+          <div class="ink-chip-info">
+            <div class="ink-chip-name">Sumi</div>
+            <div class="ink-chip-jp">墨 · Tinta</div>
+          </div>
+        </div>
+        <div class="ink-chip ink-2">
+          <div class="ink-chip-color"></div>
+          <div class="ink-chip-info">
+            <div class="ink-chip-name">Nezumi</div>
+            <div class="ink-chip-jp">鼠 · Gris ratón</div>
+          </div>
+        </div>
+        <div class="ink-chip ink-3">
+          <div class="ink-chip-color"></div>
+          <div class="ink-chip-info">
+            <div class="ink-chip-name">Matcha</div>
+            <div class="ink-chip-jp">抹茶 · Verde té</div>
+          </div>
+        </div>
+        <div class="ink-chip ink-4">
+          <div class="ink-chip-color"></div>
+          <div class="ink-chip-info">
+            <div class="ink-chip-name">Karashi</div>
+            <div class="ink-chip-jp">辛子 · Mostaza</div>
+          </div>
+        </div>
+        <div class="ink-chip ink-5">
+          <div class="ink-chip-color"></div>
+          <div class="ink-chip-info">
+            <div class="ink-chip-name">Tsuchi</div>
+            <div class="ink-chip-jp">土 · Tierra</div>
+          </div>
+        </div>
+        <div class="ink-chip ink-6">
+          <div class="ink-chip-color"></div>
+          <div class="ink-chip-info">
+            <div class="ink-chip-name">Kuri</div>
+            <div class="ink-chip-jp">栗 · Castaño</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dress-note reveal">
+        <h4>お願い · Nota</h4>
+        <p>«El blanco, el crema y el dorado están reservados para los novios.»</p>
+        <p>Damas: vestido largo o cocktail en tonos de la paleta. Caballeros: terno oscuro con corbata. Gracias por vestir la calma con nosotros.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RSVP — carta washi
+       ============================================================ -->
+  <section class="rsvp" id="rsvp">
+    <div class="rsvp-card reveal">
+      <div class="rsvp-hanko">出席</div>
+      <div class="rsvp-kanji">ご返答</div>
+      <h2 class="rsvp-title">Confirma tu <em>presencia</em></h2>
+      <p class="rsvp-desc">Por favor, responde antes del 20 de octubre de 2026. Cada confirmación es una pieza más de esta ceremonia.</p>
+
+      <form class="rsvp-form" id="rsvpForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvp-name">Nombre completo</label>
+            <input type="text" id="rsvp-name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="rsvp-phone">Teléfono</label>
+            <input type="tel" id="rsvp-phone" name="phone" required autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>¿Nos acompañarás?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="attend" value="Sí, con gusto" required>
+              <span class="radio-option-label">はい</span>
+              <span class="radio-option-desc">Sí, ahí estaré</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="attend" value="Lamentablemente no podré">
+              <span class="radio-option-label">いいえ</span>
+              <span class="radio-option-desc">No podré</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvp-guests">Acompañantes</label>
+            <select id="rsvp-guests" name="guests">
+              <option value="Solo yo">Solo yo</option>
+              <option value="+1 acompañante">+1 acompañante</option>
+              <option value="+2 acompañantes">+2 acompañantes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rsvp-menu">Preferencia de menú</label>
+            <select id="rsvp-menu" name="menu">
+              <option value="Nikkei estándar">Nikkei estándar</option>
+              <option value="Vegetariano">Vegetariano</option>
+              <option value="Vegano">Vegano</option>
+              <option value="Sin gluten">Sin gluten</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rsvp-message">Mensaje para los novios (opcional)</label>
+          <textarea id="rsvp-message" name="message" rows="2"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Enviar confirmación</button>
+      </form>
+
+      <div class="rsvp-success" id="rsvpSuccess">
+        <div class="success-stamp">出席</div>
+        <h3>ありがとう</h3>
+        <p>Gracias. Recibimos tu confirmación.<br>Ahora se abrirá WhatsApp para dejarla registrada de inmediato.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <svg class="footer-enso" viewBox="0 0 90 90">
+      <path d="M 58 13 A 35 35 0 1 0 71 27"/>
+      <path class="fcrack" d="M 26 20 L 36 34 L 31 44 L 43 58 L 40 70"/>
+    </svg>
+    <div class="footer-names">Sayuri &amp; Renzo</div>
+    <div class="footer-date">Lima · 14 · 11 · 2026 · 金継ぎ</div>
+
+    <div class="footer-actions">
+      <button class="footer-btn" id="btnShare">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/>
+        </svg>
+        Compartir
+      </button>
+      <button class="footer-btn" id="btnCalendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Al calendario
+      </button>
+      <a href="https://wa.me/51943168115?text=Hola%20Nuestra%20Boda%2C%20me%20encant%C3%B3%20el%20modelo%20Kintsugi" target="_blank" rel="noopener" class="footer-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.5 14.4c-.3-.15-1.8-.9-2.1-1-.3-.1-.5-.15-.7.15-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.05-.3-.15-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.15-.6.15-.15.3-.4.4-.6.15-.2.2-.35.3-.55.1-.2.05-.4-.05-.55-.1-.15-.7-1.7-1-2.3-.25-.6-.5-.5-.7-.5h-.6c-.2 0-.55.1-.85.4-.3.3-1.1 1.1-1.1 2.7 0 1.6 1.15 3.1 1.3 3.3.15.2 2.25 3.4 5.4 4.75.75.35 1.35.5 1.8.65.75.25 1.45.2 2 .15.6-.1 1.85-.75 2.1-1.5.25-.7.25-1.35.2-1.5-.05-.15-.25-.25-.55-.4z"/>
+          <path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.65 1.4 5.15L2 22l4.95-1.35C8.4 21.5 10.15 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-signature">
+      Diseñado por <a href="https://nuestraboda.com.pe" target="_blank" rel="noopener">Nuestra Boda</a> · Modelo Kintsugi · Nº 11
+    </div>
+  </footer>
+
+  <!-- Audio -->
+  <button class="audio-toggle" id="audioToggle" aria-label="Reproducir música">
+    <svg id="audioIconPlay" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M8 5v14l11-7z"/>
+    </svg>
+    <svg id="audioIconPause" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+      <rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>
+    </svg>
+  </button>
+  <audio id="audioPlayer" loop preload="none">
+    <source src="" type="audio/mpeg">
+  </audio>
+
+  <canvas id="confetti"></canvas>
+
+  <noscript>
+    <div style="padding:40px;text-align:center;background:#f5f0e6;color:#1c1a17">
+      Esta invitación funciona mejor con JavaScript activado. Por favor, habilítalo para ver la experiencia completa.
+    </div>
+  </noscript>
+
+  <script>
+  (function(){
+    'use strict';
+
+    // ============================================================
+    // CONFIG
+    // ============================================================
+    const CONFIG = {
+      weddingDate: new Date('2026-11-14T17:30:00-05:00'),
+      brideWhatsapp: '51943168115', // ← Reemplazar con el número real de la novia
+      brideName: 'Sayuri',
+      groomName: 'Renzo',
+      ceremony: 'Parroquia Santa María Reina, San Isidro',
+      reception: 'Jardín del Olivar, San Isidro'
+    };
+
+    // ============================================================
+    // PRELOADER
+    // ============================================================
+    window.addEventListener('load', function(){
+      setTimeout(function(){
+        const p = document.getElementById('preloader');
+        if (p) p.classList.add('done');
+      }, 2900);
+    });
+
+    // ============================================================
+    // NAV
+    // ============================================================
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }, { passive: true });
+
+    // ============================================================
+    // MENU
+    // ============================================================
+    const menu = document.getElementById('menu');
+    document.getElementById('menuOpen').addEventListener('click', function(){
+      menu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('menuClose').addEventListener('click', function(){
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    document.querySelectorAll('[data-close]').forEach(function(a){
+      a.addEventListener('click', function(){
+        menu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ============================================================
+    // COUNTDOWN
+    // ============================================================
+    const cd = {
+      d: document.getElementById('cd-days'),
+      h: document.getElementById('cd-hours'),
+      m: document.getElementById('cd-mins'),
+      s: document.getElementById('cd-secs')
+    };
+    function pad(n){ return String(n).padStart(2, '0'); }
+    function updateCountdown(){
+      const now = new Date();
+      const diff = CONFIG.weddingDate - now;
+      if (diff <= 0){
+        cd.d.textContent = '00'; cd.h.textContent = '00';
+        cd.m.textContent = '00'; cd.s.textContent = '00';
+        return;
+      }
+      cd.d.textContent = pad(Math.floor(diff / 86400000));
+      cd.h.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      cd.m.textContent = pad(Math.floor((diff % 3600000) / 60000));
+      cd.s.textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ============================================================
+    // SCROLL REVEAL
+    // ============================================================
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .14, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal, #bowlFigure, #pathTimeline, .ceramic-card').forEach(function(el){
+      io.observe(el);
+    });
+
+    // ============================================================
+    // RADIO GROUP
+    // ============================================================
+    document.querySelectorAll('.radio-group').forEach(function(group){
+      group.addEventListener('change', function(){
+        group.querySelectorAll('.radio-option').forEach(function(opt){
+          const input = opt.querySelector('input');
+          if (input && input.checked) opt.classList.add('checked');
+          else opt.classList.remove('checked');
+        });
+      });
+    });
+
+    // ============================================================
+    // RSVP FORM → WhatsApp
+    // ============================================================
+    const form = document.getElementById('rsvpForm');
+    const success = document.getElementById('rsvpSuccess');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const fd = new FormData(form);
+      const data = {
+        name: fd.get('name'),
+        phone: fd.get('phone'),
+        attend: fd.get('attend'),
+        guests: fd.get('guests'),
+        menu: fd.get('menu'),
+        message: fd.get('message') || '—'
+      };
+
+      const msg =
+        '*Confirmación de asistencia*\n' +
+        '_Boda de ' + CONFIG.brideName + ' & ' + CONFIG.groomName + '_\n' +
+        '\n' +
+        '*Nombre:* ' + data.name + '\n' +
+        '*Teléfono:* ' + data.phone + '\n' +
+        '*¿Asistirá?:* ' + data.attend + '\n' +
+        '*Acompañantes:* ' + data.guests + '\n' +
+        '*Menú:* ' + data.menu + '\n' +
+        '*Mensaje:* ' + data.message;
+
+      const url = 'https://wa.me/' + CONFIG.brideWhatsapp + '?text=' + encodeURIComponent(msg);
+
+      form.style.display = 'none';
+      success.classList.add('show');
+
+      launchGoldDust();
+
+      setTimeout(function(){
+        window.open(url, '_blank');
+      }, 1100);
+
+      // OPCIONAL: fetch a Google Sheets webhook
+      // fetch('TU_ENDPOINT', { method: 'POST', body: JSON.stringify(data) });
+    });
+
+    // ============================================================
+    // GOLD DUST — polvo de oro cayendo lentamente
+    // ============================================================
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let dust = [];
+    let dustActive = false;
+
+    function resizeCanvas(){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function launchGoldDust(){
+      const golds = ['#b8923e', '#d4af5c', '#e5c67a', '#96742c'];
+      for (let i = 0; i < 160; i++){
+        dust.push({
+          x: Math.random() * canvas.width,
+          y: -10 - Math.random() * canvas.height * .5,
+          r: .8 + Math.random() * 2.2,
+          vy: .4 + Math.random() * .9,          // caída lenta, como polvo real
+          vx: -.3 + Math.random() * .6,
+          drift: Math.random() * Math.PI * 2,   // oscilación lateral
+          driftSpeed: .01 + Math.random() * .02,
+          alpha: .5 + Math.random() * .5,
+          color: golds[Math.floor(Math.random() * golds.length)]
+        });
+      }
+      if (!dustActive){
+        dustActive = true;
+        requestAnimationFrame(animateDust);
+      }
+    }
+
+    function animateDust(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      dust = dust.filter(function(p){
+        p.drift += p.driftSpeed;
+        p.x += p.vx + Math.sin(p.drift) * .4;
+        p.y += p.vy;
+        // Brillo tenue
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 2.4, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.alpha * .12;
+        ctx.fill();
+        // Núcleo
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.alpha;
+        ctx.fill();
+        return p.y < canvas.height + 10;
+      });
+      ctx.globalAlpha = 1;
+      if (dust.length > 0){
+        requestAnimationFrame(animateDust);
+      } else {
+        dustActive = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    // ============================================================
+    // AUDIO
+    // ============================================================
+    const audio = document.getElementById('audioPlayer');
+    const audioBtn = document.getElementById('audioToggle');
+    const iconPlay = document.getElementById('audioIconPlay');
+    const iconPause = document.getElementById('audioIconPause');
+
+    audioBtn.addEventListener('click', function(){
+      if (!audio.currentSrc && !audio.querySelector('source').src){
+        alert('El audio ambiente aún no está configurado. Agrega el src del MP3 en el <source> del audio.');
+        return;
+      }
+      if (audio.paused){
+        audio.play().catch(function(){});
+        iconPlay.style.display = 'none';
+        iconPause.style.display = '';
+      } else {
+        audio.pause();
+        iconPlay.style.display = '';
+        iconPause.style.display = 'none';
+      }
+    });
+
+    // ============================================================
+    // SHARE
+    // ============================================================
+    document.getElementById('btnShare').addEventListener('click', async function(){
+      const shareData = {
+        title: CONFIG.brideName + ' & ' + CONFIG.groomName,
+        text: 'Estás invitado a nuestra boda — 14 de noviembre de 2026',
+        url: window.location.href
+      };
+      if (navigator.share){
+        try { await navigator.share(shareData); } catch(e){}
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          alert('Enlace copiado al portapapeles ✨');
+        } catch(e){
+          prompt('Copia este enlace:', window.location.href);
+        }
+      }
+    });
+
+    // ============================================================
+    // CALENDAR .ics
+    // ============================================================
+    document.getElementById('btnCalendar').addEventListener('click', function(){
+      const start = '20261114T173000';
+      const end = '20261115T030000';
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Nuestra Boda//Modelo Kintsugi//ES',
+        'BEGIN:VEVENT',
+        'UID:' + Date.now() + '@nuestraboda.com.pe',
+        'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z',
+        'DTSTART;TZID=America/Lima:' + start,
+        'DTEND;TZID=America/Lima:' + end,
+        'SUMMARY:Boda de ' + CONFIG.brideName + ' & ' + CONFIG.groomName,
+        'DESCRIPTION:Ceremonia en ' + CONFIG.ceremony + '. Recepción en ' + CONFIG.reception + '.',
+        'LOCATION:' + CONFIG.ceremony,
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'boda-sayuri-renzo.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    // ============================================================
+    // IMG ERROR HANDLING
+    // ============================================================
+    document.querySelectorAll('img').forEach(function(img){
+      img.addEventListener('error', function(){ img.style.display = 'none'; });
+    });
+
+  })();
+  </script>
+</body>
+</html>

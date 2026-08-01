@@ -1066,21 +1066,37 @@
   }
   /* Al hover, el panel se "abre" — la retícula se desvanece y la luz entra */
   .shoji:hover::before { opacity: .25; }
-  .shoji-placeholder {
+  /* Foto real dentro del panel, con duotono wabi-sabi (sepia + oro tenue) */
+  .shoji-photo {
     position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--sumi-mist);
-    font-family: var(--font-sans);
-    font-weight: 300;
-    font-size: 10px;
-    letter-spacing: .35em;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 22px;
-    background: linear-gradient(140deg, #faf6ec, var(--washi-deep));
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) sepia(.18) contrast(1.08) brightness(1.02);
+    z-index: 0;
     transition: transform .7s var(--ease-zen);
   }
-  .shoji:hover .shoji-placeholder { transform: scale(1.04); }
+  .shoji:hover .shoji-photo { transform: scale(1.04); }
+  .shoji-photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(140deg, rgba(184,146,62,.22), rgba(28,26,23,.28));
+    mix-blend-mode: color;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .shoji-placeholder {
+    position: absolute; top: 14px; left: 14px; right: 14px;
+    z-index: 3;
+    background: rgba(245,240,230,.82);
+    color: var(--sumi-faint);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 8px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 5px 9px;
+    width: fit-content;
+  }
   .shoji-caption {
     position: absolute; bottom: 0; left: 0; right: 0;
     padding: 12px 14px;
@@ -2021,27 +2037,39 @@
 
       <div class="shoji-grid reveal">
         <div class="shoji shoji-1">
-          <div class="shoji-placeholder">Foto 01 · El primer viaje juntos</div>
+          <img class="shoji-photo" src="foto-shoji-1.png" alt="El primer viaje juntos, Kioto 2018">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">El primer viaje juntos</div>
           <div class="shoji-caption"><span>N° 01</span><span>2018 · Kioto</span></div>
         </div>
         <div class="shoji shoji-2">
-          <div class="shoji-placeholder">Foto 02 · Hanami</div>
+          <img class="shoji-photo" src="foto-shoji-2.png" alt="Hanami, 2019">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">Hanami</div>
           <div class="shoji-caption"><span>N° 02</span><span>2019</span></div>
         </div>
         <div class="shoji shoji-3">
-          <div class="shoji-placeholder">Foto 03 · La propuesta</div>
+          <img class="shoji-photo" src="foto-shoji-3.png" alt="La propuesta, Cusco 2025">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">La propuesta</div>
           <div class="shoji-caption"><span>N° 03</span><span>2025 · Cusco</span></div>
         </div>
         <div class="shoji shoji-4">
-          <div class="shoji-placeholder">Foto 04 · El anillo</div>
+          <img class="shoji-photo" src="foto-shoji-4.png" alt="El anillo, detalle">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">El anillo</div>
           <div class="shoji-caption"><span>N° 04</span><span>Detalle</span></div>
         </div>
         <div class="shoji shoji-5">
-          <div class="shoji-placeholder">Foto 05 · Familia</div>
+          <img class="shoji-photo" src="foto-shoji-5.png" alt="Familia, 2026">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">Familia</div>
           <div class="shoji-caption"><span>N° 05</span><span>2026</span></div>
         </div>
         <div class="shoji shoji-6">
-          <div class="shoji-placeholder">Foto 06 · La preboda</div>
+          <img class="shoji-photo" src="foto-shoji-6.png" alt="La preboda">
+          <div class="shoji-photo-overlay"></div>
+          <div class="shoji-placeholder">La preboda</div>
           <div class="shoji-caption"><span>N° 06</span><span>Editorial</span></div>
         </div>
       </div>

@@ -837,17 +837,33 @@
     transform: rotate(-8deg);
     z-index: 3;
   }
-  .press-placeholder {
+  /* Foto real dentro del tile, con duotono sunset (mismo tratamiento que el resto del catálogo) */
+  .press-photo {
     position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--ink-soft), var(--ink));
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.15) brightness(.95);
+    z-index: 0;
+  }
+  .press-photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,107,53,.4), rgba(224,34,126,.3));
+    mix-blend-mode: color;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .press-placeholder {
+    position: absolute; top: 22px; left: 14px; right: 14px;
+    z-index: 2;
+    background: rgba(21,8,7,.72);
     color: var(--smoke);
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: .3em;
+    font-size: 8px;
+    letter-spacing: .2em;
     text-transform: uppercase;
-    text-align: center;
-    padding: 20px;
+    text-align: left;
+    padding: 5px 9px;
+    width: fit-content;
   }
   .press-caption {
     position: absolute; bottom: 0; left: 0; right: 0;
@@ -1621,27 +1637,39 @@
 
       <div class="press-grid reveal">
         <div class="press press-1">
-          <div class="press-placeholder">Foto 01 · El primer show juntos</div>
+          <img class="press-photo" src="foto-press-1.png" alt="El primer show juntos, 2019">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">El primer show juntos</div>
           <div class="press-caption"><span>N° 01</span><span>2019 · Gira</span></div>
         </div>
         <div class="press press-2">
-          <div class="press-placeholder">Foto 02 · Backstage</div>
+          <img class="press-photo" src="foto-press-2.png" alt="Backstage, 2021">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">Backstage</div>
           <div class="press-caption"><span>N° 02</span><span>2021</span></div>
         </div>
         <div class="press press-3">
-          <div class="press-placeholder">Foto 03 · La propuesta</div>
+          <img class="press-photo" src="foto-press-3.png" alt="La propuesta, 2025">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">La propuesta</div>
           <div class="press-caption"><span>N° 03</span><span>2025 · Concierto</span></div>
         </div>
         <div class="press press-4">
-          <div class="press-placeholder">Foto 04 · Anillo</div>
+          <img class="press-photo" src="foto-press-4.png" alt="Anillo, detalle">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">Anillo</div>
           <div class="press-caption"><span>N° 04</span><span>Detalle</span></div>
         </div>
         <div class="press press-5">
-          <div class="press-placeholder">Foto 05 · Ensayo general</div>
+          <img class="press-photo" src="foto-press-5.png" alt="Ensayo general, 2026">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">Ensayo general</div>
           <div class="press-caption"><span>N° 05</span><span>2026</span></div>
         </div>
         <div class="press press-6">
-          <div class="press-placeholder">Foto 06 · La preboda</div>
+          <img class="press-photo" src="foto-press-6.png" alt="La preboda">
+          <div class="press-photo-overlay"></div>
+          <div class="press-placeholder">La preboda</div>
           <div class="press-caption"><span>N° 06</span><span>Editorial</span></div>
         </div>
       </div>

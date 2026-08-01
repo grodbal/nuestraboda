@@ -64,6 +64,54 @@ window.SITE_MODELS = [
     motif: 3
   },
   {
+    href: "../antonella&maxi/",
+    
+    category: "Editorial revista",
+    description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
+    palette: ["#1a1921", "#664751", "#ffffff"],
+    motif: 1
+  },
+  {
+    href: "../ariana&diego/",
+    
+    category: "Editorial revista",
+    description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
+    palette: ["#1a1921", "#664751", "#ffffff"],
+    motif: 8
+  },
+  {
+    href: "../camila&bruno/",
+    
+    category: "Editorial revista",
+    description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
+    palette: ["#1a1921", "#664751", "#ffffff"],
+    motif: 5
+  },
+  {
+    href: "../fernanda&nicolas/",
+    
+    category: "Editorial revista",
+    description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
+    palette: ["#1a1921", "#664751", "#ffffff"],
+    motif: 4
+  },
+  {
+    href: "../macarena&antonio/",
+    
+    category: "Editorial revista",
+    description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
+    palette: ["#1a1921", "#664751", "#ffffff"],
+    motif: 6
+  },
+  {
+    href: "../sayuri&renzo/",
+    
+    category: "Editorial revista",
+    description: "Contrastes oscuros, detalles de lujo y una experiencia visual envolvente.",
+    palette: ["#1a1921", "#664751", "#ffffff"],
+    motif: 7
+  },
+  {
     href: "../antuaneth&alonso/",
     
     category: "Romance nocturno",

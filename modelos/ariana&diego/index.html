@@ -1,0 +1,2080 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11458174849"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'AW-11458174849');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Ariana & Diego — DROP 001. 21 de agosto de 2027, Lima. Una invitación por Nuestra Boda.">
+  <title>Ariana & Diego — DROP 001 | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+  /* ============================================================
+     MODELO 13 — "STREETWEAR / DROP CULTURE"
+     Concepto: la boda como el lanzamiento de una colección
+     límite. Hangtag hero, tipografía Archivo Black masthead,
+     paleta blanco/negro con un solo acento flúor (lima), barcode
+     funcional-decorativo, countdown de stock, itinerario como
+     tracking de pedido, y RSVP como checkout con recibo final.
+     ============================================================ */
+
+  :root {
+    --black:           #0a0a0a;
+    --black-soft:       #141414;
+    --black-card:       #1c1c1c;
+    --white:            #f5f5f0;
+    --white-dim:        #d8d8d0;
+    --grey:              #8a8a82;
+    --grey-line:          #2a2a2a;
+
+    --lime:              #ccff00;
+    --lime-dim:           #a3cc00;
+    --orange:             #ff5900;
+
+    --font-display:      'Archivo Black', 'Helvetica Neue', sans-serif;
+    --font-body:          'Inter', system-ui, sans-serif;
+    --font-mono:          'JetBrains Mono', ui-monospace, monospace;
+
+    --ease:              cubic-bezier(.65,0,.2,1);
+    --ease-pop:          cubic-bezier(.2,1.6,.3,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--black);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  ::selection { background: var(--lime); color: var(--black); }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--lime); border-radius: 0; }
+
+  /* ============================================================
+     PRELOADER — barcode escaneando
+     ============================================================ */
+  #preloader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--black);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 24px;
+    transition: opacity .7s var(--ease), visibility .7s var(--ease);
+  }
+  #preloader.done { opacity: 0; visibility: hidden; }
+
+  .pre-barcode {
+    display: flex; gap: 3px; align-items: flex-end;
+    height: 60px;
+  }
+  .pre-barcode span {
+    display: block;
+    width: 4px;
+    background: var(--white);
+    animation: barBounce 1s ease-in-out infinite;
+  }
+  .pre-barcode span:nth-child(odd) { background: var(--lime); }
+  .pre-barcode span:nth-child(1) { height: 60%; animation-delay: 0s; }
+  .pre-barcode span:nth-child(2) { height: 100%; animation-delay: .07s; }
+  .pre-barcode span:nth-child(3) { height: 40%; animation-delay: .14s; }
+  .pre-barcode span:nth-child(4) { height: 85%; animation-delay: .21s; }
+  .pre-barcode span:nth-child(5) { height: 55%; animation-delay: .28s; }
+  .pre-barcode span:nth-child(6) { height: 95%; animation-delay: .35s; }
+  .pre-barcode span:nth-child(7) { height: 30%; animation-delay: .42s; }
+  .pre-barcode span:nth-child(8) { height: 75%; animation-delay: .49s; }
+  .pre-barcode span:nth-child(9) { height: 50%; animation-delay: .56s; }
+  .pre-barcode span:nth-child(10) { height: 90%; animation-delay: .63s; }
+  .pre-barcode span:nth-child(11) { height: 45%; animation-delay: .7s; }
+  .pre-barcode span:nth-child(12) { height: 65%; animation-delay: .77s; }
+  @keyframes barBounce {
+    0%, 100% { transform: scaleY(1); opacity: .5; }
+    50% { transform: scaleY(1.3); opacity: 1; }
+  }
+  .pre-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  .pre-label span { color: var(--lime); }
+
+  /* ============================================================
+     NAV
+     ============================================================ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background .4s var(--ease), padding .4s var(--ease), border-color .4s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(10,10,10,.9);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 13px 32px;
+    border-bottom-color: var(--grey-line);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: .02em;
+    color: var(--white);
+    display: flex; align-items: baseline; gap: 4px;
+  }
+  .nav-logo sup {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--lime);
+  }
+  .nav-toggle {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--grey-line);
+    color: var(--white);
+    transition: all .3s var(--ease);
+  }
+  .nav-toggle:hover { border-color: var(--lime); color: var(--lime); }
+  .nav-toggle svg { width: 16px; height: 16px; }
+
+  /* Menú fullscreen */
+  .menu {
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--black);
+    display: flex; align-items: center; justify-content: center;
+    clip-path: circle(0% at calc(100% - 46px) 46px);
+    transition: clip-path .75s var(--ease-pop);
+    pointer-events: none;
+  }
+  .menu.open { clip-path: circle(150% at calc(100% - 46px) 46px); pointer-events: auto; }
+  .menu-close {
+    position: absolute; top: 20px; right: 32px;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--lime);
+    color: var(--lime);
+  }
+  .menu-close svg { width: 14px; height: 14px; }
+  .menu-list { list-style: none; text-align: center; display: flex; flex-direction: column; gap: 10px; }
+  .menu-list li {
+    opacity: 0; transform: translateY(26px);
+    transition: opacity .5s var(--ease), transform .5s var(--ease);
+  }
+  .menu.open .menu-list li { opacity: 1; transform: translateY(0); }
+  .menu.open .menu-list li:nth-child(1) { transition-delay: .25s; }
+  .menu.open .menu-list li:nth-child(2) { transition-delay: .3s; }
+  .menu.open .menu-list li:nth-child(3) { transition-delay: .35s; }
+  .menu.open .menu-list li:nth-child(4) { transition-delay: .4s; }
+  .menu.open .menu-list li:nth-child(5) { transition-delay: .45s; }
+  .menu.open .menu-list li:nth-child(6) { transition-delay: .5s; }
+  .menu.open .menu-list li:nth-child(7) { transition-delay: .55s; }
+  .menu-list a {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 6vw, 54px);
+    color: var(--white);
+    transition: color .3s var(--ease);
+  }
+  .menu-list a:hover { color: var(--lime); }
+  .menu-footer {
+    position: absolute; bottom: 30px; left: 0; right: 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  /* ============================================================
+     HERO — hangtag
+     ============================================================ */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    padding: 110px 24px 80px;
+  }
+  /* Textura de retícula industrial de fondo */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(245,245,240,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,245,240,.03) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 60vw; height: 60vw;
+    max-width: 700px; max-height: 700px;
+    background: radial-gradient(circle, rgba(204,255,0,.08), transparent 65%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    text-align: center;
+    max-width: 980px;
+    width: 100%;
+  }
+
+  .hero-tag-top {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 18px;
+    background: var(--lime);
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: rise .8s var(--ease) .25s forwards;
+  }
+  .hero-tag-top::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--black);
+    animation: blink 1.4s ease-in-out infinite;
+  }
+  @keyframes blink { 50% { opacity: .2; } }
+
+  .hero-names {
+    font-family: var(--font-display);
+    font-size: clamp(58px, 12vw, 156px);
+    line-height: .92;
+    letter-spacing: -.01em;
+    color: var(--white);
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: rise 1s var(--ease) .4s forwards;
+  }
+  .hero-names .x {
+    color: var(--lime);
+    display: inline-block;
+    transform: rotate(0deg);
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tagline {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: clamp(15px, 1.8vw, 18px);
+    color: var(--white-dim);
+    max-width: 480px;
+    margin: 22px auto 44px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: rise 1s var(--ease) .6s forwards;
+  }
+
+  /* Hangtag real — como etiqueta de ropa colgando */
+  .hangtag {
+    display: inline-block;
+    position: relative;
+    background: var(--white);
+    color: var(--black);
+    padding: 26px 32px 22px;
+    text-align: left;
+    max-width: 320px;
+    box-shadow: 0 30px 60px -18px rgba(0,0,0,.6);
+    opacity: 0;
+    animation: rise 1s var(--ease) .85s forwards;
+  }
+  /* Orificio del hangtag + hilo */
+  .hangtag::before {
+    content: '';
+    position: absolute; top: -34px; left: 50%;
+    transform: translateX(-50%);
+    width: 1.5px; height: 34px;
+    background: repeating-linear-gradient(to bottom, var(--grey) 0 4px, transparent 4px 6px);
+  }
+  .hangtag::after {
+    content: '';
+    position: absolute; top: 10px; left: 50%;
+    transform: translateX(-50%);
+    width: 12px; height: 12px;
+    border: 2px solid var(--black);
+    border-radius: 50%;
+    background: var(--white);
+  }
+  .hangtag-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 7px 0;
+    border-bottom: 1px dashed rgba(10,10,10,.2);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+  .hangtag-row:first-of-type { margin-top: 0; }
+  .hangtag-row:last-child { border-bottom: 0; }
+  .hangtag-row span:first-child { color: var(--grey); }
+  .hangtag-row span:last-child { color: var(--black); font-weight: 700; }
+  .hangtag-price {
+    text-align: center;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 2px solid var(--black);
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: .01em;
+  }
+  .hangtag-price span { color: var(--lime-dim); }
+
+  .hero-scroll {
+    position: absolute; bottom: 26px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .5em;
+    text-transform: uppercase;
+    color: var(--grey);
+    opacity: 0;
+    animation: rise 1s var(--ease) 1.2s forwards;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--lime), transparent);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-scroll-line::after {
+    content: '';
+    position: absolute; top: -16px; left: 0;
+    width: 100%; height: 16px;
+    background: var(--lime);
+    animation: scrollDrop 2s ease-in-out infinite;
+  }
+  @keyframes scrollDrop { to { top: 40px; } }
+
+  /* ============================================================
+     MARQUEE
+     ============================================================ */
+  .marquee {
+    background: var(--lime);
+    color: var(--black);
+    padding: 16px 0;
+    overflow: hidden;
+  }
+  .marquee-track {
+    display: flex; gap: 46px;
+    animation: marquee 26s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-track span {
+    font-family: var(--font-display);
+    font-size: 16px;
+    letter-spacing: .04em;
+    display: inline-flex; align-items: center; gap: 46px;
+  }
+  .marquee-track span::after { content: '●'; font-size: 8px; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* ============================================================
+     SECCIONES — base
+     ============================================================ */
+  section { position: relative; }
+  .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 110px 32px; }
+
+  .section-header { text-align: center; margin-bottom: 64px; }
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 18px;
+  }
+  .section-eyebrow::before { content: '//'; }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 1;
+    letter-spacing: -.01em;
+    color: var(--white);
+  }
+  .section-title em {
+    font-style: normal;
+    color: var(--lime);
+  }
+  .section-desc {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--white-dim);
+    max-width: 520px;
+    margin: 20px auto 0;
+    line-height: 1.7;
+  }
+
+  /* ============================================================
+     HISTORIA — product description
+     ============================================================ */
+  .story { background: var(--black-soft); }
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .story-visual {
+    background: var(--black-card);
+    border: 1px solid var(--grey-line);
+    padding: 32px;
+    position: relative;
+  }
+  .story-visual::before {
+    content: 'PRODUCT PHOTO';
+    position: absolute; top: 12px; left: 16px;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .3em;
+    color: var(--grey);
+  }
+  .story-visual svg { width: 100%; height: auto; margin-top: 20px; }
+  .story-visual svg path,
+  .story-visual svg line {
+    stroke: var(--white-dim);
+    stroke-width: 1;
+    fill: none;
+    stroke-linecap: round;
+  }
+  .story-visual svg .accent { stroke: var(--lime); }
+
+  .story-specs {
+    margin-top: 24px;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .story-spec-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-top: 1px solid var(--grey-line);
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .story-spec-row span:first-child { color: var(--grey); text-transform: uppercase; letter-spacing: .15em; }
+  .story-spec-row span:last-child { color: var(--white); }
+
+  .story-text h3 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 22px;
+  }
+  .story-text h3 em { font-style: normal; color: var(--lime); }
+  .story-text p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--white-dim);
+    margin-bottom: 18px;
+    line-height: 1.8;
+  }
+  .story-bullets {
+    margin: 26px 0;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .story-bullet {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--white);
+  }
+  .story-bullet::before {
+    content: '';
+    flex-shrink: 0;
+    width: 6px; height: 6px;
+    background: var(--lime);
+    margin-top: 7px;
+  }
+  .story-sign {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: .1em;
+    color: var(--lime);
+    margin-top: 20px;
+  }
+
+  /* ============================================================
+     COUNTDOWN — stock bar
+     ============================================================ */
+  .countdown-wrap { padding: 110px 32px; }
+  .countdown-header { text-align: center; margin-bottom: 56px; }
+
+  .drop-panel {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--black-card);
+    border: 1px solid var(--grey-line);
+    padding: 44px 40px;
+  }
+  .stock-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  .stock-row span:last-child { color: var(--lime); }
+  .stock-bar {
+    height: 6px;
+    background: var(--grey-line);
+    margin-bottom: 40px;
+    overflow: hidden;
+    position: relative;
+  }
+  .stock-bar-fill {
+    height: 100%;
+    width: 92%;
+    background: linear-gradient(90deg, var(--lime-dim), var(--lime));
+    animation: stockPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes stockPulse { 50% { opacity: .75; } }
+
+  .drop-values {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .drop-unit { text-align: center; position: relative; }
+  .drop-unit:not(:last-child)::after {
+    content: '';
+    position: absolute; top: 15%; right: 0;
+    width: 1px; height: 70%;
+    background: var(--grey-line);
+  }
+  .drop-value {
+    font-family: var(--font-display);
+    font-size: clamp(42px, 7vw, 68px);
+    line-height: 1;
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+  }
+  .drop-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-top: 10px;
+  }
+
+  /* ============================================================
+     EVENTOS — product cards
+     ============================================================ */
+  .events { background: var(--black-soft); }
+  .events-grid {
+    max-width: 1080px;
+    margin: 60px auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+  .product-card {
+    background: var(--black);
+    border: 1px solid var(--grey-line);
+    position: relative;
+    overflow: hidden;
+    transition: border-color .4s var(--ease), transform .4s var(--ease);
+  }
+  .product-card:hover { transform: translateY(-6px); border-color: var(--lime); }
+  .product-media {
+    aspect-ratio: 4/3;
+    background:
+      linear-gradient(135deg, var(--black-card), var(--black-soft));
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--grey-line);
+  }
+  .product-media::before {
+    content: '';
+    position: absolute; inset: 16px;
+    border: 1px dashed var(--grey-line);
+    z-index: 2;
+    pointer-events: none;
+  }
+  /* Foto real dentro del product-media, con duotono streetwear */
+  .product-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.15) brightness(.92);
+    z-index: 0;
+  }
+  .product-photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(204,255,0,.16), rgba(10,10,10,.5));
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .product-media-label {
+    position: absolute;
+    left: 16px; right: 16px; bottom: 16px;
+    z-index: 2;
+    background: rgba(10,10,10,.72);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--grey);
+    text-align: left;
+    padding: 8px 10px;
+  }
+  .product-badge {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--lime);
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    z-index: 2;
+  }
+  .product-body { padding: 30px 28px 28px; }
+  .product-sku {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .2em;
+    color: var(--grey);
+    margin-bottom: 10px;
+  }
+  .product-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.6vw, 38px);
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 22px;
+  }
+  .product-rows { border-top: 1px solid var(--grey-line); padding-top: 18px; margin-bottom: 24px; display: flex; flex-direction: column; gap: 14px; }
+  .product-row { display: grid; grid-template-columns: 80px 1fr; gap: 14px; }
+  .product-row-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--grey);
+    padding-top: 3px;
+  }
+  .product-row-value {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--white);
+  }
+  .product-row-value small {
+    display: block;
+    font-weight: 400;
+    font-size: 12.5px;
+    color: var(--white-dim);
+    margin-top: 2px;
+  }
+  .product-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%;
+    padding: 14px 20px;
+    background: var(--lime);
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    transition: background .3s var(--ease);
+  }
+  .product-cta:hover { background: var(--white); }
+  .product-cta svg { width: 13px; height: 13px; }
+
+  /* ============================================================
+     ITINERARIO — tracking de pedido
+     ============================================================ */
+  .tracking { padding: 110px 32px 130px; }
+  .tracker {
+    max-width: 680px;
+    margin: 64px auto 0;
+    position: relative;
+  }
+  .tracker-line {
+    position: absolute;
+    left: 21px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--grey-line);
+  }
+  .tracker-line-fill {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 0%;
+    background: var(--lime);
+    transition: height 2.4s var(--ease);
+  }
+  .tracker.in-view .tracker-line-fill { height: 100%; }
+
+  .track-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 22px;
+    padding-bottom: 40px;
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: opacity .7s var(--ease), transform .7s var(--ease);
+  }
+  .tracker.in-view .track-step { opacity: 1; transform: translateX(0); }
+  .tracker.in-view .track-step:nth-child(2) { transition-delay: .1s; }
+  .tracker.in-view .track-step:nth-child(3) { transition-delay: .3s; }
+  .tracker.in-view .track-step:nth-child(4) { transition-delay: .5s; }
+  .tracker.in-view .track-step:nth-child(5) { transition-delay: .7s; }
+  .tracker.in-view .track-step:nth-child(6) { transition-delay: .9s; }
+  .tracker.in-view .track-step:nth-child(7) { transition-delay: 1.1s; }
+  .track-step:last-child { padding-bottom: 0; }
+
+  .track-dot {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--black);
+    border: 2px solid var(--lime);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--lime);
+    position: relative; z-index: 2;
+  }
+  .track-dot svg { width: 18px; height: 18px; }
+  .track-time {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--lime);
+    letter-spacing: .1em;
+    margin-bottom: 4px;
+  }
+  .track-content h4 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .track-content p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--white-dim);
+    line-height: 1.6;
+  }
+  .track-status {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--lime);
+    color: var(--lime);
+  }
+
+  /* ============================================================
+     GALERÍA — lookbook
+     ============================================================ */
+  .gallery { background: var(--black-soft); }
+  .lookbook-grid {
+    max-width: 1180px;
+    margin: 60px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 190px;
+    gap: 14px;
+  }
+  .look-1 { grid-column: span 2; grid-row: span 2; }
+  .look-2 { grid-column: span 1; grid-row: span 1; }
+  .look-3 { grid-column: span 1; grid-row: span 2; }
+  .look-4 { grid-column: span 1; grid-row: span 1; }
+  .look-5 { grid-column: span 2; grid-row: span 1; }
+  .look-6 { grid-column: span 2; grid-row: span 1; }
+
+  .look-tile {
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+    border: 1px solid var(--grey-line);
+  }
+  /* Foto real dentro del tile de lookbook, con duotono streetwear */
+  .look-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.15) brightness(.92);
+    z-index: 0;
+  }
+  .look-photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(204,255,0,.18), rgba(10,10,10,.45));
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .look-placeholder {
+    position: absolute; top: 12px; left: 12px; right: 12px;
+    z-index: 2;
+    background: rgba(10,10,10,.72);
+    color: var(--grey);
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 5px 9px;
+    width: fit-content;
+  }
+  .look-price-tag {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--lime);
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .1em;
+    padding: 5px 9px;
+    z-index: 2;
+    transform: rotate(4deg);
+  }
+  .look-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 12px 14px;
+    background: linear-gradient(to top, rgba(10,10,10,.94), transparent);
+    display: flex; justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--lime);
+    transform: translateY(100%);
+    transition: transform .4s var(--ease);
+    z-index: 2;
+  }
+  .look-tile:hover .look-caption { transform: translateY(0); }
+  .look-caption span:last-child { color: var(--white); }
+
+  /* ============================================================
+     DRESSCODE — colorways
+     ============================================================ */
+  .dresscode { padding: 110px 32px; }
+  .colorways {
+    max-width: 1040px;
+    margin: 60px auto 40px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+  .colorway {
+    aspect-ratio: 3/4;
+    position: relative;
+    background: var(--black-card);
+    border: 1px solid var(--grey-line);
+    cursor: pointer;
+    transition: transform .4s var(--ease), border-color .3s var(--ease);
+  }
+  .colorway:hover { transform: translateY(-6px); border-color: var(--lime); }
+  .cw-chip { position: absolute; top: 14px; left: 14px; right: 14px; bottom: 46px; }
+  .cw-1 .cw-chip { background: #0a0a0a; }
+  .cw-2 .cw-chip { background: #f5f5f0; }
+  .cw-3 .cw-chip { background: #4a4a44; }
+  .cw-4 .cw-chip { background: linear-gradient(160deg, #ccff00, #8fb300); }
+  .cw-5 .cw-chip { background: #d94f2b; }
+  .cw-6 .cw-chip { background: #6b6b60; }
+  .cw-info {
+    position: absolute; bottom: 12px; left: 14px; right: 14px;
+  }
+  .cw-name {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .cw-code {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    color: var(--grey);
+    margin-top: 2px;
+  }
+
+  .dress-note {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 34px 38px;
+    background: var(--black-card);
+    border: 1px solid var(--grey-line);
+    position: relative;
+  }
+  .dress-note::before {
+    content: 'STYLE GUIDE';
+    position: absolute; top: -1px; left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--lime);
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: .2em;
+    padding: 5px 14px;
+  }
+  .dress-note p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--white);
+    line-height: 1.7;
+    margin-top: 10px;
+  }
+  .dress-note p + p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--white-dim);
+  }
+
+  /* ============================================================
+     RSVP — checkout
+     ============================================================ */
+  .rsvp { background: var(--black-soft); padding: 130px 32px; }
+  .rsvp-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--black);
+    border: 1px solid var(--grey-line);
+    padding: 56px 48px 46px;
+    position: relative;
+  }
+  .rsvp-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--lime);
+  }
+  .rsvp-eyebrow {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--lime);
+    margin-bottom: 14px;
+  }
+  .rsvp-title {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+  .rsvp-title em { font-style: normal; color: var(--lime); }
+  .rsvp-desc {
+    text-align: center;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--white-dim);
+    margin-bottom: 40px;
+    max-width: 460px;
+    margin-left: auto; margin-right: auto;
+  }
+
+  .rsvp-form { display: flex; flex-direction: column; gap: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-group { display: flex; flex-direction: column; gap: 7px; }
+  .form-group label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--white);
+    background: var(--black-card);
+    border: 1px solid var(--grey-line);
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color .3s var(--ease);
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--lime); }
+  .form-group select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1L6 6L11 1' stroke='%23ccff00' stroke-width='1.5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+  .form-group textarea { resize: vertical; min-height: 58px; }
+
+  .radio-group { display: flex; gap: 12px; }
+  .radio-option {
+    flex: 1; padding: 14px;
+    border: 1px solid var(--grey-line);
+    background: var(--black-card);
+    text-align: center; cursor: pointer; position: relative;
+    transition: all .3s var(--ease);
+  }
+  .radio-option input { position: absolute; opacity: 0; pointer-events: none; }
+  .radio-option-label {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--white);
+    display: block;
+  }
+  .radio-option-desc {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-top: 3px;
+  }
+  .radio-option:has(input:checked), .radio-option.checked {
+    background: var(--lime); border-color: var(--lime);
+  }
+  .radio-option:has(input:checked) .radio-option-label,
+  .radio-option.checked .radio-option-label { color: var(--black); }
+  .radio-option:has(input:checked) .radio-option-desc,
+  .radio-option.checked .radio-option-desc { color: rgba(10,10,10,.7); }
+
+  .form-submit {
+    margin-top: 10px;
+    padding: 16px 30px;
+    background: var(--lime);
+    color: var(--black);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    transition: background .3s var(--ease);
+  }
+  .form-submit:hover { background: var(--white); }
+
+  .rsvp-success { text-align: center; padding: 20px 6px; display: none; }
+  .rsvp-success.show { display: block; }
+
+  /* Recibo generado */
+  .receipt {
+    max-width: 320px;
+    margin: 0 auto 24px;
+    background: var(--white);
+    color: var(--black);
+    padding: 24px 26px;
+    text-align: left;
+    transform: scale(0);
+    animation: receiptPop .5s var(--ease-pop) .2s forwards;
+    position: relative;
+  }
+  @keyframes receiptPop { to { transform: scale(1); } }
+  .receipt::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -8px; height: 16px;
+    background:
+      radial-gradient(circle at 8px 0, transparent 8px, var(--white) 8.5px) 0 -8px / 16px 16px repeat-x;
+  }
+  .receipt-header {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed rgba(10,10,10,.3);
+  }
+  .receipt-row {
+    display: flex; justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    padding: 4px 0;
+  }
+  .receipt-row span:first-child { color: var(--grey); text-transform: uppercase; }
+  .receipt-row span:last-child { font-weight: 700; }
+  .receipt-status {
+    text-align: center;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(10,10,10,.3);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: .2em;
+    color: var(--lime-dim);
+  }
+
+  .rsvp-success h3 {
+    font-family: var(--font-display);
+    font-size: 34px;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .rsvp-success p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--white-dim);
+    line-height: 1.7;
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer { padding: 90px 32px 36px; text-align: center; }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 8vw, 80px);
+    line-height: .9;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .footer-logo span { color: var(--lime); }
+  .footer-date {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 40px;
+  }
+  .footer-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+  .footer-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 22px;
+    border: 1.5px solid var(--grey-line);
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    transition: all .3s var(--ease);
+  }
+  .footer-btn:hover { background: var(--lime); border-color: var(--lime); color: var(--black); }
+  .footer-btn svg { width: 13px; height: 13px; }
+
+  .footer-barcode {
+    display: flex; justify-content: center; gap: 2px; align-items: flex-end;
+    height: 30px;
+    margin-bottom: 12px;
+    opacity: .5;
+  }
+  .footer-barcode span { display: block; width: 2px; background: var(--white); }
+  .footer-barcode span:nth-child(3n) { height: 100%; }
+  .footer-barcode span:nth-child(3n+1) { height: 60%; }
+  .footer-barcode span:nth-child(3n+2) { height: 80%; }
+
+  .footer-signature {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--grey);
+    padding-top: 26px;
+    border-top: 1px solid var(--grey-line);
+  }
+  .footer-signature a { color: var(--lime); transition: color .3s var(--ease); }
+  .footer-signature a:hover { color: var(--white); }
+
+  .audio-toggle {
+    position: fixed; bottom: 24px; left: 24px; z-index: 90;
+    width: 48px; height: 48px;
+    background: var(--black);
+    border: 1.5px solid var(--lime);
+    color: var(--lime);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .3s var(--ease);
+  }
+  .audio-toggle:hover { background: var(--lime); color: var(--black); }
+  .audio-toggle svg { width: 18px; height: 18px; }
+
+  .reveal { opacity: 0; transform: translateY(36px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 900px) {
+    .nav, .nav.scrolled { padding: 14px 20px; }
+    .container { padding: 80px 22px; }
+    .story-grid { grid-template-columns: 1fr; gap: 40px; }
+    .events-grid { grid-template-columns: 1fr; gap: 26px; }
+    .drop-values { gap: 8px; }
+    .lookbook-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+    .look-1 { grid-column: span 2; grid-row: span 2; }
+    .look-2, .look-4 { grid-column: span 1; grid-row: span 1; }
+    .look-3 { grid-column: span 1; grid-row: span 2; }
+    .look-5, .look-6 { grid-column: span 2; grid-row: span 1; }
+    .colorways { grid-template-columns: repeat(3, 1fr); }
+    .rsvp-card { padding: 44px 26px 38px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 520px) {
+    .container { padding: 64px 18px; }
+    .marquee-track span { font-size: 14px; gap: 30px; }
+    .marquee-track { gap: 30px; }
+    .colorways { grid-template-columns: repeat(2, 1fr); }
+    .footer-actions { flex-direction: column; align-items: center; }
+    .footer-btn { width: 100%; max-width: 260px; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  #confetti { position: fixed; inset: 0; pointer-events: none; z-index: 500; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       PRELOADER
+       ============================================================ -->
+  <div id="preloader" aria-hidden="true">
+    <div class="pre-barcode">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="pre-label">Scanning <span>DROP 001</span></div>
+  </div>
+
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav-logo">A×D<sup>™</sup></a>
+    <button class="nav-toggle" id="menuOpen" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/>
+      </svg>
+    </button>
+  </nav>
+
+  <div class="menu" id="menu">
+    <button class="menu-close" id="menuClose" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+      </svg>
+    </button>
+    <ul class="menu-list">
+      <li><a href="#hero" data-close>Inicio</a></li>
+      <li><a href="#story" data-close>Nuestra historia</a></li>
+      <li><a href="#countdown" data-close>Cuenta regresiva</a></li>
+      <li><a href="#events" data-close>Ceremonia</a></li>
+      <li><a href="#tracking" data-close>Itinerario</a></li>
+      <li><a href="#dresscode" data-close>Vestimenta</a></li>
+      <li><a href="#rsvp" data-close>Confirmar</a></li>
+    </ul>
+    <div class="menu-footer">Drop 001 · 21.08.2027</div>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-tag-top">Drop en vivo · Stock limitado</div>
+
+      <h1 class="hero-names">
+        Ariana <span class="x">×</span> Diego
+      </h1>
+
+      <p class="hero-tagline">
+        No es una reedición. Es pieza única, sin restock — solo hay una noche como esta.
+      </p>
+
+      <div class="hangtag">
+        <div class="hangtag-row"><span>Fecha</span><span>21.08.2027</span></div>
+        <div class="hangtag-row"><span>Hora</span><span>18:30 H</span></div>
+        <div class="hangtag-row"><span>Talla</span><span>Única</span></div>
+        <div class="hangtag-row"><span>Lugar</span><span>Lima, PE</span></div>
+        <div class="hangtag-price">Priceless <span>· Edición Nº 001/1</span></div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MARQUEE
+       ============================================================ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Limited Edition</span>
+      <span>Deadstock</span>
+      <span>Cop Or Drop</span>
+      <span>100% Authentic</span>
+      <span>Sold Out Soon</span>
+      <span>Drop 001</span>
+      <!-- duplicado -->
+      <span>Limited Edition</span>
+      <span>Deadstock</span>
+      <span>Cop Or Drop</span>
+      <span>100% Authentic</span>
+      <span>Sold Out Soon</span>
+      <span>Drop 001</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       HISTORIA
+       ============================================================ -->
+  <section class="story" id="story">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">The Story</div>
+        <h2 class="section-title">Detrás del <em>drop</em></h2>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-visual reveal">
+          <svg viewBox="0 0 400 260">
+            <path d="M 30 200 L 30 90 L 100 60 L 300 60 L 370 90 L 370 200 Z"/>
+            <line x1="30" y1="140" x2="370" y2="140"/>
+            <path class="accent" d="M 100 60 L 130 140 L 100 200"/>
+            <path class="accent" d="M 300 60 L 270 140 L 300 200"/>
+          </svg>
+          <div class="story-specs">
+            <div class="story-spec-row"><span>Origen</span><span>Lima, Perú — 2016</span></div>
+            <div class="story-spec-row"><span>Material</span><span>Complicidad 100%</span></div>
+            <div class="story-spec-row"><span>Colorway</span><span>Ariana / Diego</span></div>
+            <div class="story-spec-row"><span>Edición</span><span>Única — sin reedición</span></div>
+          </div>
+        </div>
+
+        <div class="story-text reveal">
+          <h3>Nueve años en <em>desarrollo</em></h3>
+          <p>
+            Nos conocimos en un festival de música — ninguno de los dos planeaba nada esa noche. Desde entonces hemos armado esta colección juntos, colaboración a colaboración.
+          </p>
+          <div class="story-bullets">
+            <div class="story-bullet">2016 — Primer encuentro, sin plan</div>
+            <div class="story-bullet">2019 — Primer viaje juntos, tres países</div>
+            <div class="story-bullet">2022 — Firmamos por nuestro primer depa</div>
+            <div class="story-bullet">2025 — Se anuncia la colaboración final</div>
+          </div>
+          <p>
+            Como toda colección importante, esta también tiene su propio drop. Y tú tienes acceso anticipado.
+          </p>
+          <p class="story-sign">— A × D, Lima</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COUNTDOWN — stock bar
+       ============================================================ -->
+  <section class="countdown-wrap" id="countdown">
+    <div class="countdown-header reveal">
+      <div class="section-eyebrow">Countdown</div>
+      <h2 class="section-title">El drop <em>cierra en</em></h2>
+    </div>
+
+    <div class="drop-panel reveal">
+      <div class="stock-row"><span>Stock disponible</span><span>Últimas unidades</span></div>
+      <div class="stock-bar"><div class="stock-bar-fill"></div></div>
+      <div class="drop-values">
+        <div class="drop-unit">
+          <div class="drop-value" id="cd-days">00</div>
+          <div class="drop-label">Días</div>
+        </div>
+        <div class="drop-unit">
+          <div class="drop-value" id="cd-hours">00</div>
+          <div class="drop-label">Horas</div>
+        </div>
+        <div class="drop-unit">
+          <div class="drop-value" id="cd-mins">00</div>
+          <div class="drop-label">Minutos</div>
+        </div>
+        <div class="drop-unit">
+          <div class="drop-value" id="cd-secs">00</div>
+          <div class="drop-label">Segundos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EVENTOS — product cards
+       ============================================================ -->
+  <section class="events" id="events">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">The Collection</div>
+        <h2 class="section-title">Dos piezas, <em>un solo drop</em></h2>
+      </div>
+
+      <div class="events-grid">
+        <article class="product-card reveal">
+          <div class="product-media">
+            <img class="product-photo" src="foto-ceremonia.jpg" alt="Iglesia San Felipe, ceremonia">
+            <div class="product-photo-overlay"></div>
+            <div class="product-badge">Pieza 01</div>
+            
+          </div>
+          <div class="product-body">
+            <div class="product-sku">SKU: CER-210827-01</div>
+            <h3 class="product-title">Ceremonia</h3>
+            <div class="product-rows">
+              <div class="product-row"><div class="product-row-label">Fecha</div><div class="product-row-value">Sábado 21<small>Agosto 2027</small></div></div>
+              <div class="product-row"><div class="product-row-label">Hora</div><div class="product-row-value">18:30 h<small>Puntualidad, por favor</small></div></div>
+              <div class="product-row"><div class="product-row-label">Lugar</div><div class="product-row-value">Iglesia San Felipe<small>Jesús María, Lima</small></div></div>
+            </div>
+            <a href="https://maps.google.com/?q=Iglesia+San+Felipe+Jesus+Maria+Lima" target="_blank" rel="noopener" class="product-cta">
+              Cómo llegar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card reveal">
+          <div class="product-media">
+            <img class="product-photo" src="foto-recepcion.jfif" alt="Almacén 21, recepción">
+            <div class="product-photo-overlay"></div>
+            <div class="product-badge">Pieza 02</div>
+            
+          </div>
+          <div class="product-body">
+            <div class="product-sku">SKU: REC-210827-02</div>
+            <h3 class="product-title">Recepción</h3>
+            <div class="product-rows">
+              <div class="product-row"><div class="product-row-label">Fecha</div><div class="product-row-value">Sábado 21<small>Agosto 2027</small></div></div>
+              <div class="product-row"><div class="product-row-label">Hora</div><div class="product-row-value">20:30 h<small>Hasta las 03:00</small></div></div>
+              <div class="product-row"><div class="product-row-label">Lugar</div><div class="product-row-value">Almacén 21<small>Barranco, Lima</small></div></div>
+            </div>
+            <a href="https://maps.google.com/?q=Barranco+Lima" target="_blank" rel="noopener" class="product-cta">
+              Cómo llegar
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ITINERARIO — tracking
+       ============================================================ -->
+  <section class="tracking" id="tracking">
+    <div class="container" style="padding-top:0; padding-bottom:0;">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Order Tracking</div>
+        <h2 class="section-title">Sigue el <em>pedido</em></h2>
+        <p class="section-desc">Tu noche, paso a paso, como el tracking de un pedido real.</p>
+      </div>
+
+      <div class="tracker" id="tracker">
+        <div class="tracker-line"><div class="tracker-line-fill"></div></div>
+
+        <div class="track-step">
+          <div class="track-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div class="track-content">
+            <div class="track-time">18:30</div>
+            <h4>Pedido confirmado</h4>
+            <p>Damos el sí en la ceremonia religiosa.</p>
+            <span class="track-status">Confirmado</span>
+          </div>
+        </div>
+
+        <div class="track-step">
+          <div class="track-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12l-6 8-6-8zM12 12v9M8 21h8"/></svg>
+          </div>
+          <div class="track-content">
+            <div class="track-time">20:00</div>
+            <h4>En preparación</h4>
+            <p>Coctel de bienvenida mientras armamos el resto de la noche.</p>
+            <span class="track-status">En proceso</span>
+          </div>
+        </div>
+
+        <div class="track-step">
+          <div class="track-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v6a4 4 0 008 0V4M8 14v7M14 4v17M18 4c0 3-1 5-2 5v12"/></svg>
+          </div>
+          <div class="track-content">
+            <div class="track-time">21:00</div>
+            <h4>Empaquetado</h4>
+            <p>Cena de tres tiempos servida con todo el detalle.</p>
+            <span class="track-status">Listo para envío</span>
+          </div>
+        </div>
+
+        <div class="track-step">
+          <div class="track-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15 8L21 9L17 14L18 21L12 18L6 21L7 14L3 9L9 8Z"/></svg>
+          </div>
+          <div class="track-content">
+            <div class="track-time">22:30</div>
+            <h4>Enviado</h4>
+            <p>Primer baile de los novios — arranca oficial la fiesta.</p>
+            <span class="track-status">En camino</span>
+          </div>
+        </div>
+
+        <div class="track-step">
+          <div class="track-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg>
+          </div>
+          <div class="track-content">
+            <div class="track-time">23:00</div>
+            <h4>En tránsito</h4>
+            <p>DJ set en vivo y pista abierta hasta que el cuerpo aguante.</p>
+            <span class="track-status">Fuera para entrega</span>
+          </div>
+        </div>
+
+        <div class="track-step">
+          <div class="track-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          </div>
+          <div class="track-content">
+            <div class="track-time">01:00</div>
+            <h4>Última milla</h4>
+            <p>Hora loca, sorpresas y el segundo aire de la noche.</p>
+            <span class="track-status">Casi llega</span>
+          </div>
+        </div>
+
+        <div class="track-step">
+          <div class="track-dot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div class="track-content">
+            <div class="track-time">03:00</div>
+            <h4>Entregado</h4>
+            <p>Gracias por hacer parte de este pedido. Los queremos.</p>
+            <span class="track-status">Entregado ✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALERÍA — lookbook
+       ============================================================ -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Lookbook</div>
+        <h2 class="section-title">Campaña <em>oficial</em></h2>
+      </div>
+
+      <div class="lookbook-grid reveal">
+        <div class="look-tile look-1">
+          <img class="look-photo" src="foto-look-1.png" alt="El primer encuentro, 2016">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">El primer encuentro</div>
+          <div class="look-price-tag">Cop</div>
+          <div class="look-caption"><span>N° 01</span><span>2016 · Festival</span></div>
+        </div>
+        <div class="look-tile look-2">
+          <img class="look-photo" src="foto-look-2.png" alt="Viaje, 2019">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">Viaje</div>
+          <div class="look-caption"><span>N° 02</span><span>2019</span></div>
+        </div>
+        <div class="look-tile look-3">
+          <img class="look-photo" src="foto-look-3.png" alt="La propuesta, 2025">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">La propuesta</div>
+          <div class="look-price-tag">Cop</div>
+          <div class="look-caption"><span>N° 03</span><span>2025</span></div>
+        </div>
+        <div class="look-tile look-4">
+          <img class="look-photo" src="foto-look-4.png" alt="Anillo, detalle">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">Anillo</div>
+          <div class="look-caption"><span>N° 04</span><span>Detalle</span></div>
+        </div>
+        <div class="look-tile look-5">
+          <img class="look-photo" src="foto-look-5.png" alt="Nuestro depa, 2026">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">Nuestro depa</div>
+          <div class="look-caption"><span>N° 05</span><span>2026</span></div>
+        </div>
+        <div class="look-tile look-6">
+          <img class="look-photo" src="foto-look-6.png" alt="La preboda">
+          <div class="look-photo-overlay"></div>
+          <div class="look-placeholder">La preboda</div>
+          <div class="look-price-tag">Cop</div>
+          <div class="look-caption"><span>N° 06</span><span>Editorial</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DRESSCODE — colorways
+       ============================================================ -->
+  <section class="dresscode" id="dresscode">
+    <div class="container" style="padding-top:0;padding-bottom:0;">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Colorways</div>
+        <h2 class="section-title">Elige tu <em>colorway</em></h2>
+        <p class="section-desc">Formal streetwear. Estos son los tonos oficiales de esta colección.</p>
+      </div>
+
+      <div class="colorways reveal">
+        <div class="colorway cw-1"><div class="cw-chip"></div><div class="cw-info"><div class="cw-name">Triple Black</div><div class="cw-code">#0A0A0A</div></div></div>
+        <div class="colorway cw-2"><div class="cw-chip"></div><div class="cw-info"><div class="cw-name">Off White</div><div class="cw-code">#F5F5F0</div></div></div>
+        <div class="colorway cw-3"><div class="cw-chip"></div><div class="cw-info"><div class="cw-name">Concrete</div><div class="cw-code">#4A4A44</div></div></div>
+        <div class="colorway cw-4"><div class="cw-chip"></div><div class="cw-info"><div class="cw-name">Volt</div><div class="cw-code">#CCFF00</div></div></div>
+        <div class="colorway cw-5"><div class="cw-chip"></div><div class="cw-info"><div class="cw-name">Rust</div><div class="cw-code">#D94F2B</div></div></div>
+        <div class="colorway cw-6"><div class="cw-chip"></div><div class="cw-info"><div class="cw-name">Steel</div><div class="cw-code">#6B6B60</div></div></div>
+      </div>
+
+      <div class="dress-note reveal">
+        <p>«El blanco y el crema están reservados para la novia.»</p>
+        <p>Se agradece un look formal-urbano en los tonos de la colección. Sneakers limpias, bienvenidas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RSVP — checkout
+       ============================================================ -->
+  <section class="rsvp" id="rsvp">
+    <div class="rsvp-card reveal">
+      <div class="rsvp-eyebrow">Checkout</div>
+      <h2 class="rsvp-title">Asegura tu <em>lugar</em></h2>
+      <p class="rsvp-desc">Stock limitado. Confirma antes del 25 de julio de 2027 — no habrá restock.</p>
+
+      <form class="rsvp-form" id="rsvpForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvp-name">Nombre completo</label>
+            <input type="text" id="rsvp-name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="rsvp-phone">Teléfono</label>
+            <input type="tel" id="rsvp-phone" name="phone" required autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>¿Nos acompañarás?</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="attend" value="Sí, con gusto" required>
+              <span class="radio-option-label">Sí</span>
+              <span class="radio-option-desc">Cop confirmado</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="attend" value="Lamentablemente no podré">
+              <span class="radio-option-label">No</span>
+              <span class="radio-option-desc">No podré</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvp-guests">Acompañantes</label>
+            <select id="rsvp-guests" name="guests">
+              <option value="Solo yo">Solo yo</option>
+              <option value="+1 acompañante">+1 acompañante</option>
+              <option value="+2 acompañantes">+2 acompañantes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rsvp-menu">Preferencia de menú</label>
+            <select id="rsvp-menu" name="menu">
+              <option value="Estándar">Estándar</option>
+              <option value="Vegetariano">Vegetariano</option>
+              <option value="Vegano">Vegano</option>
+              <option value="Sin gluten">Sin gluten</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rsvp-message">Mensaje para los novios (opcional)</label>
+          <textarea id="rsvp-message" name="message" rows="2"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Confirmar pedido</button>
+      </form>
+
+      <div class="rsvp-success" id="rsvpSuccess">
+        <div class="receipt">
+          <div class="receipt-header">Orden confirmada</div>
+          <div class="receipt-row"><span>Cliente</span><span id="rcName">—</span></div>
+          <div class="receipt-row"><span>Orden Nº</span><span id="rcOrder">—</span></div>
+          <div class="receipt-row"><span>Producto</span><span>Drop 001</span></div>
+          <div class="receipt-row"><span>Fecha</span><span>21.08.2027</span></div>
+          <div class="receipt-status">✓ Acceso garantizado</div>
+        </div>
+        <h3>¡Cop confirmado!</h3>
+        <p>Recibimos tu confirmación. Ahora se abrirá WhatsApp para dejarla registrada de inmediato.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="footer-barcode">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="footer-logo">A <span>×</span> D</div>
+    <div class="footer-date">Lima · 21 · 08 · 2027 · Drop 001</div>
+
+    <div class="footer-actions">
+      <button class="footer-btn" id="btnShare">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/>
+        </svg>
+        Compartir
+      </button>
+      <button class="footer-btn" id="btnCalendar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Al calendario
+      </button>
+      <a href="https://wa.me/51943168115?text=Hola%20Nuestra%20Boda%2C%20me%20encant%C3%B3%20el%20modelo%20Streetwear" target="_blank" rel="noopener" class="footer-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.5 14.4c-.3-.15-1.8-.9-2.1-1-.3-.1-.5-.15-.7.15-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.05-.3-.15-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.15-.6.15-.15.3-.4.4-.6.15-.2.2-.35.3-.55.1-.2.05-.4-.05-.55-.1-.15-.7-1.7-1-2.3-.25-.6-.5-.5-.7-.5h-.6c-.2 0-.55.1-.85.4-.3.3-1.1 1.1-1.1 2.7 0 1.6 1.15 3.1 1.3 3.3.15.2 2.25 3.4 5.4 4.75.75.35 1.35.5 1.8.65.75.25 1.45.2 2 .15.6-.1 1.85-.75 2.1-1.5.25-.7.25-1.35.2-1.5-.05-.15-.25-.25-.55-.4z"/>
+          <path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.65 1.4 5.15L2 22l4.95-1.35C8.4 21.5 10.15 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+
+    <div class="footer-signature">
+      Diseñado por <a href="https://nuestraboda.com.pe" target="_blank" rel="noopener">Nuestra Boda</a> · Modelo Streetwear · Nº 13
+    </div>
+  </footer>
+
+  <button class="audio-toggle" id="audioToggle" aria-label="Reproducir música">
+    <svg id="audioIconPlay" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <svg id="audioIconPause" viewBox="0 0 24 24" fill="currentColor" style="display:none">
+      <rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>
+    </svg>
+  </button>
+  <audio id="audioPlayer" loop preload="none"><source src="" type="audio/mpeg"></audio>
+
+  <canvas id="confetti"></canvas>
+
+  <noscript>
+    <div style="padding:40px;text-align:center;background:#0a0a0a;color:#f5f5f0">
+      Esta invitación funciona mejor con JavaScript activado. Por favor, habilítalo para ver la experiencia completa.
+    </div>
+  </noscript>
+
+  <script>
+  (function(){
+    'use strict';
+
+    const CONFIG = {
+      weddingDate: new Date('2027-08-21T18:30:00-05:00'),
+      brideWhatsapp: '51943168115', // ← Reemplazar con el número real de la novia
+      brideName: 'Ariana',
+      groomName: 'Diego',
+      ceremony: 'Iglesia San Felipe, Jesús María',
+      reception: 'Almacén 21, Barranco'
+    };
+
+    window.addEventListener('load', function(){
+      setTimeout(function(){
+        const p = document.getElementById('preloader');
+        if (p) p.classList.add('done');
+      }, 2300);
+    });
+
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }, { passive: true });
+
+    const menu = document.getElementById('menu');
+    document.getElementById('menuOpen').addEventListener('click', function(){
+      menu.classList.add('open'); document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('menuClose').addEventListener('click', function(){
+      menu.classList.remove('open'); document.body.style.overflow = '';
+    });
+    document.querySelectorAll('[data-close]').forEach(function(a){
+      a.addEventListener('click', function(){
+        menu.classList.remove('open'); document.body.style.overflow = '';
+      });
+    });
+
+    const cd = {
+      d: document.getElementById('cd-days'),
+      h: document.getElementById('cd-hours'),
+      m: document.getElementById('cd-mins'),
+      s: document.getElementById('cd-secs')
+    };
+    function pad(n){ return String(n).padStart(2, '0'); }
+    function updateCountdown(){
+      const now = new Date();
+      const diff = CONFIG.weddingDate - now;
+      if (diff <= 0){
+        cd.d.textContent='00'; cd.h.textContent='00'; cd.m.textContent='00'; cd.s.textContent='00';
+        return;
+      }
+      cd.d.textContent = pad(Math.floor(diff / 86400000));
+      cd.h.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      cd.m.textContent = pad(Math.floor((diff % 3600000) / 60000));
+      cd.s.textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .12, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal, #tracker').forEach(function(el){ io.observe(el); });
+
+    document.querySelectorAll('.radio-group').forEach(function(group){
+      group.addEventListener('change', function(){
+        group.querySelectorAll('.radio-option').forEach(function(opt){
+          const input = opt.querySelector('input');
+          if (input && input.checked) opt.classList.add('checked');
+          else opt.classList.remove('checked');
+        });
+      });
+    });
+
+    const form = document.getElementById('rsvpForm');
+    const success = document.getElementById('rsvpSuccess');
+    const rcName = document.getElementById('rcName');
+    const rcOrder = document.getElementById('rcOrder');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const fd = new FormData(form);
+      const data = {
+        name: fd.get('name'),
+        phone: fd.get('phone'),
+        attend: fd.get('attend'),
+        guests: fd.get('guests'),
+        menu: fd.get('menu'),
+        message: fd.get('message') || '—'
+      };
+
+      rcName.textContent = data.name || '—';
+      rcOrder.textContent = '#AD-' + Math.floor(1000 + Math.random() * 9000);
+
+      const msg =
+        '*Confirmación de asistencia*\n' +
+        '_Boda de ' + CONFIG.brideName + ' & ' + CONFIG.groomName + '_\n' +
+        '\n' +
+        '*Nombre:* ' + data.name + '\n' +
+        '*Teléfono:* ' + data.phone + '\n' +
+        '*¿Asistirá?:* ' + data.attend + '\n' +
+        '*Acompañantes:* ' + data.guests + '\n' +
+        '*Menú:* ' + data.menu + '\n' +
+        '*Mensaje:* ' + data.message;
+
+      const url = 'https://wa.me/' + CONFIG.brideWhatsapp + '?text=' + encodeURIComponent(msg);
+
+      form.style.display = 'none';
+      success.classList.add('show');
+
+      launchConfetti();
+
+      setTimeout(function(){ window.open(url, '_blank'); }, 900);
+
+      // OPCIONAL: fetch a Google Sheets webhook
+      // fetch('TU_ENDPOINT', { method: 'POST', body: JSON.stringify(data) });
+    });
+
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let confettiActive = false;
+
+    function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function launchConfetti(){
+      const colors = ['#ccff00', '#f5f5f0', '#8a8a82', '#0a0a0a'];
+      for (let i = 0; i < 130; i++){
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * canvas.height * .3,
+          w: 5 + Math.random() * 7,
+          h: 5 + Math.random() * 7,
+          vy: 2 + Math.random() * 3,
+          vx: -1.5 + Math.random() * 3,
+          rot: Math.random() * Math.PI * 2,
+          vr: -.15 + Math.random() * .3,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+      if (!confettiActive){ confettiActive = true; requestAnimationFrame(animateConfetti); }
+    }
+
+    function animateConfetti(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles = particles.filter(function(p){
+        p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.vy += .035;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.strokeStyle = p.color;
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+        return p.y < canvas.height + 20;
+      });
+      if (particles.length > 0){ requestAnimationFrame(animateConfetti); }
+      else { confettiActive = false; ctx.clearRect(0, 0, canvas.width, canvas.height); }
+    }
+
+    const audio = document.getElementById('audioPlayer');
+    const audioBtn = document.getElementById('audioToggle');
+    const iconPlay = document.getElementById('audioIconPlay');
+    const iconPause = document.getElementById('audioIconPause');
+
+    audioBtn.addEventListener('click', function(){
+      if (!audio.currentSrc && !audio.querySelector('source').src){
+        alert('El audio ambiente aún no está configurado. Agrega el src del MP3 en el <source> del audio.');
+        return;
+      }
+      if (audio.paused){
+        audio.play().catch(function(){});
+        iconPlay.style.display = 'none'; iconPause.style.display = '';
+      } else {
+        audio.pause();
+        iconPlay.style.display = ''; iconPause.style.display = 'none';
+      }
+    });
+
+    document.getElementById('btnShare').addEventListener('click', async function(){
+      const shareData = {
+        title: CONFIG.brideName + ' & ' + CONFIG.groomName,
+        text: 'Estás invitado a nuestra boda — 21 de agosto de 2027',
+        url: window.location.href
+      };
+      if (navigator.share){
+        try { await navigator.share(shareData); } catch(e){}
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          alert('Enlace copiado al portapapeles ✨');
+        } catch(e){
+          prompt('Copia este enlace:', window.location.href);
+        }
+      }
+    });
+
+    document.getElementById('btnCalendar').addEventListener('click', function(){
+      const start = '20270821T183000';
+      const end = '20270822T030000';
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Nuestra Boda//Modelo Streetwear//ES',
+        'BEGIN:VEVENT',
+        'UID:' + Date.now() + '@nuestraboda.com.pe',
+        'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z',
+        'DTSTART;TZID=America/Lima:' + start,
+        'DTEND;TZID=America/Lima:' + end,
+        'SUMMARY:Boda de ' + CONFIG.brideName + ' & ' + CONFIG.groomName,
+        'DESCRIPTION:Ceremonia en ' + CONFIG.ceremony + '. Recepción en ' + CONFIG.reception + '.',
+        'LOCATION:' + CONFIG.ceremony,
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'boda-ariana-diego.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    document.querySelectorAll('img').forEach(function(img){
+      img.addEventListener('error', function(){ img.style.display = 'none'; });
+    });
+
+  })();
+  </script>
+</body>
+</html>
