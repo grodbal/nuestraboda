@@ -1,0 +1,1934 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f3e8">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+  <title>Claudia & Kenny | Nuestra Boda</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+
+  <style>
+    :root{
+      --white:#ffffff;
+      --ivory:#f7f3e8;
+      --ivory-soft:#fbfaf6;
+      --sage:#a7b19b;
+      --sage-dark:#6b7242;
+      --eucalyptus:#879486;
+      --olive:#68693f;
+      --navy:#182944;
+      --gold:#c2a154;
+      --gold-soft:#d8c18d;
+      --ink:#544e39;
+      --muted:#7a7569;
+      --line:rgba(84,78,57,.20);
+      --shadow:0 18px 46px rgba(84,78,57,.11);
+      --shadow-soft:0 10px 28px rgba(84,78,57,.08);
+      --photo-overlay:linear-gradient(180deg,rgba(255,255,255,.03),rgba(84,78,57,.08));
+      --hero-photo:url('assets/foto-portada.jpeg');
+      --final-photo:url('assets/foto-final.jpeg');
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--white);
+      font-family:'Montserrat',sans-serif;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:"";position:fixed;inset:0;z-index:20000;pointer-events:none;opacity:.18;mix-blend-mode:multiply;
+      background-image:radial-gradient(rgba(84,78,57,.16) .45px,transparent .55px),radial-gradient(rgba(194,161,84,.11) .4px,transparent .5px);
+      background-position:0 0,7px 9px;background-size:9px 9px,13px 13px;
+    }
+    body.locked{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{color:inherit}
+    [hidden]{display:none!important}
+    img{max-width:100%;display:block}
+    section{position:relative;isolation:isolate}
+    .container{width:min(1180px,calc(100% - 40px));margin:0 auto}
+    .scroll-progress{position:fixed;right:8px;top:18%;bottom:18%;z-index:11000;width:2px;border-radius:999px;background:rgba(104,105,63,.12);pointer-events:none}
+    .scroll-progress span{display:block;width:100%;height:var(--scroll-progress,0%);border-radius:inherit;background:linear-gradient(180deg,var(--gold),var(--olive));box-shadow:0 0 12px rgba(194,161,84,.3);transition:height .12s linear}
+
+    /* PORTADA INICIAL */
+    .opening-screen{
+      position:fixed;
+      inset:0;
+      z-index:30000;
+      overflow:hidden;
+      background:var(--ivory);
+      display:grid;
+      place-items:center;
+      transition:opacity .55s ease,visibility .55s ease;
+    }
+    .opening-screen.is-open{opacity:0;visibility:hidden;pointer-events:none}
+    .opening-screen::before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.96),transparent 28%),conic-gradient(from 10deg at 50% 50%,transparent,rgba(194,161,84,.08),transparent 18%);animation:opening-light 10s linear infinite}
+    .opening-envelope{position:absolute;inset:0;perspective:1200px;filter:drop-shadow(0 8px 11px rgba(84,78,57,.10))}
+    .opening-flap{position:absolute;transition:transform 1.05s cubic-bezier(.2,.8,.2,1),opacity .75s ease;will-change:transform}
+    .opening-flap.top{inset:0 0 50% 0;background:linear-gradient(155deg,#f8f5ec,#eee8d9);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:50% 0}
+    .opening-flap.bottom{inset:50% 0 0 0;background:linear-gradient(335deg,#f8f4e9,#ece5d7);clip-path:polygon(0 100%,100% 100%,50% 0);transform-origin:50% 100%}
+    .opening-flap.left{inset:0 50% 0 0;background:linear-gradient(120deg,#e8e3e1,#f3efec);clip-path:polygon(0 0,100% 50%,0 100%);transform-origin:0 50%}
+    .opening-flap.right{inset:0 0 0 50%;background:linear-gradient(240deg,#fbf8f6,#f0ebe8);clip-path:polygon(100% 0,0 50%,100% 100%);transform-origin:100% 50%}
+    .opening-flap::after{content:"";position:absolute;inset:0;opacity:.38;background:linear-gradient(90deg,rgba(255,255,255,.45),transparent 45%,rgba(84,78,57,.035));pointer-events:none}
+    .opening-screen.is-opening::after{content:"";position:absolute;z-index:3;left:50%;top:50%;width:24px;height:24px;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 0 rgba(255,242,184,.85);animation:seal-flash .8s ease-out both}
+    .opening-screen.is-open .opening-flap.top{transform:translateY(-74%) rotateX(18deg)}
+    .opening-screen.is-open .opening-flap.bottom{transform:translateY(74%) rotateX(-18deg)}
+    .opening-screen.is-open .opening-flap.left{transform:translateX(-74%) rotateY(-15deg)}
+    .opening-screen.is-open .opening-flap.right{transform:translateX(74%) rotateY(15deg)}
+    .opening-button{position:relative;z-index:2;width:127px;aspect-ratio:1;padding:0;border:0;border-radius:50%;background:transparent;cursor:pointer;display:block;animation:opening-button-loop 2.8s ease-in-out infinite;filter:drop-shadow(0 8px 10px rgba(84,78,57,.25));will-change:transform}
+    .opening-button::before{content:"";position:absolute;inset:-18px;border:1px solid rgba(194,161,84,.26);border-radius:50%;animation:seal-orbit 7s linear infinite;box-shadow:inset 0 0 22px rgba(255,255,255,.42)}
+    .opening-button::after{content:"Toca para abrir";position:absolute;left:50%;top:calc(100% + 24px);width:max-content;transform:translateX(-50%);color:var(--olive);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;opacity:.72}
+    .opening-button img{width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none;-webkit-user-drag:none}
+    .opening-button:hover{animation-play-state:paused;transform:translateY(-4px) scale(1.07)}
+    .opening-button:active{transform:scale(.95)}
+    .opening-button:focus-visible{outline:2px solid var(--olive);outline-offset:9px}
+    @keyframes opening-button-loop{
+      0%,100%{transform:translateY(0) rotate(-1.5deg) scale(1)}
+      50%{transform:translateY(-7px) rotate(1.5deg) scale(1.04)}
+    }
+    @keyframes opening-light{to{transform:rotate(360deg)}}
+    @keyframes seal-orbit{to{transform:rotate(360deg)}}
+    @keyframes seal-flash{0%{opacity:0;box-shadow:0 0 0 0 rgba(255,242,184,.85)}30%{opacity:1}100%{opacity:0;box-shadow:0 0 0 72vmax rgba(255,252,235,0)}}
+    .opening-particles{position:absolute;inset:0;z-index:4;pointer-events:none}
+    .opening-particles i{--x:0px;--y:-120px;position:absolute;left:50%;top:50%;width:5px;height:5px;border-radius:50% 0 50% 50%;background:var(--gold-soft);opacity:0;transform:translate(-50%,-50%) rotate(45deg)}
+    .opening-screen.is-opening .opening-particles i{animation:opening-particle 1.25s cubic-bezier(.16,.8,.28,1) both;animation-delay:var(--delay,0ms)}
+    @keyframes opening-particle{0%{opacity:0;transform:translate(-50%,-50%) scale(.2) rotate(45deg)}22%{opacity:.9}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.2) rotate(220deg)}}
+
+    /* AUDIO */
+    .music-fab{
+      position:fixed;right:22px;bottom:22px;z-index:12000;
+      width:48px;height:48px;border:1px solid rgba(104,105,63,.26);border-radius:50%;
+      background:rgba(255,255,255,.92);color:var(--olive);box-shadow:var(--shadow-soft);
+      display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(8px);
+      transition:.25s ease;
+    }
+    .music-fab:hover{transform:translateY(-2px)}
+    .music-fab svg{width:20px;height:20px;stroke-width:1.5}
+    .music-fab.is-playing::after{content:"";position:absolute;inset:-6px;border:1px solid rgba(104,105,63,.30);border-radius:50%;animation:pulse 1.8s ease-out infinite}
+    @keyframes pulse{0%{transform:scale(.9);opacity:.7}100%{transform:scale(1.28);opacity:0}}
+
+    /* CABECERA */
+    .hero{min-height:100svh;display:grid;grid-template-columns:1fr 1.05fr;background:var(--white)}
+    .hero-photo{
+      min-height:100svh;
+      background-image:var(--photo-overlay),var(--hero-photo),linear-gradient(145deg,#e7e9e1,#f7f4eb 48%,#dfe4da);
+      background-size:cover;background-position:center;position:relative;overflow:hidden;
+    }
+    .hero-photo::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(125deg,rgba(255,255,255,.13),transparent 35%,rgba(84,78,57,.10)),var(--photo-overlay);pointer-events:none}
+    .hero-photo::after{
+      content:"";position:absolute;z-index:3;top:0;right:-1px;width:clamp(44px,5.5vw,96px);height:100%;pointer-events:none;
+      background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000' preserveAspectRatio='none'%3E%3Cpath fill='%23fff' d='M100 0V1000H73C45 830 92 680 66 510C42 345 89 175 61 0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+    }
+    .hero-slide{position:absolute;inset:-3%;z-index:1;width:106%;height:106%;object-fit:cover;object-position:center;opacity:0;transform:translate3d(0,var(--hero-parallax,0px),0) scale(1.08);transition:opacity 1.15s ease;pointer-events:none;will-change:opacity,transform}
+    .hero-slide.is-active{opacity:1;animation:hero-ken-burns 5.8s ease-out both}
+    @keyframes hero-ken-burns{from{transform:translate3d(0,var(--hero-parallax,0px),0) scale(1.08)}to{transform:translate3d(0,var(--hero-parallax,0px),0) scale(1.16)}}
+    .hero-atmosphere{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none}
+    .hero-atmosphere i{position:absolute;width:clamp(3px,.45vw,7px);aspect-ratio:1;border-radius:50%;background:rgba(255,244,204,.58);filter:blur(.4px);box-shadow:0 0 12px rgba(255,236,168,.52);animation:ambient-drift var(--duration,9s) ease-in-out infinite;animation-delay:var(--delay,0s)}
+    @keyframes ambient-drift{0%,100%{opacity:0;transform:translate3d(0,18px,0) scale(.5)}25%,70%{opacity:.75}50%{transform:translate3d(var(--drift,18px),-32px,0) scale(1.15)}}
+    .hero-copy{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:70px clamp(34px,6vw,100px);text-align:center;background:radial-gradient(circle at 50% 34%,rgba(194,161,84,.09),transparent 32%),linear-gradient(180deg,#fff,var(--ivory-soft));overflow:hidden}
+    .hero-inner{max-width:560px}
+    body.locked .hero-inner{opacity:0}
+    .eyebrow{margin:0 0 30px;font:300 clamp(1rem,1.6vw,1.25rem)/1.3 'Montserrat',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+    .couple-names{margin:0;font:400 clamp(5rem,8vw,9.2rem)/.82 'Italianno',cursive;color:var(--olive)}
+    .couple-names span{display:block}
+    .hero-date{margin:35px 0 0;font:400 .72rem/1.5 'Montserrat',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+    .guest-chip{display:inline-flex;margin-top:25px;padding:10px 15px;border:1px solid rgba(104,105,63,.26);border-radius:999px;background:rgba(247,243,232,.75);font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:300;color:var(--olive)}
+    .hero-inner.is-visible .eyebrow{animation:hero-copy-in .8s .12s both}
+    .hero-inner.is-visible .couple-names span:first-child{animation:hero-script-in 1.15s .3s both}
+    .hero-inner.is-visible .couple-names span:last-child{animation:hero-script-in 1.15s .48s both}
+    .hero-inner.is-visible .guest-chip{animation:hero-copy-in .8s .72s both}
+    @keyframes hero-copy-in{from{opacity:0;transform:translateY(14px);letter-spacing:.16em}to{opacity:1;transform:none}}
+    @keyframes hero-script-in{from{opacity:0;transform:translateY(30px) scale(.92);filter:blur(5px)}to{opacity:1;transform:none;filter:none}}
+
+    /* GENERALES */
+    .section{--section-shift:0px;padding:90px 0;text-align:center;overflow:hidden}
+    .section::before{content:"";position:absolute;z-index:-1;width:min(58vw,680px);aspect-ratio:1;border-radius:50%;top:calc(-260px + var(--section-shift));right:-28vw;background:radial-gradient(circle,rgba(194,161,84,.07),transparent 66%);pointer-events:none}
+    .section:nth-of-type(even)::before{right:auto;left:-30vw;background:radial-gradient(circle,rgba(135,148,134,.08),transparent 66%)}
+    .section.ivory{background:var(--ivory-soft)}
+    .section-title{margin:0;color:var(--olive);font:300 clamp(2rem,3.8vw,3.2rem)/1.15 'Montserrat',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+    .script-title{margin:10px 0 0;color:var(--olive);font:400 clamp(3.8rem,7vw,6.8rem)/.95 'Italianno',cursive}
+    .body-copy{max-width:710px;margin:25px auto 0;color:var(--muted);font:300 clamp(1rem,1.5vw,1.15rem)/1.7 'Montserrat',sans-serif}
+    .tiny-label{margin:0 0 12px;color:var(--gold);font-size:.65rem;letter-spacing:.20em;text-transform:uppercase}
+    .line-ornament{width:150px;height:1px;background:linear-gradient(90deg,transparent,var(--sage-dark),transparent);margin:32px auto;position:relative}
+    .line-ornament::after{content:"◆";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);font-size:.55rem;color:var(--gold);background:inherit}
+
+    /* Iconos ilustrados del set iconos-nuestra-boda */
+    .ln{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+    .ln-soft{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.45}
+    .fill{fill:currentColor;stroke:none}
+    .fill-soft{fill:currentColor;opacity:.22;stroke:none}
+    .itinerary-source-icon{width:64px;height:64px;overflow:visible;color:var(--olive)}
+    .source-button-icon{width:22px;height:22px;overflow:visible;flex:0 0 auto}
+
+    /* Animaciones originales en loop de iconos-nuestra-boda-v9 */
+    .beat{transform-box:fill-box;transform-origin:center;animation:beat 2.2s cubic-bezier(.34,1.56,.64,1) infinite}
+    @keyframes beat{0%,52%,100%{transform:scale(1)}12%{transform:scale(.62)}26%{transform:scale(1.32)}38%{transform:scale(.88)}46%{transform:scale(1.08)}}
+    .sparkle{transform-box:fill-box;transform-origin:center;opacity:0;animation:sparkle 2.2s ease-in-out infinite}
+    .sparkle.r{animation-delay:.1s}
+    @keyframes sparkle{0%,32%,100%{opacity:0;transform:scale(.2) rotate(0deg)}45%{opacity:1;transform:scale(1.5) rotate(90deg)}58%{opacity:0;transform:scale(.3) rotate(160deg)}}
+    .slide{animation:slide 2s ease-in-out infinite}
+    @keyframes slide{0%,100%{transform:translateX(0)}50%{transform:translateX(-18px)}}
+    .flutter-a{transform-box:fill-box;transform-origin:top center;animation:sway-a 2.1s ease-in-out infinite}
+    .flutter-b{transform-box:fill-box;transform-origin:top center;animation:sway-b 2.1s ease-in-out infinite .15s}
+    @keyframes sway-a{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(14deg)}}
+    @keyframes sway-b{0%,100%{transform:rotate(14deg)}50%{transform:rotate(-14deg)}}
+    .ping{transform-box:fill-box;transform-origin:center;animation:ping 1.8s ease-out infinite}
+    @keyframes ping{0%{transform:scale(.5);opacity:.9}80%,100%{transform:scale(2.2);opacity:0}}
+    .swing{transform-box:fill-box;transform-origin:top center;animation:swing 1.3s ease-in-out infinite}
+    @keyframes swing{0%,100%{transform:rotate(-26deg)}50%{transform:rotate(26deg)}}
+    .bob{animation:bob 1.5s cubic-bezier(.34,1.56,.64,1) infinite}
+    @keyframes bob{0%,100%{transform:translateY(0) scale(1)}45%{transform:translateY(-13px) scale(1.04)}55%{transform:translateY(-13px) scale(.96)}}
+    .tag-swing{transform-box:fill-box;transform-origin:top center;animation:tagswing 1.6s ease-in-out infinite}
+    @keyframes tagswing{0%,100%{transform:rotate(-18deg)}50%{transform:rotate(18deg)}}
+    .wheel-spin{transform-box:fill-box;transform-origin:center;animation:wheelspin 1s linear infinite}
+    @keyframes wheelspin{to{transform:rotate(360deg)}}
+    .bounce-car{animation:bouncecar .7s cubic-bezier(.34,1.56,.64,1) infinite}
+    @keyframes bouncecar{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-6px) rotate(-1.5deg)}}
+    .clink-l{transform-box:fill-box;transform-origin:bottom center;animation:clinkl 1.6s ease-in-out infinite}
+    .clink-r{transform-box:fill-box;transform-origin:bottom center;animation:clinkr 1.6s ease-in-out infinite}
+    @keyframes clinkl{0%,100%{transform:rotate(0deg)}50%{transform:rotate(20deg)}}
+    @keyframes clinkr{0%,100%{transform:rotate(0deg)}50%{transform:rotate(-20deg)}}
+    .bubble{fill:currentColor;animation:bubblerise 2s ease-in infinite}
+    .bubble.b2{animation-delay:.6s}.bubble.b3{animation-delay:1.2s}
+    @keyframes bubblerise{0%{transform:translateY(0) scale(.6);opacity:0}25%{opacity:.9}100%{transform:translateY(-26px) scale(1.3);opacity:0}}
+    .breathe{transform-box:fill-box;transform-origin:center;animation:breathe 2s cubic-bezier(.34,1.56,.64,1) infinite}
+    @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+    .float-heart{transform-box:fill-box;transform-origin:center;animation:floatheart 2.4s ease-out infinite;opacity:0}
+    .float-heart.h2{animation-delay:.6s}.float-heart.h3{animation-delay:1.2s}
+    @keyframes floatheart{0%{transform:translateY(0) scale(.4);opacity:0}20%{opacity:1;transform:translateY(-4px) scale(1)}100%{transform:translateY(-26px) scale(.7);opacity:0}}
+    .ribbon-flap{transform-box:fill-box;transform-origin:left center;animation:ribbonflap 1.1s ease-in-out infinite}
+    @keyframes ribbonflap{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(6deg)}}
+    .ribbon-flap-r{transform-box:fill-box;transform-origin:right center;animation:ribbonflapr 1.1s ease-in-out infinite}
+    @keyframes ribbonflapr{0%,100%{transform:rotate(16deg)}50%{transform:rotate(-6deg)}}
+    .icon-circle{width:72px;height:72px;margin:0 auto 22px;border:1px solid rgba(104,105,63,.28);border-radius:50%;display:grid;place-items:center;color:var(--olive);background:#fff}
+    .icon-circle svg{width:28px;height:28px;stroke-width:1.25}
+    .icon-sprite{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+    .reference-icon-wrap{width:82px;height:82px;margin:0 auto 22px;display:grid;place-items:center;color:var(--olive)}
+    .reference-icon{width:68px;height:68px;overflow:visible;stroke-width:1.25;animation:reference-icon-loop 3.2s ease-in-out infinite;animation-delay:var(--icon-delay,0s);transform-origin:50% 65%;filter:drop-shadow(0 5px 8px rgba(84,78,57,.08))}
+    .reference-icon.small{width:52px;height:52px}
+    .reference-icon.large{width:76px;height:76px}
+    @keyframes reference-icon-loop{
+      0%,100%{transform:translateY(0) rotate(0deg) scale(1)}
+      35%{transform:translateY(-5px) rotate(-2deg) scale(1.035)}
+      65%{transform:translateY(-2px) rotate(2deg) scale(.985)}
+    }
+    .reveal{opacity:0;transform:translateY(42px) scale(.985);filter:blur(5px);transition:opacity .9s ease,transform 1.15s cubic-bezier(.22,1,.36,1),filter .85s ease}
+    .reveal.is-visible{opacity:1;transform:none;filter:none}
+    .reveal.is-visible > *{animation:content-rise .85s both;animation-delay:calc(var(--reveal-order,0) * 70ms)}
+    @keyframes content-rise{from{opacity:.15;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+    /* INVITACIÓN / VERSÍCULO */
+    .verse-card{width:min(780px,100%);margin:0 auto;padding:38px 34px;border-radius:24px;background:#fff;box-shadow:var(--shadow-soft);border:1px solid rgba(84,78,57,.10)}
+    .verse-card p{margin:0;color:var(--muted);font:300 1rem/1.7 'Montserrat',sans-serif;font-style:italic}
+    .invite-statement{margin-top:54px;color:var(--olive);font:300 clamp(1.25rem,2vw,1.65rem)/1.5 'Montserrat',sans-serif;letter-spacing:.04em;text-transform:uppercase}
+    .invite-note{max-width:720px;margin:45px auto 0;padding:60px 30px;background:var(--ivory);color:var(--muted);font:300 1rem/1.75 'Montserrat',sans-serif}
+    .family-section{width:min(880px,100%);margin:70px auto 0}
+    .family-title{margin:0 0 38px;color:var(--olive);font:300 clamp(2rem,4vw,3.2rem)/1.2 'Montserrat',sans-serif;letter-spacing:.05em;text-transform:uppercase}
+    .family-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .family-card{padding:34px 24px;border:1px solid rgba(84,78,57,.12);border-radius:22px;background:#fff;box-shadow:var(--shadow-soft)}
+    .family-card h3{margin:0 0 18px;color:var(--gold);font:400 .78rem/1.3 'Montserrat',sans-serif;letter-spacing:.14em;text-transform:uppercase}
+    .family-card p{margin:7px 0;color:var(--ink);font:300 1rem/1.55 'Montserrat',sans-serif}
+    .sponsors-grid{margin-top:24px}
+
+    /* FECHA */
+    .date-big{margin:20px 0 4px;color:var(--olive);font:300 clamp(2rem,4vw,3.2rem)/1.2 'Montserrat',sans-serif;letter-spacing:.05em;text-transform:uppercase}
+    .count-label{margin:25px 0 15px;color:var(--muted);font-family:'Montserrat',sans-serif;font-weight:300}
+    .countdown{width:min(500px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--ink);border-radius:16px;padding:14px;background:#fff}
+    .countdown strong{display:block;color:var(--olive);font:300 clamp(1.8rem,4vw,2.8rem)/1 'Montserrat',sans-serif;font-variant-numeric:tabular-nums;transform-origin:50% 70%;perspective:400px}
+    .countdown strong.tick{animation:number-tick .48s cubic-bezier(.22,1,.36,1)}
+    @keyframes number-tick{0%{opacity:.25;transform:rotateX(-70deg) translateY(-7px)}100%{opacity:1;transform:none}}
+    .countdown span{display:block;margin-top:5px;color:var(--muted);font-size:.60rem;letter-spacing:.08em;text-transform:uppercase}
+    .outline-button{min-height:48px;margin-top:36px;padding:0 25px;border:1px solid rgba(84,78,57,.55);border-radius:14px;background:#fff;color:var(--ink);display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;transition:.25s ease;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;position:relative;overflow:hidden;isolation:isolate}
+    .outline-button::before,.primary-button::before{content:"";position:absolute;z-index:0;pointer-events:none;top:-80%;bottom:-80%;left:-45%;width:28%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),transparent);transition:left .7s cubic-bezier(.22,1,.36,1)}
+    .outline-button:hover::before,.primary-button:hover::before{left:125%}
+    .outline-button:hover{transform:translateY(-2px);border-color:var(--olive);box-shadow:var(--shadow-soft)}
+    .outline-button svg{width:17px;height:17px;stroke-width:1.4}
+
+    /* LUGAR */
+    .cards-2{width:min(980px,100%);margin:55px auto 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+    .cards-2.single{width:min(720px,100%);grid-template-columns:1fr}
+    .event-card{padding:40px 32px;border:1px solid rgba(84,78,57,.13);border-radius:24px;background:#fff;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center}
+    .event-card h3{margin:5px 0 16px;color:var(--olive);font:300 1.6rem/1.2 'Montserrat',sans-serif;text-transform:uppercase}
+    .event-card p{margin:5px 0;color:var(--muted);font:300 1rem/1.5 'Montserrat',sans-serif}
+    .event-card .location{color:var(--ink);font-weight:600}
+
+    /* DRESS CODE */
+    .dress-card{width:min(760px,100%);margin:50px auto 0;padding:42px 34px;border-radius:22px;background:#fff;box-shadow:var(--shadow);border:1px solid rgba(84,78,57,.10)}
+    .dress-grid{display:grid;grid-template-columns:1fr 1px 1fr;gap:28px;align-items:center;margin:32px auto 0}
+    .dress-divider{width:1px;height:120px;background:rgba(194,161,84,.55)}
+    .dress-column h4{margin:0 0 12px;color:var(--gold);font:400 1rem/1.2 'Montserrat',sans-serif;text-transform:uppercase}
+    .dress-column p{margin:0;color:var(--muted);font:300 1rem/1.55 'Montserrat',sans-serif}
+    .reserved-note{margin:30px auto 0;padding:20px;border:1px solid rgba(194,161,84,.24);background:var(--ivory-soft);border-radius:14px;color:var(--ink);font:300 1rem/1.6 'Montserrat',sans-serif}
+    .palette-label{margin:35px 0 18px;color:var(--muted);font:400 .72rem/1.2 'Montserrat',sans-serif;letter-spacing:.13em;text-transform:uppercase}
+    .palette{display:flex;justify-content:center;flex-wrap:wrap;gap:16px}
+    .swatch{width:86px;display:grid;justify-items:center;gap:8px;color:var(--muted);font-size:.63rem;text-transform:uppercase;letter-spacing:.05em}
+    .swatch i{width:48px;height:48px;border-radius:50%;display:block;border:1px solid rgba(84,78,57,.12);box-shadow:inset 0 0 0 4px rgba(255,255,255,.22)}
+
+    /* ITINERARIO */
+    #itinerario{padding:110px 0 150px;overflow:hidden}
+    #itinerario .container{width:min(1680px,calc(100% - 72px))}
+    .itinerary-ornament{width:184px;height:14px;margin:0 auto 62px;position:relative;color:var(--olive)}
+    .itinerary-ornament::before{content:"";position:absolute;left:12px;right:12px;top:6px;height:1px;background:currentColor;opacity:.65}
+    .itinerary-ornament::after{content:"◆";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);padding:0 15px;background:var(--ivory-soft);font-size:.55rem}
+    .itinerary-ornament span::before,.itinerary-ornament span::after{content:"◆";position:absolute;top:1px;font-size:.48rem}
+    .itinerary-ornament span::before{left:3px}.itinerary-ornament span::after{right:3px}
+    .itinerary{--timeline-progress:0;position:relative;margin:78px auto 0;width:100%;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px;align-items:start}
+    .itinerary::before,.itinerary::after{content:"";position:absolute;left:calc(100% / 12);right:calc(100% / 12);top:103px;height:1px;transform-origin:left center;pointer-events:none}
+    .itinerary::before{background:rgba(104,105,63,.20)}
+    .itinerary::after{z-index:2;background:linear-gradient(90deg,var(--gold),var(--olive));transform:scaleX(var(--timeline-progress));box-shadow:0 0 10px rgba(194,161,84,.25)}
+    .itin-item{position:relative;z-index:3;min-width:0;padding:0 10px;background:transparent;text-align:center;opacity:.24;transform:translateY(22px) scale(.96);transition:opacity .65s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+    .itin-item.is-reached{opacity:1;transform:none}
+    .itin-item::after{content:"";position:absolute;left:50%;top:100px;width:7px;height:7px;border-radius:50%;background:var(--ivory-soft);border:1px solid rgba(104,105,63,.55);transform:translate(-50%,-50%) scale(.7);transition:.5s ease}
+    .itin-item.is-reached::after{background:var(--gold);border-color:var(--gold);transform:translate(-50%,-50%) scale(1);box-shadow:0 0 0 7px rgba(194,161,84,.10)}
+    .itin-icon{width:68px;height:68px;margin:0 auto 22px;display:grid;place-items:center;color:var(--olive)}
+    .itinerary-animated-icon{width:64px;height:64px;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 5px 8px rgba(84,78,57,.06))}
+    .itin-time{margin:0;padding-top:14px;border-top:1px solid rgba(104,105,63,.75);color:var(--olive);font:300 clamp(1.05rem,1.45vw,1.5rem)/1.2 'Montserrat',sans-serif}
+    .itin-label{margin:7px 0 0;color:var(--muted);font:300 clamp(.72rem,.85vw,.9rem)/1.35 'Montserrat',sans-serif}
+
+    .itin-envelope-paper{transform-box:fill-box;transform-origin:center;animation:itin-paper 4.2s ease-in-out infinite}
+    .itin-envelope-heart{transform-box:fill-box;transform-origin:center;animation:itin-heart-pulse 2.1s ease-in-out infinite}
+    .itin-ring-left,.itin-ring-right{transform-box:fill-box;transform-origin:center;animation-duration:3.4s;animation-timing-function:cubic-bezier(.55,.05,.45,.95);animation-iteration-count:infinite}
+    .itin-ring-left{animation-name:itin-ring-left}.itin-ring-right{animation-name:itin-ring-right}
+    .itin-rings-heart{transform-box:fill-box;transform-origin:center;animation:itin-heart-float 3.4s ease-in-out infinite}
+    .itin-cocktail-olive{transform-box:fill-box;transform-origin:center;animation:itin-olive 3.1s ease-in-out infinite}
+    .itin-cocktail-bubbles{transform-box:fill-box;transform-origin:center;animation:itin-bubbles 3.1s ease-in-out infinite}
+    .itin-cloche{transform-box:fill-box;transform-origin:bottom center;animation:itin-cloche 3.8s ease-in-out infinite}
+    .itin-dinner-sparkles{transform-box:fill-box;transform-origin:center;animation:itin-sparkles 1.9s ease-in-out infinite}
+    .itin-dancer{transform-box:fill-box;transform-origin:bottom center;animation:itin-dancer 2.4s ease-in-out infinite}
+    .itin-dancer-arm{transform-box:fill-box;transform-origin:center;animation:itin-dancer-arm 1.2s ease-in-out infinite alternate}
+    .itin-dance-notes{transform-box:fill-box;transform-origin:center;animation:itin-dance-notes 2.4s ease-out infinite}
+    .itin-car-body{transform-box:fill-box;transform-origin:center;animation:itin-car-bounce 2.8s ease-in-out infinite}
+    .itin-car-heart{transform-box:fill-box;transform-origin:center;animation:itin-car-heart 2.8s ease-in-out infinite}
+
+    @keyframes itin-paper{0%,16%,84%,100%{transform:translateY(8px)}38%,62%{transform:translateY(-10px)}}
+    @keyframes itin-heart-pulse{0%,100%{transform:scale(.88)}50%{transform:scale(1.16)}}
+    @keyframes itin-ring-left{0%,100%{transform:translateX(-3px) rotate(-4deg)}45%,56%{transform:translateX(2px) rotate(2deg)}}
+    @keyframes itin-ring-right{0%,100%{transform:translateX(3px) rotate(4deg)}45%,56%{transform:translateX(-2px) rotate(-2deg)}}
+    @keyframes itin-heart-float{0%,100%{transform:translateY(5px) scale(.82);opacity:.65}45%,60%{transform:translateY(-5px) scale(1.12);opacity:1}}
+    @keyframes itin-olive{0%,100%{transform:translate(-1px,1px) rotate(-8deg)}50%{transform:translate(3px,-3px) rotate(9deg)}}
+    @keyframes itin-bubbles{0%,100%{transform:translateY(4px);opacity:.25}50%{transform:translateY(-5px);opacity:1}}
+    @keyframes itin-cloche{0%,18%,82%,100%{transform:translateY(0) rotate(0)}42%,58%{transform:translateY(-7px) rotate(-2deg)}}
+    @keyframes itin-sparkles{0%,100%{transform:scale(.45) rotate(0);opacity:.25}50%{transform:scale(1.15) rotate(20deg);opacity:1}}
+    @keyframes itin-dancer{0%,100%{transform:translateY(1px) rotate(-3deg)}25%{transform:translateY(-4px) rotate(4deg)}50%{transform:translateY(0) rotate(-2deg)}75%{transform:translateY(-3px) rotate(3deg)}}
+    @keyframes itin-dancer-arm{from{transform:rotate(-5deg)}to{transform:rotate(8deg)}}
+    @keyframes itin-dance-notes{0%,20%,100%{transform:translateY(5px) scale(.65);opacity:.15}45%,75%{transform:translateY(-5px) scale(1.05);opacity:1}}
+    @keyframes itin-car-bounce{0%,100%{transform:translateY(1px) rotate(-1deg)}35%{transform:translateY(-3px) rotate(1deg)}55%{transform:translateY(0) rotate(-.5deg)}}
+    @keyframes itin-car-heart{0%,100%{transform:translateY(5px) scale(.7);opacity:.3}45%,70%{transform:translateY(-7px) scale(1.08);opacity:1}}
+    .itin-item svg [class]{animation-play-state:paused;animation-iteration-count:2}
+    .itin-item.is-reached svg [class]{animation-play-state:running}
+
+    /* GALERÍA */
+    #galeria{overflow:hidden}
+    .gallery{width:min(1040px,100%);margin:42px auto 0;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:240px;grid-auto-flow:dense;gap:14px}
+    .gallery-photo{--card-x:-24px;--entry-turn:-5deg;--rest-turn:-.55deg;--rest-y:0px;--scroll-turn:0deg;border-radius:20px;background-size:cover;background-position:center;box-shadow:var(--shadow-soft);border:1px solid rgba(84,78,57,.07);position:relative;overflow:hidden;opacity:0;transform:translate(var(--card-x),calc(38px + var(--rest-y))) rotate(calc(var(--rest-turn) + var(--entry-turn))) scale(.94);transition:opacity .75s ease var(--gallery-delay,0ms),transform .9s cubic-bezier(.22,1,.36,1) var(--gallery-delay,0ms),box-shadow .3s ease}
+    button.gallery-photo{width:100%;padding:0;appearance:none;color:inherit;font:inherit;text-align:inherit;cursor:zoom-in}
+    .gallery-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 18%,rgba(255,255,255,.22) 42%,transparent 64%);transform:translateX(-130%);transition:transform .9s cubic-bezier(.22,1,.36,1);pointer-events:none}
+    button.gallery-photo:hover::after{transform:translateX(130%)}
+    .gallery-photo:nth-child(even){--card-x:24px;--entry-turn:5deg;--rest-turn:.65deg}
+    .gallery-photo:nth-child(3n+2){--rest-y:-12px;--rest-turn:.45deg;z-index:3}
+    .gallery-photo:nth-child(3n){--rest-y:6px;--rest-turn:-.4deg;z-index:2}
+    .gallery-photo:nth-child(4n){--rest-turn:1.05deg;z-index:4}
+    .gallery-photo.is-in-view{opacity:1;transform:translateY(var(--rest-y)) rotate(calc(var(--rest-turn) + var(--scroll-turn)))}
+    .gallery-photo.motion-ready{transition:opacity .2s ease,transform .16s linear,box-shadow .3s ease}
+    button.gallery-photo.is-in-view:hover{transform:translateY(calc(var(--rest-y) - 7px)) rotate(calc(var(--rest-turn) + var(--scroll-turn))) scale(1.015);box-shadow:0 18px 38px rgba(84,78,57,.15)}
+    button.gallery-photo:focus-visible{outline:3px solid rgba(104,105,63,.45);outline-offset:4px}
+    .gallery-photo:nth-child(1){background-image:var(--photo-overlay),url('assets/foto-01.jpeg'),linear-gradient(145deg,#e5e8df,#f7f4eb)}
+    .gallery-photo:nth-child(2){background-image:var(--photo-overlay),url('assets/foto-02.jpeg'),linear-gradient(145deg,#ece6d8,#e6ebdf)}
+    .gallery-photo:nth-child(3){background-image:var(--photo-overlay),url('assets/foto-03.jpeg'),linear-gradient(145deg,#dfe7dc,#f2ece0)}
+    .gallery-photo:nth-child(4){background-image:var(--photo-overlay),url('assets/foto-04.jpeg'),linear-gradient(145deg,#f0e9db,#dce4dc)}
+    .gallery-photo:nth-child(5){background-image:var(--photo-overlay),url('assets/foto-05.jpeg'),linear-gradient(145deg,#e0e5dc,#f5eee1)}
+    .gallery-photo:nth-child(6){background-image:var(--photo-overlay),url('assets/foto-06.jpeg'),linear-gradient(145deg,#e8e8df,#ece5d7)}
+    .gallery-photo:nth-child(7){background-image:var(--photo-overlay),url('assets/foto-07.jpeg'),linear-gradient(145deg,#e5e8df,#f7f4eb)}
+    .gallery-photo:nth-child(8){background-image:var(--photo-overlay),url('assets/foto-08.jpeg'),linear-gradient(145deg,#ece6d8,#e6ebdf)}
+    .gallery-photo:nth-child(9){background-image:var(--photo-overlay),url('assets/foto-09.jpeg'),linear-gradient(145deg,#dfe7dc,#f2ece0)}
+    .gallery-photo:nth-child(10){background-image:var(--photo-overlay),url('assets/foto-10.jpeg'),linear-gradient(145deg,#f0e9db,#dce4dc)}
+    .gallery-photo:nth-child(11){background-image:var(--photo-overlay),url('assets/foto-11.jpeg'),linear-gradient(145deg,#e0e5dc,#f5eee1)}
+    .gallery-photo:nth-child(12){background-image:var(--photo-overlay),url('assets/foto-12.jpeg'),linear-gradient(145deg,#e8e8df,#ece5d7)}
+    .gallery-photo:nth-child(13){background-image:var(--photo-overlay),url('assets/foto-13.jpeg'),linear-gradient(145deg,#e5e8df,#f7f4eb)}
+    .gallery-photo:nth-child(14){background-image:var(--photo-overlay),url('assets/foto-14.jpeg'),linear-gradient(145deg,#ece6d8,#e6ebdf)}
+    .gallery-photo:nth-child(15){background-image:var(--photo-overlay),url('assets/foto-15.jpeg'),linear-gradient(145deg,#dfe7dc,#f2ece0)}
+    .gallery-photo:nth-child(2),.gallery-photo:nth-child(5),.gallery-photo:nth-child(8),.gallery-photo:nth-child(11),.gallery-photo:nth-child(14){grid-row:span 2}
+    .gallery-photo:nth-child(1),.gallery-photo:nth-child(7),.gallery-photo:nth-child(13){grid-column:span 2}
+
+    /* VISOR DE GALERÍA */
+    .gallery-lightbox{position:fixed;inset:0;z-index:26000;display:none;align-items:center;justify-content:center;padding:clamp(18px,4vw,48px);background:rgba(25,25,20,.88);backdrop-filter:blur(10px)}
+    .gallery-lightbox.is-open{display:flex;animation:fade .22s ease both}
+    .gallery-lightbox-figure{max-width:min(1200px,94vw);max-height:92svh;margin:0;display:grid;place-items:center;position:relative}
+    .gallery-lightbox-image{display:block;max-width:100%;max-height:88svh;width:auto;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 24px 80px rgba(0,0,0,.35);animation:lightbox-image-in .65s cubic-bezier(.22,1,.36,1) both;transform-origin:var(--origin-x,50%) var(--origin-y,50%)}
+    .gallery-lightbox-image.is-changing{animation:lightbox-change .36s ease both}
+    @keyframes lightbox-image-in{from{opacity:0;transform:scale(.72) translateY(24px);filter:blur(7px)}to{opacity:1;transform:none;filter:none}}
+    @keyframes lightbox-change{0%{opacity:.2;transform:scale(.96)}100%{opacity:1;transform:none}}
+    .gallery-lightbox-close{position:fixed;top:18px;right:18px;width:46px;height:46px;border:1px solid rgba(255,255,255,.45);border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(8px)}
+    .gallery-lightbox-close svg{width:22px;height:22px;stroke-width:1.5}
+    .gallery-lightbox-nav{position:fixed;top:50%;width:48px;height:48px;border:1px solid rgba(255,255,255,.34);border-radius:50%;background:rgba(255,255,255,.1);color:#fff;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(8px);transform:translateY(-50%);transition:.25s ease}
+    .gallery-lightbox-nav:hover{background:rgba(255,255,255,.22);transform:translateY(-50%) scale(1.06)}
+    .gallery-lightbox-nav.prev{left:18px}.gallery-lightbox-nav.next{right:18px}
+    .gallery-lightbox-nav svg{width:22px;height:22px;stroke-width:1.5}
+
+    /* REGALOS */
+    .gift-card{width:min(900px,100%);margin:48px auto 0;padding:clamp(34px,5vw,58px);border:1px solid rgba(84,78,57,.14);border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(247,244,235,.92));box-shadow:0 22px 55px rgba(84,78,57,.10);position:relative;overflow:hidden}
+    .gift-card::before,.gift-card::after{content:"";position:absolute;width:150px;height:150px;border:1px solid rgba(104,105,63,.10);border-radius:50%;pointer-events:none}
+    .gift-card::before{top:-92px;left:-72px}.gift-card::after{right:-82px;bottom:-102px}
+    .gift-card-heading{position:relative;z-index:1;text-align:center}
+    .gift-card-title-icon{width:58px;height:58px;margin:0 auto 15px;border:1px solid rgba(104,105,63,.25);border-radius:50%;background:rgba(255,255,255,.70);color:var(--olive);display:grid;place-items:center;box-shadow:0 8px 20px rgba(84,78,57,.07)}
+    .gift-card-title-icon svg{width:27px;height:27px;stroke-width:1.25}
+    .gift-card-eyebrow{margin:0 0 8px;color:var(--gold);font-size:.61rem;letter-spacing:.18em;text-transform:uppercase}
+    .gift-card h3{margin:0;color:var(--olive);font:300 clamp(1.65rem,3vw,2.25rem)/1.2 'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+    .gift-separator{width:min(340px,72%);height:16px;margin:21px auto 30px;position:relative}
+    .gift-separator::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(104,105,63,.42),transparent)}
+    .gift-separator::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;background:var(--ivory-soft);border:1px solid var(--olive);transform:translate(-50%,-50%) rotate(45deg)}
+    .bank-accounts{display:grid;grid-template-columns:1fr 1fr;gap:18px;position:relative;z-index:1}
+    .bank-block{padding:25px 24px 21px;border:1px solid rgba(84,78,57,.13);border-radius:19px;background:rgba(255,255,255,.75);box-shadow:0 10px 28px rgba(84,78,57,.055);text-align:left}
+    .bank-heading{display:flex;align-items:center;gap:13px;padding-bottom:17px;margin-bottom:5px;border-bottom:1px solid rgba(84,78,57,.10)}
+    .bank-icon{width:42px;height:42px;border-radius:13px;background:var(--ivory);color:var(--olive);display:grid;place-items:center;flex:0 0 auto}
+    .bank-icon svg{width:21px;height:21px;stroke-width:1.35}
+    .bank-heading strong{display:block;color:var(--ink);font:500 1.02rem/1.2 'Montserrat',sans-serif}
+    .bank-currency{display:block;margin-top:3px;color:var(--muted);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase}
+    .bank-details{padding-top:8px}
+    .bank-row{display:grid;grid-template-columns:minmax(88px,.8fr) minmax(0,1.2fr) 34px;align-items:center;gap:8px;min-height:46px;border-bottom:1px solid rgba(84,78,57,.08);color:var(--ink);font:300 .84rem/1.4 'Montserrat',sans-serif}
+    .bank-row:last-child{border-bottom:0}
+    .bank-label{color:var(--muted);font-size:.65rem;letter-spacing:.06em;text-transform:uppercase}
+    .bank-value{min-width:0;overflow-wrap:anywhere;color:var(--ink)}
+    .copy-mini{width:34px;height:34px;border:1px solid rgba(104,105,63,.18);background:var(--ivory-soft);color:var(--olive);cursor:pointer;display:grid;place-items:center;border-radius:10px;transition:.22s ease}
+    .copy-mini:hover{background:var(--olive);color:#fff;transform:translateY(-2px);box-shadow:0 7px 16px rgba(84,78,57,.13)}
+    .copy-mini:focus-visible{outline:2px solid rgba(104,105,63,.42);outline-offset:2px}
+    .copy-mini svg{width:16px;height:16px;stroke-width:1.6}
+    .gift-note{max-width:720px;margin:20px auto 0;color:var(--muted);font:300 1rem/1.7 'Montserrat',sans-serif}
+    .gift-secondary{width:min(780px,100%);margin:25px auto 0;padding:30px;border:1px solid rgba(84,78,57,.18);border-radius:20px;background:var(--ivory-soft);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;text-align:left}
+    .gift-secondary .icon-circle{margin:0}
+    .gift-secondary .reference-icon-wrap{margin:0}
+    .gift-secondary h4{margin:0 0 6px;color:var(--olive);font:300 1.2rem/1.2 'Montserrat',sans-serif;text-transform:uppercase}
+    .gift-secondary p{margin:0;color:var(--muted);font:300 1rem/1.5 'Montserrat',sans-serif}
+
+    /* INFO / FOTOS */
+    .info-grid{width:min(980px,100%);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .info-card{padding:42px 34px;border:1px solid rgba(84,78,57,.12);border-radius:24px;background:#fff;box-shadow:var(--shadow-soft)}
+    .info-card h3{margin:10px 0 12px;color:var(--olive);font:300 1.55rem/1.2 'Montserrat',sans-serif;text-transform:uppercase}
+    .info-card p{margin:0;color:var(--muted);font:300 1rem/1.6 'Montserrat',sans-serif}
+
+    /* RSVP */
+    .rsvp-wrap{width:min(780px,100%);margin:40px auto 0;position:relative;padding-top:150px}
+    .rsvp-envelope-bg{position:absolute;top:0;left:50%;transform:translateX(-50%);width:340px;height:240px;border-radius:24px 24px 0 0;background:linear-gradient(145deg,#faf7ef,#eee8da);box-shadow:var(--shadow-soft);overflow:hidden}
+    .rsvp-envelope-bg::before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 49.5%,rgba(84,78,57,.07) 50%,transparent 50.5%)}
+    .rsvp-envelope-bg::after{content:"";position:absolute;left:50%;bottom:1px;transform:translateX(-50%);width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#879486,#59644f 70%);box-shadow:0 7px 16px rgba(84,78,57,.20),inset 0 0 0 4px rgba(255,255,255,.11)}
+    .rsvp-card{position:relative;z-index:2;padding:55px 42px 46px;border:1px solid rgba(84,78,57,.11);border-radius:22px;background:#fff;box-shadow:var(--shadow);text-align:center}
+    .deadline{display:inline-block;margin:18px 0 8px;padding:10px 16px;border-radius:999px;background:var(--ivory);color:var(--olive);font-size:.66rem;letter-spacing:.10em;text-transform:uppercase}
+    .invitation-access{margin:30px auto 0;padding:22px;border:1px solid rgba(104,105,63,.24);border-radius:16px;background:var(--ivory-soft)}
+    .invitation-access[data-state="valid"]{border-color:rgba(107,114,66,.38)}
+    .invitation-access[data-state="invalid"],.invitation-access[data-state="error"]{border-color:rgba(144,69,69,.30)}
+    .invitation-access-eyebrow{margin:0;color:var(--gold);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase}
+    .invitation-access-name{display:block;margin:10px auto 5px;color:var(--ink);font:500 clamp(1.45rem,3vw,2.2rem)/1.1 'Montserrat',sans-serif;text-transform:uppercase}
+    .invitation-access-message,.invitation-current-response{margin:8px auto 0;color:var(--muted);font:300 1rem/1.5 'Montserrat',sans-serif}
+    .invitation-current-response{padding-top:10px;border-top:1px solid var(--line);color:var(--olive)}
+    .retry-link{margin-top:12px;border:0;background:transparent;color:var(--olive);text-decoration:underline;cursor:pointer;font-size:.76rem}
+    .primary-button{min-height:50px;margin-top:26px;padding:0 28px;border:1px solid var(--olive);border-radius:14px;background:var(--olive);color:#fff;display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;transition:.25s ease;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;position:relative;overflow:hidden;isolation:isolate}
+    .primary-button:hover{transform:translateY(-2px);background:#5b6138;box-shadow:0 12px 28px rgba(84,78,57,.16)}
+    .primary-button:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+
+    /* FINAL */
+    .final-photo{--final-parallax:0px;min-height:70vh;background-image:linear-gradient(180deg,rgba(255,255,255,.02),rgba(84,78,57,.14)),var(--final-photo),linear-gradient(145deg,#e2e6dd,#f4ede1);background-size:cover;background-position:center calc(50% + var(--final-parallax));position:relative;overflow:hidden}
+    .final-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 28%,rgba(255,255,255,.16) 48%,transparent 68%);transform:translateX(-120%);animation:final-light 8s ease-in-out infinite}
+    @keyframes final-light{0%,55%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+    .closing-copy{max-width:760px;margin:0 auto;color:var(--muted);font:300 1rem/1.75 'Montserrat',sans-serif}
+    .closing-names{margin:25px 0 0;color:var(--olive);font:400 clamp(4.2rem,8vw,7.6rem)/.9 'Italianno',cursive}
+    .footer-date{margin:20px 0 0;color:var(--gold);font-size:.68rem;letter-spacing:.20em;text-transform:uppercase}
+
+    /* MODAL RSVP */
+    .modal-backdrop{position:fixed;inset:0;z-index:25000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(55,52,42,.60);backdrop-filter:blur(8px)}
+    .modal-backdrop.is-open{display:flex;animation:fade .22s ease both}
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+    .modal-dialog{width:min(610px,100%);max-height:calc(100svh - 40px);overflow:auto;padding:48px 34px 34px;border-radius:24px;background:#fff;box-shadow:0 26px 80px rgba(50,48,39,.28);position:relative}
+    .modal-close{position:absolute;top:16px;right:16px;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:var(--ivory-soft);color:var(--olive);display:grid;place-items:center;cursor:pointer}
+    .modal-close svg{width:18px;height:18px;stroke-width:1.4}
+    .modal-kicker{margin:0;color:var(--gold);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;text-align:center}
+    .modal-title{margin:10px 0 8px;color:var(--olive);font:300 2.2rem/1.1 'Montserrat',sans-serif;text-align:center;text-transform:uppercase}
+    .modal-description{margin:0 auto;color:var(--muted);font:300 1rem/1.5 'Montserrat',sans-serif;text-align:center}
+    .preview-warning{margin:18px 0 0;padding:10px 12px;border-radius:12px;background:#fff7df;color:#7c6423;font-size:.75rem;text-align:center}
+    .rsvp-form{margin-top:24px}
+    .form-row{margin-bottom:16px;text-align:left}
+    .form-label{display:block;margin-bottom:7px;color:var(--ink);font-size:.67rem;letter-spacing:.07em;text-transform:uppercase}
+    .form-input,.form-select,.form-textarea{width:100%;min-height:48px;padding:12px 13px;border:1px solid rgba(84,78,57,.20);border-radius:12px;background:#fff;color:var(--ink);outline:none;font:300 .95rem/1.4 'Montserrat',sans-serif}
+    .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--olive);box-shadow:0 0 0 3px rgba(107,114,66,.10)}
+    .form-input[readonly]{background:var(--ivory-soft);font-weight:600}
+    .form-textarea{min-height:92px;resize:vertical}
+    .radio-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .radio-card{min-height:48px;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;background:#fff;font:300 .9rem/1.2 'Montserrat',sans-serif}
+    .radio-card:has(input:checked){border-color:var(--olive);background:var(--ivory)}
+    .radio-card input{accent-color:var(--olive)}
+    .companions-section{margin:0 0 16px;padding:16px;border-radius:14px;background:var(--ivory-soft);border:1px solid rgba(84,78,57,.11)}
+    .companions-intro{margin:0 0 13px;color:var(--muted);font:300 .9rem/1.4 'Montserrat',sans-serif}
+    .companions-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .submit-button{width:100%;min-height:52px;border:1px solid var(--olive);border-radius:14px;background:var(--olive);color:#fff;cursor:pointer;text-transform:uppercase;letter-spacing:.08em;font-size:.74rem;display:flex;align-items:center;justify-content:center;gap:8px}
+    .submit-button:disabled{opacity:.50;cursor:not-allowed}
+    .status-message{min-height:22px;margin-top:14px;text-align:center;color:var(--olive);font:300 .9rem/1.4 'Montserrat',sans-serif}
+    .status-message.error{color:#8a4b4b}.status-message.ok{color:#456853}.status-message.warning{color:#7a642e}
+    .verification-retry{width:100%;min-height:46px;margin-top:10px;border:1px solid var(--olive);border-radius:14px;background:#fff;color:var(--olive);cursor:pointer;text-transform:uppercase;letter-spacing:.07em;font-size:.70rem}
+    .manual-whatsapp-link{width:100%;min-height:48px;margin-top:10px;border:1px solid rgba(84,78,57,.30);border-radius:14px;background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;text-transform:uppercase;letter-spacing:.06em;font-size:.70rem}
+    .toast{position:fixed;left:50%;bottom:24px;z-index:28000;transform:translate(-50%,12px);opacity:0;pointer-events:none;padding:10px 15px;border-radius:999px;background:rgba(84,78,57,.94);color:#fff;font-size:.75rem;transition:.25s ease}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    .protected-alert{position:fixed;left:16px;top:16px;z-index:31000;width:min(270px,calc(100vw - 32px));min-height:76px;padding:14px 17px;display:flex;align-items:center;gap:13px;border:1px solid #efa0a0;border-radius:12px;background:rgba(255,241,241,.98);box-shadow:0 12px 34px rgba(199,77,77,.22);color:#574a4a;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px) scale(.97);transform-origin:top left;transition:opacity .2s ease,transform .25s cubic-bezier(.22,1,.36,1),visibility .2s}
+    .protected-alert.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+    .protected-alert svg{width:22px;height:22px;flex:0 0 auto;color:#d39a16;fill:#ffd95a;stroke:#6f5b18;stroke-width:1.5}
+    .protected-alert p{margin:0;font:300 .72rem/1.55 'Montserrat',sans-serif;color:#625757}
+    .protected-alert strong{font-weight:700;color:#4f4545}
+
+    @media(max-width:900px){
+      .container{width:min(100% - 28px,720px)}
+      .hero{grid-template-columns:1fr;min-height:auto}
+      .hero-photo{min-height:58svh;order:1}
+      .hero-photo::after{
+        top:auto;right:0;bottom:-1px;width:100%;height:clamp(44px,8vw,70px);
+        background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 70' preserveAspectRatio='none'%3E%3Cpath fill='%23fff' d='M0 35C120 4 250 62 390 28C540-8 700 54 900 22V70H0Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+      }
+      .hero-copy{min-height:auto;padding:70px 24px 80px;order:2}
+      .section{padding:70px 0}
+      .cards-2,.info-grid{grid-template-columns:1fr}
+      #itinerario{padding:90px 0 110px}
+      #itinerario .container{width:min(100% - 28px,820px)}
+      .itinerary{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 18px}
+      .itin-item{padding:0 8px}
+      .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:230px}
+      .gallery-photo:nth-child(2),.gallery-photo:nth-child(5),.gallery-photo:nth-child(8),.gallery-photo:nth-child(11),.gallery-photo:nth-child(14){grid-row:span 1}
+    }
+    @media(max-width:600px){
+      .opening-button{width:110px}
+      .scroll-progress{display:none}
+      .hero-photo{min-height:58svh}
+      .hero-copy{padding:58px 22px 66px}
+      .couple-names{font-size:4.7rem}
+      .section{padding:60px 0}
+      .section-title{font-size:1.7rem}
+      .script-title{font-size:3.6rem}
+      .family-grid{grid-template-columns:1fr}
+      .family-card{padding:28px 20px}
+      .verse-card,.dress-card,.gift-card,.rsvp-card,.info-card{padding-left:22px;padding-right:22px}
+      .countdown{padding:12px 6px}
+      .countdown strong{font-size:1.8rem}
+      .cards-2{margin-top:38px}
+      .dress-grid{grid-template-columns:1fr;gap:18px}
+      .dress-divider{height:1px;width:80%;margin:auto}
+      .palette{gap:12px}.swatch{width:72px}.swatch i{width:44px;height:44px}
+      #itinerario{padding:72px 0 88px}
+      .itinerary-ornament{display:none}
+      #itinerario .section-title{font-size:1.45rem}
+      .itinerary{display:block;width:min(410px,100%);margin:48px auto 0}
+      .itinerary::before,.itinerary::after{left:50%;right:auto;top:0;bottom:60px;width:1px;height:auto;transform-origin:center top}
+      .itinerary::after{transform:scaleY(var(--timeline-progress))}
+      .itin-item{height:120px;display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1fr);grid-template-rows:1fr 1fr;align-items:center;padding:0;position:relative}
+      .itin-item::before{content:"";position:absolute;left:50%;top:-8px;bottom:-8px;width:1px;background:rgba(104,105,63,.58);transform:translateX(-50%)}
+      .itin-item:not(:last-child)::after{content:"";position:absolute;z-index:4;left:50%;bottom:-5px;width:6px;height:6px;border-radius:50%;background:var(--olive);box-shadow:0 0 0 7px var(--ivory-soft);transform:translateX(-50%)}
+      .itin-item:last-child::before{bottom:50%}
+      .itin-item::before{opacity:0}
+      .itin-item:last-child::after{display:none}
+      .itin-icon{width:62px;height:62px;margin:0;grid-row:1/3;justify-self:center;position:relative;z-index:2;background:var(--ivory-soft)}
+      .itinerary-animated-icon{width:56px;height:56px}
+      .itin-time{align-self:end;margin:0;padding:0;border:0;font-size:1.28rem;line-height:1.12;position:relative;z-index:2;background:var(--ivory-soft)}
+      .itin-label{align-self:start;margin:3px 0 0;font-size:.76rem;position:relative;z-index:2;background:var(--ivory-soft)}
+      .itin-item:nth-child(odd) .itin-icon{grid-column:1}
+      .itin-item:nth-child(odd) .itin-time,.itin-item:nth-child(odd) .itin-label{grid-column:3;text-align:center}
+      .itin-item:nth-child(even) .itin-icon{grid-column:3}
+      .itin-item:nth-child(even) .itin-time,.itin-item:nth-child(even) .itin-label{grid-column:1;text-align:center}
+      .itin-item:nth-child(odd) .itin-time::before{content:"";position:absolute;right:calc(100% + 8px);top:-18px;width:32px;height:33px;border-left:1px solid rgba(104,105,63,.58);border-top:1px solid rgba(104,105,63,.58);border-radius:22px 0 0 0}
+      .itin-item:nth-child(even) .itin-time::before{content:"";position:absolute;left:calc(100% + 8px);top:14px;width:32px;height:33px;border-right:1px solid rgba(104,105,63,.58);border-bottom:1px solid rgba(104,105,63,.58);border-radius:0 0 22px 0}
+      .gallery{display:block;column-count:3;column-gap:5px;width:calc(100% + 8px);margin:22px 0 0 -4px;overflow:visible}
+      .gallery-photo{display:block;width:100%;aspect-ratio:2/3;min-height:0;margin:0 0 5px;break-inside:avoid;border-radius:7px;border:0;box-shadow:0 5px 14px rgba(84,78,57,.08);--entry-turn:-5deg;--rest-turn:-.7deg;--rest-y:0px}
+      .gallery-photo:nth-child(even){--entry-turn:5deg;--rest-turn:.8deg}
+      .gallery-photo:nth-child(3n+2){--rest-y:-7px;--rest-turn:.6deg;z-index:3}
+      .gallery-photo:nth-child(3n){--rest-y:3px;--rest-turn:-.5deg;z-index:2}
+      .gallery-photo:nth-child(4n){--rest-turn:1.1deg;z-index:4}
+      .gallery-photo:nth-child(1){--rest-y:25px}
+      .gallery-photo:nth-child(6){--rest-y:-30px;z-index:5}
+      .gallery-photo:nth-child(1),.gallery-photo:nth-child(13){aspect-ratio:4/3}
+      .gallery-photo:nth-child(3),.gallery-photo:nth-child(5),.gallery-photo:nth-child(10),.gallery-photo:nth-child(12){aspect-ratio:3/4}
+      .bank-accounts{grid-template-columns:1fr}
+      .gift-card{padding:32px 17px;border-radius:22px}
+      .bank-block{padding:20px 16px 16px}
+      .bank-row{grid-template-columns:minmax(82px,.8fr) minmax(0,1.2fr) 34px;gap:6px}
+      .gift-secondary{grid-template-columns:1fr;text-align:center}.gift-secondary .icon-circle{margin:auto}
+      .rsvp-wrap{padding-top:120px}.rsvp-envelope-bg{width:280px;height:200px}
+      .rsvp-card{padding-top:48px}
+      .modal-dialog{padding:48px 20px 28px}
+      .radio-grid,.companions-grid{grid-template-columns:1fr}
+      .music-fab{right:14px;bottom:14px}
+      .gallery-lightbox-nav{top:auto;bottom:18px;transform:none}
+      .gallery-lightbox-nav:hover{transform:scale(1.04)}
+      .gallery-lightbox-nav.prev{left:calc(50% - 58px)}.gallery-lightbox-nav.next{right:calc(50% - 58px)}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+      .reveal{opacity:1!important;transform:none!important;filter:none!important}
+      .hero-slide{transform:none!important}
+      .reference-icon{animation:none!important}
+      .gallery-photo{opacity:1!important;transform:none!important}
+    }
+</style>
+</head>
+<body class="locked">
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <symbol id="ref-couple" viewBox="0 0 100 100">
+<g class="beat"><path class="fill" d="M50,14 C50,10 46,7 42,9 C38,11 38,16 42,20 L50,27 L58,20 C62,16 62,11 58,9 C54,7 50,10 50,14 Z"/></g>
+      <g class="sparkle l"><path class="ln" d="M24,10 L24,18 M20,14 L28,14"/></g>
+      <g class="sparkle r"><path class="ln" d="M76,10 L76,18 M72,14 L80,14"/></g>
+      <path class="ln" d="M20,87 C20,63 26,50 35,50 C44,50 50,63 50,87 Z"/>
+      <path class="ln" d="M28,53 L35,66 L42,53"/>
+      <path class="fill-soft" d="M35,55 L38,60 L35,66 L32,60 Z"/>
+      <circle class="fill" cx="35" cy="72" r="1.2"/>
+      <circle class="fill" cx="35" cy="78" r="1.2"/>
+      <circle class="ln" cx="35" cy="35" r="10"/>
+      <path class="ln" d="M25,32 C26,23 44,23 45,32 C41,28 29,28 25,32 Z"/>
+      <circle class="fill" cx="32" cy="36" r="1"/>
+      <circle class="fill" cx="38" cy="36" r="1"/>
+      <path class="ln" d="M31,40 Q35,42.5 39,40"/>
+      <g class="flutter-a"><path class="ln-soft" d="M52,40 C46,52 46,70 50,86"/></g>
+      <g class="flutter-b"><path class="ln-soft" d="M78,40 C84,52 84,70 80,86"/></g>
+      <path class="ln" d="M50,88 C50,64 58,50 65,50 C72,50 80,64 80,88 Z"/>
+      <path class="ln-soft" d="M58,53 C60,62 60,72 58,84"/>
+      <path class="ln-soft" d="M72,53 C70,62 70,72 72,84"/>
+      <path class="ln" d="M61,58 C63,55 67,55 69,58 C71,61 68,65 65,68 C62,65 59,61 61,58 Z"/>
+      <circle class="ln" cx="65" cy="35" r="10"/>
+      <circle class="ln" cx="65" cy="24" r="4.5"/>
+      <circle class="fill" cx="62" cy="36" r="1"/>
+      <circle class="fill" cx="68" cy="36" r="1"/>
+      <path class="ln" d="M61,40 Q65,42.5 69,40"/>
+    </symbol>
+    <symbol id="ref-hearts" viewBox="0 0 100 100">
+<circle class="ln" cx="36" cy="60" r="20"/>
+      <circle class="ln" cx="36" cy="60" r="15"/>
+      <g class="slide">
+        <circle class="ln" cx="63" cy="60" r="20"/>
+        <circle class="ln" cx="63" cy="60" r="15"/>
+      </g>
+      <g class="beat">
+        <path class="fill" d="M50,20 C50,15 45,11 40,14 C35,17 35,23 40,28 L50,37 L60,28 C65,23 65,17 60,14 C55,11 50,15 50,20 Z"/>
+      </g>
+      <g class="sparkle l"><path class="ln" d="M22,16 L22,26 M17,21 L27,21"/></g>
+      <g class="sparkle r"><path class="ln" d="M78,16 L78,26 M73,21 L83,21"/></g>
+    </symbol>
+    <symbol id="ref-church" viewBox="0 0 100 100">
+<line class="ln" x1="50" y1="30" x2="50" y2="14"/>
+      <line class="ln" x1="43" y1="19" x2="57" y2="19"/>
+      <rect class="ln" x="18" y="66" width="18" height="21"/>
+      <polygon class="ln" points="18,66 27,52 36,66"/>
+      <rect class="ln" x="64" y="66" width="18" height="21"/>
+      <polygon class="ln" points="64,66 73,52 82,66"/>
+      <rect class="ln" x="38" y="52" width="24" height="35"/>
+      <polygon class="ln" points="35,52 50,30 65,52"/>
+      <circle class="ln-soft" cx="50" cy="44" r="7"/>
+      <g class="ln-soft"><line x1="50" y1="37" x2="50" y2="51"/><line x1="43" y1="44" x2="57" y2="44"/></g>
+      <g class="swing">
+        <path class="ln" d="M46,57 C46,53 54,53 54,57 L55,61 L45,61 Z"/>
+        <circle class="fill" cx="50" cy="62" r="1"/>
+      </g>
+      <path class="ln" d="M44,87 L44,72 C44,68 56,68 56,72 L56,87"/>
+      <line class="ln-soft" x1="50" y1="72" x2="50" y2="87"/>
+      <line class="ln-soft" x1="20" y1="87" x2="80" y2="87"/>
+    </symbol>
+    <symbol id="ref-envelope" viewBox="0 0 100 100">
+<rect class="ln-soft" x="20" y="16" width="40" height="24"/>
+      <line class="ln-soft" x1="26" y1="23" x2="54" y2="23"/>
+      <line class="ln-soft" x1="26" y1="29" x2="48" y2="29"/>
+      <rect class="ln" x="10" y="30" width="80" height="50" rx="2"/>
+      <polyline class="ln flap-closed" points="10,32 50,60 90,32"/>
+      <polyline class="ln flap-open" points="10,32 50,46 90,32"/>
+      <g class="beat">
+        <circle class="ln" cx="68" cy="60" r="12"/>
+        <path class="ln" d="M63,60 C63,57 73,57 73,60 C73,63 68,63 68,66 C68,63 63,63 63,60 Z"/>
+      </g>
+      <path class="ln-soft" d="M62,68 C60,74 60,80 62,84"/>
+      <path class="ln-soft" d="M74,68 C76,74 76,80 74,84"/>
+      <g class="sparkle l"><path class="ln" d="M48,52 L48,60 M44,56 L52,56"/></g>
+      <g class="sparkle r"><path class="ln" d="M88,52 L88,60 M84,56 L92,56"/></g>
+    </symbol>
+    <symbol id="ref-attire" viewBox="0 0 100 100">
+<g class="flutter-a">
+        <path class="ln" d="M30,18 C24,18 24,24 24,24 L14,32 L18,74 L42,74 L46,32 L36,24 C36,24 36,18 30,18 Z"/>
+        <path class="ln" d="M24,24 L30,40 L36,24"/>
+        <line class="ln-soft" x1="30" y1="40" x2="30" y2="70"/>
+        <circle class="fill" cx="30" cy="48" r="0.9"/>
+        <circle class="fill" cx="30" cy="56" r="0.9"/>
+        <circle class="fill" cx="30" cy="64" r="0.9"/>
+        <rect class="ln-soft" x="17" y="45" width="9" height="6"/>
+      </g>
+      <g class="flutter-b">
+        <path class="ln" d="M70,16 C66,16 66,22 66,22 L60,28 L64,38 L57,80 L83,80 L76,38 L80,28 L74,22 C74,22 74,16 70,16 Z"/>
+        <path class="ln-soft" d="M64,38 C67,42 73,42 76,38"/>
+        <path class="ln-soft" d="M62,55 C65,58 75,58 78,55"/>
+        <path class="ln-soft" d="M60,68 C64,71 76,71 80,68"/>
+      </g>
+      <g class="beat"><circle class="fill" cx="70" cy="24" r="2.6"/></g>
+      <g class="sparkle l"><path class="ln" d="M60,16 L60,22 M57,19 L63,19"/></g>
+    </symbol>
+    <symbol id="ref-rings" viewBox="0 0 100 100">
+<circle class="ln" cx="36" cy="60" r="20"/>
+      <circle class="ln" cx="36" cy="60" r="15"/>
+      <g class="slide">
+        <circle class="ln" cx="63" cy="60" r="20"/>
+        <circle class="ln" cx="63" cy="60" r="15"/>
+      </g>
+      <g class="beat">
+        <path class="fill" d="M50,20 C50,15 45,11 40,14 C35,17 35,23 40,28 L50,37 L60,28 C65,23 65,17 60,14 C55,11 50,15 50,20 Z"/>
+      </g>
+      <g class="sparkle l"><path class="ln" d="M22,16 L22,26 M17,21 L27,21"/></g>
+      <g class="sparkle r"><path class="ln" d="M78,16 L78,26 M73,21 L83,21"/></g>
+    </symbol>
+    <symbol id="ref-cocktail" viewBox="0 0 100 100">
+<g class="clink-l">
+        <polyline class="ln" points="14,20 30,48 30,82"/>
+        <line class="ln" x1="14" y1="20" x2="46" y2="20"/>
+        <line class="ln-soft" x1="20" y1="82" x2="40" y2="82"/>
+        <path class="fill-soft" d="M18,24 L42,24 L30,44 Z"/>
+        <circle class="bubble b1" cx="27" cy="34" r="1.2"/>
+        <circle class="bubble b2" cx="33" cy="30" r="1"/>
+        <circle class="fill" cx="42" cy="22" r="2.2"/>
+      </g>
+      <g class="clink-r">
+        <polyline class="ln" points="86,20 70,48 70,82"/>
+        <line class="ln" x1="54" y1="20" x2="86" y2="20"/>
+        <line class="ln-soft" x1="60" y1="82" x2="80" y2="82"/>
+        <path class="fill-soft" d="M82,24 L58,24 L70,44 Z"/>
+        <circle class="bubble b2" cx="73" cy="34" r="1.2"/>
+        <circle class="bubble b3" cx="67" cy="30" r="1"/>
+      </g>
+      <g class="sparkle l"><path class="ln" d="M50,30 L50,36 M47,33 L53,33"/></g>
+      <g class="sparkle r"><path class="ln" d="M50,40 L50,46 M47,43 L53,43"/></g>
+    </symbol>
+    <symbol id="ref-dinner" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 13h11v11c0 5-2 8-5.5 8S11 29 11 24V13ZM16.5 32v19M11 52h11"/>
+      <path d="M29 46h28M33 44c0-10 5-17 12-17s12 7 12 17M45 27v-4M41 22h8M29 47v5h28v-5"/>
+    </symbol>
+    <symbol id="ref-party" viewBox="0 0 100 100">
+<g class="clink-l">
+        <polyline class="ln" points="14,20 30,48 30,82"/>
+        <line class="ln" x1="14" y1="20" x2="46" y2="20"/>
+        <line class="ln-soft" x1="20" y1="82" x2="40" y2="82"/>
+        <path class="fill-soft" d="M18,24 L42,24 L30,44 Z"/>
+        <circle class="bubble b1" cx="27" cy="34" r="1.2"/>
+        <circle class="bubble b2" cx="33" cy="30" r="1"/>
+        <circle class="fill" cx="42" cy="22" r="2.2"/>
+      </g>
+      <g class="clink-r">
+        <polyline class="ln" points="86,20 70,48 70,82"/>
+        <line class="ln" x1="54" y1="20" x2="86" y2="20"/>
+        <line class="ln-soft" x1="60" y1="82" x2="80" y2="82"/>
+        <path class="fill-soft" d="M82,24 L58,24 L70,44 Z"/>
+        <circle class="bubble b2" cx="73" cy="34" r="1.2"/>
+        <circle class="bubble b3" cx="67" cy="30" r="1"/>
+      </g>
+      <g class="sparkle l"><path class="ln" d="M50,30 L50,36 M47,33 L53,33"/></g>
+      <g class="sparkle r"><path class="ln" d="M50,40 L50,46 M47,43 L53,43"/></g>
+    </symbol>
+    <symbol id="ref-gift" viewBox="0 0 100 100">
+<!-- corazones flotantes -->
+      <g class="float-heart h1"><path class="fill" d="M28,30 C28,28 26,26 24,27 C22,28 22,31 24,33 L28,37 L32,33 C34,31 34,28 32,27 C30,26 28,28 28,30 Z"/></g>
+      <g class="float-heart h2"><path class="fill" d="M74,26 C74,24 72,22 70,23 C68,24 68,27 70,29 L74,33 L78,29 C80,27 80,24 78,23 C76,22 74,24 74,26 Z"/></g>
+      <g class="float-heart h3"><path class="fill" d="M50,14 C50,12 48,10 46,11 C44,12 44,15 46,17 L50,21 L54,17 C56,15 56,12 54,11 C52,10 50,12 50,14 Z"/></g>
+
+      <!-- tallos de ribbon cayendo -->
+      <path class="ln-soft" d="M42,42 C38,55 36,70 40,86"/>
+      <path class="ln-soft" d="M58,42 C62,55 64,70 60,86"/>
+
+      <!-- caja -->
+      <rect class="ln" x="22" y="46" width="56" height="40"/>
+      <path class="ln" d="M42,86 L36,64 L50,72 L50,58 L64,66 L58,86"/>
+      <line class="ln" x1="50" y1="46" x2="50" y2="86"/>
+      <line class="ln-soft" x1="22" y1="64" x2="78" y2="64"/>
+
+      <!-- moño grande de 4 lóbulos -->
+      <g class="beat">
+        <path class="ln" d="M50,46 C50,32 36,22 28,29 C21,35 29,46 50,46 Z"/>
+        <path class="ln" d="M50,46 C50,32 64,22 72,29 C79,35 71,46 50,46 Z"/>
+        <path class="ln" d="M50,46 C50,36 42,28 36,32 C31,36 36,44 50,46 Z"/>
+        <path class="ln" d="M50,46 C50,36 58,28 64,32 C69,36 64,44 50,46 Z"/>
+        <circle class="fill" cx="50" cy="46" r="3.4"/>
+      </g>
+
+      <g class="sparkle l"><path class="ln" d="M18,24 L18,32 M14,28 L22,28"/></g>
+      <g class="sparkle r"><path class="ln" d="M82,20 L82,28 M78,24 L86,24"/></g>
+
+      <g class="tag-swing" transform-origin="72px 50px">
+        <line class="ln-soft" x1="72" y1="50" x2="80" y2="58"/>
+        <rect class="ln" x="78" y="58" width="15" height="11" rx="2"/>
+        <path class="fill" d="M85,63 C85,61.5 83,60.5 82,62 C81,63 82,65 85,67 C88,65 89,63 88,62 C87,60.5 85,61.5 85,63 Z"/>
+      </g>
+    </symbol>
+    <symbol id="ref-baby" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="32" r="27"/>
+      <circle cx="32" cy="24" r="8"/><path d="M27 22c2-6 9-6 11-1M24 52v-9c0-7 3-11 8-11s8 4 8 11v9M24 40l-7 7M40 40l7 7M28 52l-5 5M36 52l5 5"/>
+      <path d="m12 12 40 40" stroke-width="2"/>
+    </symbol>
+    <symbol id="ref-camera" viewBox="0 0 100 100">
+<rect class="ln" x="12" y="34" width="76" height="46" rx="6"/>
+      <rect class="ln" x="34" y="21" width="28" height="13" rx="3"/>
+      <rect class="ln-soft" x="66" y="24" width="10" height="7" rx="1"/>
+      <g class="ln-soft"><line x1="16" y1="42" x2="16" y2="74"/><line x1="19" y1="42" x2="19" y2="74"/></g>
+      <g class="breathe">
+        <circle class="ln" cx="48" cy="58" r="17"/>
+        <circle class="ln-soft" cx="48" cy="58" r="10"/>
+        <g class="ln-soft"><line x1="48" y1="48" x2="48" y2="52"/><line x1="58" y1="58" x2="54" y2="58"/><line x1="48" y1="68" x2="48" y2="64"/><line x1="38" y1="58" x2="42" y2="58"/></g>
+      </g>
+      <g class="beat"><circle class="fill" cx="74" cy="46" r="2.6"/></g>
+      <g class="sparkle l"><path class="ln" d="M74,38 L74,42 M70,40 L78,40"/></g>
+      <g class="sparkle r"><path class="ln" d="M82,50 L82,54 M78,52 L86,52"/></g>
+    </symbol>
+  </svg>
+  <!--
+    PRIMERA VERSIÓN — CLAUDIA & KENNY
+    Fotos esperadas dentro de /assets:
+      foto-portada.jpeg, foto-01.jpeg ... foto-15.jpeg, foto-final.jpeg
+    Música esperada: assets/cancion.mp3
+  -->
+
+  <div class="opening-screen" id="openingScreen" aria-label="Portada de la invitación">
+    <div class="opening-envelope" aria-hidden="true">
+      <span class="opening-flap top"></span>
+      <span class="opening-flap right"></span>
+      <span class="opening-flap bottom"></span>
+      <span class="opening-flap left"></span>
+    </div>
+    <div class="opening-particles" aria-hidden="true">
+      <i style="--x:-150px;--y:-110px;--delay:0ms"></i><i style="--x:-95px;--y:-190px;--delay:50ms"></i>
+      <i style="--x:-25px;--y:-170px;--delay:90ms"></i><i style="--x:55px;--y:-185px;--delay:30ms"></i>
+      <i style="--x:135px;--y:-125px;--delay:110ms"></i><i style="--x:175px;--y:-25px;--delay:70ms"></i>
+      <i style="--x:140px;--y:115px;--delay:125ms"></i><i style="--x:45px;--y:175px;--delay:45ms"></i>
+      <i style="--x:-55px;--y:165px;--delay:100ms"></i><i style="--x:-145px;--y:95px;--delay:25ms"></i>
+      <i style="--x:-180px;--y:5px;--delay:80ms"></i><i style="--x:82px;--y:120px;--delay:135ms"></i>
+    </div>
+    <button class="opening-button" id="openInvitation" type="button" aria-label="Abrir invitación y reproducir música">
+      <img src="assets/boton-de-inicio.png" alt="Abrir invitación" width="127" height="127">
+    </button>
+  </div>
+
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+  <button class="music-fab" id="musicButton" type="button" aria-label="Reproducir música">
+    <i data-lucide="music-2" aria-hidden="true"></i>
+  </button>
+  <audio id="weddingAudio" preload="metadata" loop>
+    <source src="assets/cancion.mp3" type="audio/mpeg">
+  </audio>
+
+  <main id="inviteContent">
+    <section class="hero" id="inicio">
+      <div class="hero-photo" id="heroSlider" role="group" aria-label="Presentación automática de 5 fotografías de Claudia y Kenny">
+        <img class="hero-slide is-active" src="assets/foto-portada.jpeg" alt="Claudia y Kenny, fotografía principal 1 de 5" aria-hidden="false">
+        <img class="hero-slide" src="assets/foto-01.jpeg" alt="Claudia y Kenny, fotografía principal 2 de 5" aria-hidden="true">
+        <img class="hero-slide" src="assets/foto-02.jpeg" alt="Claudia y Kenny, fotografía principal 3 de 5" aria-hidden="true">
+        <img class="hero-slide" src="assets/foto-03.jpeg" alt="Claudia y Kenny, fotografía principal 4 de 5" aria-hidden="true">
+        <img class="hero-slide" src="assets/foto-04.jpeg" alt="Claudia y Kenny, fotografía principal 5 de 5" aria-hidden="true">
+        <div class="hero-atmosphere" aria-hidden="true">
+          <i style="left:12%;top:82%;--duration:8s;--drift:24px"></i><i style="left:28%;top:64%;--duration:11s;--delay:-4s;--drift:-18px"></i>
+          <i style="left:47%;top:88%;--duration:9s;--delay:-2s;--drift:12px"></i><i style="left:67%;top:72%;--duration:12s;--delay:-7s;--drift:30px"></i>
+          <i style="left:82%;top:84%;--duration:10s;--delay:-5s;--drift:-22px"></i><i style="left:91%;top:58%;--duration:9s;--delay:-1s;--drift:-12px"></i>
+        </div>
+      </div>
+      <div class="hero-copy">
+        <div class="hero-inner reveal">
+          <p class="eyebrow">¡Nos casamos!</p>
+          <h2 class="couple-names"><span>Claudia</span><span>& Kenny</span></h2>
+
+          <span class="guest-chip" id="heroGuest">Una invitación creada especialmente para ti</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="invitacion">
+      <div class="container reveal">
+        <div class="verse-card">
+          <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large"><use href="#ref-couple"></use></svg></div>
+          <p>“El amor nunca se da por vencido, jamás pierde la fe, siempre tiene esperanzas y se mantiene firme en toda circunstancia." Corintios 13:7</p>
+        </div>
+        <p class="invite-statement">Tenemos el honor de invitarte a nuestra boda</p>
+        <div class="invite-note">Nuestro gran día se aproxima y nos encantaría que formaras parte de él. Queremos celebrar este nuevo capítulo rodeados de quienes han sido importantes en nuestro camino.</div>
+        <div class="family-section">
+          <h2 class="family-title">Nuestros padres</h2>
+          <div class="family-grid">
+            <article class="family-card">
+              <h3>Padres de la novia</h3>
+              <p>Guillermo Linarez Claudio</p>
+              <p>Julia Canchanya Orbegoso 🕊️</p>
+            </article>
+            <article class="family-card">
+              <h3>Padres del novio</h3>
+              <p>Segundo Salazar Uceda</p>
+              <p>Antonieta Zuñe Panta</p>
+            </article>
+          </div>
+          <div class="family-grid sponsors-grid">
+            <article class="family-card">
+              <h3>Padrinos de aro</h3>
+              <p>Walter Zuñe Panta</p>
+              <p>Luisa Flores Gonzales</p>
+            </article>
+            <article class="family-card">
+              <h3>Padrino del matrimonio</h3>
+              <p>Frank Pisfil Zuñe</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ivory" id="fecha">
+      <div class="container reveal">
+        <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon"><use href="#ref-hearts"></use></svg></div>
+        <p class="tiny-label">Queremos que nos acompañes en nuestro día</p>
+        <h2 class="date-big">Sábado 14 de noviembre de 2026</h2>
+        <p class="count-label">Faltan</p>
+        <div class="countdown" id="countdown" aria-label="Cuenta regresiva">
+          <div><strong id="days">00</strong><span>Días</span></div>
+          <div><strong id="hours">00</strong><span>Horas</span></div>
+          <div><strong id="minutes">00</strong><span>Minutos</span></div>
+          <div><strong id="seconds">00</strong><span>Segundos</span></div>
+        </div>
+        <button class="outline-button" id="calendarButton" type="button"><i data-lucide="calendar-plus"></i>Agendar la fecha</button>
+
+        <div class="cards-2 single" id="lugares">
+          <article class="event-card reveal">
+            <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large" style="--icon-delay:-.4s"><use href="#ref-church"></use></svg></div>
+            <h3>Ceremonia, recepción & fiesta</h3>
+            <p><strong>Hora:</strong> Por definir</p>
+            <p class="location">Castillo de Luna Recepciones</p>
+            <p>Chiclayo</p>
+            <a class="outline-button" href="https://www.google.com/maps/place/Castillo+de+Luna+Recepciones/data=!4m2!3m1!1s0x0:0xc7efc06ac5d36946?sa=X&ved=1t:2428&hl=es-mx&ictx=111" target="_blank" rel="noopener"><svg class="source-button-icon" aria-hidden="true" viewBox="0 0 100 100">
+      <g class="ping"><ellipse class="ln-soft" cx="50" cy="88" rx="16" ry="4"/></g>
+      <g class="bob">
+        <path class="ln" d="M50,12 C31,12 18,27 18,45 C18,68 50,90 50,90 C50,90 82,68 82,45 C82,27 69,12 50,12 Z"/>
+        <circle class="ln-soft" cx="50" cy="45" r="14"/>
+        <path class="fill" d="M50,40 C50,38 47,36 45,38 C43,40 43,43 45,45 L50,50 L55,45 C57,43 57,40 55,38 C53,36 50,38 50,40 Z"/>
+      </g>
+      <g class="sparkle l"><path class="ln" d="M26,16 L26,22 M23,19 L29,19"/></g>
+      <g class="sparkle r"><path class="ln" d="M74,16 L74,22 M71,19 L77,19"/></g>
+    </svg>Ver ubicación</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dresscode">
+      <div class="container reveal">
+        <p class="tiny-label">Código de vestimenta</p>
+        <h2 class="section-title">Dress Code</h2>
+        <p class="body-copy">Elegante</p>
+        <div class="dress-card">
+          <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large"><use href="#ref-attire"></use></svg></div>
+          <div class="dress-grid">
+            <div class="dress-column">
+              <h4>Ellas</h4>
+              <p>Vestido largo o atuendo elegante.</p>
+            </div>
+            <span class="dress-divider" aria-hidden="true"></span>
+            <div class="dress-column">
+              <h4>Ellos</h4>
+              <p>Traje elegante.</p>
+            </div>
+          </div>
+          <div class="reserved-note">
+            Les pedimos reservar los tonos <strong>blanco, ivory y crema muy claro</strong> para la novia, y evitar también los <strong>rojos intensos, fucsias, neones y colores demasiado llamativos</strong>.
+          </div>
+          <p class="palette-label">Paleta de colores sugeridos</p>
+          <div class="palette" aria-label="Colores sugeridos">
+            <span class="swatch"><i style="background:#a7b19b"></i>Verde salvia</span>
+            <span class="swatch"><i style="background:#879486"></i>Eucalipto</span>
+            <span class="swatch"><i style="background:#68693f"></i>Verde oliva</span>
+            <span class="swatch"><i style="background:#182944"></i>Azul marino</span>
+            <span class="swatch"><i style="background:#c2a154"></i>Dorado</span>
+          </div>
+          <p class="palette-label">Paleta de la boda</p>
+          <div class="palette" aria-label="Paleta principal de la boda">
+            <span class="swatch" aria-label="Verde salvia"><i style="background:#a7b19b"></i></span>
+            <span class="swatch" aria-label="Marfil"><i style="background:#f7f3e8"></i></span>
+            <span class="swatch" aria-label="Dorado"><i style="background:#c2a154"></i></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ivory" id="itinerario">
+      <div class="container reveal">
+        <div class="itinerary-ornament" aria-hidden="true"><span></span></div>
+        <h2 class="section-title">Itinerario</h2>
+        <div class="itinerary">
+          <div class="itin-item">
+            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-envelope"></use></svg></div>
+            <p class="itin-time">Por definir</p><p class="itin-label">RecepciÃ³n</p>
+          </div>
+          <div class="itin-item">
+            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-rings"></use></svg></div>
+            <p class="itin-time">Por definir</p><p class="itin-label">Ceremonia</p>
+          </div>
+          <div class="itin-item">
+            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-cocktail"></use></svg></div>
+            <p class="itin-time">Por definir</p><p class="itin-label">Brindis</p>
+          </div>
+          <div class="itin-item">
+            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-gift"></use></svg></div>
+            <p class="itin-time">Por definir</p><p class="itin-label">Cena</p>
+          </div>
+          <div class="itin-item">
+            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-party"></use></svg></div>
+            <p class="itin-time">Por definir</p><p class="itin-label">Fiesta</p>
+          </div>
+          <div class="itin-item">
+            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100">
+      <!-- listón en el espejo, flameando -->
+      <g class="ribbon-flap" transform-origin="34px 41px">
+        <line class="ln-soft" x1="34" y1="41" x2="26" y2="35"/>
+        <path class="fill" d="M26,35 L16,31 L22,38 L16,44 Z"/>
+      </g>
+
+      <g class="bounce-car">
+        <!-- silueta de la carrocería: capó largo + cabina + guardabarros trasero marcado -->
+        <path class="ln" d="M4,62 C4,56 8,52 13,51 L19,44 L32,41 C37,33 46,27 55,27 C63,27 71,30 77,36 L84,39 C90,40 94,44 96,50 C98,55 98,60 94,63 L90,64 L12,64 Z"/>
+        <!-- parabrisas + ventana lateral + ventanilla trasera, con montantes -->
+        <path class="ln-soft" d="M34,41 L40,32 C45,29 51,28 55,28 C60,28 66,30 71,34 L79,39 L68,44 L38,44 Z"/>
+        <path class="ln-soft" d="M79,39 L86,41 L82,44 L74,44 Z"/>
+        <line class="ln-soft" x1="55" y1="28" x2="55" y2="44"/>
+        <!-- espejo lateral -->
+        <path class="ln" d="M34,41 L28,38 L29,43 Z"/>
+        <!-- línea de carácter a lo largo del cuerpo -->
+        <path class="ln-soft" d="M18,51 C40,48 66,47 94,50"/>
+        <!-- manija de puerta -->
+        <line class="ln-soft" x1="60" y1="47" x2="66" y2="47"/>
+        <!-- faro delantero -->
+        <path class="ln" d="M8,52 C8,49 12,47 16,48 C19,49 20,52 17,55 C14,57 9,56 8,52 Z"/>
+        <!-- toma de aire frontal -->
+        <path class="ln-soft" d="M6,58 C8,60 12,60 14,58"/>
+      </g>
+
+      <!-- rueda trasera — mismo tamaño que la delantera -->
+      <g class="wheel-spin" transform-origin="78px 63px">
+        <circle class="ln" cx="78" cy="63" r="12"/>
+        <circle class="ln-soft" cx="78" cy="63" r="5"/>
+        <g class="ln-soft">
+          <line x1="78" y1="53" x2="78" y2="58"/>
+          <line x1="86.7" y1="58" x2="82.3" y2="60.5"/>
+          <line x1="86.7" y1="68" x2="82.3" y2="65.5"/>
+          <line x1="78" y1="73" x2="78" y2="68"/>
+          <line x1="69.3" y1="68" x2="73.7" y2="65.5"/>
+          <line x1="69.3" y1="58" x2="73.7" y2="60.5"/>
+        </g>
+      </g>
+
+      <!-- rueda delantera — mismo tamaño que la trasera -->
+      <g class="wheel-spin" transform-origin="27px 64px">
+        <circle class="ln" cx="27" cy="64" r="12"/>
+        <circle class="ln-soft" cx="27" cy="64" r="5"/>
+        <g class="ln-soft">
+          <line x1="27" y1="54" x2="27" y2="59"/>
+          <line x1="35.7" y1="59" x2="31.3" y2="61.5"/>
+          <line x1="35.7" y1="69" x2="31.3" y2="66.5"/>
+          <line x1="27" y1="74" x2="27" y2="69"/>
+          <line x1="18.3" y1="69" x2="22.7" y2="66.5"/>
+          <line x1="18.3" y1="59" x2="22.7" y2="61.5"/>
+        </g>
+      </g>
+
+      <!-- corazón insignia en el capó + destellos -->
+      <g class="beat">
+        <path class="fill" d="M44,37 C44,35.5 42,34 40,35 C38,36 38,38.4 40,40 L44,43.6 L48,40 C50,38.4 50,36 48,35 C46,34 44,35.5 44,37 Z"/>
+      </g>
+      <g class="sparkle l"><path class="ln" d="M35,31 L35,36 M32.5,33.5 L37.5,33.5"/></g>
+      <g class="sparkle r"><path class="ln" d="M53,30 L53,35 M50.5,32.5 L55.5,32.5"/></g>
+
+      <!-- línea de piso -->
+      <line class="ln-soft" x1="2" y1="80" x2="98" y2="80" style="opacity:.2"/>
+    </svg></div>
+            <p class="itin-time">Por definir</p><p class="itin-label">Felices para siempre</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="galeria">
+      <div class="container reveal">
+        <p class="tiny-label">Claudia & Kenny</p>
+        <h2 class="script-title">Nuestros momentos</h2>
+        <div class="gallery" aria-label="Galería de 15 fotografías">
+          <button class="gallery-photo" type="button" data-full="assets/foto-01.jpeg" aria-label="Ampliar fotografía 1"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-02.jpeg" aria-label="Ampliar fotografía 2"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-03.jpeg" aria-label="Ampliar fotografía 3"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-04.jpeg" aria-label="Ampliar fotografía 4"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-05.jpeg" aria-label="Ampliar fotografía 5"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-06.jpeg" aria-label="Ampliar fotografía 6"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-07.jpeg" aria-label="Ampliar fotografía 7"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-08.jpeg" aria-label="Ampliar fotografía 8"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-09.jpeg" aria-label="Ampliar fotografía 9"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-10.jpeg" aria-label="Ampliar fotografía 10"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-11.jpeg" aria-label="Ampliar fotografía 11"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-12.jpeg" aria-label="Ampliar fotografía 12"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-13.jpeg" aria-label="Ampliar fotografía 13"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-14.jpeg" aria-label="Ampliar fotografía 14"></button>
+          <button class="gallery-photo" type="button" data-full="assets/foto-15.jpeg" aria-label="Ampliar fotografía 15"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ivory" id="regalos">
+      <div class="container reveal">
+        <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large"><use href="#ref-gift"></use></svg></div>
+        <h2 class="section-title">Sugerencia de regalo</h2>
+        <p class="gift-note"><strong>Lo más valioso para nosotros es compartir este día contigo.</strong><br>Si deseas tener un gesto especial, acá te dejamos algunas opciones:</p>
+        <div class="gift-card">
+          <div class="gift-card-heading">
+            <div class="gift-card-title-icon" aria-hidden="true"><i data-lucide="landmark"></i></div>
+            <p class="gift-card-eyebrow">Un detalle especial</p>
+            <h3>Depósito a cuenta</h3>
+          </div>
+          <div class="gift-separator" aria-hidden="true"></div>
+          <div class="bank-accounts">
+            <article class="bank-block">
+              <div class="bank-heading">
+                <span class="bank-icon" aria-hidden="true"><i data-lucide="landmark"></i></span>
+                <div><strong>BCP</strong><span class="bank-currency">Cuenta en soles</span></div>
+              </div>
+              <div class="bank-details">
+                <div class="bank-row"><span class="bank-label">N.º de cuenta</span><span class="bank-value" id="bcpAccount">19196966913074</span><button class="copy-mini" type="button" data-copy-target="bcpAccount" aria-label="Copiar cuenta BCP"><i data-lucide="copy"></i></button></div>
+                <div class="bank-row"><span class="bank-label">CCI</span><span class="bank-value" id="bcpCci">00219119696691307457</span><button class="copy-mini" type="button" data-copy-target="bcpCci" aria-label="Copiar CCI BCP"><i data-lucide="copy"></i></button></div>
+              </div>
+            </article>
+            <article class="bank-block">
+              <div class="bank-heading">
+                <span class="bank-icon" aria-hidden="true"><i data-lucide="landmark"></i></span>
+                <div><strong>Scotiabank</strong><span class="bank-currency">Cuenta en soles</span></div>
+              </div>
+              <div class="bank-details">
+                <div class="bank-row"><span class="bank-label">N.º de cuenta</span><span class="bank-value" id="scotiaAccount">9460436950</span><button class="copy-mini" type="button" data-copy-target="scotiaAccount" aria-label="Copiar cuenta Scotiabank"><i data-lucide="copy"></i></button></div>
+                <div class="bank-row"><span class="bank-label">CCI</span><span class="bank-value" id="scotiaCci">00913520946043695055</span><button class="copy-mini" type="button" data-copy-target="scotiaCci" aria-label="Copiar CCI Scotiabank"><i data-lucide="copy"></i></button></div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="gift-secondary">
+          <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon"><use href="#ref-envelope"></use></svg></div>
+          <div><h4>Lluvia de sobres</h4><p>Si prefieres, también podrás entregar tu detalle personalmente durante la celebración.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="detalles-extra">
+      <div class="container reveal">
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large"><use href="#ref-couple"></use></svg></div>
+            <h3>“Dulces sueños”</h3>
+            <p>Esta sección queda preparada para colocar la indicación final de los novios respecto a la asistencia de niños, manteniendo la misma estructura visual de la referencia.</p>
+          </article>
+          <article class="info-card">
+            <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large" style="--icon-delay:-.8s"><use href="#ref-camera"></use></svg></div>
+            <h3>Comparte fotografías</h3>
+            <p>Ayúdanos a hacer eterno este día. Aquí podrá activarse el enlace para que los invitados compartan sus fotos y momentos especiales.</p>
+            <a class="outline-button" id="photoShareButton" href="#" aria-disabled="true"><i data-lucide="upload"></i>Compartir fotografías</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ivory" id="confirmacion">
+      <div class="container reveal">
+        <p class="tiny-label">Tu presencia es importante para nosotros</p>
+        <h2 class="section-title">Confirmación de asistencia</h2>
+        <div class="rsvp-wrap">
+          <div class="rsvp-envelope-bg" aria-hidden="true"></div>
+          <div class="rsvp-card">
+            <div class="icon-circle" aria-hidden="true"><i data-lucide="mail-check"></i></div>
+            <p class="body-copy" style="margin-top:0">Gracias por acompañarnos en uno de los días más especiales de nuestra historia.</p>
+            <span class="deadline">Confirma tu asistencia hasta el 18 de octubre de 2026</span>
+            <p class="body-copy" style="margin-top:12px">Para mantenerte en nuestra lista de invitados y unirte a nuestra celebración.</p>
+
+            <div class="invitation-access" id="invitationAccess" data-state="loading" aria-live="polite">
+              <p class="invitation-access-eyebrow" id="invitationAccessEyebrow">Validando tu invitación…</p>
+              <strong class="invitation-access-name" id="invitationGuestName" hidden></strong>
+              <p class="invitation-access-message" id="invitationAccessMessage">Espera unos segundos mientras comprobamos tu enlace personalizado.</p>
+              <p class="invitation-current-response" id="invitationCurrentResponse" hidden></p>
+              <button class="retry-link" id="retryInvitation" type="button" hidden>Reintentar validación</button>
+            </div>
+
+            <button class="primary-button" id="openRsvpModal" type="button" disabled aria-disabled="true"><i data-lucide="calendar-check"></i>Confirmar asistencia</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="final-photo" aria-label="Espacio para fotografía final de Claudia y Kenny"></div>
+
+    <section class="section" id="cierre">
+      <div class="container reveal">
+        <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large"><use href="#ref-couple"></use></svg></div>
+        <p class="closing-copy">Creemos que los momentos más importantes se vuelven inolvidables cuando se comparten. Gracias por formar parte de nuestra historia y por acompañarnos en el inicio de esta nueva etapa.</p>
+        <h2 class="closing-names">Claudia & Kenny</h2>
+
+      </div>
+    </section>
+  </main>
+
+  <div class="gallery-lightbox" id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Fotografía ampliada" aria-hidden="true">
+    <button class="gallery-lightbox-close" id="galleryLightboxClose" type="button" aria-label="Cerrar fotografía ampliada"><i data-lucide="x"></i></button>
+    <button class="gallery-lightbox-nav prev" id="galleryLightboxPrev" type="button" aria-label="Fotografía anterior"><i data-lucide="chevron-left"></i></button>
+    <figure class="gallery-lightbox-figure">
+      <img class="gallery-lightbox-image" id="galleryLightboxImage" src="" alt="">
+    </figure>
+    <button class="gallery-lightbox-nav next" id="galleryLightboxNext" type="button" aria-label="Fotografía siguiente"><i data-lucide="chevron-right"></i></button>
+  </div>
+
+  <div class="modal-backdrop" id="rsvpModal" role="dialog" aria-modal="true" aria-labelledby="rsvpModalTitle" aria-hidden="true">
+    <div class="modal-dialog" tabindex="-1">
+      <button class="modal-close" type="button" id="closeRsvpModal" aria-label="Cerrar formulario"><i data-lucide="x"></i></button>
+      <p class="modal-kicker">Claudia & Kenny</p>
+      <h2 class="modal-title" id="rsvpModalTitle">Confirmación de asistencia</h2>
+      <p class="modal-description" id="rsvpModalDescription">Revisa los datos de tu invitación y registra tu respuesta.</p>
+      <p class="preview-warning" id="previewWarning" hidden>Modo vista previa: este envío no se guardará en Google Sheets.</p>
+
+      <iframe name="hidden_iframe" id="hidden_iframe" hidden></iframe>
+      <form class="rsvp-form" id="rsvpForm" method="POST" target="hidden_iframe">
+        <input type="hidden" name="codigo_invitacion" id="invitationCodeField" value="">
+        <input type="hidden" name="submission_id" id="submissionIdField" value="">
+        <input type="hidden" name="evento" value="Boda Claudia & Kenny">
+        <input type="hidden" name="fecha_boda" value="Sábado 14 de noviembre de 2026">
+        <input type="hidden" name="origen" value="Invitación web">
+        <input type="hidden" name="user_agent" id="userAgentField" value="">
+        <input type="hidden" name="nombres_acompanantes" id="companionsConsolidatedField" value="">
+
+        <div class="form-row">
+          <label class="form-label" for="nombre">Invitado o grupo</label>
+          <input class="form-input" id="nombre" name="nombre" type="text" required readonly aria-readonly="true">
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="telefono">Celular / WhatsApp</label>
+          <input class="form-input" id="telefono" name="telefono" type="tel" inputmode="numeric" autocomplete="tel" maxlength="9" pattern="9[0-9]{8}" title="Ingresa un celular de 9 dígitos que empiece con 9" required placeholder="Ej. 987654321">
+        </div>
+
+        <div class="form-row">
+          <span class="form-label">¿Confirmas tu asistencia?</span>
+          <div class="radio-grid">
+            <label class="radio-card"><input type="radio" name="asistencia" value="Sí asistiré" required>Sí asistiré</label>
+            <label class="radio-card"><input type="radio" name="asistencia" value="No podré asistir" required>No podré asistir</label>
+          </div>
+        </div>
+
+        <div class="form-row" id="adultCountRow">
+          <label class="form-label" for="cantidad">Cantidad de adultos confirmados</label>
+          <select class="form-select" id="cantidad" name="cantidad_adultos" required><option value="" selected disabled>Seleccionar</option></select>
+          <input id="adultCountFallback" name="cantidad_adultos" type="hidden" value="0" disabled>
+        </div>
+
+        <div class="companions-section" id="companionsSection" hidden>
+          <p class="companions-intro">Indica el nombre completo de las personas que te acompañarán.</p>
+          <div class="companions-grid" id="companionsFields"></div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="comentario">Mensaje o comentario opcional</label>
+          <textarea class="form-textarea" id="comentario" name="comentario" placeholder="Puedes dejar un mensaje para Claudia y Kenny."></textarea>
+        </div>
+
+        <button class="submit-button" id="submitBtn" type="submit"><i data-lucide="send"></i>Enviar confirmación</button>
+        <a class="manual-whatsapp-link" id="manualWhatsAppLink" href="#" target="_blank" rel="noopener" hidden>Abrir WhatsApp</a>
+        <div class="status-message" id="formStatus" aria-live="polite"></div>
+        <button class="verification-retry" id="retrySubmissionVerification" type="button" hidden>Verificar nuevamente</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="protected-alert" id="protectedAlert" role="status" aria-live="polite" aria-hidden="true">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M10.3 3.7 2.4 17.4A2 2 0 0 0 4.1 20h15.8a2 2 0 0 0 1.7-2.6L13.7 3.7a2 2 0 0 0-3.4 0Z"></path>
+      <path d="M12 8v5" fill="none"></path>
+      <circle cx="12" cy="16.5" r=".8" fill="#6f5b18" stroke="none"></circle>
+    </svg>
+    <p><strong>ALERTA:</strong> Este contenido est&aacute; protegido</p>
+  </div>
+
+  <script>
+    /* =========================================================
+       CONFIGURACIÓN — CAMBIAR SOLO ESTAS CONSTANTES AL PUBLICAR
+       ========================================================= */
+    const PREVIEW_MODE = true;
+    const GOOGLE_SCRIPT_URL = 'PEGAR_AQUI_URL_EXEC_DE_APPS_SCRIPT';
+    const WHATSAPP_NOVIOS = 'PEGAR_AQUI_NUMERO_WHATSAPP'; // Ej.: 51999999999
+    const PHOTO_UPLOAD_URL = ''; // Opcional: enlace para que invitados suban fotos
+
+    const weddingDate = new Date('2026-11-14T18:00:00-05:00').getTime(); // Hora temporal solo para la cuenta regresiva; actualizar cuando la novia confirme la hora real.
+
+    const openingScreen = document.getElementById('openingScreen');
+    const openInvitation = document.getElementById('openInvitation');
+    const audio = document.getElementById('weddingAudio');
+    const musicButton = document.getElementById('musicButton');
+    const toast = document.getElementById('toast');
+    const protectedAlert = document.getElementById('protectedAlert');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const heroIntro = document.querySelector('.hero-inner');
+
+    function refreshIcons(){ if(window.lucide) lucide.createIcons(); }
+    window.addEventListener('load',refreshIcons);
+    document.addEventListener('DOMContentLoaded',refreshIcons);
+
+    function showToast(message){
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove('show'),1800);
+    }
+
+    function showProtectedAlert(clientX,clientY){
+      protectedAlert.classList.add('show');
+      protectedAlert.setAttribute('aria-hidden','false');
+
+      requestAnimationFrame(() => {
+        const bounds = protectedAlert.getBoundingClientRect();
+        const margin = 14;
+        const desiredX = clientX > 0 ? clientX + 14 : (window.innerWidth - bounds.width) / 2;
+        const desiredY = clientY > 0 ? clientY + 14 : (window.innerHeight - bounds.height) / 2;
+        const x = Math.min(Math.max(margin,desiredX),window.innerWidth - bounds.width - margin);
+        const y = Math.min(Math.max(margin,desiredY),window.innerHeight - bounds.height - margin);
+        protectedAlert.style.left = `${x}px`;
+        protectedAlert.style.top = `${y}px`;
+      });
+
+      clearTimeout(showProtectedAlert.timer);
+      showProtectedAlert.timer = setTimeout(() => {
+        protectedAlert.classList.remove('show');
+        protectedAlert.setAttribute('aria-hidden','true');
+      },2200);
+    }
+
+    document.addEventListener('contextmenu',event => {
+      event.preventDefault();
+      showProtectedAlert(event.clientX,event.clientY);
+    },{capture:true});
+
+    function updateMusicState(){
+      const playing = !audio.paused;
+      musicButton.classList.toggle('is-playing',playing);
+      musicButton.setAttribute('aria-label',playing ? 'Pausar música' : 'Reproducir música');
+      musicButton.innerHTML = playing ? '<i data-lucide="pause"></i>' : '<i data-lucide="music-2"></i>';
+      refreshIcons();
+    }
+
+    openInvitation.addEventListener('click',() => {
+      if(openingScreen.classList.contains('is-opening'))return;
+      openingScreen.classList.add('is-opening');
+      heroIntro.classList.remove('is-visible');
+      document.body.classList.remove('locked');
+      window.setTimeout(() => heroIntro.classList.add('is-visible'),prefersReducedMotion.matches ? 0 : 520);
+      window.setTimeout(() => openingScreen.classList.add('is-open'),prefersReducedMotion.matches ? 0 : 260);
+      window.setTimeout(() => openingScreen.hidden = true,prefersReducedMotion.matches ? 80 : 1650);
+
+      /* El audio se intenta reproducir sin bloquear nunca la apertura visual. */
+      try{
+        const playbackRequest = audio.play();
+        if(playbackRequest)playbackRequest.catch(() => updateMusicState());
+      }catch(error){ updateMusicState(); }
+    });
+
+    musicButton.addEventListener('click',async() => {
+      try{
+        if(audio.paused) await audio.play();
+        else audio.pause();
+      }catch(error){ showToast('Agrega assets/cancion.mp3 para activar la música'); }
+      updateMusicState();
+    });
+    audio.addEventListener('play',updateMusicState);
+    audio.addEventListener('pause',updateMusicState);
+
+    /* Animaciones al hacer scroll */
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){ entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
+      });
+    },{threshold:.12,rootMargin:'0px 0px -6%'});
+    document.querySelectorAll('.reveal').forEach(el => {
+      [...el.children].forEach((child,index) => child.style.setProperty('--reveal-order',index));
+      revealObserver.observe(el);
+    });
+
+    /* Entrada escalonada de cada tarjeta al llegar a la galería. */
+    const galleryCards = [...document.querySelectorAll('.gallery-photo')];
+    const galleryCardObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting)return;
+        entry.target.classList.add('is-in-view');
+        const delay = Number.parseInt(entry.target.style.getPropertyValue('--gallery-delay'),10) || 0;
+        window.setTimeout(() => entry.target.classList.add('motion-ready'),950 + delay);
+        galleryCardObserver.unobserve(entry.target);
+      });
+    },{threshold:.14,rootMargin:'0px 0px -4%'});
+    galleryCards.forEach((card,index) => {
+      card.style.setProperty('--gallery-delay',(index % 6) * 90 + 'ms');
+      galleryCardObserver.observe(card);
+    });
+
+    /* Movimiento cinematográfico vinculado al scroll. */
+    const galleryMotionMedia = window.matchMedia('(max-width: 600px)');
+    const scrollProgress = document.querySelector('.scroll-progress');
+    const heroPhoto = document.getElementById('heroSlider');
+    const finalPhoto = document.querySelector('.final-photo');
+    const itinerary = document.querySelector('.itinerary');
+    const itineraryItems = [...document.querySelectorAll('.itin-item')];
+    let galleryMotionFrame = null;
+    function updateGalleryScrollMotion(){
+      galleryMotionFrame = null;
+      const viewportCenter = window.innerHeight / 2;
+      const rotationAmplitude = galleryMotionMedia.matches ? 1.5 : 1.05;
+      galleryCards.forEach((card,index) => {
+        const rect = card.getBoundingClientRect();
+        if(rect.bottom < 0 || rect.top > window.innerHeight)return;
+        const distance = (rect.top + rect.height / 2 - viewportCenter) / viewportCenter;
+        const direction = index % 2 === 0 ? -1 : 1;
+        const turn = Math.max(-1,Math.min(1,distance)) * rotationAmplitude * direction;
+        card.style.setProperty('--scroll-turn',turn.toFixed(2) + 'deg');
+      });
+
+      const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight,1);
+      const pageProgress = Math.max(0,Math.min(1,window.scrollY / scrollable));
+      scrollProgress?.style.setProperty('--scroll-progress',(pageProgress * 100).toFixed(2) + '%');
+
+      if(!prefersReducedMotion.matches){
+        const heroRect = heroPhoto.getBoundingClientRect();
+        const heroShift = Math.max(-24,Math.min(24,-heroRect.top * .055));
+        heroPhoto.style.setProperty('--hero-parallax',heroShift.toFixed(2) + 'px');
+        if(finalPhoto){
+          const finalRect = finalPhoto.getBoundingClientRect();
+          const finalShift = Math.max(-30,Math.min(30,(finalRect.top - viewportCenter) * -.035));
+          finalPhoto.style.setProperty('--final-parallax',finalShift.toFixed(2) + 'px');
+        }
+        document.querySelectorAll('.section').forEach(section => {
+          const rect = section.getBoundingClientRect();
+          if(rect.bottom < 0 || rect.top > window.innerHeight)return;
+          section.style.setProperty('--section-shift',Math.max(-28,Math.min(28,(rect.top - viewportCenter) * -.025)).toFixed(2) + 'px');
+        });
+      }
+
+      if(itinerary){
+        const timelineRect = itinerary.getBoundingClientRect();
+        const timelineStart = window.innerHeight * .72;
+        const timelineDistance = Math.max(timelineRect.height + window.innerHeight * .2,1);
+        const timelineProgress = Math.max(0,Math.min(1,(timelineStart - timelineRect.top) / timelineDistance));
+        itinerary.style.setProperty('--timeline-progress',timelineProgress.toFixed(3));
+        itineraryItems.forEach((item,index) => item.classList.toggle('is-reached',timelineProgress >= (index + .35) / itineraryItems.length));
+      }
+    }
+    function requestGalleryScrollMotion(){
+      if(galleryMotionFrame !== null)return;
+      galleryMotionFrame = requestAnimationFrame(updateGalleryScrollMotion);
+    }
+    window.addEventListener('scroll',requestGalleryScrollMotion,{passive:true});
+    window.addEventListener('resize',requestGalleryScrollMotion);
+    galleryMotionMedia.addEventListener('change',requestGalleryScrollMotion);
+    requestGalleryScrollMotion();
+
+    /* Slide de la portada: una imagen nueva cada 1.8 segundos, máximo 5. */
+    const heroSlider = document.getElementById('heroSlider');
+    const heroSlides = [...heroSlider.querySelectorAll('.hero-slide')].slice(0,5);
+    let heroSlideIndex = 0;
+    let heroSlideTimer = null;
+
+    function showHeroSlide(index){
+      heroSlides.forEach((slide,slideIndex) => {
+        const active = slideIndex === index;
+        slide.classList.toggle('is-active',active);
+        slide.setAttribute('aria-hidden',String(!active));
+      });
+    }
+
+    function stopHeroSlider(){
+      if(heroSlideTimer){ clearInterval(heroSlideTimer); heroSlideTimer = null; }
+    }
+
+    function startHeroSlider(){
+      if(prefersReducedMotion.matches || heroSlides.length < 2 || heroSlideTimer)return;
+      heroSlideTimer = setInterval(() => {
+        heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+        showHeroSlide(heroSlideIndex);
+      },4800);
+    }
+
+    const heroSliderObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => entry.isIntersecting ? startHeroSlider() : stopHeroSlider());
+    },{threshold:.2});
+    heroSliderObserver.observe(heroSlider);
+    document.addEventListener('visibilitychange',() => document.hidden ? stopHeroSlider() : startHeroSlider());
+
+    /* Cuenta regresiva */
+    function pad(value){ return String(value).padStart(2,'0'); }
+    function updateCountdown(){
+      const distance = Math.max(weddingDate - Date.now(),0);
+      const values = {
+        days:pad(Math.floor(distance / 86400000)),
+        hours:pad(Math.floor((distance % 86400000) / 3600000)),
+        minutes:pad(Math.floor((distance % 3600000) / 60000)),
+        seconds:pad(Math.floor((distance % 60000) / 1000))
+      };
+      Object.entries(values).forEach(([id,value]) => {
+        const number = document.getElementById(id);
+        if(number.textContent === value)return;
+        number.textContent = value;
+        number.classList.remove('tick');
+        void number.offsetWidth;
+        number.classList.add('tick');
+      });
+    }
+    updateCountdown(); setInterval(updateCountdown,1000);
+
+    /* Agendar fecha: evento de día completo porque la hora todavía está por definir. */
+    document.getElementById('calendarButton').addEventListener('click',() => {
+      const params = new URLSearchParams({
+        action:'TEMPLATE',
+        text:'Boda Claudia & Kenny',
+        dates:'20261114/20261115',
+        details:'Boda de Claudia y Kenny. La hora será confirmada posteriormente.',
+        location:'Castillo de Luna Recepciones, Chiclayo'
+      });
+      window.open('https://calendar.google.com/calendar/render?' + params.toString(),'_blank','noopener');
+    });
+
+    /* Copiar datos bancarios cuando estén configurados */
+    document.querySelectorAll('[data-copy-target]').forEach(button => {
+      button.addEventListener('click',async() => {
+        const text = document.getElementById(button.dataset.copyTarget)?.textContent.trim() || '';
+        if(!text || /por definir/i.test(text)){ showToast('Dato bancario pendiente de configurar'); return; }
+        try{ await navigator.clipboard.writeText(text); showToast('Dato copiado'); }
+        catch(error){ showToast('No se pudo copiar'); }
+      });
+    });
+
+    const photoShareButton = document.getElementById('photoShareButton');
+    if(PHOTO_UPLOAD_URL){
+      photoShareButton.href = PHOTO_UPLOAD_URL;
+      photoShareButton.target = '_blank';
+      photoShareButton.rel = 'noopener';
+      photoShareButton.removeAttribute('aria-disabled');
+    }else{
+      photoShareButton.addEventListener('click',event => { event.preventDefault(); showToast('El enlace para compartir fotografías se configurará después'); });
+    }
+
+    /* Visor de fotografías originales. */
+    const galleryLightbox = document.getElementById('galleryLightbox');
+    const galleryLightboxImage = document.getElementById('galleryLightboxImage');
+    const galleryLightboxClose = document.getElementById('galleryLightboxClose');
+    const galleryLightboxPrev = document.getElementById('galleryLightboxPrev');
+    const galleryLightboxNext = document.getElementById('galleryLightboxNext');
+    let lastGalleryTrigger = null;
+    let currentGalleryIndex = 0;
+    let galleryTouchStartX = 0;
+
+    function showGalleryImage(index,animate = true){
+      currentGalleryIndex = (index + galleryCards.length) % galleryCards.length;
+      const trigger = galleryCards[currentGalleryIndex];
+      galleryLightboxImage.src = trigger.dataset.full;
+      galleryLightboxImage.alt = trigger.getAttribute('aria-label').replace('Ampliar','').trim();
+      if(animate){
+        galleryLightboxImage.classList.remove('is-changing');
+        void galleryLightboxImage.offsetWidth;
+        galleryLightboxImage.classList.add('is-changing');
+      }
+    }
+
+    function openGalleryLightbox(trigger){
+      lastGalleryTrigger = trigger;
+      const triggerRect = trigger.getBoundingClientRect();
+      galleryLightboxImage.style.setProperty('--origin-x',Math.max(0,Math.min(100,(triggerRect.left + triggerRect.width / 2) / window.innerWidth * 100)).toFixed(1) + '%');
+      galleryLightboxImage.style.setProperty('--origin-y',Math.max(0,Math.min(100,(triggerRect.top + triggerRect.height / 2) / window.innerHeight * 100)).toFixed(1) + '%');
+      showGalleryImage(galleryCards.indexOf(trigger),false);
+      galleryLightbox.classList.add('is-open');
+      galleryLightbox.setAttribute('aria-hidden','false');
+      document.body.classList.add('locked');
+      galleryLightboxClose.focus();
+    }
+
+    function closeGalleryLightbox(){
+      galleryLightbox.classList.remove('is-open');
+      galleryLightbox.setAttribute('aria-hidden','true');
+      galleryLightboxImage.src = '';
+      galleryLightboxImage.classList.remove('is-changing');
+      document.body.classList.remove('locked');
+      lastGalleryTrigger?.focus();
+    }
+
+    document.querySelectorAll('button.gallery-photo[data-full]').forEach(card => card.addEventListener('click',() => openGalleryLightbox(card)));
+    galleryLightboxClose.addEventListener('click',closeGalleryLightbox);
+    galleryLightboxPrev.addEventListener('click',() => showGalleryImage(currentGalleryIndex - 1));
+    galleryLightboxNext.addEventListener('click',() => showGalleryImage(currentGalleryIndex + 1));
+    galleryLightbox.addEventListener('touchstart',event => { galleryTouchStartX = event.changedTouches[0]?.clientX || 0; },{passive:true});
+    galleryLightbox.addEventListener('touchend',event => {
+      const distance = (event.changedTouches[0]?.clientX || 0) - galleryTouchStartX;
+      if(Math.abs(distance) < 48)return;
+      showGalleryImage(currentGalleryIndex + (distance < 0 ? 1 : -1));
+    },{passive:true});
+    galleryLightbox.addEventListener('click',event => { if(event.target === galleryLightbox)closeGalleryLightbox(); });
+    document.addEventListener('keydown',event => {
+      if(!galleryLightbox.classList.contains('is-open'))return;
+      if(event.key === 'Escape')closeGalleryLightbox();
+      if(event.key === 'ArrowLeft')showGalleryImage(currentGalleryIndex - 1);
+      if(event.key === 'ArrowRight')showGalleryImage(currentGalleryIndex + 1);
+    });
+
+    /* =========================================================
+       RSVP PERSONALIZADO — MISMA LÓGICA DE SHEETS DE LESLY & JAIRO
+       ========================================================= */
+    const invitationAccess = document.getElementById('invitationAccess');
+    const invitationAccessEyebrow = document.getElementById('invitationAccessEyebrow');
+    const invitationGuestName = document.getElementById('invitationGuestName');
+    const invitationAccessMessage = document.getElementById('invitationAccessMessage');
+    const invitationCurrentResponse = document.getElementById('invitationCurrentResponse');
+    const retryInvitation = document.getElementById('retryInvitation');
+    const openRsvpButton = document.getElementById('openRsvpModal');
+    const heroGuest = document.getElementById('heroGuest');
+
+    const rsvpModal = document.getElementById('rsvpModal');
+    const closeRsvpModal = document.getElementById('closeRsvpModal');
+    const rsvpForm = document.getElementById('rsvpForm');
+    const hiddenIframe = document.getElementById('hidden_iframe');
+    const invitationCodeField = document.getElementById('invitationCodeField');
+    const submissionIdField = document.getElementById('submissionIdField');
+    const userAgentField = document.getElementById('userAgentField');
+    const companionsConsolidatedField = document.getElementById('companionsConsolidatedField');
+    const nameInput = document.getElementById('nombre');
+    const phoneInput = document.getElementById('telefono');
+    const adultCount = document.getElementById('cantidad');
+    const adultCountFallback = document.getElementById('adultCountFallback');
+    const adultCountRow = document.getElementById('adultCountRow');
+    const companionsSection = document.getElementById('companionsSection');
+    const companionsFields = document.getElementById('companionsFields');
+    const commentInput = document.getElementById('comentario');
+    const submitBtn = document.getElementById('submitBtn');
+    const formStatus = document.getElementById('formStatus');
+    const manualWhatsAppLink = document.getElementById('manualWhatsAppLink');
+    const retrySubmissionVerification = document.getElementById('retrySubmissionVerification');
+    const previewWarning = document.getElementById('previewWarning');
+    const rsvpModalDescription = document.getElementById('rsvpModalDescription');
+    const attendanceInputs = [...rsvpForm.querySelectorAll('input[name="asistencia"]')];
+
+    const invitationState = {status:'loading',code:'',guest:'',maxAdults:0,currentStatus:'Pendiente',confirmedAdults:0,companions:[]};
+    let lookupSequence = 0;
+    let pendingSubmission = null;
+    let companionDrafts = [];
+
+    function hasConfiguredGoogleScript(){ return Boolean(GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('PEGAR_AQUI')); }
+    function hasConfiguredWhatsApp(){ return /^51\d{9}$/.test(String(WHATSAPP_NOVIOS || '').replace(/\D/g,'')); }
+    function normalizeInvitationCode(value){ return String(value || '').replace(/\s+/g,'').toUpperCase().slice(0,32); }
+    function isValidInvitationCodeFormat(value){ return /^[A-Z0-9]{10,16}$/.test(value); }
+
+    function setRsvpButton(enabled,label){
+      openRsvpButton.disabled = !enabled;
+      openRsvpButton.setAttribute('aria-disabled',String(!enabled));
+      openRsvpButton.innerHTML = '<i data-lucide="calendar-check"></i>' + label;
+      refreshIcons();
+    }
+
+    function setInvitationStatus(state,options={}){
+      invitationState.status = state;
+      invitationAccess.dataset.state = state;
+      invitationAccessEyebrow.textContent = options.eyebrow || '';
+      invitationAccessMessage.textContent = options.message || '';
+      invitationGuestName.hidden = !options.guest;
+      invitationGuestName.textContent = options.guest || '';
+      invitationCurrentResponse.hidden = !options.currentResponse;
+      invitationCurrentResponse.textContent = options.currentResponse || '';
+      retryInvitation.hidden = !options.retry;
+      setRsvpButton(Boolean(options.enabled),options.buttonLabel || 'Confirmar asistencia');
+      if(options.guest){
+        const cupos = invitationState.maxAdults;
+        heroGuest.textContent = options.guest + (cupos ? ' · ' + cupos + (cupos === 1 ? ' cupo asignado' : ' cupos asignados') : '');
+      }
+    }
+
+    function populateAdultOptions(maxAdults,selected=0){
+      adultCount.innerHTML = '<option value="" disabled>Seleccionar</option>';
+      for(let i=1;i<=maxAdults;i++){
+        const option = document.createElement('option');
+        option.value = String(i);
+        option.textContent = i + (i === 1 ? ' adulto' : ' adultos');
+        adultCount.appendChild(option);
+      }
+      adultCount.value = selected >= 1 && selected <= maxAdults ? String(selected) : '';
+    }
+
+    function applyLookupResponse(payload,requestedCode){
+      if(!payload || payload.ok !== true){
+        setInvitationStatus('invalid',{eyebrow:'Invitación no validada',message:'No pudimos validar esta invitación. Comunícate con los novios para recibir el enlace correcto.'});
+        return;
+      }
+      const responseCode = normalizeInvitationCode(payload.codigo);
+      const guest = String(payload.invitado || '').trim().slice(0,160);
+      const maxAdults = Number(payload.cuposAdultos);
+      const confirmedAdults = Number(payload.adultosConfirmados || 0);
+      const currentStatus = ['Pendiente','Confirmado','No asistirá'].includes(payload.estado) ? payload.estado : 'Pendiente';
+      if(responseCode !== requestedCode || !guest || !Number.isInteger(maxAdults) || maxAdults < 1){
+        setInvitationStatus('invalid',{eyebrow:'Invitación no validada',message:'Los datos recibidos no corresponden a este enlace personalizado.'});
+        return;
+      }
+      invitationState.code=responseCode;
+      invitationState.guest=guest;
+      invitationState.maxAdults=maxAdults;
+      invitationState.currentStatus=currentStatus;
+      invitationState.confirmedAdults=currentStatus === 'Confirmado' ? Math.min(Math.max(Number.isInteger(confirmedAdults)?confirmedAdults:1,1),maxAdults) : 0;
+      const expected=Math.max(invitationState.confirmedAdults-1,0);
+      invitationState.companions=Array.isArray(payload.acompanantes)?payload.acompanantes.map(v=>String(v||'').trim().replace(/\s+/g,' ').slice(0,100)).filter(Boolean).slice(0,expected):[];
+      let currentResponse='';
+      if(currentStatus==='Confirmado') currentResponse='Tu respuesta actual: '+invitationState.confirmedAdults+(invitationState.confirmedAdults===1?' adulto confirmado.':' adultos confirmados.');
+      if(currentStatus==='No asistirá') currentResponse='Tu respuesta actual: indicaste que no asistirás.';
+      setInvitationStatus('valid',{
+        eyebrow:'Invitación para',guest,
+        message:'Esta invitación es válida para un máximo de '+maxAdults+(maxAdults===1?' adulto.':' adultos.'),
+        currentResponse,enabled:true,buttonLabel:currentStatus==='Pendiente'?'Confirmar asistencia':'Actualizar confirmación'
+      });
+      populateAdultOptions(maxAdults,invitationState.confirmedAdults);
+    }
+
+    function lookupInvitationJsonp(code){
+      return new Promise((resolve,reject)=>{
+        const callbackName='__claudiaKennyLookup_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+        const script=document.createElement('script');
+        const timeout=setTimeout(()=>finish(new Error('Tiempo agotado')),12000);
+        let done=false;
+        function finish(error,payload){ if(done)return; done=true; clearTimeout(timeout); script.remove(); try{delete window[callbackName]}catch(e){window[callbackName]=undefined} error?reject(error):resolve(payload); }
+        window[callbackName]=payload=>finish(null,payload);
+        script.onerror=()=>finish(new Error('Error de conexión'));
+        const url=new URL(GOOGLE_SCRIPT_URL);
+        url.searchParams.set('action','lookup');url.searchParams.set('code',code);url.searchParams.set('callback',callbackName);url.searchParams.set('_',Date.now());
+        script.src=url.toString();document.head.appendChild(script);
+      });
+    }
+
+    function lookupSubmissionStatusJsonp(submissionId){
+      return new Promise((resolve,reject)=>{
+        const callbackName='__claudiaKennySubmission_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+        const script=document.createElement('script');
+        const timeout=setTimeout(()=>finish(new Error('Tiempo agotado')),4500);
+        let done=false;
+        function finish(error,payload){ if(done)return; done=true; clearTimeout(timeout); script.remove(); try{delete window[callbackName]}catch(e){window[callbackName]=undefined} error?reject(error):resolve(payload); }
+        window[callbackName]=payload=>finish(null,payload);
+        script.onerror=()=>finish(new Error('Error de conexión'));
+        const url=new URL(GOOGLE_SCRIPT_URL);
+        url.searchParams.set('action','submissionStatus');url.searchParams.set('submissionId',submissionId);url.searchParams.set('callback',callbackName);url.searchParams.set('_',Date.now());
+        script.src=url.toString();document.head.appendChild(script);
+      });
+    }
+
+    async function validateInvitation(){
+      const sequence=++lookupSequence;
+      const params=new URLSearchParams(location.search);
+      const rawCode=params.get('i');
+
+      if(PREVIEW_MODE && !hasConfiguredGoogleScript()){
+        const demoCode=isValidInvitationCodeFormat(normalizeInvitationCode(rawCode))?normalizeInvitationCode(rawCode):'TESTPAREJA02';
+        applyLookupResponse({ok:true,codigo:demoCode,invitado:'Invitado de prueba',cuposAdultos:2,estado:'Pendiente',adultosConfirmados:0,acompanantes:[]},demoCode);
+        invitationAccessEyebrow.textContent='Vista previa · invitación para';
+        return;
+      }
+
+      if(rawCode===null || !String(rawCode).trim()){
+        invitationState.code='';
+        setInvitationStatus('missing',{eyebrow:'Enlace personalizado requerido',message:'Abre el enlace personalizado que recibiste para confirmar tu asistencia.'});
+        return;
+      }
+      const code=normalizeInvitationCode(rawCode);
+      if(!isValidInvitationCodeFormat(code)){
+        setInvitationStatus('invalid',{eyebrow:'Invitación no validada',message:'El código de esta invitación no tiene un formato válido.'});
+        return;
+      }
+      invitationState.code=code;
+      setInvitationStatus('loading',{eyebrow:'Validando tu invitación…',message:'Espera unos segundos mientras comprobamos tu enlace personalizado.'});
+      if(!hasConfiguredGoogleScript()){
+        setInvitationStatus('error',{eyebrow:'Validación no disponible',message:'Falta conectar esta invitación con Google Apps Script.',retry:true});
+        return;
+      }
+      try{
+        const payload=await lookupInvitationJsonp(code);
+        if(sequence!==lookupSequence)return;
+        applyLookupResponse(payload,code);
+      }catch(error){
+        if(sequence!==lookupSequence)return;
+        setInvitationStatus('error',{eyebrow:'Error de conexión',message:'No pudimos validar tu invitación en este momento. Intenta nuevamente.',retry:true});
+      }
+    }
+
+    retryInvitation.addEventListener('click',validateInvitation);
+
+    function openModal(){
+      if(invitationState.status!=='valid')return;
+      prepareFormFromInvitation();
+      rsvpModal.classList.add('is-open');rsvpModal.setAttribute('aria-hidden','false');document.body.classList.add('locked');
+      setTimeout(()=>phoneInput.focus(),80);
+    }
+    function closeModal(){rsvpModal.classList.remove('is-open');rsvpModal.setAttribute('aria-hidden','true');document.body.classList.remove('locked')}
+    openRsvpButton.addEventListener('click',openModal);
+    closeRsvpModal.addEventListener('click',closeModal);
+    rsvpModal.addEventListener('click',event=>{if(event.target===rsvpModal)closeModal()});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&rsvpModal.classList.contains('is-open'))closeModal()});
+
+    function selectedAttendance(){return rsvpForm.querySelector('input[name="asistencia"]:checked')?.value||''}
+    function currentCompanionDrafts(){return [...companionsFields.querySelectorAll('input[name^="acompanante_"]')].map(input=>input.value.trim())}
+    function renderCompanionFields(){
+      companionDrafts=currentCompanionDrafts().length?currentCompanionDrafts():companionDrafts;
+      const attendance=selectedAttendance();
+      const count=attendance==='Sí asistiré'?Math.max(Number(adultCount.value)||0,0):0;
+      const companionCount=Math.max(count-1,0);
+      companionsFields.innerHTML='';
+      companionsSection.hidden=companionCount===0;
+      for(let i=1;i<=companionCount;i++){
+        const wrap=document.createElement('div');
+        wrap.className='form-row';wrap.style.marginBottom='0';
+        const label=document.createElement('label');label.className='form-label';label.htmlFor='acompanante_'+i;label.textContent='Acompañante '+i;
+        const input=document.createElement('input');input.className='form-input';input.id='acompanante_'+i;input.name='acompanante_'+i;input.type='text';input.maxLength=100;input.required=true;input.placeholder='Nombre completo';input.value=companionDrafts[i-1]||invitationState.companions[i-1]||'';
+        wrap.append(label,input);companionsFields.appendChild(wrap);
+      }
+    }
+    function syncAttendanceFields(){
+      const notAttending=selectedAttendance()==='No podré asistir';
+      adultCount.disabled=notAttending;adultCount.required=!notAttending;adultCountFallback.disabled=!notAttending;adultCountRow.style.opacity=notAttending?'.45':'1';
+      if(notAttending)adultCount.value='';
+      renderCompanionFields();
+    }
+    attendanceInputs.forEach(input=>input.addEventListener('change',syncAttendanceFields));
+    adultCount.addEventListener('change',renderCompanionFields);
+
+    function prepareFormFromInvitation(){
+      rsvpForm.reset();companionDrafts=[];companionsFields.innerHTML='';companionsSection.hidden=true;
+      invitationCodeField.value=invitationState.code;
+      nameInput.value=invitationState.guest;
+      populateAdultOptions(invitationState.maxAdults,invitationState.confirmedAdults);
+      if(invitationState.currentStatus==='Confirmado'){
+        rsvpForm.querySelector('input[value="Sí asistiré"]').checked=true;
+        adultCount.value=String(invitationState.confirmedAdults||1);
+        companionDrafts=[...invitationState.companions];
+      }else if(invitationState.currentStatus==='No asistirá'){
+        rsvpForm.querySelector('input[value="No podré asistir"]').checked=true;
+      }
+      syncAttendanceFields();
+      formStatus.className='status-message';formStatus.textContent='';retrySubmissionVerification.hidden=true;manualWhatsAppLink.hidden=true;
+      previewWarning.hidden=!PREVIEW_MODE;
+      rsvpModalDescription.textContent='Invitación para '+invitationState.guest+'. Puedes registrar o actualizar tu respuesta.';
+    }
+
+    phoneInput.addEventListener('input',()=>{
+      const digits=phoneInput.value.replace(/\D/g,'').slice(0,9);
+      phoneInput.value=digits && !digits.startsWith('9')?'':digits;
+    });
+    userAgentField.value=navigator.userAgent||'';
+
+    function createSubmissionId(){return 'rsvp_'+Date.now()+'_'+Math.random().toString(36).slice(2,12)}
+    function buildWhatsAppUrl(data){
+      if(!hasConfiguredWhatsApp())return '';
+      const companions=[...companionsFields.querySelectorAll('input[name^="acompanante_"]')].map(i=>i.value.trim()).filter(Boolean);
+      const lines=data.asistencia==='No podré asistir'
+        ? ['Hola Claudia y Kenny, les comunico que no podré asistir a su boda del 14 de noviembre de 2026.','Invitación: '+invitationState.guest]
+        : ['Hola Claudia y Kenny, les envío mi confirmación para su boda del 14 de noviembre de 2026.','Invitación: '+invitationState.guest,'Adultos confirmados: '+data.cantidad_adultos];
+      if(companions.length)lines.push('Acompañantes: '+companions.join(', '));
+      if(data.comentario)lines.push('Mensaje: '+data.comentario);
+      return 'https://wa.me/'+String(WHATSAPP_NOVIOS).replace(/\D/g,'')+'?text='+encodeURIComponent(lines.join('\n'));
+    }
+
+    function updateInvitationAfterSuccess(payload){
+      if(payload.asistencia==='Sí asistiré'){
+        invitationState.currentStatus='Confirmado';
+        invitationState.confirmedAdults=Number(payload.adultosConfirmados)||Number(adultCount.value)||1;
+        invitationState.companions=Array.isArray(payload.acompanantes)?payload.acompanantes:currentCompanionDrafts();
+        invitationCurrentResponse.hidden=false;
+        invitationCurrentResponse.textContent='Tu respuesta actual: '+invitationState.confirmedAdults+(invitationState.confirmedAdults===1?' adulto confirmado.':' adultos confirmados.');
+      }else{
+        invitationState.currentStatus='No asistirá';invitationState.confirmedAdults=0;invitationState.companions=[];
+        invitationCurrentResponse.hidden=false;invitationCurrentResponse.textContent='Tu respuesta actual: indicaste que no asistirás.';
+      }
+      setRsvpButton(true,'Actualizar confirmación');
+    }
+
+    async function verifySubmission(submissionId,start=Date.now()){
+      const maxWait=25000;
+      while(Date.now()-start<maxWait){
+        try{
+          const payload=await lookupSubmissionStatusJsonp(submissionId);
+          if(payload && payload.ok===true && payload.found===true)return payload;
+        }catch(error){ /* continúa hasta cumplir el tiempo máximo */ }
+        await new Promise(resolve=>setTimeout(resolve,1200));
+      }
+      throw new Error('verification_timeout');
+    }
+
+    function finalizeSuccess(payload,data){
+      pendingSubmission=null;
+      submitBtn.disabled=false;
+      retrySubmissionVerification.hidden=true;
+      formStatus.className='status-message ok';formStatus.textContent='Confirmación registrada correctamente.';
+      updateInvitationAfterSuccess(payload);
+      const whatsapp=buildWhatsAppUrl(data);
+      if(whatsapp){manualWhatsAppLink.href=whatsapp;manualWhatsAppLink.hidden=false;setTimeout(()=>window.open(whatsapp,'_blank','noopener'),450)}
+    }
+
+    retrySubmissionVerification.addEventListener('click',async()=>{
+      if(!pendingSubmission)return;
+      retrySubmissionVerification.hidden=true;formStatus.className='status-message';formStatus.textContent='Verificando nuevamente…';
+      try{const payload=await verifySubmission(pendingSubmission.id,Date.now());finalizeSuccess(payload,pendingSubmission.data)}
+      catch(error){formStatus.className='status-message warning';formStatus.textContent='Aún no pudimos confirmar el registro. Puedes verificar nuevamente sin reenviar el formulario.';retrySubmissionVerification.hidden=false}
+    });
+
+    rsvpForm.addEventListener('submit',async event=>{
+      event.preventDefault();
+      if(pendingSubmission)return;
+      formStatus.className='status-message';formStatus.textContent='';manualWhatsAppLink.hidden=true;retrySubmissionVerification.hidden=true;
+      if(invitationState.status!=='valid'){formStatus.classList.add('error');formStatus.textContent='Primero debemos validar tu enlace personalizado.';return}
+      const attendance=selectedAttendance();
+      const requestedAdults=attendance==='No podré asistir'?0:Number(adultCount.value);
+      if(!attendance){formStatus.classList.add('error');formStatus.textContent='Selecciona una opción de asistencia.';return}
+      if(attendance==='Sí asistiré' && (!Number.isInteger(requestedAdults)||requestedAdults<1||requestedAdults>invitationState.maxAdults)){formStatus.classList.add('error');formStatus.textContent='La cantidad ingresada supera los cupos de tu invitación.';return}
+      if(!rsvpForm.checkValidity()){rsvpForm.reportValidity();return}
+
+      const companionValues=currentCompanionDrafts();
+      if(attendance==='Sí asistiré' && companionValues.length!==Math.max(requestedAdults-1,0)){formStatus.classList.add('error');formStatus.textContent='Completa el nombre de todos tus acompañantes.';return}
+      companionsConsolidatedField.value=companionValues.join(' | ');
+      const submissionId=createSubmissionId();submissionIdField.value=submissionId;
+      const data=Object.fromEntries(new FormData(rsvpForm).entries());
+      if(attendance==='No podré asistir')data.cantidad_adultos='0';
+
+      submitBtn.disabled=true;formStatus.textContent=PREVIEW_MODE?'Simulando confirmación…':'Guardando tu confirmación…';
+      pendingSubmission={id:submissionId,data};
+
+      if(PREVIEW_MODE){
+        await new Promise(resolve=>setTimeout(resolve,700));
+        const payload={ok:true,found:true,submissionId,codigo:invitationState.code,invitado:invitationState.guest,asistencia:attendance,adultosConfirmados:attendance==='Sí asistiré'?requestedAdults:0,acompanantes:companionValues,estado:attendance==='Sí asistiré'?'Confirmado':'No asistirá'};
+        finalizeSuccess(payload,data);
+        formStatus.textContent='Vista previa: así se verá una confirmación correcta. No se guardó en Sheets.';
+        return;
+      }
+
+      if(!hasConfiguredGoogleScript()){
+        pendingSubmission=null;submitBtn.disabled=false;formStatus.className='status-message error';formStatus.textContent='Falta configurar la URL de Google Apps Script.';return;
+      }
+
+      rsvpForm.action=GOOGLE_SCRIPT_URL;
+      try{
+        HTMLFormElement.prototype.submit.call(rsvpForm);
+        await new Promise(resolve=>setTimeout(resolve,800));
+        const payload=await verifySubmission(submissionId,Date.now());
+        finalizeSuccess(payload,data);
+      }catch(error){
+        submitBtn.disabled=false;
+        formStatus.className='status-message warning';
+        formStatus.textContent='El formulario fue enviado, pero todavía no podemos confirmar que se guardó. Usa “Verificar nuevamente”; no vuelvas a enviarlo.';
+        retrySubmissionVerification.hidden=false;
+      }
+    });
+
+    window.addEventListener('message',event=>{
+      if(!pendingSubmission || !event.data || typeof event.data!=='object')return;
+      const payload=event.data;
+      if(payload.submissionId!==pendingSubmission.id || payload.ok!==true)return;
+      // El postMessage es solo una respuesta rápida opcional. La confirmación definitiva se verifica contra la hoja Confirmaciones.
+    });
+
+    validateInvitation();
+  </script>
+</body>
+</html>
