@@ -411,6 +411,7 @@
 
     /* INFO / FOTOS */
     .info-grid{width:min(980px,100%);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .info-grid.single{width:min(720px,100%);grid-template-columns:1fr}
     .info-card{padding:42px 34px;border:1px solid rgba(84,78,57,.12);border-radius:24px;background:#fff;box-shadow:var(--shadow-soft)}
     .info-card h3{margin:10px 0 12px;color:var(--olive);font:300 1.55rem/1.2 'Montserrat',sans-serif;text-transform:uppercase}
     .info-card p{margin:0;color:var(--muted);font:300 1rem/1.6 'Montserrat',sans-serif}
@@ -785,7 +786,7 @@
     PRIMERA VERSIÓN — CLAUDIA & KENNY
     Fotos esperadas dentro de /assets:
       foto-portada.jpeg, foto-01.jpeg ... foto-15.jpeg, foto-final.jpeg
-    Música esperada: assets/cancion.mp3
+    Música esperada: assets/cancion.mpeg
   -->
 
   <div class="opening-screen" id="openingScreen" aria-label="Portada de la invitación">
@@ -814,7 +815,7 @@
     <i data-lucide="music-2" aria-hidden="true"></i>
   </button>
   <audio id="weddingAudio" preload="metadata" loop>
-    <source src="assets/cancion.mp3" type="audio/mpeg">
+    <source src="assets/cancion.mpeg" type="audio/mpeg">
   </audio>
 
   <main id="inviteContent">
@@ -896,7 +897,7 @@
           <article class="event-card reveal">
             <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large" style="--icon-delay:-.4s"><use href="#ref-church"></use></svg></div>
             <h3>Ceremonia, recepción & fiesta</h3>
-            <p><strong>Hora:</strong> Por definir</p>
+            <p><strong>Hora de recepción:</strong> 6:30 p. m.</p>
             <p class="location">Castillo de Luna Recepciones</p>
             <p>Chiclayo</p>
             <a class="outline-button" href="https://www.google.com/maps/place/Castillo+de+Luna+Recepciones/data=!4m2!3m1!1s0x0:0xc7efc06ac5d36946?sa=X&ved=1t:2428&hl=es-mx&ictx=111" target="_blank" rel="noopener"><svg class="source-button-icon" aria-hidden="true" viewBox="0 0 100 100">
@@ -937,17 +938,9 @@
           </div>
           <p class="palette-label">Paleta de colores sugeridos</p>
           <div class="palette" aria-label="Colores sugeridos">
-            <span class="swatch"><i style="background:#a7b19b"></i>Verde salvia</span>
             <span class="swatch"><i style="background:#879486"></i>Eucalipto</span>
             <span class="swatch"><i style="background:#68693f"></i>Verde oliva</span>
-            <span class="swatch"><i style="background:#182944"></i>Azul marino</span>
             <span class="swatch"><i style="background:#c2a154"></i>Dorado</span>
-          </div>
-          <p class="palette-label">Paleta de la boda</p>
-          <div class="palette" aria-label="Paleta principal de la boda">
-            <span class="swatch" aria-label="Verde salvia"><i style="background:#a7b19b"></i></span>
-            <span class="swatch" aria-label="Marfil"><i style="background:#f7f3e8"></i></span>
-            <span class="swatch" aria-label="Dorado"><i style="background:#c2a154"></i></span>
           </div>
         </div>
       </div>
@@ -960,23 +953,23 @@
         <div class="itinerary">
           <div class="itin-item">
             <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-envelope"></use></svg></div>
-            <p class="itin-time">Por definir</p><p class="itin-label">RecepciÃ³n</p>
+            <p class="itin-time">6:30 p. m.</p><p class="itin-label">Recepción</p>
           </div>
           <div class="itin-item">
             <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-rings"></use></svg></div>
-            <p class="itin-time">Por definir</p><p class="itin-label">Ceremonia</p>
+            <p class="itin-time">7:00 p. m.</p><p class="itin-label">Ceremonia</p>
           </div>
           <div class="itin-item">
             <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-cocktail"></use></svg></div>
-            <p class="itin-time">Por definir</p><p class="itin-label">Brindis</p>
+            <p class="itin-time">9:00 p. m.</p><p class="itin-label">Brindis</p>
           </div>
           <div class="itin-item">
             <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-gift"></use></svg></div>
-            <p class="itin-time">Por definir</p><p class="itin-label">Cena</p>
+            <p class="itin-time">10:00 p. m.</p><p class="itin-label">Cena</p>
           </div>
           <div class="itin-item">
             <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-party"></use></svg></div>
-            <p class="itin-time">Por definir</p><p class="itin-label">Fiesta</p>
+            <p class="itin-time">11:00 p. m.</p><p class="itin-label">Fiesta</p>
           </div>
           <div class="itin-item">
             <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100">
@@ -1043,7 +1036,7 @@
       <!-- línea de piso -->
       <line class="ln-soft" x1="2" y1="80" x2="98" y2="80" style="opacity:.2"/>
     </svg></div>
-            <p class="itin-time">Por definir</p><p class="itin-label">Felices para siempre</p>
+            <p class="itin-time">4:00 a. m.</p><p class="itin-label">Felices para siempre</p>
           </div>
         </div>
       </div>
@@ -1089,21 +1082,22 @@
             <article class="bank-block">
               <div class="bank-heading">
                 <span class="bank-icon" aria-hidden="true"><i data-lucide="landmark"></i></span>
-                <div><strong>BCP</strong><span class="bank-currency">Cuenta en soles</span></div>
+                <div><strong>Interbank</strong><span class="bank-currency">Cuenta Ahorro Sueldo Soles</span></div>
               </div>
               <div class="bank-details">
-                <div class="bank-row"><span class="bank-label">N.º de cuenta</span><span class="bank-value" id="bcpAccount">19196966913074</span><button class="copy-mini" type="button" data-copy-target="bcpAccount" aria-label="Copiar cuenta BCP"><i data-lucide="copy"></i></button></div>
-                <div class="bank-row"><span class="bank-label">CCI</span><span class="bank-value" id="bcpCci">00219119696691307457</span><button class="copy-mini" type="button" data-copy-target="bcpCci" aria-label="Copiar CCI BCP"><i data-lucide="copy"></i></button></div>
+                <div class="bank-row"><span class="bank-label">N.º de cuenta</span><span class="bank-value" id="interbankAccount">8213387548652</span><button class="copy-mini" type="button" data-copy-target="interbankAccount" aria-label="Copiar cuenta Interbank"><i data-lucide="copy"></i></button></div>
+                <div class="bank-row"><span class="bank-label">CCI</span><span class="bank-value" id="interbankCci">00382101338754865263</span><button class="copy-mini" type="button" data-copy-target="interbankCci" aria-label="Copiar CCI Interbank"><i data-lucide="copy"></i></button></div>
+                <div class="bank-row"><span class="bank-label">Titular</span><span class="bank-value">Claudia Linarez Canchanya</span></div>
               </div>
             </article>
             <article class="bank-block">
               <div class="bank-heading">
-                <span class="bank-icon" aria-hidden="true"><i data-lucide="landmark"></i></span>
-                <div><strong>Scotiabank</strong><span class="bank-currency">Cuenta en soles</span></div>
+                <span class="bank-icon" aria-hidden="true"><i data-lucide="smartphone"></i></span>
+                <div><strong>Yape</strong><span class="bank-currency">Alternativa de depósito</span></div>
               </div>
               <div class="bank-details">
-                <div class="bank-row"><span class="bank-label">N.º de cuenta</span><span class="bank-value" id="scotiaAccount">9460436950</span><button class="copy-mini" type="button" data-copy-target="scotiaAccount" aria-label="Copiar cuenta Scotiabank"><i data-lucide="copy"></i></button></div>
-                <div class="bank-row"><span class="bank-label">CCI</span><span class="bank-value" id="scotiaCci">00913520946043695055</span><button class="copy-mini" type="button" data-copy-target="scotiaCci" aria-label="Copiar CCI Scotiabank"><i data-lucide="copy"></i></button></div>
+                <div class="bank-row"><span class="bank-label">Número</span><span class="bank-value" id="yapeNumber">967779881</span><button class="copy-mini" type="button" data-copy-target="yapeNumber" aria-label="Copiar número de Yape"><i data-lucide="copy"></i></button></div>
+                <div class="bank-row"><span class="bank-label">Titular</span><span class="bank-value">Claudia Linarez Canchanya</span></div>
               </div>
             </article>
           </div>
@@ -1117,12 +1111,7 @@
 
     <section class="section" id="detalles-extra">
       <div class="container reveal">
-        <div class="info-grid">
-          <article class="info-card">
-            <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large"><use href="#ref-couple"></use></svg></div>
-            <h3>“Dulces sueños”</h3>
-            <p>Esta sección queda preparada para colocar la indicación final de los novios respecto a la asistencia de niños, manteniendo la misma estructura visual de la referencia.</p>
-          </article>
+        <div class="info-grid single">
           <article class="info-card">
             <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large" style="--icon-delay:-.8s"><use href="#ref-camera"></use></svg></div>
             <h3>Comparte fotografías</h3>
@@ -1259,7 +1248,7 @@
     const WHATSAPP_NOVIOS = 'PEGAR_AQUI_NUMERO_WHATSAPP'; // Ej.: 51999999999
     const PHOTO_UPLOAD_URL = ''; // Opcional: enlace para que invitados suban fotos
 
-    const weddingDate = new Date('2026-11-14T18:00:00-05:00').getTime(); // Hora temporal solo para la cuenta regresiva; actualizar cuando la novia confirme la hora real.
+    const weddingDate = new Date('2026-11-14T18:30:00-05:00').getTime();
 
     const openingScreen = document.getElementById('openingScreen');
     const openInvitation = document.getElementById('openInvitation');
@@ -1336,7 +1325,7 @@
       try{
         if(audio.paused) await audio.play();
         else audio.pause();
-      }catch(error){ showToast('Agrega assets/cancion.mp3 para activar la música'); }
+      }catch(error){ showToast('Agrega assets/cancion.mpeg para activar la música'); }
       updateMusicState();
     });
     audio.addEventListener('play',updateMusicState);
@@ -1481,13 +1470,14 @@
     }
     updateCountdown(); setInterval(updateCountdown,1000);
 
-    /* Agendar fecha: evento de día completo porque la hora todavía está por definir. */
+    /* Agendar fecha con el horario confirmado del itinerario. */
     document.getElementById('calendarButton').addEventListener('click',() => {
       const params = new URLSearchParams({
         action:'TEMPLATE',
         text:'Boda Claudia & Kenny',
-        dates:'20261114/20261115',
-        details:'Boda de Claudia y Kenny. La hora será confirmada posteriormente.',
+        dates:'20261114T183000/20261115T040000',
+        details:'Boda de Claudia y Kenny. Recepción 6:30 p. m., ceremonia 7:00 p. m., brindis 9:00 p. m., cena 10:00 p. m. y fiesta 11:00 p. m.',
+        ctz:'America/Lima',
         location:'Castillo de Luna Recepciones, Chiclayo'
       });
       window.open('https://calendar.google.com/calendar/render?' + params.toString(),'_blank','noopener');
