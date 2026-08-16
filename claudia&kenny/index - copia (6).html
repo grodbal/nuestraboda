@@ -1244,7 +1244,7 @@
         </div>
 
         <button class="submit-button" id="submitBtn" type="submit"><i data-lucide="send"></i>Enviar confirmación</button>
-        <a class="manual-whatsapp-link" id="manualWhatsAppLink" href="#" target="_blank" rel="noopener" hidden><i data-lucide="message-circle"></i> Enviar confirmación por WhatsApp</a>
+        <a class="manual-whatsapp-link" id="manualWhatsAppLink" href="#" target="_blank" rel="noopener" hidden>Abrir WhatsApp</a>
         <div class="status-message" id="formStatus" aria-live="polite"></div>
         <button class="verification-retry" id="retrySubmissionVerification" type="button" hidden>Verificar nuevamente</button>
       </form>
@@ -1267,7 +1267,7 @@
        ========================================================= */
     const PREVIEW_MODE = false;
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby5V_oRbq09Nw1dw8-y0yEPoZgrbLb8REoxtRxbuBU7nZYzkRnbZqFD7uRFP63iPVsL/exec';
-    const WHATSAPP_NOVIOS = '51967779881'; // WhatsApp de Claudia
+    const WHATSAPP_NOVIOS = 'PEGAR_AQUI_NUMERO_WHATSAPP'; // Ej.: 51999999999
     const PHOTO_UPLOAD_URL = ''; // Opcional: enlace para que invitados suban fotos
 
     const weddingDate = new Date('2026-11-14T18:30:00-05:00').getTime();
@@ -1880,7 +1880,7 @@
       formStatus.className='status-message ok';formStatus.textContent='Confirmación registrada correctamente.';
       updateInvitationAfterSuccess(payload);
       const whatsapp=buildWhatsAppUrl(data);
-      if(whatsapp){manualWhatsAppLink.href=whatsapp;manualWhatsAppLink.hidden=false;refreshIcons()}
+      if(whatsapp){manualWhatsAppLink.href=whatsapp;manualWhatsAppLink.hidden=false;setTimeout(()=>window.open(whatsapp,'_blank','noopener'),450)}
     }
 
     retrySubmissionVerification.addEventListener('click',async()=>{
