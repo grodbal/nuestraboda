@@ -261,9 +261,7 @@
     .event-card .location{color:var(--ink);font-weight:600}
 
     /* DRESS CODE */
-    .dress-card{width:min(760px,100%);margin:0 auto;padding:42px 34px;border-radius:22px;background:#fff;box-shadow:var(--shadow);border:1px solid rgba(84,78,57,.10)}
-    .dress-card .section-title{margin-top:20px}
-    .dress-card .body-copy{margin-top:12px}
+    .dress-card{width:min(760px,100%);margin:50px auto 0;padding:42px 34px;border-radius:22px;background:#fff;box-shadow:var(--shadow);border:1px solid rgba(84,78,57,.10)}
     .dress-grid{display:grid;grid-template-columns:1fr 1px 1fr;gap:28px;align-items:center;margin:32px auto 0}
     .dress-divider{width:1px;height:120px;background:rgba(194,161,84,.55)}
     .dress-column h4{margin:0 0 12px;color:var(--gold);font:400 1rem/1.2 'Montserrat',sans-serif;text-transform:uppercase}
@@ -275,26 +273,25 @@
     .swatch i{width:48px;height:48px;border-radius:50%;display:block;border:1px solid rgba(84,78,57,.12);box-shadow:inset 0 0 0 4px rgba(255,255,255,.22)}
 
     /* ITINERARIO */
-    #itinerario{padding:120px 0 150px;overflow:hidden;background:radial-gradient(circle at 50% 0,rgba(194,161,84,.10),transparent 34%),var(--ivory-soft)}
-    #itinerario .container{width:min(1540px,calc(100% - 72px))}
+    #itinerario{padding:110px 0 150px;overflow:hidden}
+    #itinerario .container{width:min(1680px,calc(100% - 72px))}
     .itinerary-ornament{width:184px;height:14px;margin:0 auto 62px;position:relative;color:var(--olive)}
     .itinerary-ornament::before{content:"";position:absolute;left:12px;right:12px;top:6px;height:1px;background:currentColor;opacity:.65}
     .itinerary-ornament::after{content:"◆";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);padding:0 15px;background:var(--ivory-soft);font-size:.55rem}
     .itinerary-ornament span::before,.itinerary-ornament span::after{content:"◆";position:absolute;top:1px;font-size:.48rem}
     .itinerary-ornament span::before{left:3px}.itinerary-ornament span::after{right:3px}
-    .itinerary{--timeline-progress:0;position:relative;margin:72px auto 0;width:100%;padding:30px 24px 34px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;align-items:stretch;border:1px solid rgba(104,105,63,.12);border-radius:30px;background:rgba(255,255,255,.48);box-shadow:0 30px 75px rgba(84,78,57,.10),inset 0 1px rgba(255,255,255,.9);backdrop-filter:blur(8px)}
-    .itinerary::before,.itinerary::after{content:"";position:absolute;left:8.5%;right:8.5%;top:132px;height:2px;transform-origin:left center;pointer-events:none}
-    .itinerary::before{background:rgba(104,105,63,.16)}
-    .itinerary::after{z-index:2;background:linear-gradient(90deg,var(--gold),#d6bd79,var(--olive));transform:scaleX(var(--timeline-progress));box-shadow:0 0 14px rgba(194,161,84,.38)}
-    .itin-item{position:relative;z-index:3;min-width:0;min-height:224px;padding:18px 12px 20px;border:1px solid rgba(104,105,63,.10);border-radius:20px;background:rgba(255,255,255,.82);box-shadow:0 10px 28px rgba(84,78,57,.055);text-align:center;opacity:.5;transform:translateY(22px) scale(.96);transition:opacity .65s ease,transform .8s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .35s ease}
+    .itinerary{--timeline-progress:0;position:relative;margin:78px auto 0;width:100%;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px;align-items:start}
+    .itinerary::before,.itinerary::after{content:"";position:absolute;left:calc(100% / 12);right:calc(100% / 12);top:103px;height:1px;transform-origin:left center;pointer-events:none}
+    .itinerary::before{background:rgba(104,105,63,.20)}
+    .itinerary::after{z-index:2;background:linear-gradient(90deg,var(--gold),var(--olive));transform:scaleX(var(--timeline-progress));box-shadow:0 0 10px rgba(194,161,84,.25)}
+    .itin-item{position:relative;z-index:3;min-width:0;padding:0 10px;background:transparent;text-align:center;opacity:.24;transform:translateY(22px) scale(.96);transition:opacity .65s ease,transform .8s cubic-bezier(.22,1,.36,1)}
     .itin-item.is-reached{opacity:1;transform:none}
-    .itin-item.is-reached:hover{transform:translateY(-6px);border-color:rgba(194,161,84,.35);box-shadow:0 20px 42px rgba(84,78,57,.12)}
-    .itin-item::after{content:"";position:absolute;left:50%;top:101px;width:11px;height:11px;border-radius:50%;background:#fff;border:2px solid rgba(104,105,63,.45);transform:translate(-50%,-50%) scale(.8);transition:.5s ease;box-shadow:0 0 0 6px rgba(255,255,255,.9)}
-    .itin-item.is-reached::after{background:var(--gold);border-color:#fff;transform:translate(-50%,-50%) scale(1);box-shadow:0 0 0 5px rgba(194,161,84,.18),0 3px 10px rgba(84,78,57,.18)}
-    .itin-icon{width:76px;height:76px;margin:0 auto 34px;display:grid;place-items:center;color:var(--olive);border:1px solid rgba(194,161,84,.24);border-radius:50%;background:linear-gradient(145deg,#fff,#f4f0e5);box-shadow:0 9px 20px rgba(84,78,57,.08),inset 0 0 0 6px rgba(255,255,255,.65)}
+    .itin-item::after{content:"";position:absolute;left:50%;top:100px;width:7px;height:7px;border-radius:50%;background:var(--ivory-soft);border:1px solid rgba(104,105,63,.55);transform:translate(-50%,-50%) scale(.7);transition:.5s ease}
+    .itin-item.is-reached::after{background:var(--gold);border-color:var(--gold);transform:translate(-50%,-50%) scale(1);box-shadow:0 0 0 7px rgba(194,161,84,.10)}
+    .itin-icon{width:68px;height:68px;margin:0 auto 22px;display:grid;place-items:center;color:var(--olive)}
     .itinerary-animated-icon{width:64px;height:64px;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 5px 8px rgba(84,78,57,.06))}
-    .itin-time{margin:0;padding:0;border:0;color:var(--olive);font:300 clamp(1.05rem,1.35vw,1.42rem)/1.2 'Montserrat',sans-serif;letter-spacing:-.025em}
-    .itin-label{margin:9px 0 0;color:var(--muted);font:400 clamp(.69rem,.76vw,.82rem)/1.35 'Montserrat',sans-serif;letter-spacing:.045em;text-transform:uppercase}
+    .itin-time{margin:0;padding-top:14px;border-top:1px solid rgba(104,105,63,.75);color:var(--olive);font:300 clamp(1.05rem,1.45vw,1.5rem)/1.2 'Montserrat',sans-serif}
+    .itin-label{margin:7px 0 0;color:var(--muted);font:300 clamp(.72rem,.85vw,.9rem)/1.35 'Montserrat',sans-serif}
 
     .itin-envelope-paper{transform-box:fill-box;transform-origin:center;animation:itin-paper 4.2s ease-in-out infinite}
     .itin-envelope-heart{transform-box:fill-box;transform-origin:center;animation:itin-heart-pulse 2.1s ease-in-out infinite}
@@ -397,7 +394,6 @@
     .gift-secondary .reference-icon-wrap{margin:0}
     .gift-secondary h4{margin:0 0 6px;color:var(--olive);font:300 1.2rem/1.2 'Montserrat',sans-serif;text-transform:uppercase}
     .gift-secondary p{margin:0;color:var(--muted);font:300 1rem/1.5 'Montserrat',sans-serif}
-    .gift-secondary .outline-button{margin-top:18px}
 
     /* INFO / FOTOS */
     .info-grid{width:min(980px,100%);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
@@ -487,10 +483,8 @@
       .cards-2,.info-grid{grid-template-columns:1fr}
       #itinerario{padding:90px 0 110px}
       #itinerario .container{width:min(100% - 28px,820px)}
-      .itinerary{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-      .itinerary::before,.itinerary::after{display:none}
-      .itin-item{padding:18px 8px;opacity:1;transform:none}
-      .itin-item::after{display:none}
+      .itinerary{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 18px}
+      .itin-item{padding:0 8px}
       .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:230px}
       .gallery-photo:nth-child(2),.gallery-photo:nth-child(5),.gallery-photo:nth-child(8),.gallery-photo:nth-child(11),.gallery-photo:nth-child(14){grid-row:span 1}
     }
@@ -509,28 +503,22 @@
       .countdown{padding:12px 6px}
       .countdown strong{font-size:1.8rem}
       .cards-2{margin-top:38px}
-      .dress-card{padding:34px 16px}
-      .dress-card .section-title{font-size:1.65rem}
-      .dress-grid{grid-template-columns:minmax(0,1fr) 1px minmax(0,1fr);gap:12px;margin-top:26px}
-      .dress-divider{width:1px;height:110px;margin:0}
-      .dress-column h4{font-size:.86rem}
-      .dress-column p{font-size:.86rem;line-height:1.45}
+      .dress-grid{grid-template-columns:1fr;gap:18px}
+      .dress-divider{height:1px;width:80%;margin:auto}
       .palette{gap:12px}.swatch{width:72px}.swatch i{width:44px;height:44px}
       #itinerario{padding:72px 0 88px}
       .itinerary-ornament{display:none}
       #itinerario .section-title{font-size:1.45rem}
-      .itinerary{display:block;width:min(410px,100%);margin:48px auto 0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;backdrop-filter:none;counter-reset:itinerary-step}
-      .itinerary::before,.itinerary::after{display:block;left:50%;right:auto;top:0;bottom:60px;width:1px;height:auto;transform-origin:center top}
+      .itinerary{display:block;width:min(410px,100%);margin:48px auto 0}
+      .itinerary::before,.itinerary::after{left:50%;right:auto;top:0;bottom:60px;width:1px;height:auto;transform-origin:center top}
       .itinerary::after{transform:scaleY(var(--timeline-progress))}
-      .itin-item{height:120px;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1fr);grid-template-rows:1fr 1fr;align-items:center;padding:0;position:relative;border:0;border-radius:0;background:transparent;box-shadow:none;opacity:.35;transform:translateY(16px);counter-increment:itinerary-step}
-      .itin-item.is-reached{opacity:1;transform:none}
-      .itin-item.is-reached:hover{transform:none;box-shadow:none}
+      .itin-item{height:120px;display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1fr);grid-template-rows:1fr 1fr;align-items:center;padding:0;position:relative}
       .itin-item::before{content:"";position:absolute;left:50%;top:-8px;bottom:-8px;width:1px;background:rgba(104,105,63,.58);transform:translateX(-50%)}
-      .itin-item::after{content:counter(itinerary-step);position:absolute;z-index:4;left:50%;top:50%;width:25px;height:25px;display:grid;place-items:center;border-radius:50%;background:var(--ivory-soft);border:1px solid rgba(104,105,63,.7);color:var(--olive);font:500 .66rem/1 'Montserrat',sans-serif;box-shadow:0 0 0 6px var(--ivory-soft);transform:translate(-50%,-50%)}
-      .itin-item.is-reached::after{background:var(--olive);border-color:var(--olive);color:#fff;box-shadow:0 0 0 6px var(--ivory-soft)}
+      .itin-item:not(:last-child)::after{content:"";position:absolute;z-index:4;left:50%;bottom:-5px;width:6px;height:6px;border-radius:50%;background:var(--olive);box-shadow:0 0 0 7px var(--ivory-soft);transform:translateX(-50%)}
       .itin-item:last-child::before{bottom:50%}
       .itin-item::before{opacity:0}
-      .itin-icon{width:62px;height:62px;margin:0;grid-row:1/3;justify-self:center;position:relative;z-index:2;border:0;border-radius:0;background:var(--ivory-soft);box-shadow:none}
+      .itin-item:last-child::after{display:none}
+      .itin-icon{width:62px;height:62px;margin:0;grid-row:1/3;justify-self:center;position:relative;z-index:2;background:var(--ivory-soft)}
       .itinerary-animated-icon{width:56px;height:56px}
       .itin-time{align-self:end;margin:0;padding:0;border:0;font-size:1.28rem;line-height:1.12;position:relative;z-index:2;background:var(--ivory-soft)}
       .itin-label{align-self:start;margin:3px 0 0;font-size:.76rem;position:relative;z-index:2;background:var(--ivory-soft)}
@@ -538,6 +526,8 @@
       .itin-item:nth-child(odd) .itin-time,.itin-item:nth-child(odd) .itin-label{grid-column:3;text-align:center}
       .itin-item:nth-child(even) .itin-icon{grid-column:3}
       .itin-item:nth-child(even) .itin-time,.itin-item:nth-child(even) .itin-label{grid-column:1;text-align:center}
+      .itin-item:nth-child(odd) .itin-time::before{content:"";position:absolute;right:calc(100% + 8px);top:-18px;width:32px;height:33px;border-left:1px solid rgba(104,105,63,.58);border-top:1px solid rgba(104,105,63,.58);border-radius:22px 0 0 0}
+      .itin-item:nth-child(even) .itin-time::before{content:"";position:absolute;left:calc(100% + 8px);top:14px;width:32px;height:33px;border-right:1px solid rgba(104,105,63,.58);border-bottom:1px solid rgba(104,105,63,.58);border-radius:0 0 22px 0}
       .gallery{display:block;column-count:3;column-gap:5px;width:calc(100% + 8px);margin:22px 0 0 -4px;overflow:visible}
       .gallery-photo{display:block;width:100%;aspect-ratio:2/3;min-height:0;margin:0 0 5px;-webkit-column-break-inside:avoid;break-inside:avoid-column;page-break-inside:avoid;contain:layout paint;vertical-align:top;border-radius:7px;border:0;box-shadow:0 5px 14px rgba(84,78,57,.08);--entry-turn:-5deg;--rest-turn:-.7deg;--rest-y:0px}
       .gallery-photo:nth-child(even){--entry-turn:5deg;--rest-turn:.8deg}
@@ -650,17 +640,6 @@
       <g class="sparkle l"><path class="ln" d="M48,52 L48,60 M44,56 L52,56"/></g>
       <g class="sparkle r"><path class="ln" d="M88,52 L88,60 M84,56 L92,56"/></g>
     </symbol>
-    <symbol id="ref-reception" viewBox="0 0 100 100">
-      <path class="ln" d="M24 82V43C24 25 35 15 50 15s26 10 26 28v39"/>
-      <path class="ln-soft" d="M32 82V44c0-13 7-21 18-21s18 8 18 21v38"/>
-      <path class="ln" d="M32 47h36M50 47v35M24 82h52"/>
-      <path class="fill-soft" d="M33 49h15v31H33zM52 49h15v31H52z"/>
-      <circle class="fill" cx="44" cy="65" r="1.5"/>
-      <circle class="fill" cx="56" cy="65" r="1.5"/>
-      <g class="beat"><path class="fill" d="M50 31c0-4-6-6-8-2-2 4 2 7 8 12 6-5 10-8 8-12-2-4-8-2-8 2Z"/></g>
-      <g class="sparkle l"><path class="ln" d="M17 32v8m-4-4h8"/></g>
-      <g class="sparkle r"><path class="ln" d="M83 32v8m-4-4h8"/></g>
-    </symbol>
     <symbol id="ref-attire" viewBox="0 0 100 100">
 <g class="flutter-a">
         <path class="ln" d="M30,18 C24,18 24,24 24,24 L14,32 L18,74 L42,74 L46,32 L36,24 C36,24 36,18 30,18 Z"/>
@@ -717,15 +696,6 @@
     <symbol id="ref-dinner" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
       <path d="M11 13h11v11c0 5-2 8-5.5 8S11 29 11 24V13ZM16.5 32v19M11 52h11"/>
       <path d="M29 46h28M33 44c0-10 5-17 12-17s12 7 12 17M45 27v-4M41 22h8M29 47v5h28v-5"/>
-    </symbol>
-    <symbol id="ref-music" viewBox="0 0 100 100">
-      <path class="ln" d="M38 70V27l39-8v42"/>
-      <path class="ln-soft" d="M38 38l39-8"/>
-      <ellipse class="ln" cx="29" cy="72" rx="11" ry="8" transform="rotate(-12 29 72)"/>
-      <ellipse class="ln" cx="68" cy="63" rx="11" ry="8" transform="rotate(-12 68 63)"/>
-      <g class="sparkle l"><path class="ln" d="M18 28v10m-5-5h10"/></g>
-      <g class="sparkle r"><path class="ln" d="M82 46v8m-4-4h8"/></g>
-      <g class="beat"><path class="fill" d="M51 59c0-4-6-6-8-2-2 4 2 7 8 12 6-5 10-8 8-12-2-4-8-2-8 2Z"/></g>
     </symbol>
     <symbol id="ref-party" viewBox="0 0 100 100">
 <g class="clink-l">
@@ -855,7 +825,7 @@
       <div class="hero-copy">
         <div class="hero-inner reveal">
           <p class="eyebrow">¡Nos casamos!</p>
-          <h2 class="couple-names"><span>Claudia</span><span>&amp;&ensp;Kenny</span></h2>
+          <h2 class="couple-names"><span>Claudia</span><span>& Kenny</span></h2>
 
           <span class="guest-chip" id="heroGuest">Una invitación creada especialmente para ti</span>
         </div>
@@ -938,10 +908,11 @@
 
     <section class="section" id="dresscode">
       <div class="container reveal">
+        <p class="tiny-label">Código de vestimenta</p>
+        <h2 class="section-title">Dress Code</h2>
+        <p class="body-copy">Elegante</p>
         <div class="dress-card">
           <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large"><use href="#ref-attire"></use></svg></div>
-          <h2 class="section-title">Dress Code</h2>
-          <p class="body-copy">Elegante</p>
           <div class="dress-grid">
             <div class="dress-column">
               <h4>Ellas</h4>
@@ -972,7 +943,7 @@
         <h2 class="section-title">Itinerario</h2>
         <div class="itinerary">
           <div class="itin-item">
-            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-reception"></use></svg></div>
+            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-envelope"></use></svg></div>
             <p class="itin-time">6:30 p. m.</p><p class="itin-label">Recepción</p>
           </div>
           <div class="itin-item">
@@ -984,11 +955,11 @@
             <p class="itin-time">9:00 p. m.</p><p class="itin-label">Brindis</p>
           </div>
           <div class="itin-item">
-            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 64 64"><use href="#ref-dinner"></use></svg></div>
+            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-gift"></use></svg></div>
             <p class="itin-time">10:00 p. m.</p><p class="itin-label">Cena</p>
           </div>
           <div class="itin-item">
-            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-music"></use></svg></div>
+            <div class="itin-icon" aria-hidden="true"><svg class="itinerary-source-icon" viewBox="0 0 100 100"><use href="#ref-party"></use></svg></div>
             <p class="itin-time">11:00 p. m.</p><p class="itin-label">Fiesta</p>
           </div>
           <div class="itin-item">
@@ -1124,7 +1095,7 @@
         </div>
         <div class="gift-secondary">
           <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon"><use href="#ref-envelope"></use></svg></div>
-          <div><h4>Un detalle para considerar</h4><p>Por nuestro viaje a Chiclayo, agradeceremos enviar los presentes con anticipación.</p><a class="outline-button" href="https://app.notion.com/p/Nuestra-boda-Claudia-Kenny-5a2dd1ba3b984422a83fc6ad4d4d815a?source=copy_link" target="_blank" rel="noopener"><i data-lucide="gift"></i>Ver lista de regalos</a></div>
+          <div><h4>Un detalle para considerar</h4><p>Por nuestro viaje a Chiclayo, agradeceremos enviar los presentes con anticipación.</p></div>
         </div>
       </div>
     </section>
@@ -1176,7 +1147,7 @@
       <div class="container reveal">
         <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large"><use href="#ref-couple"></use></svg></div>
         <p class="closing-copy">Creemos que los momentos más importantes se vuelven inolvidables cuando se comparten. Gracias por formar parte de nuestra historia y por acompañarnos en el inicio de esta nueva etapa.</p>
-        <h2 class="closing-names">Claudia &amp;&ensp;Kenny</h2>
+        <h2 class="closing-names">Claudia & Kenny</h2>
 
       </div>
     </section>
@@ -1265,8 +1236,8 @@
     /* =========================================================
        CONFIGURACIÓN — CAMBIAR SOLO ESTAS CONSTANTES AL PUBLICAR
        ========================================================= */
-    const PREVIEW_MODE = false;
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbydfGNiagX9NnEp_p8vqIir7m8lBXlU0wHcyz0iacswWSrK3YKHS8SeYT9BJFuXpBFS/exec';
+    const PREVIEW_MODE = true;
+    const GOOGLE_SCRIPT_URL = 'PEGAR_AQUI_URL_EXEC_DE_APPS_SCRIPT';
     const WHATSAPP_NOVIOS = 'PEGAR_AQUI_NUMERO_WHATSAPP'; // Ej.: 51999999999
     const PHOTO_UPLOAD_URL = ''; // Opcional: enlace para que invitados suban fotos
 
