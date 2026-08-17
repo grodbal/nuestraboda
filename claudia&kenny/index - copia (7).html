@@ -1129,6 +1129,19 @@
       </div>
     </section>
 
+    <section class="section" id="detalles-extra">
+      <div class="container reveal">
+        <div class="info-grid single">
+          <article class="info-card">
+            <div class="reference-icon-wrap" aria-hidden="true"><svg class="reference-icon large" style="--icon-delay:-.8s"><use href="#ref-camera"></use></svg></div>
+            <h3>Comparte fotografías</h3>
+            <p>Ayúdanos a hacer eterno este día. Aquí podrá activarse el enlace para que los invitados compartan sus fotos y momentos especiales.</p>
+            <a class="outline-button" id="photoShareButton" href="#" aria-disabled="true"><i data-lucide="upload"></i>Compartir fotografías</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section ivory" id="confirmacion">
       <div class="container reveal">
         <p class="tiny-label">Tu presencia es importante para nosotros</p>
@@ -1255,6 +1268,8 @@
     const PREVIEW_MODE = false;
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby5V_oRbq09Nw1dw8-y0yEPoZgrbLb8REoxtRxbuBU7nZYzkRnbZqFD7uRFP63iPVsL/exec';
     const WHATSAPP_NOVIOS = '51967779881'; // WhatsApp de Claudia
+    const PHOTO_UPLOAD_URL = ''; // Opcional: enlace para que invitados suban fotos
+
     const weddingDate = new Date('2026-11-14T18:30:00-05:00').getTime();
 
     const openingScreen = document.getElementById('openingScreen');
@@ -1503,6 +1518,16 @@
         catch(error){ showToast('No se pudo copiar'); }
       });
     });
+
+    const photoShareButton = document.getElementById('photoShareButton');
+    if(PHOTO_UPLOAD_URL){
+      photoShareButton.href = PHOTO_UPLOAD_URL;
+      photoShareButton.target = '_blank';
+      photoShareButton.rel = 'noopener';
+      photoShareButton.removeAttribute('aria-disabled');
+    }else{
+      photoShareButton.addEventListener('click',event => { event.preventDefault(); showToast('El enlace para compartir fotografías se configurará después'); });
+    }
 
     /* Visor de fotografías originales. */
     const galleryLightbox = document.getElementById('galleryLightbox');
